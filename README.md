@@ -54,14 +54,7 @@ TODO: add figure with workflow overview
     ```
     where `your_username` and `your_worker_IP` should be replaced with your specific user-name and IP address. Presently we support only IPv4. You can get the proper IP by running `echo $(curl -s -4 ifconfig.me/ip)` on the remote.
 
-8. Configure the bridge. Run the following command in your local machine. Set `MYWRKDIR` to an absolute pathname to the folder located on the remote worker: this is the location from where every job on the remote worker will start.
-
-
-    ```
-    ssh -i ~/.ssh/id_rsa_RuCatEvaluator $MYRWIP  "mkdir -p $MYWRKDIR"
-    scp -r -i ~/.ssh/to_RuCatEvaluator data/basisset MYRWIP:"$MYWRKDIR"
-    ```
-    and
+8. Configure the bridge. Run the following command in your local machine.
     ```
     echo "[WORKER1]" > tools/RemoteWorkersBridge/configuration
     echo "remoteIP=your_worker_IP" >> tools/RemoteWorkersBridge/configuration
@@ -71,6 +64,12 @@ TODO: add figure with workflow overview
     echo "workKind=xtb,dft" >> tools/RemoteWorkersBridge/configuration
     ```
 
+9. To prepare the remote worker, run the following from your local machine:
+    ```
+    ssh -i ~/.ssh/id_rsa_RuCatEvaluator $MYRWIP  "mkdir -p $MYWRKDIR"
+    scp -r -i ~/.ssh/to_RuCatEvaluator data/basisset MYRWIP:"$MYWRKDIR"
+    ```
+    
 9. Copy the folder `tools/RemoteWorkersBridge` into a private location on the remote worker, typically under your HOME. We'll refer to the absolute path of the newly created folder as `RemoteWorkersBridge_on_HPCWorker`, which you have to edit in this command:
     ```
     scp -r -i ~/.ssh/to_RuCatEvaluator tools/RemoteWorkersBridge MYRWIP:<RemoteWorkersBridge_on_HPCWorker>
