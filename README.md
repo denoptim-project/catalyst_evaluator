@@ -57,7 +57,7 @@ TODO: add figure with workflow overview
 8. Configure the bridge. Run the following command in your local machine.
     ```
     echo "[WORKER1]" > tools/RemoteWorkersBridge/configuration
-    echo "remoteIP=your_worker_IP" >> tools/RemoteWorkersBridge/configuration
+    echo "remoteIP=$MYRWIP" >> tools/RemoteWorkersBridge/configuration
     echo "wdirOnRemote=$MYWRKDIR" >> tools/RemoteWorkersBridge/configuration
     echo "userOnRemote=$MYWUSER" >> tools/RemoteWorkersBridge/configuration
     echo "identityFile=$HOME/.ssh/id_rsa_RuCatEvaluator" >> tools/RemoteWorkersBridge/configuration
