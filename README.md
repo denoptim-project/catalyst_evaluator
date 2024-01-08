@@ -66,12 +66,12 @@ TODO: add figure with workflow overview
 9. To prepare the remote worker, run the following from your local machine:
     ```
     ssh -i ~/.ssh/id_rsa_RuCatEvaluator $MYRWIP  "mkdir -p $MYWRKDIR"
-    scp -r -i ~/.ssh/to_RuCatEvaluator data/basisset MYRWIP:"$MYWRKDIR"
+    scp -r -i ~/.ssh/to_RuCatEvaluator data/basisset $MYRWIP:"$MYWRKDIR"
     ```
     
 9. Copy the folder `tools/RemoteWorkersBridge` into a private location on the remote worker, typically under your HOME. We'll refer to the absolute path of the newly created folder as `RemoteWorkersBridge_on_HPCWorker`, which you have to edit in this command:
     ```
-    scp -r -i ~/.ssh/to_RuCatEvaluator tools/RemoteWorkersBridge MYRWIP:<RemoteWorkersBridge_on_HPCWorker>
+    scp -r -i ~/.ssh/to_RuCatEvaluator tools/RemoteWorkersBridge $MYRWIP:<RemoteWorkersBridge_on_HPCWorker>
     ```
 
 10. Log in to `your_worker_IP` and edit the `~/.ssh/authorized_keys` file. The last line of this file should contain the ssh key entry you have just added with the `ssh-copy-id` command above. We are now going to edit this line to prevent any misuse of this automated login channel. This is done by limiting the usage to this key enabling only a privately own command filter. To this end, edit the line pertaining the ssh key we just authorized (i.e., the last line of `~/.ssh/authorized_keys`), and add in front of any text of that line the following string (NB: there is a space at the end!):
