@@ -1,0 +1,6 @@
+# parameters defingin fragment space FS-C5.0
+FS-scaffoldLibFile=scaff_A1_v3.sdf
+FS-fragmentLibFile=lib_frags_FS_C5.0_v3.sdf
+FS-cappingFragmentLibFile=lib_caps_FS_C5.0_v3.sdf
+FS-compMatrixFile=CPMap_FS-C5.0.par
+

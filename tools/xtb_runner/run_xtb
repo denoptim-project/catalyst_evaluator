@@ -1,0 +1,167 @@
+#!/bin/bash
+#
+# Wrapper that sets the environment and calls the actual XTB executable.
+# This wrappex expects to find the 'xtb' xommand i nthe path. This is
+# currently guaranteed by the use of a conda environmbet.
+#
+# Author: Marco Foscato
+#
+
+function printUsage() {
+cat <<EOF
+
+ This is the wrapper of the XTB executable: it configures the environment and calls the actual executable. This script should be run from within the work space.
+
+ Usage
+ =====
+
+ ./thisScript.sh <input> <output> [<opts>]
+
+ Where:
+ <input>       is the pathname of the minimal input file (i.e., the definition of
+               the molecular system and geometry).
+
+ <output>      is the pathneme where to redirect stdout and stderr feeds from
+               the main XTB executable.
+
+ <opts>        are optional arguments such as:
+  -a "<args>" an optional list of arguments that will be passed to the XTB executable.
+              This argument has to be placed in between double quotation marks.
+  -c N        the number of omp threads to use in a single XTB job. Default is 1.
+
+EOF
+}
+
+if [ $# -lt 2 ] ; then
+    echo "ERROR! Wrong number of arguments."
+    printUsage
+    exit 1
+fi
+args=("$@")
+input="$1"
+log="$2"
+if [ ! -f "$input" ] ; then
+    echo "ERROR! File '$input' not found!"
+    exit 1
+fi
+
+#
+# Function that checks if the arguments of a command line option is present.
+#
+# @param $1 the argument index (0-based integer) of the argument right before
+# the one we are checking the existence of.
+# @param $2 a string identifying what $1 is supposed to be (used only for logging).
+# @param $3 total number of arguments given to the script that calles this function.
+# @param $4-$# original arguments of the script that calls this function.
+# @return 1 when no argument is found for a command line option.
+#
+
+function checkArg() {
+   local ii="$1"
+   local option="$2"
+   local tot="$3"
+   local args=("${@:4}")
+   ii=$((ii+1))
+   if [ "$ii" -ge "$tot" ]
+   then
+      echo "ERROR! Missing argument for option '$option'."
+      return 1
+   fi
+   #local argument=${args[$i+1]}
+   #if [[ "$argument" == "-"* ]]
+   #then
+   #   echo "ERROR! Missing argument for option '$option'."
+   #   return 1
+   #fi
+   return 0
+}
+
+#
+# Function that checks whether this argument of an option is an integer.
+#
+# @param $1 the number to evaluate.
+# @param $2 an string identifying what $1 is (used only for logging).
+# @return 1 if num is not an unsigned integer number.
+#
+
+function checkNum() {
+   local num="$1"
+   local option="$2"
+   if [[ ! $num =~ ^[0-9]+$ ]]
+   then
+      echo "ERROR! Argument for option '$option' must be an integer."
+      return 1
+   fi
+   return 0
+}
+
+#
+# Function that checks whether the arguments of a command line option it valid.
+# If not, it exits with an error.
+#
+
+function ensureGoodArg() {
+   local option="$2"
+   if ! checkArg $@
+   then
+     echo "ERROR! Missing argument for option '$option'."
+     exit 1
+   fi
+}
+
+#
+# Function that checks whether this argument of an option is an integer. If not
+# it exits with an error.
+#
+
+function ensureNum() {
+   local option="$2"
+   if ! checkNum $@
+   then
+     echo "ERROR! Argument for option '$option' must be an integer."
+     exit 1
+   fi
+}
+
+#
+# Parse options
+#
+nThreads=1
+xtbArgs=""
+for ((i=0; i<${#args[@]}; i++))
+do
+    arg="${args[$i]}"
+    case "$arg" in
+        "-h") printUsage ; exit 1;;
+        "--help") printUsage ; exit 1;;
+        "-c") ensureGoodArg "$i" "$arg" "$#"; ensureNum "${args[$i+1]}" "$arg";
+              nThreads=${args[$i+1]};;
+        "-a") ensureGoodArg "$i" "$arg" "$#";
+              xtbArgs="${args[$i+1]}"
+              xtbArgs="${xtbArgs%\"}"
+              xtbArgs="${xtbArgs#\"}";;
+        *);;
+    esac
+done
+
+ulimit -s unlimited
+export OMP_STACKSIZE=4G
+export OMP_NUM_THREADS=$nThreads,1
+export OMP_MAX_ACTIVE_LEVELS=1
+
+XTBHOME="$(dirname $(dirname $(which xtb)))"
+XTBPATH=${XTBHOME}/share/xtb:${XTBHOME}
+MANPATH=${MANPATH}:${XTBHOME}/share/man
+PATH=${PATH}:${XTBHOME}/bin
+PKG_CONFIG_PATH=${PKG_CONFIG_PATH}:${XTBHOME}/lib/pkgconfig
+LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${XTBHOME}/lib
+
+export PATH XTBPATH MANPATH LD_LIBRARY_PATH PYTHONPATH
+
+echo " "
+echo "*********************** Running XTB ************************"
+echo "Which xtb: $(which xtb)"
+echo "Running command: xtb $input $xtbArgs > $log 2>&1"
+time xtb "$input" $xtbArgs > "$log" 2>&1
+echo "********************* End of XTB run ***********************"
+exit 0

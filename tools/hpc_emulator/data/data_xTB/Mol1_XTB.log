@@ -1,0 +1,1141 @@
+Starting job 5486100 on c3-6 on fram at Fri Dec 22 17:08:01 CET 2023
+
+########### ACC - Job Start ###########
+Job started on c3-6 at
+Fri Dec 22 17:08:01 CET 2023
+The job was submitted from /cluster/projects/nn2506k/marcof/evaluator_jobs/job1703261267180
+The job will use scratch-directory /cluster/work/users/marcof/5486100/Mol1_XTB
+Copying Mol1_A_XTB.sdf to work space
+Copying Mol1_C_XTB.sdf to work space
+Copying Mol1_E_XTB.sdf to work space
+Copying Mol1_F_XTB.sdf to work space
+Copying Mol1_L_XTB.sdf to work space
+Copying Mol1_P_XTB.sdf to work space
+Copying Mol1_A_XTB.xyz to work space
+Copying Mol1_C_XTB.xyz to work space
+Copying Mol1_E_XTB.xyz to work space
+Copying Mol1_F_XTB.xyz to work space
+Copying Mol1_L_XTB.xyz to work space
+Copying Mol1_P_XTB.xyz to work space
+ 
+********************** Calling ACC ********************
+
+
+***************************************************************************
+                              AutoCompChem
+                              Version: 2.0
+***************************************************************************
+
+
+Initiating ACC Job #0.1
+Running job container autocompchem.run.ACCJob@68be2bc2
+
+Initiating ACC Job #0.1.1
+ AutoCompChem is initiating the ACC task 'PrepareInputXTB' - Fri Dec 22 17:08:03 CET 2023
+ Adding parameters to OrcaInputWriter
+ Job details from nested parameter block.
+ No 'ROOTPATHNAMEOUTPUT' parameter found. 
+Root of any output file name set to 'Mol1_A_XTB'.
+Done with ACC job (PrepareInputXTB) - Fri Dec 22 17:08:04 CET 2023
+
+Initiating SHELL Job #0.1.2
+WARNING: setting work directory to 'Mol1_A_XTB_hessPre'.
+ Fri Dec 22 17:08:04 CET 2023
+Running SHELL Job: autocompchem.run.ShellJob@460d0a57 Thread: main
+OMP_STACKSIZE=4G
+OMP_NUM_THREADS=1,1
+OMP_MAX_ACTIVE_LEVELS=1
+ 
+*********************** Running XTB ************************
+Running command: xtb Mol1_A_XTB.sdf --input Mol1_A_XTB.xcontrol --acc 0.05 > Mol1_A_XTB.out 2>&1
+
+real	0m15.676s
+user	0m14.491s
+sys	0m0.946s
+********************* End of XTB run ***********************
+Done with SHELL Job autocompchem.run.ShellJob@460d0a57
+
+Initiating SHELL Job #0.1.3
+ Fri Dec 22 17:08:19 CET 2023
+Running SHELL Job: autocompchem.run.ShellJob@8dbdac1 Thread: main
+Done with SHELL Job autocompchem.run.ShellJob@8dbdac1
+
+Initiating ACC Job #0.1.4
+ AutoCompChem is initiating the ACC task 'PrepareInputXTB' - Fri Dec 22 17:08:19 CET 2023
+ Adding parameters to OrcaInputWriter
+ Job details from nested parameter block.
+ No 'ROOTPATHNAMEOUTPUT' parameter found. 
+Root of any output file name set to 'Mol1_A_XTB'.
+Done with ACC job (PrepareInputXTB) - Fri Dec 22 17:08:19 CET 2023
+
+Initiating SHELL Job #0.1.5
+WARNING: setting work directory to 'Mol1_A_XTB_opt'.
+ Fri Dec 22 17:08:19 CET 2023
+Running SHELL Job: autocompchem.run.ShellJob@6e20b53a Thread: main
+OMP_STACKSIZE=4G
+OMP_NUM_THREADS=10,1
+OMP_MAX_ACTIVE_LEVELS=1
+ 
+*********************** Running XTB ************************
+Running command: xtb Mol1_A_XTB.sdf --input Mol1_A_XTB.xcontrol --acc 0.05 > Mol1_A_XTB.out 2>&1
+
+real	0m1.937s
+user	0m17.745s
+sys	0m1.304s
+********************* End of XTB run ***********************
+Done with SHELL Job autocompchem.run.ShellJob@6e20b53a
+
+Initiating ACC Job #0.1.6
+ AutoCompChem is initiating the ACC task 'AnalyseXTBOutput' - Fri Dec 22 17:08:21 CET 2023
+ Adding parameters to ChemSoftwareOutputHandler
+ Log file 'Mol1_A_XTB_opt/Mol1_A_XTB.out' contains 1 steps.
+ The overall run did terminate normally!
+ 
+Summary of the results:
+
+Step 0:
+-> SCF Energy -64.641854352868
+
+ 
+Summary of final results:
+Bond lengths vs. connectivity: compatible 
+
+Done with ACC job (AnalyseXTBOutput) - Fri Dec 22 17:08:22 CET 2023
+
+Initiating SHELL Job #0.1.7
+ Fri Dec 22 17:08:22 CET 2023
+Running SHELL Job: autocompchem.run.ShellJob@7e242b4d Thread: main
+Done with SHELL Job autocompchem.run.ShellJob@7e242b4d
+
+Initiating ACC Job #0.1.8
+ AutoCompChem is initiating the ACC task 'PrepareInputXTB' - Fri Dec 22 17:08:22 CET 2023
+ Adding parameters to OrcaInputWriter
+ Job details from nested parameter block.
+ No 'ROOTPATHNAMEOUTPUT' parameter found. 
+Root of any output file name set to 'Mol1_A_XTB'.
+Done with ACC job (PrepareInputXTB) - Fri Dec 22 17:08:22 CET 2023
+
+Initiating SHELL Job #0.1.9
+WARNING: setting work directory to 'Mol1_A_XTB_hessPost'.
+ Fri Dec 22 17:08:22 CET 2023
+Running SHELL Job: autocompchem.run.ShellJob@305f031 Thread: main
+OMP_STACKSIZE=4G
+OMP_NUM_THREADS=1,1
+OMP_MAX_ACTIVE_LEVELS=1
+ 
+*********************** Running XTB ************************
+Running command: xtb xtbopt.sdf --input Mol1_A_XTB.xcontrol --acc 0.05 > Mol1_A_XTB.out 2>&1
+
+real	0m15.485s
+user	0m14.487s
+sys	0m0.888s
+********************* End of XTB run ***********************
+Done with SHELL Job autocompchem.run.ShellJob@305f031
+
+Initiating ACC Job #0.1.10
+ AutoCompChem is initiating the ACC task 'AnalyseXTBOutput' - Fri Dec 22 17:08:37 CET 2023
+ Adding parameters to ChemSoftwareOutputHandler
+ Log file 'Mol1_A_XTB_hessPost/Mol1_A_XTB.out' contains 1 steps.
+ The overall run did terminate normally!
+ 
+Summary of the results:
+
+Step 0:
+-> SCF Energy -64.641854305488
+-> Critial Point: MINIMUM 
+
+ 
+Summary of final results:
+
+Done with ACC job (AnalyseXTBOutput) - Fri Dec 22 17:08:37 CET 2023
+
+Initiating ACC Job #0.2
+Running job container autocompchem.run.ACCJob@25ddbbbb
+
+Initiating ACC Job #0.2.1
+ AutoCompChem is initiating the ACC task 'PrepareInputXTB' - Fri Dec 22 17:08:37 CET 2023
+ Adding parameters to OrcaInputWriter
+ Job details from nested parameter block.
+ No 'ROOTPATHNAMEOUTPUT' parameter found. 
+Root of any output file name set to 'Mol1_F_XTB'.
+Done with ACC job (PrepareInputXTB) - Fri Dec 22 17:08:37 CET 2023
+
+Initiating SHELL Job #0.2.2
+WARNING: setting work directory to 'Mol1_F_XTB_hessPre'.
+ Fri Dec 22 17:08:37 CET 2023
+Running SHELL Job: autocompchem.run.ShellJob@1536602f Thread: main
+OMP_STACKSIZE=4G
+OMP_NUM_THREADS=1,1
+OMP_MAX_ACTIVE_LEVELS=1
+ 
+*********************** Running XTB ************************
+Running command: xtb Mol1_F_XTB.sdf --input Mol1_F_XTB.xcontrol --acc 0.05 > Mol1_F_XTB.out 2>&1
+
+real	0m15.373s
+user	0m14.485s
+sys	0m0.787s
+********************* End of XTB run ***********************
+Done with SHELL Job autocompchem.run.ShellJob@1536602f
+
+Initiating SHELL Job #0.2.3
+ Fri Dec 22 17:08:53 CET 2023
+Running SHELL Job: autocompchem.run.ShellJob@4ebea12c Thread: main
+Done with SHELL Job autocompchem.run.ShellJob@4ebea12c
+
+Initiating ACC Job #0.2.4
+ AutoCompChem is initiating the ACC task 'PrepareInputXTB' - Fri Dec 22 17:08:53 CET 2023
+ Adding parameters to OrcaInputWriter
+ Job details from nested parameter block.
+ No 'ROOTPATHNAMEOUTPUT' parameter found. 
+Root of any output file name set to 'Mol1_F_XTB'.
+Done with ACC job (PrepareInputXTB) - Fri Dec 22 17:08:53 CET 2023
+
+Initiating SHELL Job #0.2.5
+WARNING: setting work directory to 'Mol1_F_XTB_opt'.
+ Fri Dec 22 17:08:53 CET 2023
+Running SHELL Job: autocompchem.run.ShellJob@2a1edad4 Thread: main
+OMP_STACKSIZE=4G
+OMP_NUM_THREADS=10,1
+OMP_MAX_ACTIVE_LEVELS=1
+ 
+*********************** Running XTB ************************
+Running command: xtb Mol1_F_XTB.sdf --input Mol1_F_XTB.xcontrol --acc 0.05 > Mol1_F_XTB.out 2>&1
+
+real	0m5.779s
+user	0m53.827s
+sys	0m3.518s
+********************* End of XTB run ***********************
+Done with SHELL Job autocompchem.run.ShellJob@2a1edad4
+
+Initiating ACC Job #0.2.6
+ AutoCompChem is initiating the ACC task 'AnalyseXTBOutput' - Fri Dec 22 17:08:58 CET 2023
+ Adding parameters to ChemSoftwareOutputHandler
+ Log file 'Mol1_F_XTB_opt/Mol1_F_XTB.out' contains 1 steps.
+ The overall run did terminate normally!
+ 
+Summary of the results:
+
+Step 0:
+-> SCF Energy -64.629131698182
+
+ 
+Summary of final results:
+Bond lengths vs. connectivity: compatible 
+
+Done with ACC job (AnalyseXTBOutput) - Fri Dec 22 17:08:59 CET 2023
+
+Initiating SHELL Job #0.2.7
+ Fri Dec 22 17:08:59 CET 2023
+Running SHELL Job: autocompchem.run.ShellJob@21274afe Thread: main
+Done with SHELL Job autocompchem.run.ShellJob@21274afe
+
+Initiating ACC Job #0.2.8
+ AutoCompChem is initiating the ACC task 'PrepareInputXTB' - Fri Dec 22 17:08:59 CET 2023
+ Adding parameters to OrcaInputWriter
+ Job details from nested parameter block.
+ No 'ROOTPATHNAMEOUTPUT' parameter found. 
+Root of any output file name set to 'Mol1_F_XTB'.
+Done with ACC job (PrepareInputXTB) - Fri Dec 22 17:08:59 CET 2023
+
+Initiating SHELL Job #0.2.9
+WARNING: setting work directory to 'Mol1_F_XTB_hessPost'.
+ Fri Dec 22 17:08:59 CET 2023
+Running SHELL Job: autocompchem.run.ShellJob@76a362a4 Thread: main
+OMP_STACKSIZE=4G
+OMP_NUM_THREADS=1,1
+OMP_MAX_ACTIVE_LEVELS=1
+ 
+*********************** Running XTB ************************
+Running command: xtb xtbopt.sdf --input Mol1_F_XTB.xcontrol --acc 0.05 > Mol1_F_XTB.out 2>&1
+
+real	0m15.403s
+user	0m14.594s
+sys	0m0.713s
+********************* End of XTB run ***********************
+Done with SHELL Job autocompchem.run.ShellJob@76a362a4
+
+Initiating ACC Job #0.2.10
+ AutoCompChem is initiating the ACC task 'AnalyseXTBOutput' - Fri Dec 22 17:09:14 CET 2023
+ Adding parameters to ChemSoftwareOutputHandler
+ Log file 'Mol1_F_XTB_hessPost/Mol1_F_XTB.out' contains 1 steps.
+ The overall run did terminate normally!
+ 
+Summary of the results:
+
+Step 0:
+-> SCF Energy -64.629131662136
+-> Critial Point: MINIMUM 
+
+ 
+Summary of final results:
+
+Done with ACC job (AnalyseXTBOutput) - Fri Dec 22 17:09:14 CET 2023
+
+Initiating ACC Job #0.3
+Running job container autocompchem.run.ACCJob@61da0413
+
+Initiating ACC Job #0.3.1
+ AutoCompChem is initiating the ACC task 'PrepareInputXTB' - Fri Dec 22 17:09:14 CET 2023
+ Adding parameters to OrcaInputWriter
+ Job details from nested parameter block.
+ No 'ROOTPATHNAMEOUTPUT' parameter found. 
+Root of any output file name set to 'Mol1_C_XTB'.
+Done with ACC job (PrepareInputXTB) - Fri Dec 22 17:09:14 CET 2023
+
+Initiating SHELL Job #0.3.2
+WARNING: setting work directory to 'Mol1_C_XTB_hessPre'.
+ Fri Dec 22 17:09:14 CET 2023
+Running SHELL Job: autocompchem.run.ShellJob@5627cb29 Thread: main
+OMP_STACKSIZE=4G
+OMP_NUM_THREADS=1,1
+OMP_MAX_ACTIVE_LEVELS=1
+ 
+*********************** Running XTB ************************
+Running command: xtb Mol1_C_XTB.sdf --input Mol1_C_XTB.xcontrol --acc 0.05 > Mol1_C_XTB.out 2>&1
+
+real	0m4.836s
+user	0m4.752s
+sys	0m0.029s
+********************* End of XTB run ***********************
+Done with SHELL Job autocompchem.run.ShellJob@5627cb29
+
+Initiating SHELL Job #0.3.3
+ Fri Dec 22 17:09:19 CET 2023
+Running SHELL Job: autocompchem.run.ShellJob@4d4c1ba9 Thread: main
+Done with SHELL Job autocompchem.run.ShellJob@4d4c1ba9
+
+Initiating ACC Job #0.3.4
+ AutoCompChem is initiating the ACC task 'PrepareInputXTB' - Fri Dec 22 17:09:19 CET 2023
+ Adding parameters to OrcaInputWriter
+ Job details from nested parameter block.
+ No 'ROOTPATHNAMEOUTPUT' parameter found. 
+Root of any output file name set to 'Mol1_C_XTB'.
+Done with ACC job (PrepareInputXTB) - Fri Dec 22 17:09:19 CET 2023
+
+Initiating SHELL Job #0.3.5
+WARNING: setting work directory to 'Mol1_C_XTB_opt'.
+ Fri Dec 22 17:09:19 CET 2023
+Running SHELL Job: autocompchem.run.ShellJob@2017f6e6 Thread: main
+OMP_STACKSIZE=4G
+OMP_NUM_THREADS=10,1
+OMP_MAX_ACTIVE_LEVELS=1
+ 
+*********************** Running XTB ************************
+Running command: xtb Mol1_C_XTB.sdf --input Mol1_C_XTB.xcontrol --acc 0.05 > Mol1_C_XTB.out 2>&1
+
+real	0m1.095s
+user	0m10.182s
+sys	0m0.510s
+********************* End of XTB run ***********************
+Done with SHELL Job autocompchem.run.ShellJob@2017f6e6
+
+Initiating ACC Job #0.3.6
+ AutoCompChem is initiating the ACC task 'AnalyseXTBOutput' - Fri Dec 22 17:09:20 CET 2023
+ Adding parameters to ChemSoftwareOutputHandler
+ Log file 'Mol1_C_XTB_opt/Mol1_C_XTB.out' contains 1 steps.
+ The overall run did terminate normally!
+ 
+Summary of the results:
+
+Step 0:
+-> SCF Energy -42.478166551606
+
+ 
+Summary of final results:
+Bond lengths vs. connectivity: compatible 
+
+Done with ACC job (AnalyseXTBOutput) - Fri Dec 22 17:09:20 CET 2023
+
+Initiating SHELL Job #0.3.7
+ Fri Dec 22 17:09:20 CET 2023
+Running SHELL Job: autocompchem.run.ShellJob@6dece1f9 Thread: main
+Done with SHELL Job autocompchem.run.ShellJob@6dece1f9
+
+Initiating ACC Job #0.3.8
+ AutoCompChem is initiating the ACC task 'PrepareInputXTB' - Fri Dec 22 17:09:20 CET 2023
+ Adding parameters to OrcaInputWriter
+ Job details from nested parameter block.
+ No 'ROOTPATHNAMEOUTPUT' parameter found. 
+Root of any output file name set to 'Mol1_C_XTB'.
+Done with ACC job (PrepareInputXTB) - Fri Dec 22 17:09:20 CET 2023
+
+Initiating SHELL Job #0.3.9
+WARNING: setting work directory to 'Mol1_C_XTB_hessPost'.
+ Fri Dec 22 17:09:20 CET 2023
+Running SHELL Job: autocompchem.run.ShellJob@2b936b04 Thread: main
+OMP_STACKSIZE=4G
+OMP_NUM_THREADS=1,1
+OMP_MAX_ACTIVE_LEVELS=1
+ 
+*********************** Running XTB ************************
+Running command: xtb xtbopt.sdf --input Mol1_C_XTB.xcontrol --acc 0.05 > Mol1_C_XTB.out 2>&1
+
+real	0m4.907s
+user	0m4.810s
+sys	0m0.031s
+********************* End of XTB run ***********************
+Done with SHELL Job autocompchem.run.ShellJob@2b936b04
+
+Initiating ACC Job #0.3.10
+ AutoCompChem is initiating the ACC task 'AnalyseXTBOutput' - Fri Dec 22 17:09:25 CET 2023
+ Adding parameters to ChemSoftwareOutputHandler
+ Log file 'Mol1_C_XTB_hessPost/Mol1_C_XTB.out' contains 1 steps.
+ The overall run did terminate normally!
+ 
+Summary of the results:
+
+Step 0:
+-> SCF Energy -42.478166536296
+-> Critial Point: MINIMUM 
+
+ 
+Summary of final results:
+
+Done with ACC job (AnalyseXTBOutput) - Fri Dec 22 17:09:25 CET 2023
+
+Initiating ACC Job #0.4
+Running job container autocompchem.run.ACCJob@32b112a1
+
+Initiating ACC Job #0.4.1
+ AutoCompChem is initiating the ACC task 'PrepareInputXTB' - Fri Dec 22 17:09:25 CET 2023
+ Adding parameters to OrcaInputWriter
+ Job details from nested parameter block.
+ No 'ROOTPATHNAMEOUTPUT' parameter found. 
+Root of any output file name set to 'Mol1_P_XTB'.
+Done with ACC job (PrepareInputXTB) - Fri Dec 22 17:09:25 CET 2023
+
+Initiating SHELL Job #0.4.2
+WARNING: setting work directory to 'Mol1_P_XTB_hessPre'.
+ Fri Dec 22 17:09:25 CET 2023
+Running SHELL Job: autocompchem.run.ShellJob@6c27e700 Thread: main
+OMP_STACKSIZE=4G
+OMP_NUM_THREADS=1,1
+OMP_MAX_ACTIVE_LEVELS=1
+ 
+*********************** Running XTB ************************
+Running command: xtb Mol1_P_XTB.sdf --input Mol1_P_XTB.xcontrol --acc 0.05 > Mol1_P_XTB.out 2>&1
+
+real	0m4.891s
+user	0m4.800s
+sys	0m0.038s
+********************* End of XTB run ***********************
+Done with SHELL Job autocompchem.run.ShellJob@6c27e700
+
+Initiating SHELL Job #0.4.3
+ Fri Dec 22 17:09:30 CET 2023
+Running SHELL Job: autocompchem.run.ShellJob@56b9d43f Thread: main
+Done with SHELL Job autocompchem.run.ShellJob@56b9d43f
+
+Initiating ACC Job #0.4.4
+ AutoCompChem is initiating the ACC task 'PrepareInputXTB' - Fri Dec 22 17:09:30 CET 2023
+ Adding parameters to OrcaInputWriter
+ Job details from nested parameter block.
+ No 'ROOTPATHNAMEOUTPUT' parameter found. 
+Root of any output file name set to 'Mol1_P_XTB'.
+Done with ACC job (PrepareInputXTB) - Fri Dec 22 17:09:30 CET 2023
+
+Initiating SHELL Job #0.4.5
+WARNING: setting work directory to 'Mol1_P_XTB_opt'.
+ Fri Dec 22 17:09:30 CET 2023
+Running SHELL Job: autocompchem.run.ShellJob@2d913116 Thread: main
+OMP_STACKSIZE=4G
+OMP_NUM_THREADS=10,1
+OMP_MAX_ACTIVE_LEVELS=1
+ 
+*********************** Running XTB ************************
+Running command: xtb Mol1_P_XTB.sdf --input Mol1_P_XTB.xcontrol --acc 0.05 > Mol1_P_XTB.out 2>&1
+
+real	0m0.809s
+user	0m7.348s
+sys	0m0.504s
+********************* End of XTB run ***********************
+Done with SHELL Job autocompchem.run.ShellJob@2d913116
+
+Initiating ACC Job #0.4.6
+ AutoCompChem is initiating the ACC task 'AnalyseXTBOutput' - Fri Dec 22 17:09:31 CET 2023
+ Adding parameters to ChemSoftwareOutputHandler
+ Log file 'Mol1_P_XTB_opt/Mol1_P_XTB.out' contains 1 steps.
+ The overall run did terminate normally!
+ 
+Summary of the results:
+
+Step 0:
+-> SCF Energy -42.435319812679
+
+ 
+Summary of final results:
+Bond lengths vs. connectivity: compatible 
+
+Done with ACC job (AnalyseXTBOutput) - Fri Dec 22 17:09:31 CET 2023
+
+Initiating SHELL Job #0.4.7
+ Fri Dec 22 17:09:31 CET 2023
+Running SHELL Job: autocompchem.run.ShellJob@2b2b7e3c Thread: main
+Done with SHELL Job autocompchem.run.ShellJob@2b2b7e3c
+
+Initiating ACC Job #0.4.8
+ AutoCompChem is initiating the ACC task 'PrepareInputXTB' - Fri Dec 22 17:09:31 CET 2023
+ Adding parameters to OrcaInputWriter
+ Job details from nested parameter block.
+ No 'ROOTPATHNAMEOUTPUT' parameter found. 
+Root of any output file name set to 'Mol1_P_XTB'.
+Done with ACC job (PrepareInputXTB) - Fri Dec 22 17:09:31 CET 2023
+
+Initiating SHELL Job #0.4.9
+WARNING: setting work directory to 'Mol1_P_XTB_hessPost'.
+ Fri Dec 22 17:09:31 CET 2023
+Running SHELL Job: autocompchem.run.ShellJob@3ec082a1 Thread: main
+OMP_STACKSIZE=4G
+OMP_NUM_THREADS=1,1
+OMP_MAX_ACTIVE_LEVELS=1
+ 
+*********************** Running XTB ************************
+Running command: xtb xtbopt.sdf --input Mol1_P_XTB.xcontrol --acc 0.05 > Mol1_P_XTB.out 2>&1
+
+real	0m4.815s
+user	0m4.735s
+sys	0m0.038s
+********************* End of XTB run ***********************
+Done with SHELL Job autocompchem.run.ShellJob@3ec082a1
+
+Initiating ACC Job #0.4.10
+ AutoCompChem is initiating the ACC task 'AnalyseXTBOutput' - Fri Dec 22 17:09:36 CET 2023
+ Adding parameters to ChemSoftwareOutputHandler
+ Log file 'Mol1_P_XTB_hessPost/Mol1_P_XTB.out' contains 1 steps.
+ The overall run did terminate normally!
+ 
+Summary of the results:
+
+Step 0:
+-> SCF Energy -42.435319747413
+-> Critial Point: MINIMUM 
+
+ 
+Summary of final results:
+
+Done with ACC job (AnalyseXTBOutput) - Fri Dec 22 17:09:36 CET 2023
+
+Initiating ACC Job #0.5
+Running job container autocompchem.run.ACCJob@7a3c99f1
+
+Initiating ACC Job #0.5.1
+ AutoCompChem is initiating the ACC task 'PrepareInputXTB' - Fri Dec 22 17:09:36 CET 2023
+ Adding parameters to OrcaInputWriter
+ Job details from nested parameter block.
+ No 'ROOTPATHNAMEOUTPUT' parameter found. 
+Root of any output file name set to 'Mol1_E_XTB'.
+Done with ACC job (PrepareInputXTB) - Fri Dec 22 17:09:36 CET 2023
+
+Initiating SHELL Job #0.5.2
+WARNING: setting work directory to 'Mol1_E_XTB_hessPre'.
+ Fri Dec 22 17:09:36 CET 2023
+Running SHELL Job: autocompchem.run.ShellJob@16b7e04a Thread: main
+OMP_STACKSIZE=4G
+OMP_NUM_THREADS=1,1
+OMP_MAX_ACTIVE_LEVELS=1
+ 
+*********************** Running XTB ************************
+Running command: xtb Mol1_E_XTB.sdf --input Mol1_E_XTB.xcontrol --acc 0.05 > Mol1_E_XTB.out 2>&1
+
+real	0m15.339s
+user	0m14.380s
+sys	0m0.868s
+********************* End of XTB run ***********************
+Done with SHELL Job autocompchem.run.ShellJob@16b7e04a
+
+Initiating SHELL Job #0.5.3
+ Fri Dec 22 17:09:51 CET 2023
+Running SHELL Job: autocompchem.run.ShellJob@661db63e Thread: main
+Done with SHELL Job autocompchem.run.ShellJob@661db63e
+
+Initiating ACC Job #0.5.4
+ AutoCompChem is initiating the ACC task 'PrepareInputXTB' - Fri Dec 22 17:09:51 CET 2023
+ Adding parameters to OrcaInputWriter
+ Job details from nested parameter block.
+ No 'ROOTPATHNAMEOUTPUT' parameter found. 
+Root of any output file name set to 'Mol1_E_XTB'.
+Done with ACC job (PrepareInputXTB) - Fri Dec 22 17:09:51 CET 2023
+
+Initiating SHELL Job #0.5.5
+WARNING: setting work directory to 'Mol1_E_XTB_opt'.
+ Fri Dec 22 17:09:51 CET 2023
+Running SHELL Job: autocompchem.run.ShellJob@5cf2f5d6 Thread: main
+OMP_STACKSIZE=4G
+OMP_NUM_THREADS=10,1
+OMP_MAX_ACTIVE_LEVELS=1
+ 
+*********************** Running XTB ************************
+Running command: xtb Mol1_E_XTB.sdf --input Mol1_E_XTB.xcontrol --acc 0.05 > Mol1_E_XTB.out 2>&1
+
+real	0m1.981s
+user	0m18.193s
+sys	0m1.304s
+********************* End of XTB run ***********************
+Done with SHELL Job autocompchem.run.ShellJob@5cf2f5d6
+
+Initiating ACC Job #0.5.6
+ AutoCompChem is initiating the ACC task 'AnalyseXTBOutput' - Fri Dec 22 17:09:53 CET 2023
+ Adding parameters to ChemSoftwareOutputHandler
+ Log file 'Mol1_E_XTB_opt/Mol1_E_XTB.out' contains 1 steps.
+ The overall run did terminate normally!
+ 
+Summary of the results:
+
+Step 0:
+-> SCF Energy -64.641861636538
+
+ 
+Summary of final results:
+Bond lengths vs. connectivity: compatible 
+
+Done with ACC job (AnalyseXTBOutput) - Fri Dec 22 17:09:53 CET 2023
+
+Initiating SHELL Job #0.5.7
+ Fri Dec 22 17:09:53 CET 2023
+Running SHELL Job: autocompchem.run.ShellJob@13047d3d Thread: main
+Done with SHELL Job autocompchem.run.ShellJob@13047d3d
+
+Initiating ACC Job #0.5.8
+ AutoCompChem is initiating the ACC task 'PrepareInputXTB' - Fri Dec 22 17:09:53 CET 2023
+ Adding parameters to OrcaInputWriter
+ Job details from nested parameter block.
+ No 'ROOTPATHNAMEOUTPUT' parameter found. 
+Root of any output file name set to 'Mol1_E_XTB'.
+Done with ACC job (PrepareInputXTB) - Fri Dec 22 17:09:53 CET 2023
+
+Initiating SHELL Job #0.5.9
+WARNING: setting work directory to 'Mol1_E_XTB_hessPost'.
+ Fri Dec 22 17:09:53 CET 2023
+Running SHELL Job: autocompchem.run.ShellJob@4b240276 Thread: main
+OMP_STACKSIZE=4G
+OMP_NUM_THREADS=1,1
+OMP_MAX_ACTIVE_LEVELS=1
+ 
+*********************** Running XTB ************************
+Running command: xtb xtbopt.sdf --input Mol1_E_XTB.xcontrol --acc 0.05 > Mol1_E_XTB.out 2>&1
+
+real	0m15.361s
+user	0m14.578s
+sys	0m0.685s
+********************* End of XTB run ***********************
+Done with SHELL Job autocompchem.run.ShellJob@4b240276
+
+Initiating ACC Job #0.5.10
+ AutoCompChem is initiating the ACC task 'AnalyseXTBOutput' - Fri Dec 22 17:10:08 CET 2023
+ Adding parameters to ChemSoftwareOutputHandler
+ Log file 'Mol1_E_XTB_hessPost/Mol1_E_XTB.out' contains 1 steps.
+ The overall run did terminate normally!
+ 
+Summary of the results:
+
+Step 0:
+-> SCF Energy -64.641861584475
+-> Critial Point: MINIMUM 
+
+ 
+Summary of final results:
+
+Done with ACC job (AnalyseXTBOutput) - Fri Dec 22 17:10:08 CET 2023
+
+Initiating ACC Job #0.6
+Running job container autocompchem.run.ACCJob@2a5efbb9
+
+Initiating ACC Job #0.6.1
+ AutoCompChem is initiating the ACC task 'PrepareInputXTB' - Fri Dec 22 17:10:08 CET 2023
+ Adding parameters to OrcaInputWriter
+ Job details from nested parameter block.
+ No 'ROOTPATHNAMEOUTPUT' parameter found. 
+Root of any output file name set to 'Mol1_L_XTB'.
+Done with ACC job (PrepareInputXTB) - Fri Dec 22 17:10:08 CET 2023
+
+Initiating SHELL Job #0.6.2
+WARNING: setting work directory to 'Mol1_L_XTB_hessPre'.
+ Fri Dec 22 17:10:08 CET 2023
+Running SHELL Job: autocompchem.run.ShellJob@43b45ce4 Thread: main
+OMP_STACKSIZE=4G
+OMP_NUM_THREADS=1,1
+OMP_MAX_ACTIVE_LEVELS=1
+ 
+*********************** Running XTB ************************
+Running command: xtb Mol1_L_XTB.sdf --input Mol1_L_XTB.xcontrol --acc 0.05 > Mol1_L_XTB.out 2>&1
+
+real	0m0.673s
+user	0m0.621s
+sys	0m0.019s
+********************* End of XTB run ***********************
+Done with SHELL Job autocompchem.run.ShellJob@43b45ce4
+
+Initiating SHELL Job #0.6.3
+ Fri Dec 22 17:10:09 CET 2023
+Running SHELL Job: autocompchem.run.ShellJob@73e93c3a Thread: main
+Done with SHELL Job autocompchem.run.ShellJob@73e93c3a
+
+Initiating ACC Job #0.6.4
+ AutoCompChem is initiating the ACC task 'PrepareInputXTB' - Fri Dec 22 17:10:09 CET 2023
+ Adding parameters to OrcaInputWriter
+ Job details from nested parameter block.
+ No 'ROOTPATHNAMEOUTPUT' parameter found. 
+Root of any output file name set to 'Mol1_L_XTB'.
+Done with ACC job (PrepareInputXTB) - Fri Dec 22 17:10:09 CET 2023
+
+Initiating SHELL Job #0.6.5
+WARNING: setting work directory to 'Mol1_L_XTB_opt'.
+ Fri Dec 22 17:10:09 CET 2023
+Running SHELL Job: autocompchem.run.ShellJob@1835b783 Thread: main
+OMP_STACKSIZE=4G
+OMP_NUM_THREADS=10,1
+OMP_MAX_ACTIVE_LEVELS=1
+ 
+*********************** Running XTB ************************
+Running command: xtb Mol1_L_XTB.sdf --input Mol1_L_XTB.xcontrol --acc 0.05 > Mol1_L_XTB.out 2>&1
+
+real	0m0.110s
+user	0m0.823s
+sys	0m0.094s
+********************* End of XTB run ***********************
+Done with SHELL Job autocompchem.run.ShellJob@1835b783
+
+Initiating ACC Job #0.6.6
+ AutoCompChem is initiating the ACC task 'AnalyseXTBOutput' - Fri Dec 22 17:10:09 CET 2023
+ Adding parameters to ChemSoftwareOutputHandler
+ Log file 'Mol1_L_XTB_opt/Mol1_L_XTB.out' contains 1 steps.
+ The overall run did terminate normally!
+ 
+Summary of the results:
+
+Step 0:
+-> SCF Energy -20.592562144427
+
+ 
+Summary of final results:
+Bond lengths vs. connectivity: compatible 
+
+Done with ACC job (AnalyseXTBOutput) - Fri Dec 22 17:10:09 CET 2023
+
+Initiating SHELL Job #0.6.7
+ Fri Dec 22 17:10:09 CET 2023
+Running SHELL Job: autocompchem.run.ShellJob@6bf28f61 Thread: main
+Done with SHELL Job autocompchem.run.ShellJob@6bf28f61
+
+Initiating ACC Job #0.6.8
+ AutoCompChem is initiating the ACC task 'PrepareInputXTB' - Fri Dec 22 17:10:09 CET 2023
+ Adding parameters to OrcaInputWriter
+ Job details from nested parameter block.
+ No 'ROOTPATHNAMEOUTPUT' parameter found. 
+Root of any output file name set to 'Mol1_L_XTB'.
+Done with ACC job (PrepareInputXTB) - Fri Dec 22 17:10:09 CET 2023
+
+Initiating SHELL Job #0.6.9
+WARNING: setting work directory to 'Mol1_L_XTB_hessPost'.
+ Fri Dec 22 17:10:09 CET 2023
+Running SHELL Job: autocompchem.run.ShellJob@64dcf763 Thread: main
+OMP_STACKSIZE=4G
+OMP_NUM_THREADS=1,1
+OMP_MAX_ACTIVE_LEVELS=1
+ 
+*********************** Running XTB ************************
+Running command: xtb xtbopt.sdf --input Mol1_L_XTB.xcontrol --acc 0.05 > Mol1_L_XTB.out 2>&1
+
+real	0m0.661s
+user	0m0.615s
+sys	0m0.022s
+********************* End of XTB run ***********************
+Done with SHELL Job autocompchem.run.ShellJob@64dcf763
+
+Initiating ACC Job #0.6.10
+ AutoCompChem is initiating the ACC task 'AnalyseXTBOutput' - Fri Dec 22 17:10:10 CET 2023
+ Adding parameters to ChemSoftwareOutputHandler
+ Log file 'Mol1_L_XTB_hessPost/Mol1_L_XTB.out' contains 1 steps.
+ The overall run did terminate normally!
+ 
+Summary of the results:
+
+Step 0:
+-> SCF Energy -20.59256212728
+-> Critial Point: MINIMUM 
+
+ 
+Summary of final results:
+
+Done with ACC job (AnalyseXTBOutput) - Fri Dec 22 17:10:10 CET 2023
+
+Initiating ACC Job #0.7
+Running job container autocompchem.run.ACCJob@696105c4
+
+Initiating SHELL Job #0.7.1
+ Fri Dec 22 17:10:10 CET 2023
+Running SHELL Job: autocompchem.run.ShellJob@21ab919c Thread: main
+Done with SHELL Job autocompchem.run.ShellJob@21ab919c
+
+Initiating SHELL Job #0.7.2
+ Fri Dec 22 17:10:10 CET 2023
+Running SHELL Job: autocompchem.run.ShellJob@5edd9b4f Thread: main
+Done with SHELL Job autocompchem.run.ShellJob@5edd9b4f
+
+Initiating SHELL Job #0.7.3
+ Fri Dec 22 17:10:10 CET 2023
+Running SHELL Job: autocompchem.run.ShellJob@5db90818 Thread: main
+Done with SHELL Job autocompchem.run.ShellJob@5db90818
+
+Initiating SHELL Job #0.7.4
+ Fri Dec 22 17:10:10 CET 2023
+Running SHELL Job: autocompchem.run.ShellJob@3c17794e Thread: main
+Done with SHELL Job autocompchem.run.ShellJob@3c17794e
+
+Initiating SHELL Job #0.7.5
+ Fri Dec 22 17:10:10 CET 2023
+Running SHELL Job: autocompchem.run.ShellJob@414d2821 Thread: main
+Done with SHELL Job autocompchem.run.ShellJob@414d2821
+
+Initiating SHELL Job #0.7.6
+ Fri Dec 22 17:10:10 CET 2023
+Running SHELL Job: autocompchem.run.ShellJob@7378c4a4 Thread: main
+Done with SHELL Job autocompchem.run.ShellJob@7378c4a4
+
+
+***************************************************************************
+ Fri Dec 22 17:10:10 CET 2023
+
+ Termination status: 0
+ Final message: Normal Termination
+
+ Thanks for using AutoCompChem.
+ Mandi! ;) 
+
+********************* done with ACC *******************
+.:
+total 165
+drwxrwsr-x 2 marcof marcof  4096 Dec 22 17:10 Mol1_L_XTB_hessPost
+-rw-rw-r-- 1 marcof marcof   157 Dec 22 17:10 Mol1_L_XTB.xcontrol
+drwxrwsr-x 2 marcof marcof  4096 Dec 22 17:10 Mol1_L_XTB_opt
+-rw-rw-r-- 1 marcof marcof  1540 Dec 22 17:10 Mol1_L_last-xTB.sdf
+drwxrwsr-x 2 marcof marcof  4096 Dec 22 17:10 Mol1_E_XTB_hessPost
+-rw-rw-r-- 1 marcof marcof   157 Dec 22 17:09 Mol1_E_XTB.xcontrol
+drwxrwsr-x 2 marcof marcof  4096 Dec 22 17:09 Mol1_E_XTB_opt
+-rw-rw-r-- 1 marcof marcof  4004 Dec 22 17:09 Mol1_E_last-xTB.sdf
+drwxrwsr-x 2 marcof marcof  4096 Dec 22 17:09 Mol1_P_XTB_hessPost
+-rw-rw-r-- 1 marcof marcof   157 Dec 22 17:09 Mol1_P_XTB.xcontrol
+drwxrwsr-x 2 marcof marcof  4096 Dec 22 17:09 Mol1_P_XTB_opt
+-rw-rw-r-- 1 marcof marcof  2679 Dec 22 17:09 Mol1_P_last-xTB.sdf
+drwxrwsr-x 2 marcof marcof  4096 Dec 22 17:09 Mol1_C_XTB_hessPost
+-rw-rw-r-- 1 marcof marcof   157 Dec 22 17:09 Mol1_C_XTB.xcontrol
+drwxrwsr-x 2 marcof marcof  4096 Dec 22 17:09 Mol1_C_XTB_opt
+-rw-rw-r-- 1 marcof marcof  2679 Dec 22 17:09 Mol1_C_last-xTB.sdf
+drwxrwsr-x 2 marcof marcof  4096 Dec 22 17:09 Mol1_F_XTB_hessPost
+-rw-rw-r-- 1 marcof marcof   157 Dec 22 17:08 Mol1_F_XTB.xcontrol
+-rw-rw-r-- 1 marcof marcof  4004 Dec 22 17:08 Mol1_F_last-xTB.sdf
+drwxrwsr-x 2 marcof marcof  4096 Dec 22 17:08 Mol1_F_XTB_opt
+drwxrwsr-x 2 marcof marcof  4096 Dec 22 17:08 Mol1_A_XTB_hessPost
+-rw-rw-r-- 1 marcof marcof   157 Dec 22 17:08 Mol1_A_XTB.xcontrol
+-rw-rw-r-- 1 marcof marcof  4004 Dec 22 17:08 Mol1_A_last-xTB.sdf
+drwxrwsr-x 2 marcof marcof  4096 Dec 22 17:08 Mol1_A_XTB_opt
+-rw-rw-r-- 1 marcof marcof  4078 Dec 22 17:08 Mol1_A_XTB.sdf
+-rw-rw-r-- 1 marcof marcof  2020 Dec 22 17:08 Mol1_A_XTB.xyz
+-rw-rw-r-- 1 marcof marcof  2693 Dec 22 17:08 Mol1_C_XTB.sdf
+-rw-rw-r-- 1 marcof marcof  1334 Dec 22 17:08 Mol1_C_XTB.xyz
+-rw-rw-r-- 1 marcof marcof  4018 Dec 22 17:08 Mol1_E_XTB.sdf
+-rw-rw-r-- 1 marcof marcof  2020 Dec 22 17:08 Mol1_E_XTB.xyz
+-rw-rw-r-- 1 marcof marcof  4079 Dec 22 17:08 Mol1_F_XTB.sdf
+-rw-rw-r-- 1 marcof marcof  2020 Dec 22 17:08 Mol1_F_XTB.xyz
+-rw-rw-r-- 1 marcof marcof  1615 Dec 22 17:08 Mol1_L_XTB.sdf
+-rw-rw-r-- 1 marcof marcof   746 Dec 22 17:08 Mol1_L_XTB.xyz
+-rw-rw-r-- 1 marcof marcof  2694 Dec 22 17:08 Mol1_P_XTB.sdf
+-rw-rw-r-- 1 marcof marcof  1334 Dec 22 17:08 Mol1_P_XTB.xyz
+-rw-rw-r-- 1 marcof marcof 27704 Dec 22 17:08 P4_nativeXTB_all-8.jd
+
+./Mol1_L_XTB_hessPost:
+total 5
+-rw-rw-r-- 1 marcof marcof 24191 Dec 22 17:10 Mol1_L_XTB.out
+-rw-rw-r-- 1 marcof marcof   225 Dec 22 17:10 charges
+-rw-rw-r-- 1 marcof marcof 25694 Dec 22 17:10 g98.out
+-rw-rw-r-- 1 marcof marcof 32886 Dec 22 17:10 hessian
+-rw-rw-r-- 1 marcof marcof  3231 Dec 22 17:10 vibspectrum
+-rw-rw-r-- 1 marcof marcof   735 Dec 22 17:10 wbo
+-rw-rw-r-- 1 marcof marcof  1336 Dec 22 17:10 xtbrestart
+-rw-rw-r-- 1 marcof marcof  1712 Dec 22 17:10 xtbtopo.sdf
+-rw-rw-r-- 1 marcof marcof   157 Dec 22 17:10 Mol1_L_XTB.xcontrol
+-rw-rw-r-- 1 marcof marcof  1712 Dec 22 17:10 xtbopt.sdf
+
+./Mol1_L_XTB_opt:
+total 5
+-rw-rw-r-- 1 marcof marcof 37550 Dec 22 17:10 Mol1_L_XTB.out
+-rw-rw-r-- 1 marcof marcof  1615 Dec 22 17:10 Mol1_L_XTB.sdf
+-rw-rw-r-- 1 marcof marcof   169 Dec 22 17:10 Mol1_L_XTB.xcontrol
+-rw-rw-r-- 1 marcof marcof  6462 Dec 22 17:10 Mol1_L_xtbtrj.xyz
+-rw-rw-r-- 1 marcof marcof   225 Dec 22 17:10 charges
+-rw-rw-r-- 1 marcof marcof 32886 Dec 22 17:10 hessian
+-rw-rw-r-- 1 marcof marcof   735 Dec 22 17:10 wbo
+-rw-rw-r-- 1 marcof marcof  1712 Dec 22 17:10 xtbopt.sdf
+-rw-rw-r-- 1 marcof marcof  1336 Dec 22 17:10 xtbrestart
+-rw-rw-r-- 1 marcof marcof  1620 Dec 22 17:10 xtbtopo.sdf
+
+./Mol1_E_XTB_hessPost:
+total 28
+-rw-rw-r-- 1 marcof marcof  34287 Dec 22 17:10 Mol1_E_XTB.out
+-rw-rw-r-- 1 marcof marcof    615 Dec 22 17:10 charges
+-rw-rw-r-- 1 marcof marcof 154134 Dec 22 17:10 g98.out
+-rw-rw-r-- 1 marcof marcof 245466 Dec 22 17:10 hessian
+-rw-rw-r-- 1 marcof marcof   8535 Dec 22 17:10 vibspectrum
+-rw-rw-r-- 1 marcof marcof   2205 Dec 22 17:10 wbo
+-rw-rw-r-- 1 marcof marcof   3552 Dec 22 17:10 xtbrestart
+-rw-rw-r-- 1 marcof marcof   4087 Dec 22 17:10 xtbtopo.sdf
+-rw-rw-r-- 1 marcof marcof    157 Dec 22 17:09 Mol1_E_XTB.xcontrol
+-rw-rw-r-- 1 marcof marcof   4087 Dec 22 17:09 xtbopt.sdf
+
+./Mol1_E_XTB_opt:
+total 492
+-rw-rw-r-- 1 marcof marcof 103403 Dec 22 17:09 Mol1_E_XTB.out
+-rw-rw-r-- 1 marcof marcof 121217 Dec 22 17:09 Mol1_E_xtbtrj.xyz
+-rw-rw-r-- 1 marcof marcof    615 Dec 22 17:09 charges
+-rw-rw-r-- 1 marcof marcof   2205 Dec 22 17:09 wbo
+-rw-rw-r-- 1 marcof marcof   4087 Dec 22 17:09 xtbopt.sdf
+-rw-rw-r-- 1 marcof marcof   3552 Dec 22 17:09 xtbrestart
+-rw-rw-r-- 1 marcof marcof   3995 Dec 22 17:09 xtbtopo.sdf
+-rw-rw-r-- 1 marcof marcof   4018 Dec 22 17:09 Mol1_E_XTB.sdf
+-rw-rw-r-- 1 marcof marcof    169 Dec 22 17:09 Mol1_E_XTB.xcontrol
+-rw-rw-r-- 1 marcof marcof 245466 Dec 22 17:09 hessian
+
+./Mol1_P_XTB_hessPost:
+total 244
+-rw-rw-r-- 1 marcof marcof  29422 Dec 22 17:09 Mol1_P_XTB.out
+-rw-rw-r-- 1 marcof marcof  71870 Dec 22 17:09 g98.out
+-rw-rw-r-- 1 marcof marcof   2368 Dec 22 17:09 xtbrestart
+-rw-rw-r-- 1 marcof marcof    405 Dec 22 17:09 charges
+-rw-rw-r-- 1 marcof marcof 106758 Dec 22 17:09 hessian
+-rw-rw-r-- 1 marcof marcof   5679 Dec 22 17:09 vibspectrum
+-rw-rw-r-- 1 marcof marcof   1372 Dec 22 17:09 wbo
+-rw-rw-r-- 1 marcof marcof   2778 Dec 22 17:09 xtbtopo.sdf
+-rw-rw-r-- 1 marcof marcof    157 Dec 22 17:09 Mol1_P_XTB.xcontrol
+-rw-rw-r-- 1 marcof marcof   2778 Dec 22 17:09 xtbopt.sdf
+
+./Mol1_P_XTB_opt:
+total 280
+-rw-rw-r-- 1 marcof marcof  84607 Dec 22 17:09 Mol1_P_XTB.out
+-rw-rw-r-- 1 marcof marcof  58311 Dec 22 17:09 Mol1_P_xtbtrj.xyz
+-rw-rw-r-- 1 marcof marcof    405 Dec 22 17:09 charges
+-rw-rw-r-- 1 marcof marcof   1372 Dec 22 17:09 wbo
+-rw-rw-r-- 1 marcof marcof   2778 Dec 22 17:09 xtbopt.sdf
+-rw-rw-r-- 1 marcof marcof   2368 Dec 22 17:09 xtbrestart
+-rw-rw-r-- 1 marcof marcof   2686 Dec 22 17:09 xtbtopo.sdf
+-rw-rw-r-- 1 marcof marcof   2694 Dec 22 17:09 Mol1_P_XTB.sdf
+-rw-rw-r-- 1 marcof marcof    169 Dec 22 17:09 Mol1_P_XTB.xcontrol
+-rw-rw-r-- 1 marcof marcof 106758 Dec 22 17:09 hessian
+
+./Mol1_C_XTB_hessPost:
+total 244
+-rw-rw-r-- 1 marcof marcof  29604 Dec 22 17:09 Mol1_C_XTB.out
+-rw-rw-r-- 1 marcof marcof    405 Dec 22 17:09 charges
+-rw-rw-r-- 1 marcof marcof  71870 Dec 22 17:09 g98.out
+-rw-rw-r-- 1 marcof marcof 106758 Dec 22 17:09 hessian
+-rw-rw-r-- 1 marcof marcof   5679 Dec 22 17:09 vibspectrum
+-rw-rw-r-- 1 marcof marcof   1421 Dec 22 17:09 wbo
+-rw-rw-r-- 1 marcof marcof   2368 Dec 22 17:09 xtbrestart
+-rw-rw-r-- 1 marcof marcof   2777 Dec 22 17:09 xtbtopo.sdf
+-rw-rw-r-- 1 marcof marcof    157 Dec 22 17:09 Mol1_C_XTB.xcontrol
+-rw-rw-r-- 1 marcof marcof   2777 Dec 22 17:09 xtbopt.sdf
+
+./Mol1_C_XTB_opt:
+total 320
+-rw-rw-r-- 1 marcof marcof 105561 Dec 22 17:09 Mol1_C_XTB.out
+-rw-rw-r-- 1 marcof marcof  80883 Dec 22 17:09 Mol1_C_xtbtrj.xyz
+-rw-rw-r-- 1 marcof marcof    405 Dec 22 17:09 charges
+-rw-rw-r-- 1 marcof marcof   1421 Dec 22 17:09 wbo
+-rw-rw-r-- 1 marcof marcof   2777 Dec 22 17:09 xtbopt.sdf
+-rw-rw-r-- 1 marcof marcof   2368 Dec 22 17:09 xtbrestart
+-rw-rw-r-- 1 marcof marcof   2685 Dec 22 17:09 xtbtopo.sdf
+-rw-rw-r-- 1 marcof marcof   2693 Dec 22 17:09 Mol1_C_XTB.sdf
+-rw-rw-r-- 1 marcof marcof    169 Dec 22 17:09 Mol1_C_XTB.xcontrol
+-rw-rw-r-- 1 marcof marcof 106758 Dec 22 17:09 hessian
+
+./Mol1_F_XTB_hessPost:
+total 472
+-rw-rw-r-- 1 marcof marcof  34209 Dec 22 17:09 Mol1_F_XTB.out
+-rw-rw-r-- 1 marcof marcof    615 Dec 22 17:09 charges
+-rw-rw-r-- 1 marcof marcof 154134 Dec 22 17:09 g98.out
+-rw-rw-r-- 1 marcof marcof 245466 Dec 22 17:09 hessian
+-rw-rw-r-- 1 marcof marcof   8535 Dec 22 17:09 vibspectrum
+-rw-rw-r-- 1 marcof marcof   2107 Dec 22 17:09 wbo
+-rw-rw-r-- 1 marcof marcof   3552 Dec 22 17:09 xtbrestart
+-rw-rw-r-- 1 marcof marcof   4148 Dec 22 17:09 xtbtopo.sdf
+-rw-rw-r-- 1 marcof marcof    157 Dec 22 17:08 Mol1_F_XTB.xcontrol
+-rw-rw-r-- 1 marcof marcof   4148 Dec 22 17:08 xtbopt.sdf
+
+./Mol1_F_XTB_opt:
+total 852
+-rw-rw-r-- 1 marcof marcof 229783 Dec 22 17:08 Mol1_F_XTB.out
+-rw-rw-r-- 1 marcof marcof 358013 Dec 22 17:08 Mol1_F_xtbtrj.xyz
+-rw-rw-r-- 1 marcof marcof    615 Dec 22 17:08 charges
+-rw-rw-r-- 1 marcof marcof   2107 Dec 22 17:08 wbo
+-rw-rw-r-- 1 marcof marcof   4148 Dec 22 17:08 xtbopt.sdf
+-rw-rw-r-- 1 marcof marcof   3552 Dec 22 17:08 xtbrestart
+-rw-rw-r-- 1 marcof marcof   4056 Dec 22 17:08 xtbtopo.sdf
+-rw-rw-r-- 1 marcof marcof   4079 Dec 22 17:08 Mol1_F_XTB.sdf
+-rw-rw-r-- 1 marcof marcof    169 Dec 22 17:08 Mol1_F_XTB.xcontrol
+-rw-rw-r-- 1 marcof marcof 245466 Dec 22 17:08 hessian
+
+./Mol1_A_XTB_hessPost:
+total 472
+-rw-rw-r-- 1 marcof marcof  34287 Dec 22 17:08 Mol1_A_XTB.out
+-rw-rw-r-- 1 marcof marcof    615 Dec 22 17:08 charges
+-rw-rw-r-- 1 marcof marcof 154134 Dec 22 17:08 g98.out
+-rw-rw-r-- 1 marcof marcof 245466 Dec 22 17:08 hessian
+-rw-rw-r-- 1 marcof marcof   8535 Dec 22 17:08 vibspectrum
+-rw-rw-r-- 1 marcof marcof   2205 Dec 22 17:08 wbo
+-rw-rw-r-- 1 marcof marcof   3552 Dec 22 17:08 xtbrestart
+-rw-rw-r-- 1 marcof marcof   4147 Dec 22 17:08 xtbtopo.sdf
+-rw-rw-r-- 1 marcof marcof    157 Dec 22 17:08 Mol1_A_XTB.xcontrol
+-rw-rw-r-- 1 marcof marcof   4147 Dec 22 17:08 xtbopt.sdf
+
+./Mol1_A_XTB_opt:
+total 488
+-rw-rw-r-- 1 marcof marcof 101351 Dec 22 17:08 Mol1_A_XTB.out
+-rw-rw-r-- 1 marcof marcof 115579 Dec 22 17:08 Mol1_A_xtbtrj.xyz
+-rw-rw-r-- 1 marcof marcof    615 Dec 22 17:08 charges
+-rw-rw-r-- 1 marcof marcof   2205 Dec 22 17:08 wbo
+-rw-rw-r-- 1 marcof marcof   4147 Dec 22 17:08 xtbopt.sdf
+-rw-rw-r-- 1 marcof marcof   3552 Dec 22 17:08 xtbrestart
+-rw-rw-r-- 1 marcof marcof   4055 Dec 22 17:08 xtbtopo.sdf
+-rw-rw-r-- 1 marcof marcof   4078 Dec 22 17:08 Mol1_A_XTB.sdf
+-rw-rw-r-- 1 marcof marcof    169 Dec 22 17:08 Mol1_A_XTB.xcontrol
+-rw-rw-r-- 1 marcof marcof 245466 Dec 22 17:08 hessian
+ 
+  WARNING:
+  We use these REGEX to identify files that are NOT copied back home:
+  -> ^xtb.err$
+  -> ^.*property.txt$
+  -> ^.*.charges$
+  -> ^.*.prop$
+  -> ^.*.lastxtb$
+  -> ^.*.lastxtberr$
+  -> ^.*.engrad$
+  -> ^.*.gradient$
+  -> ^.*.proc[0-9]+..*$
+  -> ^core..*$
+  -> ^fort.[0-9]$
+  -> ^tmp$
+  -> .tmp$
+  -> ^[a-zA-Z0-9]+$
+  -> ^Gau-.*$
+  However, if you find that some files of interest for you are not
+  copied, then you can either avoid to do automatic cleanup of the 
+  working space (option --nocleanup), or you can reset the list of 
+  REGEX to fit your needs (use option --cleanupREGEX).
+ 
+File 'Mol1_A_XTB_hessPost/hessian' is NOT copied back home!
+File 'Mol1_A_XTB_hessPost/vibspectrum' is NOT copied back home!
+File 'Mol1_A_XTB_hessPost/wbo' is NOT copied back home!
+File 'Mol1_A_XTB_hessPost/charges' is NOT copied back home!
+File 'Mol1_A_XTB_hessPost/xtbrestart' is NOT copied back home!
+File 'Mol1_A_XTB_opt/hessian' is NOT copied back home!
+File 'Mol1_A_XTB_opt/wbo' is NOT copied back home!
+File 'Mol1_A_XTB_opt/charges' is NOT copied back home!
+File 'Mol1_A_XTB_opt/xtbrestart' is NOT copied back home!
+File 'Mol1_C_XTB_hessPost/hessian' is NOT copied back home!
+File 'Mol1_C_XTB_hessPost/vibspectrum' is NOT copied back home!
+File 'Mol1_C_XTB_hessPost/wbo' is NOT copied back home!
+File 'Mol1_C_XTB_hessPost/charges' is NOT copied back home!
+File 'Mol1_C_XTB_hessPost/xtbrestart' is NOT copied back home!
+File 'Mol1_C_XTB_opt/hessian' is NOT copied back home!
+File 'Mol1_C_XTB_opt/wbo' is NOT copied back home!
+File 'Mol1_C_XTB_opt/charges' is NOT copied back home!
+File 'Mol1_C_XTB_opt/xtbrestart' is NOT copied back home!
+File 'Mol1_E_XTB_hessPost/hessian' is NOT copied back home!
+File 'Mol1_E_XTB_hessPost/vibspectrum' is NOT copied back home!
+File 'Mol1_E_XTB_hessPost/wbo' is NOT copied back home!
+File 'Mol1_E_XTB_hessPost/charges' is NOT copied back home!
+File 'Mol1_E_XTB_hessPost/xtbrestart' is NOT copied back home!
+File 'Mol1_E_XTB_opt/hessian' is NOT copied back home!
+File 'Mol1_E_XTB_opt/wbo' is NOT copied back home!
+File 'Mol1_E_XTB_opt/charges' is NOT copied back home!
+File 'Mol1_E_XTB_opt/xtbrestart' is NOT copied back home!
+File 'Mol1_F_XTB_hessPost/hessian' is NOT copied back home!
+File 'Mol1_F_XTB_hessPost/vibspectrum' is NOT copied back home!
+File 'Mol1_F_XTB_hessPost/wbo' is NOT copied back home!
+File 'Mol1_F_XTB_hessPost/charges' is NOT copied back home!
+File 'Mol1_F_XTB_hessPost/xtbrestart' is NOT copied back home!
+File 'Mol1_F_XTB_opt/hessian' is NOT copied back home!
+File 'Mol1_F_XTB_opt/wbo' is NOT copied back home!
+File 'Mol1_F_XTB_opt/charges' is NOT copied back home!
+File 'Mol1_F_XTB_opt/xtbrestart' is NOT copied back home!
+File 'Mol1_L_XTB_hessPost/hessian' is NOT copied back home!
+File 'Mol1_L_XTB_hessPost/vibspectrum' is NOT copied back home!
+File 'Mol1_L_XTB_hessPost/wbo' is NOT copied back home!
+File 'Mol1_L_XTB_hessPost/charges' is NOT copied back home!
+File 'Mol1_L_XTB_hessPost/xtbrestart' is NOT copied back home!
+File 'Mol1_L_XTB_opt/hessian' is NOT copied back home!
+File 'Mol1_L_XTB_opt/wbo' is NOT copied back home!
+File 'Mol1_L_XTB_opt/charges' is NOT copied back home!
+File 'Mol1_L_XTB_opt/xtbrestart' is NOT copied back home!
+File 'Mol1_P_XTB_hessPost/hessian' is NOT copied back home!
+File 'Mol1_P_XTB_hessPost/vibspectrum' is NOT copied back home!
+File 'Mol1_P_XTB_hessPost/wbo' is NOT copied back home!
+File 'Mol1_P_XTB_hessPost/charges' is NOT copied back home!
+File 'Mol1_P_XTB_hessPost/xtbrestart' is NOT copied back home!
+File 'Mol1_P_XTB_opt/hessian' is NOT copied back home!
+File 'Mol1_P_XTB_opt/wbo' is NOT copied back home!
+File 'Mol1_P_XTB_opt/charges' is NOT copied back home!
+File 'Mol1_P_XTB_opt/xtbrestart' is NOT copied back home!
+Removing the scratch-directory with rm -rf
+Job finished on c3-6 at
+Fri Dec 22 17:10:11 CET 2023
+ 
+JobId=5486100 JobName=Mol1_XTB
+   UserId=marcof(55619) GroupId=marcof(55619) MCS_label=N/A
+   Priority=19760 Nice=0 Account=nn2506k QOS=nn2506k
+   JobState=RUNNING Reason=None Dependency=(null)
+   Requeue=1 Restarts=0 BatchFlag=1 Reboot=0 ExitCode=0:0
+   RunTime=00:02:11 TimeLimit=02:00:00 TimeMin=N/A
+   SubmitTime=2023-12-22T17:08:00 EligibleTime=2023-12-22T17:08:00
+   AccrueTime=2023-12-22T17:08:00
+   StartTime=2023-12-22T17:08:00 EndTime=2023-12-22T19:08:00 Deadline=N/A
+   PreemptEligibleTime=2023-12-22T17:08:00 PreemptTime=None
+   SuspendTime=None SecsPreSuspend=0 LastSchedEval=2023-12-22T17:08:00 Scheduler=Main
+   Partition=normal AllocNode:Sid=login-3:2120917
+   ReqNodeList=(null) ExcNodeList=(null)
+   NodeList=c3-6
+   BatchHost=c3-6
+   NumNodes=1 NumCPUs=32 NumTasks=32 CPUs/Task=1 ReqB:S:C:T=0:0:*:*
+   ReqTRES=cpu=32,mem=59G,node=1,billing=32
+   AllocTRES=cpu=32,mem=59G,node=1,billing=32
+   Socks/Node=* NtasksPerN:B:S:C=32:0:*:* CoreSpec=*
+   MinCPUsNode=32 MinMemoryNode=0 MinTmpDiskNode=0
+   Features=(null) DelayBoot=00:00:00
+   OverSubscribe=NO Contiguous=0 Licenses=(null) Network=(null)
+   Command=/cluster/projects/nn2506k/marcof/evaluator_jobs/job1703261267180/Mol1_XTB.job
+   WorkDir=/cluster/projects/nn2506k/marcof/evaluator_jobs/job1703261267180
+   StdErr=/cluster/projects/nn2506k/marcof/evaluator_jobs/job1703261267180/Mol1_XTB.log
+   StdIn=/dev/null
+   StdOut=/cluster/projects/nn2506k/marcof/evaluator_jobs/job1703261267180/Mol1_XTB.log
+   Switches=1@7-00:00:00
+   Power=
+   
+
+ 
+Adding Mol1_A_last-xTB.sdf to TCL file
+Adding Mol1_C_last-xTB.sdf to TCL file
+Adding Mol1_E_last-xTB.sdf to TCL file
+Adding Mol1_F_last-xTB.sdf to TCL file
+Adding Mol1_L_last-xTB.sdf to TCL file
+Adding Mol1_P_last-xTB.sdf to TCL file
+
+Job 5486100 consumed 1.2 billing hours from project nn2506k.
+
+Submitted 2023-12-22T17:08:00; waited 0.0 seconds in the queue after becoming eligible to run.
+
+Requested wallclock time: 2.0 hours
+Elapsed wallclock time:   2.2 minutes
+
+Task and CPU statistics:
+ID             CPUs  Tasks  CPU util                Start  Elapsed  Exit status
+5486100          32            0.0 %  2023-12-22T17:08:00  131.0 s  0
+5486100.batch    32      1     5.6 %  2023-12-22T17:08:00  131.0 s  0
+
+Used CPU time:   3.9 CPU minutes
+Unused CPU time: 1.1 CPU hours
+
+Memory statistics, in GiB:
+ID              Alloc   Usage
+5486100          59.0        
+5486100.batch    59.0     0.3
+
+Job 5486100 completed at Fri Dec 22 17:10:11 CET 2023

@@ -1,0 +1,22 @@
+###############################################################################
+###############################################################################
+#
+# Rotatable Bonds definition
+# ==========================
+#
+# Bonds matching the following SMARTS queries are added to the list of 
+# fragment-fragment bonds in the definition of the rotational space from 
+# which conformations are generated.
+#
+# WARNING: These queries are to be applied on molecules with dummy atoms!
+#          So be careful when using number of connected neighbours because
+#          dummy atoms are counted as neighbours.
+#
+# WARNING: This version is meant to match nothing!
+#
+###############################################################################
+###############################################################################
+#
+# Ru-Ru
+#
+RuRu [Ru]~[Ru]

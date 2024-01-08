@@ -1,0 +1,390 @@
+JOBSTART
+VERBOSITY: 1
+JOBSTART
+TASK: PrepareInputORCA
+VERBOSITY: 1
+InputGeometriesFile: STRINGFROMCLI_A_XTB.sdf
+JOBDETAILS: $START$DIR_! $MT_model=XTB2
+$DIR_! $MT_calculation=NumFreq
+$DIR_* $MT_charge=0
+$DIR_* $MT_spin_multiplicity=1
+$DIR_* $MT_coordtype=xyzfile
+$DIR_* $MT_filename=$START$ACCTASK: GET_FILENAME
+SUFFIX: .xyz
+$END
+----NEW-STEP----
+$DIR_! $MT_model=XTB2
+$DIR_! $MT_calculation=Opt
+$DIR_geom $DIR_InHess $MT_hessSource=Read
+$DIR_geom $DIR_InHessName $MT_filename=$START$ACCTASK: GET_FILENAME
+SUFFIX: .hess
+QUOTATION: "
+$END
+$DIR_* $MT_charge=0
+$DIR_* $MT_spin_multiplicity=1
+$DIR_* $MT_coordtype=xyzfile
+----NEW-STEP----
+$DIR_! $MT_model=XTB2
+$DIR_! $MT_calculation=NumFreq
+$DIR_* $MT_charge=0
+$DIR_* $MT_spin_multiplicity=1
+$DIR_* $MT_coordtype=xyzfile
+$END
+JOBEND
+JOBSTART
+VERBOSITY: 1
+APP: SHELL
+CMD: run_orca STRINGFROMCLI_A_XTB.inp STRINGFROMCLI_A_XTB.out
+JOBEND
+JOBSTART
+VERBOSITY: 1
+TASK: AnalyseORCAOutput
+JobOutputFile: STRINGFROMCLI_A_XTB.out
+ROOTPATHNAMEOUTPUT: STRINGFROMCLI_A_XTB
+PRINTLASTGEOMETRY: SDF STRINGFROMCLI_A_last-xTB.sdf
+TEMPLATECONNECTIVITY: STRINGFROMCLI_A_XTB.sdf TOLERANCE=0.75
+CalculateEnergy: qhThteshold 100
+DetectKindOfCriticalPoint: LowestFREQ 3
+JOBEND
+JOBEND
+JOBSTART
+VERBOSITY: 1
+JOBSTART
+TASK: PrepareInputORCA
+VERBOSITY: 1
+InputGeometriesFile: STRINGFROMCLI_F_XTB.sdf
+JOBDETAILS: $START$DIR_! $MT_model=XTB2
+$DIR_! $MT_calculation=NumFreq
+$DIR_* $MT_charge=0
+$DIR_* $MT_spin_multiplicity=1
+$DIR_* $MT_coordtype=xyzfile
+$DIR_* $MT_filename=$START$ACCTASK: GET_FILENAME
+SUFFIX: .xyz
+$END
+----NEW-STEP----
+$DIR_! $MT_model=XTB2
+$DIR_! $MT_calculation=Opt
+$DIR_geom $DIR_InHess $MT_hessSource=Read
+$DIR_geom $DIR_InHessName $MT_filename=$START$ACCTASK: GET_FILENAME
+SUFFIX: .hess
+QUOTATION: "
+$END
+$DIR_* $MT_charge=0
+$DIR_* $MT_spin_multiplicity=1
+$DIR_* $MT_coordtype=xyzfile
+----NEW-STEP----
+$DIR_! $MT_model=XTB2
+$DIR_! $MT_calculation=NumFreq
+$DIR_* $MT_charge=0
+$DIR_* $MT_spin_multiplicity=1
+$DIR_* $MT_coordtype=xyzfile
+$END
+JOBEND
+JOBSTART
+VERBOSITY: 1
+APP: SHELL
+CMD: run_orca STRINGFROMCLI_F_XTB.inp STRINGFROMCLI_F_XTB.out
+JOBEND
+JOBSTART
+VERBOSITY: 1
+TASK: AnalyseORCAOutput
+JobOutputFile: STRINGFROMCLI_F_XTB.out
+ROOTPATHNAMEOUTPUT: STRINGFROMCLI_F_XTB
+PRINTLASTGEOMETRY: SDF STRINGFROMCLI_F_last-xTB.sdf
+TEMPLATECONNECTIVITY: STRINGFROMCLI_F_XTB.sdf TOLERANCE=0.75
+CalculateEnergy: qhThteshold 100
+DetectKindOfCriticalPoint: LowestFREQ 3
+JOBEND
+JOBEND
+JOBSTART
+VERBOSITY: 1
+JOBSTART
+TASK: PrepareInputORCA
+VERBOSITY: 1
+InputGeometriesFile: STRINGFROMCLI_C_XTB.sdf
+JOBDETAILS: $START$DIR_! $MT_model=XTB2
+$DIR_! $MT_calculation=NumFreq
+$DIR_* $MT_charge=0
+$DIR_* $MT_spin_multiplicity=1
+$DIR_* $MT_coordtype=xyzfile
+$DIR_* $MT_filename=$START$ACCTASK: GET_FILENAME
+SUFFIX: .xyz
+$END
+----NEW-STEP----
+$DIR_! $MT_model=XTB2
+$DIR_! $MT_calculation=Opt
+$DIR_geom $DIR_InHess $MT_hessSource=Read
+$DIR_geom $DIR_InHessName $MT_filename=$START$ACCTASK: GET_FILENAME
+SUFFIX: .hess
+QUOTATION: "
+$END
+$DIR_* $MT_charge=0
+$DIR_* $MT_spin_multiplicity=1
+$DIR_* $MT_coordtype=xyzfile
+----NEW-STEP----
+$DIR_! $MT_model=XTB2
+$DIR_! $MT_calculation=NumFreq
+$DIR_* $MT_charge=0
+$DIR_* $MT_spin_multiplicity=1
+$DIR_* $MT_coordtype=xyzfile
+$END
+JOBEND
+JOBSTART
+VERBOSITY: 1
+APP: SHELL
+CMD: run_orca STRINGFROMCLI_C_XTB.inp STRINGFROMCLI_C_XTB.out
+JOBEND
+JOBSTART
+VERBOSITY: 1
+TASK: AnalyseORCAOutput
+JobOutputFile: STRINGFROMCLI_C_XTB.out
+ROOTPATHNAMEOUTPUT: STRINGFROMCLI_C_XTB
+PRINTLASTGEOMETRY: SDF STRINGFROMCLI_C_last-xTB.sdf
+TEMPLATECONNECTIVITY: STRINGFROMCLI_C_XTB.sdf TOLERANCE=0.75
+CalculateEnergy: qhThteshold 100
+DetectKindOfCriticalPoint: LowestFREQ 3
+JOBEND
+JOBEND
+JOBSTART
+VERBOSITY: 1
+JOBSTART
+TASK: PrepareInputORCA
+VERBOSITY: 1
+InputGeometriesFile: STRINGFROMCLI_P_XTB.sdf
+JOBDETAILS: $START$DIR_! $MT_model=XTB2
+$DIR_! $MT_calculation=NumFreq
+$DIR_* $MT_charge=0
+$DIR_* $MT_spin_multiplicity=1
+$DIR_* $MT_coordtype=xyzfile
+$DIR_* $MT_filename=$START$ACCTASK: GET_FILENAME
+SUFFIX: .xyz
+$END
+----NEW-STEP----
+$DIR_! $MT_model=XTB2
+$DIR_! $MT_calculation=Opt
+$DIR_geom $DIR_InHess $MT_hessSource=Read
+$DIR_geom $DIR_InHessName $MT_filename=$START$ACCTASK: GET_FILENAME
+SUFFIX: .hess
+QUOTATION: "
+$END
+$DIR_* $MT_charge=0
+$DIR_* $MT_spin_multiplicity=1
+$DIR_* $MT_coordtype=xyzfile
+----NEW-STEP----
+$DIR_! $MT_model=XTB2
+$DIR_! $MT_calculation=NumFreq
+$DIR_* $MT_charge=0
+$DIR_* $MT_spin_multiplicity=1
+$DIR_* $MT_coordtype=xyzfile
+$END
+JOBEND
+JOBSTART
+VERBOSITY: 1
+APP: SHELL
+CMD: run_orca STRINGFROMCLI_P_XTB.inp STRINGFROMCLI_P_XTB.out
+JOBEND
+JOBSTART
+VERBOSITY: 1
+TASK: AnalyseORCAOutput
+JobOutputFile: STRINGFROMCLI_P_XTB.out
+ROOTPATHNAMEOUTPUT: STRINGFROMCLI_P_XTB
+PRINTLASTGEOMETRY: SDF STRINGFROMCLI_P_last-xTB.sdf
+TEMPLATECONNECTIVITY: STRINGFROMCLI_P_XTB.sdf TOLERANCE=0.75
+CalculateEnergy: qhThteshold 100
+DetectKindOfCriticalPoint: LowestFREQ 3
+JOBEND
+JOBEND
+JOBSTART
+VERBOSITY: 1
+JOBSTART
+TASK: PrepareInputORCA
+VERBOSITY: 1
+InputGeometriesFile: STRINGFROMCLI_E_XTB.sdf
+JOBDETAILS: $START$DIR_! $MT_model=XTB2
+$DIR_! $MT_calculation=NumFreq
+$DIR_* $MT_charge=0
+$DIR_* $MT_spin_multiplicity=1
+$DIR_* $MT_coordtype=xyzfile
+$DIR_* $MT_filename=$START$ACCTASK: GET_FILENAME
+SUFFIX: .xyz
+$END
+----NEW-STEP----
+$DIR_! $MT_model=XTB2
+$DIR_! $MT_calculation=Opt
+$DIR_geom $DIR_InHess $MT_hessSource=Read
+$DIR_geom $DIR_InHessName $MT_filename=$START$ACCTASK: GET_FILENAME
+SUFFIX: .hess
+QUOTATION: "
+$END
+$DIR_* $MT_charge=0
+$DIR_* $MT_spin_multiplicity=1
+$DIR_* $MT_coordtype=xyzfile
+----NEW-STEP----
+$DIR_! $MT_model=XTB2
+$DIR_! $MT_calculation=NumFreq
+$DIR_* $MT_charge=0
+$DIR_* $MT_spin_multiplicity=1
+$DIR_* $MT_coordtype=xyzfile
+$END
+JOBEND
+JOBSTART
+VERBOSITY: 1
+APP: SHELL
+CMD: run_orca STRINGFROMCLI_E_XTB.inp STRINGFROMCLI_E_XTB.out
+JOBEND
+JOBSTART
+VERBOSITY: 1
+TASK: AnalyseORCAOutput
+JobOutputFile: STRINGFROMCLI_E_XTB.out
+ROOTPATHNAMEOUTPUT: STRINGFROMCLI_E_XTB
+PRINTLASTGEOMETRY: SDF STRINGFROMCLI_E_last-xTB.sdf
+TEMPLATECONNECTIVITY: STRINGFROMCLI_E_XTB.sdf TOLERANCE=0.75
+CalculateEnergy: qhThteshold 100
+DetectKindOfCriticalPoint: LowestFREQ 3
+JOBEND
+JOBEND
+JOBSTART
+VERBOSITY: 1
+JOBSTART
+TASK: PrepareInputORCA
+VERBOSITY: 1
+InputGeometriesFile: STRINGFROMCLI_L_XTB.sdf
+JOBDETAILS: $START$DIR_! $MT_model=XTB2
+$DIR_! $MT_calculation=NumFreq
+$DIR_* $MT_charge=0
+$DIR_* $MT_spin_multiplicity=1
+$DIR_* $MT_coordtype=xyzfile
+$DIR_* $MT_filename=$START$ACCTASK: GET_FILENAME
+SUFFIX: .xyz
+$END
+----NEW-STEP----
+$DIR_! $MT_model=XTB2
+$DIR_! $MT_calculation=Opt
+$DIR_geom $DIR_InHess $MT_hessSource=Read
+$DIR_geom $DIR_InHessName $MT_filename=$START$ACCTASK: GET_FILENAME
+SUFFIX: .hess
+QUOTATION: "
+$END
+$DIR_* $MT_charge=0
+$DIR_* $MT_spin_multiplicity=1
+$DIR_* $MT_coordtype=xyzfile
+----NEW-STEP----
+$DIR_! $MT_model=XTB2
+$DIR_! $MT_calculation=NumFreq
+$DIR_* $MT_charge=0
+$DIR_* $MT_spin_multiplicity=1
+$DIR_* $MT_coordtype=xyzfile
+$END
+JOBEND
+JOBSTART
+VERBOSITY: 1
+APP: SHELL
+CMD: run_orca STRINGFROMCLI_L_XTB.inp STRINGFROMCLI_L_XTB.out
+JOBEND
+JOBSTART
+VERBOSITY: 1
+TASK: AnalyseORCAOutput
+JobOutputFile: STRINGFROMCLI_L_XTB.out
+ROOTPATHNAMEOUTPUT: STRINGFROMCLI_L_XTB
+PRINTLASTGEOMETRY: SDF STRINGFROMCLI_L_last-xTB.sdf
+TEMPLATECONNECTIVITY: STRINGFROMCLI_L_XTB.sdf TOLERANCE=0.75
+CalculateEnergy: qhThteshold 100
+DetectKindOfCriticalPoint: LowestFREQ 3
+JOBEND
+JOBEND
+#
+# Job details for TS of cycloreversion (i.e., productive metathesis)
+#
+JOBSTART
+VERBOSITY: 1
+JOBSTART
+TASK: PrepareInputORCA
+VERBOSITY: 1
+InputGeometriesFile: STRINGFROMCLI_X_XTB.sdf
+JOBDETAILS: $START$DIR_! $MT_model=XTB2
+$DIR_! $MT_calculation=NumFreq
+$DIR_* $MT_charge=0
+$DIR_* $MT_spin_multiplicity=1
+$DIR_* $MT_coordtype=xyzfile
+$DIR_* $MT_filename=$START$ACCTASK: GET_FILENAME
+SUFFIX: .xyz
+$END
+----NEW-STEP----
+$DIR_! $MT_model=XTB2
+$DIR_! $MT_calculation=Opt
+$DIR_geom $DIR_InHess $MT_hessSource=Read
+$DIR_geom $DIR_InHessName $MT_filename=$START$ACCTASK: GET_FILENAME
+SUFFIX: .hess
+QUOTATION: "
+$END
+$DIR_geom $DIR_constraints $DATA_constraints=$START$ACCTASK: GenerateConstraints
+VERBOSITY: 2
+SMARTS:[$([#6]([#1])([#1])([Ru])[#6;X4]([#1])([#6])[#6])] [$([#6][#6]([#1])([#1])[Ru])] 2.4064 onlybonded
+$END
+$DIR_* $MT_charge=0
+$DIR_* $MT_spin_multiplicity=1
+$DIR_* $MT_coordtype=xyzfile
+$END
+JOBEND
+JOBSTART
+VERBOSITY: 1
+APP: SHELL
+CMD: run_orca STRINGFROMCLI_X_XTB.inp STRINGFROMCLI_X_XTB.out
+JOBEND
+JOBSTART
+VERBOSITY: 1
+TASK: AnalyseORCAOutput
+JobOutputFile: STRINGFROMCLI_X_XTB.out
+ROOTPATHNAMEOUTPUT: STRINGFROMCLI_X_XTB
+PRINTLASTGEOMETRY: SDF STRINGFROMCLI_X_last-xTB.sdf
+TEMPLATECONNECTIVITY: STRINGFROMCLI_X_XTB.sdf TOLERANCE=0.75
+JOBEND
+JOBEND
+JOBSTART
+VERBOSITY: 1
+JOBSTART
+TASK: PrepareInputORCA
+VERBOSITY: 1
+InputGeometriesFile: STRINGFROMCLI_Z_XTB.sdf
+JOBDETAILS: $START$DIR_! $MT_model=XTB2
+$DIR_! $MT_calculation=NumFreq
+$DIR_* $MT_charge=0
+$DIR_* $MT_spin_multiplicity=1
+$DIR_* $MT_coordtype=xyzfile
+$DIR_* $MT_filename=$START$ACCTASK: GET_FILENAME
+SUFFIX: .xyz
+$END
+----NEW-STEP----
+$DIR_! $MT_model=XTB2
+$DIR_! $MT_calculation=Opt
+$DIR_geom $DIR_InHess $MT_hessSource=Read
+$DIR_geom $DIR_InHessName $MT_filename=$START$ACCTASK: GET_FILENAME
+SUFFIX: .hess
+QUOTATION: "
+$END
+$DIR_geom $DIR_constraints $DATA_constraints=$START$ACCTASK: GenerateConstraints
+VERBOSITY: 2
+SMARTS: [Ru] [$([#1][Ru])] 1.794 onlybonded
+$END
+$DIR_* $MT_charge=0
+$DIR_* $MT_spin_multiplicity=1
+$DIR_* $MT_coordtype=xyzfile
+$END
+JOBEND
+JOBSTART
+VERBOSITY: 1
+APP: SHELL
+CMD: run_orca STRINGFROMCLI_Z_XTB.inp STRINGFROMCLI_Z_XTB.out
+JOBEND
+JOBSTART
+VERBOSITY: 1
+TASK: AnalyseORCAOutput
+JobOutputFile: STRINGFROMCLI_Z_XTB.out
+ROOTPATHNAMEOUTPUT: STRINGFROMCLI_Z_XTB
+PRINTLASTGEOMETRY: SDF STRINGFROMCLI_Z_last-xTB.sdf
+TEMPLATECONNECTIVITY: STRINGFROMCLI_Z_XTB.sdf TOLERANCE=0.75
+JOBEND
+JOBEND
+
+
+

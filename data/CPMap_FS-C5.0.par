@@ -1,0 +1,199 @@
+#
+# Compatibility matrix file for Fragment space FS-C5.0
+#
+# Substituents on N
+# "R_1" = NCarbeneSubNAlkS:1
+# "R_2" = NCarbeneSubNAlkS:1,NCarbeneSubNAlkL:1
+# "R_3" = NCarbeneSubAr:1
+# "R_4" = NCarbeneSubNAlkS:1,NCarbeneSubNAlkL:1,NCarbeneSubAr:1
+#
+# Substituents on aromatics
+# "R_20" = hyd:1,sArMe:0,sArX:0,arAmTri:0
+# "R_21" = hyd:1,sArMe:0,sArX:0,arAmTri:0,sAriPr:0,sArEP:0,sArNitro:0,sArCX:0,sArTB:0,aroicEst:0,sArAc:0,sArCy:0,aromarom:0
+#
+RCN RuX:0 RuX:1,RuCl:1
+RCN RuL:0 M6HPyrimidinylidene:1,MPyridinylidene:1,MPyrazolylidene:1,MPyrrolidinylidene:1,MPyrrolylidene:1,MPiperidinylidene:1,MAminoAlkylidene:1,MIsoindolylidene:1,MBisAminoMethylidene:1,MImidazolidinylidene:1,MImidazolylidene:1
+RCN L6HPyrimidinylideneSubN:0 NCarbeneSubNAlkS:1,NCarbeneSubNAlkL:1,NCarbeneSubAr:1
+RCN L6HPyrimidinylideneSubNAlk:0 NCarbeneSubNAlkS:1,NCarbeneSubNAlkL:1
+RCN L6HPyrimidinylideneSubNAr:0 NCarbeneSubAr:1
+RCN LPyrrolidinylideneSubNS:0 NCarbeneSubAr:1
+RCN LPyrrolylideneSubNS:0 NCarbeneSubAr:1
+RCN LPyrazolylideneSubNS:0 NCarbeneSubAr:1
+RCN LPyrazolylideneSubCS:0 NCarbeneSubAr:1
+RCN LPiperidinylideneSubNS:0 NCarbeneSubAr:1
+RCN LPyridinylideneSubCS:0 NCarbeneSubAr:1
+RCN LPyridinylideneSubNS:0 NCarbeneSubAr:1
+RCN LPyrrolidinylideneSubCGammaS:0 LPyrrolidinylideneSubCGammaS:1
+RCN LPyrrolidinylideneSubCGammaL:0 LPyrrolidinylideneSubCGammaS:1,LPyrrolidinylideneSubCGammaL:1
+RCN LPyrrolylideneSubCGammaL:0 NCarbeneSubAr:1
+RCN LPiperidinylideneSubCDeltaL:0 LPyrrolidinylideneSubCGammaS:1,LPyrrolidinylideneSubCGammaL:1
+RCN LPiperidinylideneSubCDeltaS:0 LPyrrolidinylideneSubCGammaS:1
+RCN LPyrrolidinylideneSubCAlpha:0 LPyrrolidinylideneSubCAlpha:1
+RCN LPyrrolylideneSubCAlpha:0 LPyrrolidinylideneSubCAlpha:1
+RCN LPiperidinylideneSubCAlpha:0 LPyrrolidinylideneSubCAlpha:1
+RCN LAminoAlkylideneSubNS:0 NCarbeneSubNAlkS:1
+RCN LAminoAlkylideneSubNL:0 NCarbeneSubNAlkS:1,NCarbeneSubNAlkL:1
+RCN LIsoindolylideneSubNL:0 NCarbeneSubAr:1,NCarbeneSubNAlkS:1,NCarbeneSubNAlkL:1
+RCN LIsoindolylideneSubCS:0 LIsoindolylideneSubCS:1
+RCN LBisAminoMethylideneNC:0 LBisAminoMethylideneNC:1
+RCN LBisAminoMethylideneSubNS:0 NCarbeneSubNAlkS:1
+RCN LBisAminoMethylideneSubNL:0 NCarbeneSubNAlkS:1,NCarbeneSubNAlkL:1,NCarbeneSubAr:1
+RCN LImidazolidinylideneSubNL:0 NCarbeneSubNAlkS:1,NCarbeneSubNAlkL:1,NCarbeneSubAr:1
+RCN LImidazolidinylideneSubNAlk:0 NCarbeneSubNAlkS:1,NCarbeneSubNAlkL:1
+RCN LImidazolidinylideneSubNAr:0 NCarbeneSubAr:1
+RCN LImidazolidinylideneSubCL:0 LImidazolidinylideneSubCS:1,LImidazolidinylideneSubCL:1
+RCN LImidazolidinylideneSubCS:0 LImidazolidinylideneSubCS:1
+RCN LImidazolylideneSubNL:0 NCarbeneSubNAlkS:1,NCarbeneSubNAlkL:1,NCarbeneSubAr:1
+RCN LImidazolylideneSubNAlk:0 NCarbeneSubNAlkS:1,NCarbeneSubNAlkL:1
+RCN LImidazolylideneSubNAr:0 NCarbeneSubAr:1
+RCN LImidazolylideneSubCS:0 LImidazolylideneSubCS:1
+RCN sArOrtho:1 hyd:1,sArMe:0,sAriPr:0,sArEP:0,sArTB:0,sArCy:0,aromarom:0
+RCN sArPara:1 hyd:1,sArMe:0,sArX:0,arAmTri:0,sAriPr:0,sArEP:0,sArNitro:0,sArCX:0,sArTB:0,aroicEst:0,sArAc:0,sArCy:0,aromarom:0
+RCN sMetaPh:1 hyd:1,sArMe:0,sArX:0,arAmTri:0,sAriPr:0,sArEP:0,sArNitro:0,sArCX:0,sArTB:0,aroicEst:0,sArAc:0,sArCy:0,aromarom:0
+RCN sArPentaPh:1 hyd:1,sArMe:0,sArX:0,arAmTri:0
+RCN sNaphthOrtho:0 hyd:1,sArMe:0,sAriPr:0,sArEP:0,sArTB:0,sArCy:0,aromarom:0
+RCN sAr:0 NCarbeneSubAr:1
+#
+# CLASS-to-BondOrder conversion
+#
+RBO RuCl 1
+RBO RuX 1
+RBO RuL 1
+RBO scaff 1
+RBO M6HPyrimidinylidene 1
+RBO MPyrrolidinylidene 1
+RBO MPyrrolylidene 1
+RBO MPyrazolylidene 1
+RBO MPyridinylidene 1
+RBO MPiperidinylidene 1
+RBO MAminoAlkylidene 1
+RBO MIsoindolylidene 1
+RBO MBisAminoMethylidene 1
+RBO MImidazolidinylidene 1
+RBO MImidazolylidene 1
+RBO L6HPyrimidinylideneSubN 1
+RBO L6HPyrimidinylideneSubNAr 1
+RBO L6HPyrimidinylideneSubNAlk 1
+RBO LAminoAlkylideneSubNS 1
+RBO LAminoAlkylideneSubNL 1
+RBO LBisAminoMethylideneNC 1
+RBO LBisAminoMethylideneSubNS 1
+RBO LBisAminoMethylideneSubNL 1
+RBO LImidazolidinylideneSubCL 1
+RBO LImidazolidinylideneSubCS 1
+RBO LImidazolidinylideneSubNL 1
+RBO LImidazolidinylideneSubNAlk 1
+RBO LImidazolidinylideneSubNAr 1
+RBO LImidazolylideneSubCS 1
+RBO LImidazolylideneSubNL 1
+RBO LImidazolylideneSubNAlk 1
+RBO LImidazolylideneSubNAr 1
+RBO LIsoindolylideneSubCS 1
+RBO LIsoindolylideneSubNL 1
+RBO LPyrrolidinylideneSubCAlpha 1
+RBO LPyrrolylideneSubCAlpha 1
+RBO LPiperidinylideneSubCAlpha 1
+RBO LPyrrolidinylideneSubCGammaL 1
+RBO LPyrrolylideneSubCGammaL 1
+RBO LPiperidinylideneSubCDeltaL 1
+RBO LPyrrolidinylideneSubCGammaS 1
+RBO LPiperidinylideneSubCDeltaS 1
+RBO LPyrrolidinylideneSubNS 1
+RBO LPyrrolylideneSubNS 1
+RBO LPyrazolylideneSubNS 1
+RBO LPyrazolylideneSubCS 1
+RBO LPiperidinylideneSubNS 1
+RBO LPyridinylideneSubCS 1
+RBO LPyridinylideneSubNS 1
+RBO MImidazolylidene 1
+RBO NCarbeneSubAr 1
+RBO NCarbeneSubNAlkL 1
+RBO NCarbeneSubNAlkS 1
+RBO sArOrtho 1
+RBO sMetaPh 1
+RBO sArPara 1
+RBO sArPentaPh 1
+RBO sNaphthOrtho 1
+RBO sAr 1
+RBO arAmTri 1
+RBO aromarom 1
+RBO sArCX 1
+RBO sArCy 1
+RBO sArEP 1
+RBO sArMe 1
+RBO sArTB 1
+RBO sArX 1
+RBO sAriPr 1
+RBO NCarbeneSubNAlkL 1
+RBO sArAc 1
+RBO aroicEst 1
+RBO sArNitro 1
+RBO hyd 1
+RBO me 1
+RBO ph 1
+RBO DECOMISSIONED 1
+RBO otol 1
+#
+# Capping rules
+#
+CAP LBisAminoMethylideneSubNS:0 me:1
+CAP LBisAminoMethylideneSubNL:0 me:1
+CAP L6HPyrimidinylideneSubN:0 otol:1
+CAP L6HPyrimidinylideneSubNAr:0 otol:1
+CAP L6HPyrimidinylideneSubNAlk:0 me:1
+CAP LAminoAlkylideneSubNS:0 me:1
+CAP LAminoAlkylideneSubNL:0 me:1 
+CAP LImidazolylideneSubNL:0 otol:1
+CAP LImidazolylideneSubNAlk:0 me:1
+CAP LImidazolylideneSubNAr:0 otol:1
+CAP LImidazolidinylideneSubNL:0 otol:1
+CAP LImidazolidinylideneSubNAlk:0 me:1
+CAP LImidazolidinylideneSubNAr:0 otol:1
+CAP LIsoindolylideneSubNL:0 otol:1
+CAP LPyrrolidinylideneSubNS:0 otol:1
+CAP LPyrrolylideneSubNS:0 otol:1
+CAP LPyrazolylideneSubNS:0 otol:1
+CAP LPyrazolylideneSubCS:0 otol:1
+CAP LPyridinylideneSubCS:0 otol:1
+CAP LPyridinylideneSubNS:0 otol:1
+CAP LImidazolidinylideneSubCL:0 hyd:1
+CAP LImidazolidinylideneSubCS:0 hyd:1
+CAP LImidazolylideneSubCS:0 hyd:1
+CAP LIsoindolylideneSubCS:0 me:1
+CAP LPyrrolidinylideneSubCAlpha:0 me:1
+CAP LPyrrolylideneSubCAlpha:0 me:1
+CAP LPiperidinylideneSubCAlpha:0 me:1
+CAP LPyrrolidinylideneSubCGammaL:0 me:1
+CAP LPyrrolylideneSubCGammaL:0 me:1
+CAP LPiperidinylideneSubCDeltaL:0 me:1
+CAP LPyrrolidinylideneSubCGammaS:0 me:1
+CAP LPiperidinylideneSubCDeltaS:0 me:1
+CAP sAr:0 hyd:1
+CAP sArOrtho:1 me:1
+CAP sMetaPh:1 hyd:1
+CAP sArPara:1 hyd:1
+CAP sArPentaPh:1 me:1
+CAP sNaphthOrtho:0 hyd:1
+#
+#Forbidden ends
+#
+DEL RuCl:0
+DEL RuX:0
+DEL RuL:0
+DEL LBisAminoMethylideneNC:0
+DEL LBisAminoMethylideneSubNS:0
+DEL LBisAminoMethylideneSubNL:0
+DEL L6HPyrimidinylideneSubN:0
+DEL LAminoAlkylideneSubNS:0
+DEL LAminoAlkylideneSubNL:0
+DEL LImidazolylideneSubNL:0 
+DEL LImidazolidinylideneSubNL:0
+DEL LIsoindolylideneSubNL:0 
+DEL LPyrrolidinylideneSubNS:0
+DEL LPyrrolidinylideneSubNS:0
+DEL LPyrrolylideneSubNS:0
+DEL LPyrazolylideneSubNS:0
+DEL LPyrazolylideneSubCS:0
+DEL LPyridinylideneSubCGammaL:0
+DEL LPyridinylideneSubNS:0
+

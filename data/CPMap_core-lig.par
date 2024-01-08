@@ -1,0 +1,73 @@
+#
+# Compatibility matrix file for core-fragment connection
+#
+#
+RCN RuL:0 RuL:1
+RCN RuX:0 RuX:1
+#
+# CLASS-to-BondOrder conversion
+#
+RBO RuX 1
+RBO RuL 1
+RBO scaff 1
+RBO M6HPyrimidinylidene 1
+RBO MPyrrolidinylidene 1
+RBO MAminoAlkylidene 1
+RBO MIsoindolylidene 1
+RBO MBisAminoMethylidene 1
+RBO MImidazolidinylidene 1
+RBO MImidazolylidene 1
+RBO L6HPyrimidinylideneSubN 1
+RBO L6HPyrimidinylideneSubNAr 1
+RBO L6HPyrimidinylideneSubNAlk 1
+RBO LAminoAlkylideneSubNS 1
+RBO LAminoAlkylideneSubNL 1
+RBO LBisAminoMethylideneNC 1
+RBO LBisAminoMethylideneSubNS 1
+RBO LBisAminoMethylideneSubNL 1
+RBO LImidazolidinylideneSubCL 1
+RBO LImidazolidinylideneSubCS 1
+RBO LImidazolidinylideneSubNL 1
+RBO LImidazolidinylideneSubNAlk 1
+RBO LImidazolidinylideneSubNAr 1
+RBO LImidazolylideneSubCS 1
+RBO LImidazolylideneSubNL 1
+RBO LImidazolylideneSubNAlk 1
+RBO LImidazolylideneSubNAr 1
+RBO LIsoindolylideneSubCS 1
+RBO LIsoindolylideneSubNL 1
+RBO LPyrrolidinylideneSubCAlpha 1
+RBO LPyrrolidinylideneSubCGammaL 1
+RBO LPyrrolidinylideneSubCGammaS 1
+RBO LPyrrolidinylideneSubNS 1
+RBO MImidazolylidene 1
+RBO NCarbeneSubAr 1
+RBO NCarbeneSubNAlkL 1
+RBO NCarbeneSubNAlkS 1
+RBO sArOrtho 1
+RBO sMetaPh 1
+RBO sArPara 1
+RBO sArPentaPh 1
+RBO sNaphthOrtho 1
+RBO sAr 1
+RBO arAmTri 1
+RBO aromarom 1
+RBO sArCX 1
+RBO sArCy 1
+RBO sArEP 1
+RBO sArMe 1
+RBO sArTB 1
+RBO sArX 1
+RBO sAriPr 1
+RBO NCarbeneSubNAlkL 1
+RBO sArAc 1
+RBO aroicEst 1
+RBO sArNitro 1
+RBO hyd 1
+RBO me 1
+RBO ph 1
+#
+#Forbidden ends
+#
+DEL RuL:0
+DEL RuX:0

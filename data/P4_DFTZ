@@ -1,0 +1,80 @@
+rutSection# $MTprint=P
+rutSection# $MTmodel_Method=HF
+rutSection# $MTmodel_BasisSet=GenECP 5d 7f
+rutSection# $MTjobType=SP
+rutSection# $MTsymmetry=NoSymm
+rutSection# $KVscf_$KVVShift=1000
+rutSection# $KVscf_$MTSymm=nosym
+rutSection# $KVscf_$MTVarAcc=novaracc
+rutSection# $KVscf_$KVMaxCycle=180
+rutSection# $KVscf_$KVConver=4
+titSection# Step 1 - GeomOpt (MIN) PBEPBE-GD3MBJ modDZ
+optSection# $MTbasis=$ACCPAR_$STARTAtomSpecificBasisSet:
+SMARTS [#1] Link UNSET_BASISSETDIR/custom_bs.gbs
+SMARTS [#6] Link UNSET_BASISSETDIR/custom_bs.gbs
+SMARTS [#7] Link UNSET_BASISSETDIR/custom_bs.gbs
+SMARTS [#9] Link UNSET_BASISSETDIR/custom_bs.gbs
+SMARTS [#17] Link UNSET_BASISSETDIR/custom_bs.gbs
+SMARTS [#16] Link UNSET_BASISSETDIR/custom_bs.gbs
+SMARTS [#35] Link UNSET_BASISSETDIR/custom_bs.gbs
+SMARTS [#53] Link UNSET_BASISSETDIR/custom_bs.gbs
+SMARTS [Ru] Link UNSET_BASISSETDIR/custom_bs.gbs
+SMARTS [#8] Link UNSET_BASISSETDIR/custom_bs_Oxygen.gbs
+SMARTS [#15] Link UNSET_BASISSETDIR/custom_bs_Phosphorous.gbs
+$END
+--Link1--
+rutSection# $MTprint=P
+rutSection# $MTmodel_Method=PBEPBE
+rutSection# $MTmodel_BasisSet=ChkBasis
+rutSection# $KVgeom=check
+rutSection# $KVguess=read
+rutSection# $MTjobType=SP
+rutSection# $MTsymmetry=NoSymm
+rutSection# $KVscf_$KVVShift=500
+rutSection# $KVscf_$MTSymm=nosym
+rutSection# $KVscf_$MTVarAcc=novaracc
+rutSection# $KVscf_$KVMaxCycle=200
+rutSection# $KVEmpiricalDispersion=GD3BJ
+rutSection# $FR0=IOp(3/174=1000000,3/175=358940,3/177=12092,3/178=5938951)
+titSection# Step 2 - GeomOpt (MIN) PBEPBE-GD3MBJ modDZ
+--Link1--
+rutSection# $MTprint=P
+rutSection# $MTmodel_Method=PBEPBE
+rutSection# $MTmodel_BasisSet=ChkBasis
+rutSection# $KVgeom=check
+rutSection# $KVguess=read
+rutSection# $MTsymmetry=NoSymm
+rutSection# $KVscf_$KVVShift=300
+rutSection# $KVscf_$MTSymm=nosym
+rutSection# $KVscf_$MTVarAcc=novaracc
+rutSection# $KVscf_$KVMaxCycle=250
+rutSection# $KVstable_$MTwfreopt=opt
+rutSection# $KVstable_$MTgeneral=rrhf
+rutSection# $KVEmpiricalDispersion=GD3BJ
+rutSection# $FR0=IOp(3/174=1000000,3/175=358940,3/177=12092,3/178=5938951)
+titSection# Step 3 - GeomOpt (MIN) PBEPBE-GD3MBJ modDZ
+--Link1--
+rutSection# $MTprint=P
+rutSection# $MTmodel_Method=PBEPBE
+rutSection# $MTmodel_BasisSet=ChkBasis
+rutSection# $KVgeom=check
+rutSection# $KVguess=read
+rutSection# $MTsymmetry=NoSymm
+rutSection# $KVscf_$KVVShift=300
+rutSection# $KVscf_$MTSymm=nosym
+rutSection# $KVscf_$KVCONVER=9
+rutSection# $KVscf_$KVMaxCycle=250
+rutSection# $KVscf_$MTVarAcc=novaracc
+rutSection# $MTjobType=opt
+rutSection# $MTiop=iop(1/8=2)
+rutSection# $KVopt_$KVRecalcFC=50
+rutSection# $KVopt_$KVMaxCycles=150
+rutSection# $KVopt_$MTmodRedudant=modRedundant
+optSection# $MTmodRedundant=$ACCPAR_$STARTGenerateConstraints:
+VERBOSITY: 1
+SMARTS: [#44] [#1] onlybonded options:F
+SMARTS: [$([#1][#44])] [$([#6;X4]1[#6;X4][#44][#6;X4]1)] onlybonded options:F
+$END
+rutSection# $KVEmpiricalDispersion=GD3BJ
+rutSection# $FR0=IOp(3/174=1000000,3/175=358940,3/177=12092,3/178=5938951)
+titSection# Step 4 - GeomOpt (MIN) PBEPBE-GD3MBJ modDZ

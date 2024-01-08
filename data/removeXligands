@@ -1,0 +1,26 @@
+[
+  {
+     "task": "DELETEVERTEX",
+     "vertexQuery": {
+        "incomingEdgeQuery": {
+           "srcAPC": {
+              "rule": "RuX",
+              "subClass": 0,
+              "bndTyp": "SINGLE"
+           }
+        }
+     }
+  },
+  {
+     "task": "DELETEVERTEX",
+     "vertexQuery": {
+        "incomingEdgeQuery": {
+           "srcAPC": {
+              "rule": "RuX",
+              "subClass": 0,
+              "bndTyp": "SINGLE"
+           }
+        }
+     }
+  }
+]

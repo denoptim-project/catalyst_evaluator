@@ -1,0 +1,12 @@
+name: RuCatEvaluator
+channels:
+  - defaults
+  - openbabel
+  - conda-forge
+  - denoptim-project
+dependencies:
+  - python
+  - denoptim
+  - openbabel
+  - xtb
+  - autocompchem=2.0.1

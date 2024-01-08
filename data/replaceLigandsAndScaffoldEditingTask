@@ -1,0 +1,49 @@
+[
+  {
+    "task": "CHANGEVERTEX",
+    "vertexQuery": {
+       "incomingEdgeQuery": {
+          "srcAPC": {
+             "rule": "RuL",
+             "subClass": 0,
+             "bndTyp": "SINGLE"
+          }
+       }
+    },
+    "incomingBBId": 0,
+    "incomingBBTyp": FRAGMENT,
+    "incomingAPMap": {
+       0: 0
+    }
+  },
+  {
+    "task": "CHANGEVERTEX",
+    "vertexQuery": {
+       "incomingEdgeQuery": {
+          "srcAPC": {
+             "rule": "RuX",
+             "subClass": 0,
+             "bndTyp": "SINGLE"
+          }
+       }
+    },
+    "incomingBBId": 1,
+    "incomingBBTyp": FRAGMENT,
+    "incomingAPMap": {
+       0: 0
+    }
+  },
+  {
+    "task": "CHANGEVERTEX",
+    "vertexQuery": {
+       "level": -1
+    },
+    "incomingBBId": 0,
+    "incomingBBTyp": SCAFFOLD,
+    "incomingAPMap": {
+       0: 0,
+       1: 1,
+       2: 2
+    }
+  }
+]

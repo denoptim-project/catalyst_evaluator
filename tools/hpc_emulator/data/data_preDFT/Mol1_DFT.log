@@ -1,0 +1,311 @@
+Starting job 5478842 on c17-1 on fram at Wed Dec 13 17:36:38 CET 2023
+
+########### ACC - Job Start ###########
+Job started on c17-1 at
+Wed Dec 13 17:36:38 CET 2023
+The job was submitted from /cluster/projects/nn2506k/marcof/evaluator_jobs/job1702485380485
+The job will use scratch-directory /cluster/work/users/marcof/5478842/Mol1_DFT
+Copying Mol1_A_DFT.sdf to work space
+Copying Mol1_C_DFT.sdf to work space
+Copying Mol1_X_DFT.sdf to work space
+Copying Mol1_Z_DFT.sdf to work space
+Copying P4_DFTC to work space
+Copying P4_DFTX to work space
+Copying P4_DFTZ to work space
+ 
+********************** Calling ACC ********************
+
+
+***************************************************************************
+                              AutoCompChem
+                              Version: 2.0
+***************************************************************************
+
+
+Initiating ACC Job #0
+Running job container autocompchem.run.ACCJob@5cc7c2a6
+
+Initiating ACC Job #0.1
+ AutoCompChem is initiating the ACC task 'PrepareInputGaussian' - Wed Dec 13 17:36:40 CET 2023
+ Adding parameters to GaussianInputWriter
+ Job details from JD file 'P4_DFTX'.
+ No 'OUTNAME' option found. Output name set to 'Mol1_X_DFT.inp'.
+ Adding parameters to BasisSetGenerator
+ SMARTS rules for basis set assignation: {SMARTS0=[#1], SMARTS1=[#6], SMARTS6=[#35], SMARTS7=[#53], SMARTS8=[Ru], SMARTS9=[#8], SMARTS2=[#7], SMARTS3=[#9], SMARTS4=[#17], SMARTS10=[#15], SMARTS5=[#16]}
+ Elemental symbols rules for basis set assignation: {}
+ACC starts creating geometric constraints
+ Adding parameters to ConstraintstGenerator
+List of constraints: 
+ -> Constraint [Type=DISTANCE, IDs=[12,6,-1,-1], value=0.0], options=F] 
+ Writing Gaussian input file: Mol1_X_DFT.inp
+Done with ACC job (PrepareInputGaussian) - Wed Dec 13 17:36:41 CET 2023
+
+Initiating SHELL Job #0.2
+ Wed Dec 13 17:36:41 CET 2023
+Running SHELL Job: autocompchem.run.ShellJob@4da4253 Thread: main
+Taking module from $uibkvant_gaussianModule
+The following modules were not unloaded:
+  (Use "module --force purge" to unload all):
+
+  1) StdEnv
+Updating input file with:
+%NProchShared=20
+%Mem=39000MB
+ 
+********************* Running Gaussian **********************
+Running command: g16 < Mol1_X_DFT.inp > Mol1_X_DFT.out
+
+real	44m25.497s
+user	869m42.630s
+sys	0m59.772s
+******************* End of Gaussian run *********************
+Renaming file fort.7 to Mol1_X_DFT.fort.7
+Done with SHELL Job autocompchem.run.ShellJob@4da4253
+
+Initiating ACC Job #0.3
+ AutoCompChem is initiating the ACC task 'EvaluateGaussianOutput' - Wed Dec 13 18:21:08 CET 2023
+ Adding parameters to GaussianOutputHandler
+ 
+ WARNING! No JOBDETAILS provided. Some errors cannot be identified without JOBDETAILS file.
+ 
+ Gaussian output file contains: 4 steps
+ File:Mol1_X_DFT.out Steps:4 NormalTerm:true Error:
+ DFT Energy: -1515.55273973 
+Done with ACC job (EvaluateGaussianOutput) - Wed Dec 13 18:21:08 CET 2023
+
+Initiating ACC Job #0.4
+ AutoCompChem is initiating the ACC task 'PrepareInputGaussian' - Wed Dec 13 18:21:08 CET 2023
+ Adding parameters to GaussianInputWriter
+ Job details from JD file 'P4_DFTZ'.
+ No 'OUTNAME' option found. Output name set to 'Mol1_Z_DFT.inp'.
+ Adding parameters to BasisSetGenerator
+ SMARTS rules for basis set assignation: {SMARTS0=[#1], SMARTS1=[#6], SMARTS6=[#35], SMARTS7=[#53], SMARTS8=[Ru], SMARTS9=[#8], SMARTS2=[#7], SMARTS3=[#9], SMARTS4=[#17], SMARTS10=[#15], SMARTS5=[#16]}
+ Elemental symbols rules for basis set assignation: {}
+ACC starts creating geometric constraints
+ Adding parameters to ConstraintstGenerator
+List of constraints: 
+ -> Constraint [Type=DISTANCE, IDs=[0,1,-1,-1], value=0.0], options=F] 
+ -> Constraint [Type=DISTANCE, IDs=[6,0,-1,-1], value=0.0], options=F] 
+ Writing Gaussian input file: Mol1_Z_DFT.inp
+Done with ACC job (PrepareInputGaussian) - Wed Dec 13 18:21:08 CET 2023
+
+Initiating SHELL Job #0.5
+ Wed Dec 13 18:21:08 CET 2023
+Running SHELL Job: autocompchem.run.ShellJob@273e7444 Thread: main
+Taking module from $uibkvant_gaussianModule
+The following modules were not unloaded:
+  (Use "module --force purge" to unload all):
+
+  1) StdEnv
+lfs setstripe: setstripe error for '$GAUSS_SCRDIR': stripe already set
+Updating input file with:
+%NProchShared=20
+%Mem=39000MB
+ 
+********************* Running Gaussian **********************
+Running command: g16 < Mol1_Z_DFT.inp > Mol1_Z_DFT.out
+
+real	63m33.275s
+user	1252m45.805s
+sys	1m28.811s
+******************* End of Gaussian run *********************
+Renaming file fort.7 to Mol1_Z_DFT.fort.7
+Done with SHELL Job autocompchem.run.ShellJob@273e7444
+
+Initiating ACC Job #0.6
+ AutoCompChem is initiating the ACC task 'EvaluateGaussianOutput' - Wed Dec 13 19:24:42 CET 2023
+ Adding parameters to GaussianOutputHandler
+ 
+ WARNING! No JOBDETAILS provided. Some errors cannot be identified without JOBDETAILS file.
+ 
+ Gaussian output file contains: 4 steps
+ File:Mol1_Z_DFT.out Steps:4 NormalTerm:true Error:
+ DFT Energy: -1437.0097592 
+Done with ACC job (EvaluateGaussianOutput) - Wed Dec 13 19:24:42 CET 2023
+
+Initiating SHELL Job #0.7
+ Wed Dec 13 19:24:42 CET 2023
+Running SHELL Job: autocompchem.run.ShellJob@6221a451 Thread: main
+Done with SHELL Job autocompchem.run.ShellJob@6221a451
+
+Initiating SHELL Job #0.8
+ Wed Dec 13 19:24:42 CET 2023
+Running SHELL Job: autocompchem.run.ShellJob@52719fb6 Thread: main
+Done with SHELL Job autocompchem.run.ShellJob@52719fb6
+
+Initiating ACC Job #0.9
+ AutoCompChem is initiating the ACC task 'PrepareInputGaussian' - Wed Dec 13 19:24:42 CET 2023
+ Adding parameters to GaussianInputWriter
+ Job details from JD file 'P4_DFTC'.
+ No 'OUTNAME' option found. Output name set to 'Mol1_C_DFT.inp'.
+ Adding parameters to BasisSetGenerator
+ SMARTS rules for basis set assignation: {SMARTS0=[#1], SMARTS1=[#6], SMARTS6=[#35], SMARTS7=[#53], SMARTS8=[Ru], SMARTS9=[#8], SMARTS2=[#7], SMARTS3=[#9], SMARTS4=[#17], SMARTS10=[#15], SMARTS5=[#16]}
+ Elemental symbols rules for basis set assignation: {}
+ Writing Gaussian input file: Mol1_C_DFT.inp
+Done with ACC job (PrepareInputGaussian) - Wed Dec 13 19:24:43 CET 2023
+
+Initiating SHELL Job #0.10
+ Wed Dec 13 19:24:43 CET 2023
+Running SHELL Job: autocompchem.run.ShellJob@4145bad8 Thread: main
+Taking module from $uibkvant_gaussianModule
+The following modules were not unloaded:
+  (Use "module --force purge" to unload all):
+
+  1) StdEnv
+lfs setstripe: setstripe error for '$GAUSS_SCRDIR': stripe already set
+Updating input file with:
+%NProchShared=20
+%Mem=39000MB
+ 
+********************* Running Gaussian **********************
+Running command: g16 < Mol1_C_DFT.inp > Mol1_C_DFT.out
+
+real	11m13.118s
+user	219m26.587s
+sys	0m26.672s
+******************* End of Gaussian run *********************
+Renaming file fort.7 to Mol1_C_DFT.fort.7
+Done with SHELL Job autocompchem.run.ShellJob@4145bad8
+
+Initiating ACC Job #0.11
+ AutoCompChem is initiating the ACC task 'EvaluateGaussianOutput' - Wed Dec 13 19:35:56 CET 2023
+ Adding parameters to GaussianOutputHandler
+ 
+ WARNING! No JOBDETAILS provided. Some errors cannot be identified without JOBDETAILS file.
+ 
+ Gaussian output file contains: 4 steps
+ File:Mol1_C_DFT.out Steps:4 NormalTerm:true Error:
+ DFT Energy: -1437.04467889 
+Done with ACC job (EvaluateGaussianOutput) - Wed Dec 13 19:35:56 CET 2023
+
+Initiating SHELL Job #0.12
+ Wed Dec 13 19:35:56 CET 2023
+Running SHELL Job: autocompchem.run.ShellJob@449a4f23 Thread: main
+Done with SHELL Job autocompchem.run.ShellJob@449a4f23
+
+Initiating SHELL Job #0.13
+ Wed Dec 13 19:35:56 CET 2023
+Running SHELL Job: autocompchem.run.ShellJob@1530c739 Thread: main
+Done with SHELL Job autocompchem.run.ShellJob@1530c739
+
+
+***************************************************************************
+ Wed Dec 13 19:35:56 CET 2023
+
+ Termination status: 0
+ Final message: Normal Termination
+
+ Thanks for using AutoCompChem.
+ Mandi! ;) 
+
+********************* done with ACC *******************
+.:
+total 4641
+-rw-rw-r-- 1 marcof marcof  597916 Dec 13 19:35 Mol1_C_DFT.out
+-rw-rw-r-- 1 marcof marcof    2611 Dec 13 19:35 Mol1_C_last-DFT.sdf
+-rw-rw-r-- 1 marcof marcof    1131 Dec 13 19:25 Mol1_C_DFT.fort.7
+-rw-rw-r-- 1 marcof marcof   21125 Dec 13 19:24 Mol1_C_DFT.inp
+-rw-rw-r-- 1 marcof marcof   20579 Dec 13 19:24 Mol1_C_DFT.jd
+-rw-rw-r-- 1 marcof marcof 2532260 Dec 13 19:24 Mol1_Z_DFT.out
+-rw-rw-r-- 1 marcof marcof    2634 Dec 13 19:24 Mol1_Z_last-DFT.sdf
+-rw-rw-r-- 1 marcof marcof    1129 Dec 13 18:21 Mol1_Z_DFT.fort.7
+-rw-rw-r-- 1 marcof marcof   21155 Dec 13 18:21 Mol1_Z_DFT.inp
+-rw-rw-r-- 1 marcof marcof 1464688 Dec 13 18:21 Mol1_X_DFT.out
+-rw-rw-r-- 1 marcof marcof    3169 Dec 13 18:21 Mol1_X_last-DFT.sdf
+-rw-rw-r-- 1 marcof marcof   20682 Dec 13 18:21 Mol1_Z_DFT.jd
+-rw-rw-r-- 1 marcof marcof    1285 Dec 13 17:37 Mol1_X_DFT.fort.7
+-rw-rw-r-- 1 marcof marcof       0 Dec 13 17:36 $GAUSS_SCRDIR
+-rw-rw-r-- 1 marcof marcof   24196 Dec 13 17:36 Mol1_X_DFT.inp
+-rw-rw-r-- 1 marcof marcof   23315 Dec 13 17:36 Mol1_X_DFT.jd
+-rw-rw-r-- 1 marcof marcof    4037 Dec 13 17:36 Mol1_A_DFT.sdf
+-rw-rw-r-- 1 marcof marcof    2693 Dec 13 17:36 Mol1_C_DFT.sdf
+-rw-rw-r-- 1 marcof marcof    3252 Dec 13 17:36 Mol1_X_DFT.sdf
+-rw-rw-r-- 1 marcof marcof    2717 Dec 13 17:36 Mol1_Z_DFT.sdf
+-rw-rw-r-- 1 marcof marcof    3181 Dec 13 17:36 P4_DFTC
+-rw-rw-r-- 1 marcof marcof    3378 Dec 13 17:36 P4_DFTX
+-rw-rw-r-- 1 marcof marcof    1734 Dec 13 17:36 P4_DFTXZ.jd
+-rw-rw-r-- 1 marcof marcof    3409 Dec 13 17:36 P4_DFTZ
+ 
+  WARNING:
+  We use these REGEX to identify files that are NOT copied back home:
+  -> ^xtb.err$
+  -> ^.*property.txt$
+  -> ^.*.charges$
+  -> ^.*.prop$
+  -> ^.*.lastxtb$
+  -> ^.*.lastxtberr$
+  -> ^.*.engrad$
+  -> ^.*.gradient$
+  -> ^.*.proc[0-9]+..*$
+  -> ^core..*$
+  -> ^fort.[0-9]$
+  -> ^tmp$
+  -> .tmp$
+  -> ^[a-zA-Z0-9]+$
+  -> ^Gau-.*$
+  However, if you find that some files of interest for you are not
+  copied, then you can either avoid to do automatic cleanup of the 
+  working space (option --nocleanup), or you can reset the list of 
+  REGEX to fit your needs (use option --cleanupREGEX).
+ 
+Removing the scratch-directory with rm -rf
+Job finished on c17-1 at
+Wed Dec 13 19:35:57 CET 2023
+ 
+JobId=5478842 JobName=Mol1_DFT
+   UserId=marcof(55619) GroupId=marcof(55619) MCS_label=N/A
+   Priority=19760 Nice=0 Account=nn2506k QOS=nn2506k
+   JobState=RUNNING Reason=None Dependency=(null)
+   Requeue=1 Restarts=0 BatchFlag=1 Reboot=0 ExitCode=0:0
+   RunTime=01:59:19 TimeLimit=20:00:00 TimeMin=N/A
+   SubmitTime=2023-12-13T17:36:28 EligibleTime=2023-12-13T17:36:28
+   AccrueTime=2023-12-13T17:36:29
+   StartTime=2023-12-13T17:36:38 EndTime=2023-12-14T13:36:38 Deadline=N/A
+   PreemptEligibleTime=2023-12-13T17:36:38 PreemptTime=None
+   SuspendTime=None SecsPreSuspend=0 LastSchedEval=2023-12-13T17:36:38 Scheduler=Backfill
+   Partition=normal AllocNode:Sid=login-3:2404238
+   ReqNodeList=(null) ExcNodeList=(null)
+   NodeList=c17-1
+   BatchHost=c17-1
+   NumNodes=1 NumCPUs=32 NumTasks=1 CPUs/Task=20 ReqB:S:C:T=0:0:*:*
+   ReqTRES=cpu=20,mem=59G,node=1,billing=20
+   AllocTRES=cpu=32,mem=59G,node=1,billing=32
+   Socks/Node=* NtasksPerN:B:S:C=1:0:*:* CoreSpec=*
+   MinCPUsNode=20 MinMemoryNode=0 MinTmpDiskNode=0
+   Features=(null) DelayBoot=00:00:00
+   OverSubscribe=NO Contiguous=0 Licenses=(null) Network=(null)
+   Command=/cluster/projects/nn2506k/marcof/evaluator_jobs/job1702485380485/Mol1_DFT.job
+   WorkDir=/cluster/projects/nn2506k/marcof/evaluator_jobs/job1702485380485
+   StdErr=/cluster/projects/nn2506k/marcof/evaluator_jobs/job1702485380485/Mol1_DFT.log
+   StdIn=/dev/null
+   StdOut=/cluster/projects/nn2506k/marcof/evaluator_jobs/job1702485380485/Mol1_DFT.log
+   Switches=1@7-00:00:00
+   Power=
+   
+
+ 
+Adding Mol1_C_last-DFT.sdf to TCL file
+Adding Mol1_X_last-DFT.sdf to TCL file
+Adding Mol1_Z_last-DFT.sdf to TCL file
+
+Job 5478842 consumed 63.6 billing hours from project nn2506k.
+
+Submitted 2023-12-13T17:36:28; waited 10.0 seconds in the queue after becoming eligible to run.
+
+Requested wallclock time: 20.0 hours
+Elapsed wallclock time:   2.0 hours
+
+Task and CPU statistics:
+ID             CPUs  Tasks  CPU util                Start  Elapsed  Exit status
+5478842          32            0.0 %  2023-12-13T17:36:38    2.0 h  0
+5478842.batch    32      1    61.4 %  2023-12-13T17:36:38    2.0 h  0
+
+Used CPU time:   1.6 CPU days
+Unused CPU time: 1.0 CPU days
+
+Memory statistics, in GiB:
+ID              Alloc   Usage
+5478842          59.0        
+5478842.batch    59.0    14.5
+
+Job 5478842 completed at Wed Dec 13 19:35:57 CET 2023
