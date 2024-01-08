@@ -22,7 +22,7 @@ TODO: add figure with workflow overview
     conda activate RuCatEvaluator
     ```
 
-3. In addition to the pre-configured environment, <a href="https://dasher.wustl.edu/tinker/">Tinker</a> and <a href="https://www.wavefun.com/spartan">Spartan</a> need to be installed according to the corresponding vendor as neither of them can be installed via Conda. Please refer to the above links for license terms and installation instructions. After installation, make the executables reachable, by adjusting the corresponding values in <a href="evaluate_candidate.sh">evaluate_candidate.sh</a>:
+3. In addition to the pre-configured environment, <a href="https://dasher.wustl.edu/tinker/">Tinker</a> and <a href="https://www.wavefun.com/spartan">Spartan</a> need to be installed according to the corresponding vendor as neither of them can be installed via Conda. Please refer to the above links for license terms and installation instructions. After installation, make the executables reachable, by adjusting the corresponding values in <a href="evaluate_catalyst.sh">evaluate_catalyst.sh</a>:
     ```
     export TINKERBIN="_your_path_to_Tinkers_bin_folder/bin"
     export SPARTANEXE="_your_path_to_Spartan_executable/spartan20"
@@ -105,7 +105,7 @@ TODO: add figure with workflow overview
     ./runTest.sh
     ```
 
-12. Depending on the needs, you may want to configure the scripts to check for completion of remote jobs with high frequency (useful only when testing if everything is working fine) and if the xTB jobs should be run locally or in the remote worker. These and other settings can be controlled in the initial part of the `evaluate_candidate.sh` script.
+12. Depending on the needs, you may want to configure the scripts to check for completion of remote jobs with high frequency (useful only when testing if everything is working fine) and if the xTB jobs should be run locally or in the remote worker. These and other settings can be controlled in the initial part of the `evaluate_catalyst.sh` script.
 
 13. You should be ready to go now!
 
@@ -202,7 +202,7 @@ To define a catalyst with general formula (L)Ru(Y)(X)=CH<sub>2</sub>, where X an
 
 Once you have a Denoptim graph file (e.g., `my_catalyst.sdf`) you can start the evaluation with the following command:
 ```
-./evaluate_candidate.sh -i my_catalyst.sdf
+./evaluate_catalyst.sh -i my_catalyst.sdf
 ```
 To see how the master job proceeds, check the log file `*_FProvider.log`.
 
