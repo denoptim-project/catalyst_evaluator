@@ -1,3 +1,0 @@
-[submodule "tools/RemoteWorkersBridge"]
-	path = tools/RemoteWorkersBridge
-	url = git@github.com:denoptim-project/RemoteWorkersBridge.git
