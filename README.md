@@ -28,7 +28,7 @@ TODO: add figure with workflow overview
     export SPARTANEXE="_your_path_to_Spartan_executable/spartan20"
     ```
 
-4. Finally, we configure some remote computer to run Gaussian DFT and, possibly, xTB calculations. These remote computers are typically HPCs. The interface with the remote computers is managed by the tool [RemoteWorkersBridge](https://github.com/denoptim-project/RemoteWorkersBridge) (or git submodule RemoteWorkersBridge under the [tools](tools) folder). In general, we assume you have a way to send jobs to a queuing system on such HPC workers or start such jobs in whichever way according to what is suitable for your specific remote worker. In our case this task is performed by the command `submit_job_acc`, which we assume you'll make available in your HPC workers (TODO: make source available at [tools/submit_job_acc/submit_job_acc.sh](tools/submit_job_acc/submit_job_acc.sh)). The following steps allow to configure the bridge to a remote worker (in alternative, have a look at the [Test Run Without Remote Workers](#test-run-without-remote-workers)).
+4. We now configure some remote computer to run Gaussian DFT and, possibly, xTB calculations. These remote computers are typically HPCs. The interface with the remote computers is managed by the tool [RemoteWorkersBridge](https://github.com/denoptim-project/RemoteWorkersBridge) (or git submodule RemoteWorkersBridge under the [tools](tools) folder). In general, we assume you have a way to send jobs to a queuing system on such HPC workers or start such jobs in whichever way according to what is suitable for your specific remote worker. In our case this task is performed by the command `submit_job_acc`, which we assume you'll make available in your HPC workers (TODO: make source available at [tools/submit_job_acc/submit_job_acc.sh](tools/submit_job_acc/submit_job_acc.sh)). The following steps allow to configure the bridge to a remote worker (in alternative, have a look at the [Test Run Without Remote Workers](#test-run-without-remote-workers)).
 
 5. Create a pair of ssh keys
     ```
@@ -41,18 +41,23 @@ TODO: add figure with workflow overview
     ssh-add ~/.ssh/id_rsa_RuCatEvaluator
     ```
 
+7. Identify the IP of the remote worker, declare your user name on that machine, and specify a pathanem on that machine that can be used to place job files:
+   ```
+   export MYRWIP=<your_worker_IP>
+   export MYWUSER=<your_username>
+   export MYWRKDIR=<path_to_remote_work_space>
+   ```
+
 7. Enable the key on the remote host:
     ```
-    ssh-copy-id -i ~/.ssh/id_rsa_RuCatEvaluator your_username@your_worker_IP
+    ssh-copy-id -i ~/.ssh/id_rsa_RuCatEvaluator $MYWUSER@$MYRWIP
     ```
     where `your_username` and `your_worker_IP` should be replaced with your specific user-name and IP address. Presently we support only IPv4. You can get the proper IP by running `echo $(curl -s -4 ifconfig.me/ip)` on the remote.
 
-8. Configure the bridge. In the following replace `your_worker_IP` with the IP you have used above, and `MYWRKDIR` to an absolute pathname to the folder located on the remote worker: this is the location from where every job on the remote worker will start.
+8. Configure the bridge. Run the following command in your local machine. Set `MYWRKDIR` to an absolute pathname to the folder located on the remote worker: this is the location from where every job on the remote worker will start.
 
 
     ```
-    export MYWRKDIR=<path_to_remote_work_space>
-    export MYRWIP=<your_worker_IP>
     ssh -i ~/.ssh/id_rsa_RuCatEvaluator $MYRWIP  "mkdir -p $MYWRKDIR"
     scp -r -i ~/.ssh/to_RuCatEvaluator data/basisset MYRWIP:"$MYWRKDIR"
     ```
