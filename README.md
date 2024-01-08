@@ -41,7 +41,7 @@ TODO: add figure with workflow overview
     ssh-add ~/.ssh/id_rsa_RuCatEvaluator
     ```
 
-7. Identify the IP of the remote worker, declare your user name on that machine, and specify a pathanem on that machine that can be used to place job files:
+7. Identify the IP of the remote worker, declare your user name on that machine, and specify a pathname that can be used to place job files on the remote worker:
    ```
    export MYRWIP=<your_worker_IP>
    export MYWUSER=<your_username>
