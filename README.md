@@ -30,55 +30,74 @@ TODO: add figure with workflow overview
 
 4. We now configure some remote computer to run Gaussian DFT and, possibly, xTB calculations. These remote computers are typically HPCs. The interface with the remote computers is managed by the tool [RemoteWorkersBridge](https://github.com/denoptim-project/RemoteWorkersBridge) (or git submodule RemoteWorkersBridge under the [tools](tools) folder). In general, we assume you have a way to send jobs to a queuing system on such HPC workers or start such jobs in whichever way according to what is suitable for your specific remote worker. In our case this task is performed by the command `submit_job_acc`, which we assume you'll make available in your HPC workers (TODO: make source available at [tools/submit_job_acc/submit_job_acc.sh](tools/submit_job_acc/submit_job_acc.sh)). The following steps allow to configure the bridge to a remote worker (in alternative, have a look at the [Test Run Without Remote Workers](#test-run-without-remote-workers)).
 
-5. Create a pair of ssh keys
+5. Create two pairs of ssh keys (with non-empty pass-phrase):
     ```
     ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa_RuCatEvaluator
     ```
+    and
+    ```
+    ssh-keygen -t rsa -b 4096 -f ~/.ssh/id_rsa_RuCatEvaluator_setup
+    ```
 
-6. Add the key to an agent:
+6. Add both keys to an agent:
     ```
     eval `ssh-agent -s`
     ssh-add ~/.ssh/id_rsa_RuCatEvaluator
     ```
-
-7. Identify the IP of the remote worker (Presently we support only IPv4. You can get the proper IP by running `echo $(curl -s -4 ifconfig.me/ip)` on the remote worker), declare your user name on the remote worker, and specify a pathname that can be used to place job files on the remote worker. Edit the following commands and run them on your local machine:
-   ```
-   export MYRWIP=<your_worker_IP>
-   export MYWUSER=<your_username>
-   export MYWRKDIR=<path_to_remote_work_space>
-   ```
-
-7. Enable the key on the remote host:
+    and
     ```
-    ssh-copy-id -i ~/.ssh/id_rsa_RuCatEvaluator $MYWUSER@$MYRWIP
+    ssh-add ~/.ssh/id_rsa_RuCatEvaluator_setup
     ```
 
-8. Configure the bridge. Run the following command in your local machine.
+7. Configure a remote worker by defining the following variables. Replace each `<to_be_replaced>` with the appropriate string and run the resulting command in your local machine.
+    - The IP of the remote worker. Presently we support only IPv4. You can get the proper IP by running `echo $(curl -s -4 ifconfig.me/ip)` on the remote worker.
+    ```
+    export MYWORKERIP=<to_be_replaced>
+    ```
+    - The user name to use to connect to the remote worker. This may or may not be different from your user name of the local machine.
+    ```
+    export MYWORKERUSER=<to_be_replaced>
+    ```
+    - The absolute pathname of a non-existing folder on the remote worker. this is where we'll send all input files for the jobs to be run by the worker.
+    ```
+    export MYWORKERDIR=<to_be_replaced>
+    ```
+    - The absolute pathname of a non-existing folder for hosting the remote end of the RemoteWorkersBridge tool. This is typically under the HOME or a location that is not shared with other users.
+    ```
+    export MYWORKERBRIDGEHEAD=<to_be_replaced>
+    ```
+
+8. Authorize the setup key on the remote worker:
+    ```
+    ssh-copy-id -i ~/.ssh/id_rsa_RuCatEvaluator_setup $MYWORKERUSER@$MYWORKERIP
+    ```
+
+9. Complete the configuration by running the following from the base folder of this repository in your local machine.
     ```
     echo "[WORKER1]" > tools/RemoteWorkersBridge/configuration
-    echo "remoteIP=$MYRWIP" >> tools/RemoteWorkersBridge/configuration
-    echo "wdirOnRemote=$MYWRKDIR" >> tools/RemoteWorkersBridge/configuration
-    echo "userOnRemote=$MYWUSER" >> tools/RemoteWorkersBridge/configuration
+    echo "remoteIP=$MYWORKERIP" >> tools/RemoteWorkersBridge/configuration
+    echo "wdirOnRemote=$MYWORKERDIR" >> tools/RemoteWorkersBridge/configuration
+    echo "userOnRemote=$MYWORKERUSER" >> tools/RemoteWorkersBridge/configuration
     echo "identityFile=$HOME/.ssh/id_rsa_RuCatEvaluator" >> tools/RemoteWorkersBridge/configuration
     echo "workKind=xtb,dft" >> tools/RemoteWorkersBridge/configuration
     ```
 
-9. To prepare the remote worker, run the following from your local machine:
+10. To prepare the remote worker to accept incoming requests to run selected commands (see [the command filter](tools/RemoteWorkersBridge/commandFilter.sh) ), run the following five commands from your local machine:
     ```
-    ssh -i ~/.ssh/id_rsa_RuCatEvaluator $MYRWIP  "mkdir -p $MYWRKDIR"
-    scp -r -i ~/.ssh/id_rsa_RuCatEvaluator data/basisset $MYRWIP:"$MYWRKDIR"
+    ssh -i ~/.ssh/id_rsa_RuCatEvaluator_setup $MYWORKERUSER@$MYWORKERIP  "mkdir -p $MYWORKERDIR"
     ```
-    
-9. Copy the folder `tools/RemoteWorkersBridge` into a private location on the remote worker, typically under your HOME. We'll refer to the absolute path of the newly created folder as `RemoteWorkersBridge_on_HPCWorker`, which you have to edit in this command:
     ```
-    scp -r -i ~/.ssh/id_rsa_RuCatEvaluator tools/RemoteWorkersBridge $MYRWIP:<RemoteWorkersBridge_on_HPCWorker>
+    scp -r -i ~/.ssh/id_rsa_RuCatEvaluator_setup data/basisset $MYWORKERUSER@$MYWORKERIP:"$MYWORKERDIR"
     ```
-
-10. Log in to `your_worker_IP` and edit the `~/.ssh/authorized_keys` file. The last line of this file should contain the ssh key entry you have just added with the `ssh-copy-id` command above. We are now going to edit this line to prevent any misuse of this automated login channel. This is done by limiting the usage to this key enabling only a privately own command filter. To this end, edit the line pertaining the ssh key we just authorized (i.e., the last line of `~/.ssh/authorized_keys`), and add in front of any text of that line the following string (NB: there is a space at the end!):
     ```
-    from="your_IP",command="RemoteWorkersBridge_on_HPCWorker/commandFilter.sh"
+    scp -r -i ~/.ssh/id_rsa_RuCatEvaluator_setup tools/RemoteWorkersBridge $MYWORKERUSER@$MYWORKERIP:"$MYWORKERBRIDGEHEAD"
     ```
-    where `your_IP` is the IP address of your local client (the machine what will use this connection to submit jobs to the worker. Presently we support only IPv4. You can get the proper IP by running `echo $(curl -s -4 ifconfig.me/ip)` from within your local client) and `RemoteWorkersBridge_on_HPCWorker` is the absolute path defined in the previous step.
+    ```
+    ssh -i ~/.ssh/id_rsa_RuCatEvaluator_setup $MYWORKERUSER@$MYWORKERIP  "chmod go-rwx $MYWORKERBRIDGEHEAD"
+    ```
+    ```
+    echo "from=\"$(curl -s -4 ifconfig.me/ip)\",command=\"$MYWORKERBRIDGEHEAD/commandFilter.sh\" $(cat ~/.ssh/id_rsa_RuCatEvaluator.pub)" | ssh -i ~/.ssh/id_rsa_RuCatEvaluator_setup $MYWORKERUSER@$MYWORKERIP "cat >> ~/.ssh/authorized_keys"
+    ```
 
 11. Test the interface with the remote worker from your local client:
     ```
@@ -86,7 +105,7 @@ TODO: add figure with workflow overview
     ./runTest.sh
     ```
 
-12. Depending on the needs, you may want to configure the scripts to check for completion of remote jobs with high frequency (useful only when testing if everything is working fine) and if the xTB jobs should be run locally or in the remote worker. These settings can be controlled in the initial part of the `evaluate_candidate.sh` script.
+12. Depending on the needs, you may want to configure the scripts to check for completion of remote jobs with high frequency (useful only when testing if everything is working fine) and if the xTB jobs should be run locally or in the remote worker. These and other settings can be controlled in the initial part of the `evaluate_candidate.sh` script.
 
 13. You should be ready to go now!
 
@@ -111,16 +130,16 @@ Here are the steps to follow:
 
 3. Define a workspace to be created on the fake remote worker. Edit the `<path_to_fake_remote_work_space>` part and run the following from within the folder where this README file is located:
     ```
-    export MYWRKDIR=<path_to_fake_remote_work_space>
-    ssh -i ~/.ssh/to_localhost localhost  "mkdir -p $MYWRKDIR"
-    scp -r -i ~/.ssh/to_localhost data/basisset localhost:"$MYWRKDIR"
+    export MYWORKERDIR=<path_to_fake_remote_work_space>
+    ssh -i ~/.ssh/to_localhost localhost  "mkdir -p $MYWORKERDIR"
+    scp -r -i ~/.ssh/to_localhost data/basisset localhost:"$MYWORKERDIR"
     ```
 
 4. Configure the ssh bridge to the fake remote worker:
     ```
     echo "[WORKER1]" > tools/RemoteWorkersBridge/configuration
     echo "remoteIP=localhost" >> tools/RemoteWorkersBridge/configuration
-    echo "wdirOnRemote=$MYWRKDIR" >> tools/RemoteWorkersBridge/configuration
+    echo "wdirOnRemote=$MYWORKERDIR" >> tools/RemoteWorkersBridge/configuration
     echo "userOnRemote=$USER" >> tools/RemoteWorkersBridge/configuration
     echo "identityFile=$HOME/.ssh/to_localhost" >> tools/RemoteWorkersBridge/configuration
     echo "workKind=xtb,dft" >> tools/RemoteWorkersBridge/configuration
@@ -177,13 +196,15 @@ To define a catalyst with general formula (L)Ru(Y)(X)=CH<sub>2</sub>, where X an
     6. Select the yellow point that represents "AP3", click `Add vertex from BBSpace`, and then choose `Compatible vertices`. Proceed repeating this step until the L-type ligand of your choice is complete.
     7. Finally, `Export graph` in `SDF` format as `my_catalyst.sdf`. This file can be fed to the catalyst evaluator script (see below).
 
-- chopping a molecular model.
+- chopping an existing molecular model of a catalyst with general formula (L)Ru(Y)(X)=CH<sub>2</sub>.
+    1.
 
 
 Once you have a Denoptim graph file (e.g., `my_catalyst.sdf`) you can start the evaluation with the following command:
 ```
 ./evaluate_candidate.sh -i my_catalyst.sdf
 ```
+To see how the master job proceeds, check the log file `*_FProvider.log`.
 
 
 # Acknowledgements
