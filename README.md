@@ -41,7 +41,7 @@ TODO: add figure with workflow overview
     ssh-add ~/.ssh/id_rsa_RuCatEvaluator
     ```
 
-7. Identify the IP of the remote worker, declare your user name on that machine, and specify a pathname that can be used to place job files on the remote worker:
+7. Identify the IP of the remote worker, declare your user name on that machine, and specify a pathname that can be used to place job files on the remote worker. Edit the following commands and run them on your local machine:
    ```
    export MYRWIP=<your_worker_IP>
    export MYWUSER=<your_username>
@@ -66,7 +66,7 @@ TODO: add figure with workflow overview
     echo "[WORKER1]" > tools/RemoteWorkersBridge/configuration
     echo "remoteIP=your_worker_IP" >> tools/RemoteWorkersBridge/configuration
     echo "wdirOnRemote=$MYWRKDIR" >> tools/RemoteWorkersBridge/configuration
-    echo "userOnRemote=$USER" >> tools/RemoteWorkersBridge/configuration
+    echo "userOnRemote=$MYWUSER" >> tools/RemoteWorkersBridge/configuration
     echo "identityFile=$HOME/.ssh/id_rsa_RuCatEvaluator" >> tools/RemoteWorkersBridge/configuration
     echo "workKind=xtb,dft" >> tools/RemoteWorkersBridge/configuration
     ```
