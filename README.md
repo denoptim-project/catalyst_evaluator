@@ -6,7 +6,7 @@ TODO: add figure with workflow overview
 ## How To Get Started
 1. Clone/copy this repository on your local client.
     ```
-    git clone --recurse-submodules <git_or_https_URL>
+    git clone --recurse-submodules git@github.com:denoptim-project/catalyst_evaluator.git
     ```
 
 2. The file [environment.yml](environment.yml) can be used to create a suitable running environment. This is best done with [mamba](https://mamba.readthedocs.io/en/latest/)
