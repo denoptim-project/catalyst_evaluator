@@ -11,7 +11,7 @@
 #
 
 # Pathname to the folder containing Tinker's executables
-export TINKERBIN="/usr/local/TinkerLFMM_RCP_2/bin"
+export TINKERBIN="/usr/local/tinker/bin"
 
 # Pathname to the Spartan executable
 export SPARTANEXE="/usr/bin/spartan20"
