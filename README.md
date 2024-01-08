@@ -41,7 +41,7 @@ TODO: add figure with workflow overview
     ssh-add ~/.ssh/id_rsa_RuCatEvaluator
     ```
 
-7. Identify the IP of the remote worker, declare your user name on that machine, and specify a pathname that can be used to place job files on the remote worker. Edit the following commands and run them on your local machine:
+7. Identify the IP of the remote worker (Presently we support only IPv4. You can get the proper IP by running `echo $(curl -s -4 ifconfig.me/ip)` on the remote worker), declare your user name on the remote worker, and specify a pathname that can be used to place job files on the remote worker. Edit the following commands and run them on your local machine:
    ```
    export MYRWIP=<your_worker_IP>
    export MYWUSER=<your_username>
@@ -52,7 +52,6 @@ TODO: add figure with workflow overview
     ```
     ssh-copy-id -i ~/.ssh/id_rsa_RuCatEvaluator $MYWUSER@$MYRWIP
     ```
-    where `your_username` and `your_worker_IP` should be replaced with your specific user-name and IP address. Presently we support only IPv4. You can get the proper IP by running `echo $(curl -s -4 ifconfig.me/ip)` on the remote.
 
 8. Configure the bridge. Run the following command in your local machine.
     ```
