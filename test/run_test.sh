@@ -16,7 +16,7 @@ fi
 testDir="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 echo "Starting catalyst evaluation in $testDir..."
 cd "$testDir"
-../evaluate_candidate.sh -i Mol1.sdf
+../evaluate_catalyst.sh -i Mol1.sdf
 
 # Assert consistency of results
 echo "Running assertions..."
