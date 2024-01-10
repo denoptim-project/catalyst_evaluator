@@ -26,7 +26,7 @@ cat <<EOF
  Usage
  ===== 
  
- <command> -j <jd> [-f <file>[,<files>]} [-cnt,--help,--copyAll,--email,--notify,--tcl]
+ <command> -j <jd> [-f <file>[,<files>]] [-cnt,--help]
 
  Where:
 
@@ -36,26 +36,6 @@ cat <<EOF
  Options (if omitted, default values will be used):
 
  -h (--help)  prints this help message.
-
- -n NN        set the number of nodes to NN (default: $uibkvant_defNNodes).
-
- -c NN        set the number of cores per node to NN (default: $uibkvant_defNCoresPerNode).
-              As a rule, when submitting other computational tasks from within
-              an ACC job, we leave one core to ACC and use the rest for the
-              chiled task.
-
- -m NN        set the memory demands per node (in GB). This is used for 
-              allocating resources to the job (default: ${uibkvant_minMemPC}MB * core).
-
- -t NN        set the walltime to NN hours (default $uibkvant_baseTime min)
-
- --email ADDR sets the email address for notifications to ADDR. By default we
-              use the email address configured by the setMeUp command, if 
-              possible.
-
- --notify SS  sets the kind of email notification with SS equals one or more
-              among these: ONE, BEGIN, END, FAIL, REQUEUE, ALL.
-              E.g., --notify FAIL,END
 
  -j FILE      specifies that the job details and parameters are to be taken 
               from file FILE.
@@ -69,15 +49,6 @@ cat <<EOF
               this is not possible (e.g., no -j and multiple files given to -f)
               the job will be gven a unique name starting with "accJob-".
 
- --accargs STRING use this to provide additional comman line argument when 
-              running AutoCompChem. 
-        
- --cleanupREGEX REGEX[,REGEX] use this to set the list of REGEX used to identify
-              files can be ignored and lost when the job terminates. Any file
-              matching one of these REGEX will NOT be copied back from the 
-              temporary work space, and will therefore be lost. REGEX must
-              be embedded in a single string and reparated by commas.
-
  --tcl FILE   requires the generation of a tack-completed label/flag file (i.e.,
               the TCL-file) named FILE. The TCL-file is used to signal that the
               job has completed, and to provide a list of files that you might
@@ -86,32 +57,6 @@ cat <<EOF
               TCL-file. Use the --tclREGEX to control what files will be added 
               to the TCL-file.
 
- --tclREGEX REGEX[,REGEX]  provide a list of REGEX used to identify which files 
-              to list in the TCL-file. REGEX will be use to match the wholepath
-              in a "find . -regex" command.
-
- --qos SS     sets the SLURM Quality of Service to SS.
-
- --partition PARTITION asks for the specific partition. By default jobs are sent
-              requesting normal partition.
-
- --exclude NODE1,NODE2 requests SLURM to not consider the given nodes as
-              allocatable resources.
-
- --debug      make this script run in debug mode. No job is submitted, but
-              we do create the jobscript file.
-
-
- Options specific to Gaussian sub jobs:
-
- -l NN        set the number of Linda workers per node to NN (default: $uibkvant_defNLIndaPerNode)
-
- --cores-per-linda NN   set the number of cores per Linda worker to NN.
-              By default, we divide the physical cores among the Linda workers.
-              This options allows you to specify the number of cores given to
-              each Linda worker idependently to the number of cores allocated
-              to the job.
- 
 EOF
 }
 
