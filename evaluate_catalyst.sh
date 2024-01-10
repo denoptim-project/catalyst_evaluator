@@ -17,7 +17,7 @@ export TINKERBIN="/usr/local/tinker/bin"
 export SPARTANEXE="/usr/bin/spartan20"
 
 # Set the following to 1 to make every waiting step check for completion with high frequency. This is meant for running tests that may fail quickly. Do not use it for production runs.
-export HIGHFREQUENCY=0
+export HIGHFREQUENCY=1
 
 # Set the following to 0 to allow running XTB jobs locally, if CPU loading allows so, or set it to 1 to force the sending of XTB jobs to a remote worker regardless of local CPU loading.
 export RUNXTBLOCALLY=0
@@ -166,14 +166,14 @@ if [ -d "$WORKDIR" ]; then
     echo " "
     echo "ERROR! $WORKDIR exists already!"
     echo " "
-    exit
+    exit -1
 fi
 mkdir "$WORKDIR"
 if [ "$?" -ne 0 ]; then
     echo " "
     echo "ERROR! Cannot make work directory '$WORKDIR'!"
     echo " "
-    exit
+    exit -1
 fi
 chmod o-rwx "$WORKDIR"
 chmod g-w "$WORKDIR"
@@ -189,7 +189,7 @@ then
     echo " "
     echo "ERROR! Could not copy modified force field file to \$HOME"
     echo " "
-    exit
+    exit -1
 fi
 
 cd "$WORKDIR"

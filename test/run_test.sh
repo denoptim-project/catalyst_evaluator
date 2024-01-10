@@ -17,6 +17,10 @@ testDir="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 echo "Starting catalyst evaluation in $testDir..."
 cd "$testDir"
 ../evaluate_catalyst.sh -i Mol1.sdf
+if [ 0 -ne "$?" ]; then
+  echo "ERROR! Non-zero exit status from catalyst evaluation"
+  exit -1
+fi
 
 # Assert consistency of results
 echo "Running assertions..."
