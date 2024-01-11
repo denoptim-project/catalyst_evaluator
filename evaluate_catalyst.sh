@@ -82,7 +82,7 @@ function printUsage() {
  Usage:
  =====
 
- ./scriptname.sh -i <input> [-d <workspace>]
+ ./scriptname.sh -i <input> [-d <workspace>] [--highFreq] [--sendXtbToRemote] [-h]
 
  where 
 
@@ -98,6 +98,8 @@ function printUsage() {
             is only meant to run tests.
 
  --sendXtbToRemote forces submission of xTB jobs to remote workers.
+
+ -h shows this help.
 
 EOF
 }
@@ -161,6 +163,8 @@ for ((i=0; i<$#; i++))
 do
   arg="${args[$i]}"
   case "$arg" in
+    "-h") printUsage;
+          exit 0 ;;
     "-i") ensureGoodArg "$i" "$arg" "$#";
           inpPathName=${args[$i+1]};;
     "-d") ensureGoodArg "$i" "$arg" "$#";
