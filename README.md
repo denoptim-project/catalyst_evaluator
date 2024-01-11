@@ -8,6 +8,10 @@ TODO: add figure with workflow overview
     ```
     git clone --recurse-submodules git@github.com:denoptim-project/catalyst_evaluator.git
     ```
+    and move into it
+    ```
+    cd catalyst_evaluator
+    ```
 
 2. The file [environment.yml](environment.yml) can be used to create a suitable running environment. This is best done with [mamba](https://mamba.readthedocs.io/en/latest/)
     ```
@@ -101,11 +105,11 @@ TODO: add figure with workflow overview
 
 11. Test the interface with the remote worker from your local client:
     ```
-    cd tools/RemoteWorkersBridge/submit_tool/test/
-    ./runTest.sh
+    ./tools/RemoteWorkersBridge/submit_tool/test/runTest.sh
     ```
+    This should terminate with a comforting "Test PASSED!" message.
 
-12. Depending on the needs, you may want to configure the scripts to check for completion of remote jobs with high frequency (useful only when testing if everything is working fine) and if the xTB jobs should be run locally or in the remote worker. These and other settings can be controlled in the initial part of the `evaluate_catalyst.sh` script.
+12. Depending on your machine and needs, you may want to set additional parameters in the `evaluate_catalyst.sh` script.
 
 13. You should be ready to go now!
 
@@ -115,7 +119,7 @@ A pre-configured test run is available. The time required to run it depends the 
 ```
 ./test/run_test.sh
 ```    
-This with run for a few instants and then return `Test PASSED!` if the entire workflow could be successfully executed and the resulting fitness is sufficiently close to the expected value.
+This eventually return `Test PASSED!` if the entire workflow could be successfully executed and the resulting fitness is sufficiently close to the expected value.
 
 
 ## Test Run Without Remote Workers
@@ -128,15 +132,6 @@ Here are the steps to follow:
       ```
       ssh-keygen -t rsa -b 4096 -f ~/.ssh/to_localhost
       ```
-      followed by
-      ```
-      cat ~/.ssh/to_localhost.pub >> ~/.ssh/authorized_keys
-      ```
-      At this point, the following can test whether the configuration is correct:
-      ```
-      ssh -i ~/.ssh/to_localhost localhost
-      ```
-      If this works without problems, you can logout again and proceed.
 
 2. Now, the configuration of the remote bridge is straightforward: run the following from the base folder of this repository in your local machine to set it up.
     ```
@@ -155,14 +150,12 @@ Here are the steps to follow:
     ```
     and force the interpretation of commands from sent via the remote workers RemoteWorkersBridge
     ```
-    echo "command=\"$(pwd)/tools/RemoteWorkersBridge/commandFilter.sh\" $(cat ~/.ssh/to_localhost.pub)" >> ~/.ssh/authorized_keys"
+    echo "command=\"$(pwd)/tools/RemoteWorkersBridge/commandFilter.sh\" $(cat ~/.ssh/to_localhost.pub)" >> ~/.ssh/authorized_keys
     ```
 
 4. Test the interface with the localhost via the remote workers bridge:
     ```
-    cd tools/RemoteWorkersBridge/submit_tool/test/
-    ./runTest.sh
-    cd ../../../..
+    ./tools/RemoteWorkersBridge/submit_tool/test/runTest.sh
     ```
     This will print a comforting message if the test has been passed.
 
@@ -173,9 +166,9 @@ Here are the steps to follow:
 
 6. Now we start the test run as if we were submitting to a remote worker:
     ```
-    ./test/run_test.sh
+    ./test/run_test.sh --sendXtbToRemote --highFreq
     ```
-      This with run for a few instants and then return `Test PASSED!` if the entire workflow could be successfully executed. However, this configuration without a true remote worker can only be used to with the given test. It cannot be used to evaluate any other catalyst.
+    This with run for a few instants and then return `Test PASSED!` if the entire workflow could be successfully executed. However, this configuration without a true remote worker is only available for the test run: it cannot be used to evaluate any other catalyst.
 
 
 ## Evaluation of Catalysts
