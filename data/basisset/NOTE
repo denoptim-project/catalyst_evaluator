@@ -1,3 +1,0 @@
-The "custom" basis set is the same one used for geometry optimization with wB97XD in calculations belongin to the three projects, ethylene paper, stumpy-NHC, and bimolecular decomposition/regeneration.
-
-The "SP-only" is quad-tzeta and is only for single points and is the one used for those three projects.
