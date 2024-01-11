@@ -154,16 +154,16 @@ stepWaitForHPCXTB=2
 unitWaitForHPC="m"    # time unit: s (seconds), m (minutes), h (hours)
 maxWaitForHPC=4500    # maximum number of waiting cycles
 if [ "$HIGHFREQUENCY" == 1 ]; then
-  echo Setting high-frequency checking for completion of external tasks
-  csMinTime=5       # delay of first checking iteration
+  echo "(Checking for completion of external tasks with high frequncy)"
+  csMinTime=2       # delay of first checking iteration
   csMinTimeUnit="s" # time unit: s (seconds), m (minutes), h (hours)
-  csStep=5          # delay of each checking iteration, but the first
+  csStep=2          # delay of each checking iteration, but the first
   csTimeUnit="s"    # time unit: s (seconds), m (minutes), h (hours)
   stepFirstWaitForHPC=2
   stepFirstWaitForHPCXTB=2
   unitFirstWaitForHPC="s" # time unit: s (seconds), m (minutes), h (hours)
-  stepWaitForHPC=5          # delay of each checking iteration, but the first
-  stepWaitForHPCXTB=5
+  stepWaitForHPC=2          # delay of each checking iteration, but the first
+  stepWaitForHPCXTB=2
   unitWaitForHPC="s"    # time unit: s (seconds), m (minutes), h (hours)
 fi
 
@@ -217,6 +217,17 @@ fi
 ###############################################################################
 # Functions
 ###############################################################################
+
+#
+# Portable 'sed -i': avoids dealing with the '-i' option that is not portable.
+#
+# @param: the expression to apply (e.g., "s/$old/$new/g")
+# @param: the pathname to the file to edit
+#
+function portablesed() {
+    sed -e "$1" "$2" > "$2.newFromSed"
+    mv "$2.newFromSed" "$2"
+}
 
 #
 # Function that reads the state labels and pathnames needed to recover partial
@@ -1336,13 +1347,7 @@ then
             errMsg="#ExtractSpartanGOSEOutput: non-zero exit status from AutoCompChem."
             abandon "$DnCG3Dout" "$E_OPTERROR"
         fi
-        if [ "$SEDSYNTAX" == "GNU" ]
-        then
-            sed -i "1 s/^.*$/$molName/g" "$sprtGOSEOut"
-        elif [ "$SEDSYNTAX" == "BSD" ]
-        then
-            sed -i '' "1 s/^.*$/$molName/g" "$sprtGOSEOut"
-        fi
+        portablesed "1 s/^.*$/$molName/g" "$sprtGOSEOut"
         
         #
         # Update variables that will be used later
@@ -1400,13 +1405,7 @@ else
             removePropertyFromSDF "GCODE" "$wrkDir/${molNum}_out.sdf"
             #removePropertyFromSDF "cdk:Title" "$wrkDir/${molNum}_out.sdf"
             removePropertyFromSDF "GraphMsg" "$wrkDir/${molNum}_out.sdf"
-            if [ "$SEDSYNTAX" == "GNU" ]
-                then
-                sed -i "s/$oldFirstLine/$newFirstLine/g" "$wrkDir/${molNum}_out.sdf"
-            elif [ "$SEDSYNTAX" == "BSD" ]
-                then
-                sed -i '' "s/$oldFirstLine/$newFirstLine/g" "$wrkDir/${molNum}_out.sdf"
-            fi
+            portablesed "s/$oldFirstLine/$newFirstLine/g" "$wrkDir/${molNum}_out.sdf"
             # Descriptor 8: Close contact (Ru,H)
             #if [[ $( echo "$closestContact <= 1.95" | bc -l ) -eq "1" ]]
             #then
@@ -1501,13 +1500,7 @@ else
     wc -l "$libFragsAndLigand"
     coreLigGraph="$wrkDir/${molNum}_core-ligGraph.sdf"
     cp "$coreLigGraphTmpl" "$coreLigGraph"
-    if [ "$SEDSYNTAX" == "GNU" ]
-    then
-        sed -i "s/MOLNAME/$molNum/g" "$coreLigGraph"
-    elif [ "$SEDSYNTAX" == "BSD" ]
-    then
-        sed -i '' "s/MOLNAME/$molNum/g" "$coreLigGraph"
-    fi
+    portablesed "s/MOLNAME/$molNum/g" "$coreLigGraph"
 
 
     #
@@ -1564,7 +1557,7 @@ cp "$gm3dfInp" "$preOutSDF"
 addPropertyToSingleMolSDF "UID" "$MOLUID" "$preOutSDF"
 
 
-# TODO Adapt for pre DFT
+#
 # Get the proper conformer/stereoisomer for pseudo TS pre DFT opt
 #
 allSdfToPreDFT=()

@@ -8,6 +8,10 @@ TODO: add figure with workflow overview
     ```
     git clone --recurse-submodules git@github.com:denoptim-project/catalyst_evaluator.git
     ```
+    and move into it
+    ```
+    cd catalyst_evaluator
+    ```
 
 2. The file [environment.yml](environment.yml) can be used to create a suitable running environment. This is best done with [mamba](https://mamba.readthedocs.io/en/latest/)
     ```
@@ -28,7 +32,7 @@ TODO: add figure with workflow overview
     export SPARTANEXE="_your_path_to_Spartan_executable/spartan20"
     ```
 
-4. We now configure some remote computer to run Gaussian DFT and, possibly, xTB calculations. These remote computers are typically HPCs. The interface with the remote computers is managed by the tool [RemoteWorkersBridge](https://github.com/denoptim-project/RemoteWorkersBridge) (or git submodule RemoteWorkersBridge under the [tools](tools) folder). In general, we assume you have a way to send jobs to a queuing system on such HPC workers or start such jobs in whichever way according to what is suitable for your specific remote worker. In our case this task is performed by the command `submit_job_acc`, which we assume you'll make available in your HPC workers (TODO: make source available at [tools/submit_job_acc/submit_job_acc.sh](tools/submit_job_acc/submit_job_acc.sh)). The following steps allow to configure the bridge to a remote worker (in alternative, have a look at the [Test Run Without Remote Workers](#test-run-without-remote-workers)).
+4. We now configure a remote computer (later referred to as a "remote worker") to run Gaussian DFT and, possibly, xTB calculations, which are typically executed in HPC service provider. The interface with one or more remote computers is managed by the tool [RemoteWorkersBridge](https://github.com/denoptim-project/RemoteWorkersBridge) (or git submodule RemoteWorkersBridge under the [tools](tools) folder). In general, we assume you have a way to send jobs to a queuing system on such HPC workers or start such jobs in whichever way according to what is suitable for your specific remote worker. In our case this task is performed by the command `submit_job_acc`, which we assume you'll make available in your HPC workers (TODO: make source available at [tools/submit_job_acc/submit_job_acc.sh](tools/submit_job_acc/submit_job_acc.sh)). The following steps allow to configure the bridge to a remote worker (in alternative, have a look at the [Test Run Without Remote Workers](#test-run-without-remote-workers) ).
 
 5. Create two pairs of ssh keys (with non-empty pass-phrase):
     ```
@@ -101,11 +105,11 @@ TODO: add figure with workflow overview
 
 11. Test the interface with the remote worker from your local client:
     ```
-    cd tools/RemoteWorkersBridge/submit_tool/test/
-    ./runTest.sh
+    ./tools/RemoteWorkersBridge/submit_tool/test/runTest.sh
     ```
+    This should terminate with a comforting "Test PASSED!" message.
 
-12. Depending on the needs, you may want to configure the scripts to check for completion of remote jobs with high frequency (useful only when testing if everything is working fine) and if the xTB jobs should be run locally or in the remote worker. These and other settings can be controlled in the initial part of the `evaluate_catalyst.sh` script.
+12. Depending on your machine and needs, you may want to set additional parameters in the `evaluate_catalyst.sh` script.
 
 13. You should be ready to go now!
 
@@ -115,67 +119,56 @@ A pre-configured test run is available. The time required to run it depends the 
 ```
 ./test/run_test.sh
 ```    
-This with run for a few instants and then return `Test PASSED!` if the entire workflow could be successfully executed and the resulting fitness is sufficiently close to the expected value.
+This eventually return `Test PASSED!` if the entire workflow could be successfully executed and the resulting fitness is sufficiently close to the expected value.
 
 
 ## Test Run Without Remote Workers
-This section is for those who, driven by testing and/or development needs, may want to run the evaluator without configuring a proper remote worker and without really running any DFT job. To this end, we can use the local client, i.e., `localhost` as a fake remote worker. We can build an ssh bridge to such fake remote machine and ask it to deliver results for a pre-configured test run.
+This section is for those who, driven by testing and/or development needs, may want to run the evaluator without configuring a proper remote worker and without really running any DFT jobs. To this end, we can use the local client, i.e., `localhost` as a fake remote worker. We can build an ssh bridge to such fake remote machine and ask it to deliver results for a pre-configured test run.
 
 Here are the steps to follow:
-1. Ensure we can login on `localhost`. We need to enable remote login __and__ to configure an ssh key.
-    - The enabling remote login may imply adjusting the firewall settings or explicitly enabling this possibility. On many machine that you routinely login to via ssh, this is most likely not a problem. However, this is typically needed on standard laptops. How to do this, it depends on your OS. For example, MacOS you need to do _System Preferences_ -> _Sharing_ -> _Remote Login_ to select which user can login via ssh.
-    - The creation of an ssh key can be done by `ssh-keygen -t rsa -b 4096 -f ~/.ssh/to_localhost` specifying an empty pass-phrase, followed by `cat ~/.ssh/to_localhost.pub >> ~/.ssh/authorized_keys`. At this point, the following should allow you to login: `ssh -i ~/.ssh/to_localhost localhost`. Logout again and proceed.
+1. Ensure you can ssh to `localhost`. We need to enable remote login __and__ to configure an ssh key.
+    - The enabling remote login may imply adjusting the firewall settings or explicitly enabling this possibility in your machine's configuration. On many machine that you routinely login to via ssh, this is most likely not a problem. However, this is typically needed on standard laptops. How to do this, it depends on your OS. For example, MacOS you need to do _System Preferences_ -> _Sharing_ -> _Remote Login_ to select which user can login via ssh.
+    - The creation of an ssh key can be done by the following (NB: specifying an empty pass-phrase)
+      ```
+      ssh-keygen -t rsa -b 4096 -f ~/.ssh/to_localhost
+      ```
 
-2. From now on, we'll proceed as in the normal setup but we treat the localhost as a fake remote worker.
-
-3. Define a workspace to be created on the fake remote worker. Edit the `<path_to_fake_remote_work_space>` part and run the following from within the folder where this README file is located:
-    ```
-    export MYWORKERDIR=<path_to_fake_remote_work_space>
-    ssh -i ~/.ssh/to_localhost localhost  "mkdir -p $MYWORKERDIR"
-    scp -r -i ~/.ssh/to_localhost data/basisset localhost:"$MYWORKERDIR"
-    ```
-
-4. Configure the ssh bridge to the fake remote worker:
+2. Now, the configuration of the remote bridge is straightforward: run the following from the base folder of this repository in your local machine to set it up.
     ```
     echo "[WORKER1]" > tools/RemoteWorkersBridge/configuration
     echo "remoteIP=localhost" >> tools/RemoteWorkersBridge/configuration
-    echo "wdirOnRemote=$MYWORKERDIR" >> tools/RemoteWorkersBridge/configuration
+    echo "wdirOnRemote=$(pwd)/test/localhost_workspace" >> tools/RemoteWorkersBridge/configuration
     echo "userOnRemote=$USER" >> tools/RemoteWorkersBridge/configuration
     echo "identityFile=$HOME/.ssh/to_localhost" >> tools/RemoteWorkersBridge/configuration
     echo "workKind=xtb,dft" >> tools/RemoteWorkersBridge/configuration
     ```
 
-5. Place a copy of the customised `RemoteWorkersBridge` folder into the fake remote worker:
+3. Prepare the folder structure
     ```
-    scp -r -i ~/.ssh/to_localhost tools/RemoteWorkersBridge localhost:"$HOME/RemoteWorkersBridge_to_localhost"
+    mkdir -p test/localhost_workspace
+    cp -r data/basisset test/localhost_workspace
     ```
-
-6. Remove the last line of `~/.ssh/authorized_keys` (__NB: we assume no other change has occurred to this file since point 1 in this workflow__).
-
-7. Finally, enforce the use of a command filter to ssh commands coming via the ssh bridge:
+    and force the interpretation of commands from sent via the remote workers RemoteWorkersBridge
     ```
-    echo "command=\"$HOME/RemoteWorkersBridge_to_localhost/commandFilter.sh\" $(cat ~/.ssh/to_localhost.pub)" >> ~/.ssh/authorized_keys
+    echo "command=\"$(pwd)/tools/RemoteWorkersBridge/commandFilter.sh\" $(cat ~/.ssh/to_localhost.pub)" >> ~/.ssh/authorized_keys
     ```
 
-8. Optionally, we may want to verify the functionality of the newly-created ssh bridge:
+4. Test the interface with the localhost via the remote workers bridge:
     ```
-    cd tools/RemoteWorkersBridge/submit_tool/test
-    ./runTest.sh
-    cd ../../../..
+    ./tools/RemoteWorkersBridge/submit_tool/test/runTest.sh
     ```
-      This will print a comforting message if the test has been passed.
+    This will print a comforting message if the test has been passed.
 
-9. To make the localhost emulate an HPC worker we need to define the commands that run or submit computational chemistry jobs on the HPC resource. Such commands are left to the user, which will have to create them according to the specifics of the HPC resource. Such commands are `submit_job_acc-2`, which performs AutoCompChem-controlled multistep workflows by sending it to a job scheduler, and `run_xtb`, which runs the xTB software without sending it to a job scheduler. Notably, all the `run_*` commands are meant to start a calculation on the cpus that are available to the process that calls them. Overall, the strategy is to add the corresponding executables to the PATH to make them reachable. This is here done by altering the ~/.bashrc file (assuming BASH terminal).  __NB: this step makes this workflow incompatible with situation where you want to have alternative versions of such commands. So, you may want to recover the original ~/.bashrc file once you are done with this test.__ Note that depending on your OS, your ~/.bashrc may exclude non-interactive shells. In such case, this step will fail unless you make the ~/.bashrc be effective also on non-interactive shells. Also, note we assume we are in the root folder of the repository, i.e., right where this README file is located.
+5. To make the localhost emulate an HPC worker we need to define the `submit_job_acc` command that we expect to find in any remote worker. Therefore, we add the corresponding executables to the PATH to make them reachable. This is here done by altering the `~/.bashrc` file (assuming BASH terminal).  __NB: this step makes this workflow incompatible with situation where you want to have alternative versions of such commands. So, you may want to recover the original `~/.bashrc` file once you are done with this test.__ Because of the usual practice of terminating `~/.bashrc` prematurely for non-interactive shells (see [here](https://unix.stackexchange.com/questions/257571/why-does-bashrc-check-whether-the-current-shell-is-interactive) ), you __must__ make sure you add the following in `~/.bashrc` before the line where it checks whether the shell is interactive or not. Also, note you __must__ replace `<replace_with_path>` with the appropriate pathname, i.e., the absolute pathname of the root folder of this repository, i.e., right where this README file is located.
     ```
-    echo "# Added to use localhost to emulate HPC worker:" >> ~/.bashrc
-    echo "export PATH=\"$(pwd)/tools/hpc_emulator:$(pwd)/tools/xtb_runner:\$PATH\"" >> ~/.bashrc
+    export PATH="<replace_with_path>/tools/hpc_emulator:<replace_with_path>/tools/xtb_runner:$PATH"
     ```
 
-10. Now we start the test run as if we were submitting to a remote worker:
+6. Now we start the test run as if we were submitting to a remote worker:
     ```
-    ./test/run_test.sh
+    ./test/run_test.sh --sendXtbToRemote --highFreq
     ```
-      This with run for a few instants and then return `Test PASSED!` if the entire workflow could be successfully executed.
+    This with run for a few instants and then return `Test PASSED!` if the entire workflow could be successfully executed. However, this configuration without a true remote worker is only available for the test run: it cannot be used to evaluate any other catalyst.
 
 
 ## Evaluation of Catalysts

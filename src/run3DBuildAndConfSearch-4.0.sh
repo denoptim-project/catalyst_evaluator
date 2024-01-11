@@ -183,6 +183,17 @@ errMsg="Error not assigned."
 ###############################################################################
 
 #
+# Portable 'sed -i': avoids dealing with the '-i' option that is not portable.
+#
+# @param: the expression to apply (e.g., "s/$old/$new/g")
+# @param: the pathname to the file to edit
+#
+function portablesed() {
+    sed -e "$1" "$2" > "$2.newFromSed"
+    mv "$2.newFromSed" "$2"
+}
+
+#
 # Function to change title of a single molecule SDF file
 # @param $1 new title
 # param $2 the SDF filename
@@ -654,13 +665,7 @@ accSprGOLog="$wrkDir/${molName}_SprtGOIn.log"
 accSprGOInp="$wrkDir/${molName}_SprtGOIn.sdf"
 sprtGOInp="$wrkDir/${molName}_GO.spartan"
 cp "$DnCG3Dout" "$accSprGOInp"
-if [ "$SEDSYNTAX" == "GNU" ]
-then
-    sed -i "s/${molName}.*/${molName}_GO/g" "$accSprGOInp"
-elif [ "$SEDSYNTAX" == "BSD" ]
-then
-    sed -i '' "s/${molNum}.*/${molName}_GO/g" "$accSprGOInp"
-fi
+portablesed "s/${molName}.*/${molName}_GO/g" "$accSprGOInp"
 # Prepare param file
 echo "VERBOSITY: 1" > "$accSprGOParFile"
 echo "TASK: PrepareInputSpartan" >> "$accSprGOParFile"
@@ -742,13 +747,7 @@ if ! grep -q "Termination status: 0" "$accSprGOOutLog" ; then
     errMsg="#ExtractSpartanGOOutput: non-zero exit status from AutoCompChem."
     abandon "$DnCG3Dout" "$E_OPTERROR"
 fi
-if [ "$SEDSYNTAX" == "GNU" ]
-then
-    sed -i "1 s/^.*$/$molName/g" "$sprtGOOut"
-elif [ "$SEDSYNTAX" == "BSD" ]
-then
-    sed -i '' "1 s/^.*$/$molName/g" "$sprtGOOut"
-fi
+portablesed "1 s/^.*$/$molName/g" "$sprtGOOut"
 
 
 #
@@ -770,13 +769,7 @@ accSprSP0Log="$wrkDir/${molName}_SprtSP0In.log"
 accSprSP0Inp="$wrkDir/${molName}_SprtSP0In.sdf"
 sprtSP0Inp="$wrkDir/${molName}_SP0.spartan"
 cp "$sprtGOOut" "$accSprSP0Inp"
-if [ "$SEDSYNTAX" == "GNU" ]
-then
-    sed -i "s/${molName}.*/${molName}_SP0/g" "$accSprSP0Inp"
-elif [ "$SEDSYNTAX" == "BSD" ]
-then
-    sed -i '' "s/${molNum}.*/${molName}_SP0/g" "$accSprSP0Inp"
-fi
+portablesed "s/${molName}.*/${molName}_SP0/g" "$accSprSP0Inp"
 # Prepare param file
 echo "VERBOSITY: 1" > "$accSprSP0ParFile"
 echo "TASK: PrepareInputSpartan" >> "$accSprSP0ParFile"
@@ -849,13 +842,7 @@ sprtCSSPRInp="$wrkDir/${molName}_CSSPR.spartan"
 accSprCSSPRInp="$wrkDir/${molName}_SprtCSSPRIn.sdf"
 rnd=$(echo $RANDOM)
 cp "$sprtGOOut" "$accSprCSSPRInp"
-if [ "$SEDSYNTAX" == "GNU" ]
-then
-    sed -i "s/${molName}.*/${molName}_CSSPR/g" "$accSprCSSPRInp"
-elif [ "$SEDSYNTAX" == "BSD" ]
-then
-    sed -i '' "s/${molNum}.*/${molName}_CSSPR/g" "$accSprCSSPRInp"
-fi
+portablesed "s/${molName}.*/${molName}_CSSPR/g" "$accSprCSSPRInp"
 # Prepare param file
 echo "VERBOSITY: 1" > "$accSprCSSPRParFile"
 echo "TASK: PrepareInputSpartan" >> "$accSprCSSPRParFile"
@@ -962,13 +949,7 @@ if [ -d "$sprtCSSPROutDir" ]; then
             errMsg="#ExtractSpartanOutput: non-zero exit status from AutoCompChem."
             abandon "$DnCG3Dout" "$E_OPTERROR"
         fi
-        if [ "$SEDSYNTAX" == "GNU" ]
-        then
-            sed -i "s/Conformer.*/$molName/g" "$sprtCSSPROut"
-        elif [ "$SEDSYNTAX" == "BSD" ]
-        then
-            sed -i '' "s/Conformer.*/$molName/g" "$sprtCSSPROut"
-        fi
+        portablesed "s/Conformer.*/$molName/g" "$sprtCSSPROut"
     
     
         #
@@ -982,13 +963,7 @@ if [ -d "$sprtCSSPROutDir" ]; then
         accSprCSMCNInp="$wrkDir/${molName}_SprtCSMC${n}In.sdf"
         rnd=$(echo $RANDOM)
         cp "$sprtCSSPROut" "$accSprCSMCNInp"
-        if [ "$SEDSYNTAX" == "GNU" ]
-        then
-            sed -i "s/${molName}.*/${molName}_CSMC${n}/g" "$accSprCSMCNInp"
-        elif [ "$SEDSYNTAX" == "BSD" ]
-        then
-            sed -i '' "s/${molNum}.*/${molName}_CSMC${n}/g" "$accSprCSMCNInp"
-        fi
+        portablesed "s/${molName}.*/${molName}_CSMC${n}/g" "$accSprCSMCNInp"
         # Prepare param file
         echo "VERBOSITY: 1" > "$accSprCSMCNParFile"
         echo "TASK: PrepareInputSpartan" >> "$accSprCSMCNParFile"
@@ -1077,13 +1052,7 @@ if [ -d "$sprtCSSPROutDir" ]; then
             errMsg="#ExtractSpartanOutput: non-zero exit status from AutoCompChem."
             abandon "$DnCG3Dout" "$E_OPTERROR"
         fi
-        if [ "$SEDSYNTAX" == "GNU" ]
-        then
-            sed -i "1 s/^.*$/$molName/g" "$sprtCSMCNOut"
-        elif [ "$SEDSYNTAX" == "BSD" ]
-        then
-            sed -i '' "1 s/^.*$/$molName/g" "$sprtCSMCNOut"
-        fi
+        portablesed "1 s/^.*$/$molName/g" "$sprtCSMCNOut"
         
         #
         # Extract energy
@@ -1104,13 +1073,7 @@ if [ -d "$sprtCSSPROutDir" ]; then
         accSprSPNInp="$wrkDir/${molName}_SprtSP${n}In.sdf"
         sprtSPNInp="$wrkDir/${molName}_SP${n}.spartan"
         cp "$sprtCSMCNOut" "$accSprSPNInp"
-        if [ "$SEDSYNTAX" == "GNU" ]
-        then
-            sed -i "s/${molName}.*/${molName}_SP${n}/g" "$accSprSPNInp"
-        elif [ "$SEDSYNTAX" == "BSD" ]
-        then
-            sed -i '' "s/${molNum}.*/${molName}_SP${n}/g" "$accSprSPNInp"
-        fi
+        portablesed "s/${molName}.*/${molName}_SP${n}/g" "$accSprSPNInp"
         # Prepare param file
         echo "VERBOSITY: 1" > "$accSprSPNParFile"
         echo "TASK: PrepareInputSpartan" >> "$accSprSPNParFile"
@@ -1201,13 +1164,7 @@ accSprGOSELog="$wrkDir/${molName}_SprtGOSE0In.log"
 accSprGOSEInp="$wrkDir/${molName}_SprtGOSE0In.sdf"
 sprtGOSEInp="$wrkDir/${molName}_GOSE0.spartan"
 cp "$lowestEnergyConfSDF" "$accSprGOSEInp"
-if [ "$SEDSYNTAX" == "GNU" ]
-then
-    sed -i "s/${molName}.*/${molName}_GOSE0/g" "$accSprGOSEInp"
-elif [ "$SEDSYNTAX" == "BSD" ]
-then
-    sed -i '' "s/${molNum}.*/${molName}_GOSE0/g" "$accSprGOSEInp"
-fi
+portablesed "s/${molName}.*/${molName}_GOSE0/g" "$accSprGOSEInp"
 # Prepare param file
 echo "VERBOSITY: 1" > "$accSprGOSEParFile"
 echo "TASK: PrepareInputSpartan" >> "$accSprGOSEParFile"
@@ -1288,13 +1245,7 @@ if ! grep -q "Termination status: 0" "$accSprGOSEOutLog" ; then
     errMsg="#ExtractSpartanGOSEOutput: non-zero exit status from AutoCompChem."
     abandon "$DnCG3Dout" "$E_OPTERROR"
 fi
-if [ "$SEDSYNTAX" == "GNU" ]
-then
-    sed -i "1 s/^.*$/$molName/g" "$sprtGOSEOut"
-elif [ "$SEDSYNTAX" == "BSD" ]
-then
-    sed -i '' "1 s/^.*$/$molName/g" "$sprtGOSEOut"
-fi
+portablesed "1 s/^.*$/$molName/g" "$sprtGOSEOut"
 
 
 #
@@ -1333,13 +1284,7 @@ accSprDYNLog="$wrkDir/${molName}_SprtDYNIn.log"
 sprtDYNInp="$wrkDir/${molName}_DYN.spartan"
 accSprDYNInp="$wrkDir/${molName}_SprtDYNIn.sdf"
 cp "$lowestEnergyConfSDF" "$accSprDYNInp"
-if [ "$SEDSYNTAX" == "GNU" ]
-then
-    sed -i "s/${molName}.*/${molName}_DYN/g" "$accSprDYNInp"
-elif [ "$SEDSYNTAX" == "BSD" ]
-then
-    sed -i '' "s/${molNum}.*/${molName}_DYN/g" "$accSprDYNInp"
-fi
+portablesed "s/${molName}.*/${molName}_DYN/g" "$accSprDYNInp"
 # Prepare param file
 echo "VERBOSITY: 1" > "$accSprDYNParFile"
 echo "TASK: PrepareInputSpartan" >> "$accSprDYNParFile"
@@ -1449,13 +1394,7 @@ then
             errMsg="#ExtractSpartanOutput: non-zero exit status from AutoCompChem."
             abandon "$DnCG3Dout" "$E_OPTERROR"
         fi
-        if [ "$SEDSYNTAX" == "GNU" ]
-        then
-            sed -i "s/Profile.*/$molName/g" "$sprtDYNOut"
-        elif [ "$SEDSYNTAX" == "BSD" ]
-        then
-            sed -i '' "s/Profile.*/$molName/g" "$sprtDYNOut"
-        fi
+        portablesed "s/Profile.*/$molName/g" "$sprtDYNOut"
 
         
         #
@@ -1468,13 +1407,7 @@ then
         accSprGOSEInp="$wrkDir/${molName}_SprtGOSE${n}In.sdf"
         sprtGOSEInp="$wrkDir/${molName}_GOSE${n}.spartan"
         cp "$sprtDYNOut" "$accSprGOSEInp"
-        if [ "$SEDSYNTAX" == "GNU" ]
-        then
-            sed -i "s/${molName}.*/${molName}_GOSE${n}/g" "$accSprGOSEInp"
-        elif [ "$SEDSYNTAX" == "BSD" ]
-        then
-            sed -i '' "s/${molNum}.*/${molName}_GOSE${n}/g" "$accSprGOSEInp"
-        fi
+        portablesed "s/${molName}.*/${molName}_GOSE${n}/g" "$accSprGOSEInp"
         # Prepare param file
         echo "VERBOSITY: 1" > "$accSprGOSEParFile"
         echo "TASK: PrepareInputSpartan" >> "$accSprGOSEParFile"
@@ -1555,13 +1488,7 @@ then
             errMsg="#ExtractSpartanGOSEOutput: non-zero exit status from AutoCompChem."
             abandon "$DnCG3Dout" "$E_OPTERROR"
         fi
-        if [ "$SEDSYNTAX" == "GNU" ]
-        then
-            sed -i "1 s/^.*$/$molName/g" "$sprtGOSEOut"
-        elif [ "$SEDSYNTAX" == "BSD" ]
-        then
-            sed -i '' "1 s/^.*$/$molName/g" "$sprtGOSEOut"
-        fi
+        portablesed "1 s/^.*$/$molName/g" "$sprtGOSEOut"
        
      
         #

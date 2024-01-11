@@ -134,6 +134,17 @@ errMsg="Error not assigned."
 ###############################################################################
 
 #
+# Portable 'sed -i': avoids dealing with the '-i' option that is not portable.
+#
+# @param: the expression to apply (e.g., "s/$old/$new/g")
+# @param: the pathname to the file to edit
+#
+function portablesed() {
+    sed -e "$1" "$2" > "$2.newFromSed"
+    mv "$2.newFromSed" "$2"
+}
+
+#
 # Function that reads in the list of currently available HPC workers from file.
 # The file is read by the RemoteWorkersBridge utils and must have the
 # syntax defined in RemoteWorkersBridge.
@@ -768,13 +779,7 @@ else
         patternTSNRG=${patternTSNRG/\./\\.}
         beadClosestToTS=$(grep "^string:" "$outputDFT" | grep "$patternTSNRG" | tail -n1 | awk '{print $4}')
         echo "Best guess for TS structure is bead #$beadClosestToTS"
-        if [ "$SEDSYNTAX" == "GNU" ]
-        then
-            sed -i 's/\(^ [A-Z,a-z]*\)\([0-9]* \)/\1 /g' "$outputZTSPath"
-        elif [ "$SEDSYNTAX" == "BSD" ]
-        then
-            sed -i '' 's/\(^ [A-Z,a-z]*\)\([0-9]* \)/\1 /g' "$outputZTSPath"
-        fi
+        portablesed 's/\(^ [A-Z,a-z]*\)\([0-9]* \)/\1 /g' "$outputZTSPath"
         obabel -ixyz "$outputZTSPath" -f "$beadClosestToTS" -l "$beadClosestToTS" -osdf -O "$outputDFTSdf"
         if [ "$?" != 0 ]
         then

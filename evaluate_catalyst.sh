@@ -16,23 +16,28 @@ export TINKERBIN="/usr/local/tinker/bin"
 # Pathname to the Spartan executable
 export SPARTANEXE="/usr/bin/spartan20"
 
-# Set the following to 1 to make every waiting step check for completion with high frequency. This is meant for running tests that may fail quickly. Do not use it for production runs.
-export HIGHFREQUENCY=0
-
-# Set the following to 0 to allow running XTB jobs locally, if CPU loading allows so, or set it to 1 to force the sending of XTB jobs to a remote worker regardless of local CPU loading.
-export RUNXTBLOCALLY=0
-
-# Set this to the maximum number of main processes to run. Typically this is set to the number of cores of the machine hosting the evaluator.
+# Set this to the maximum number of main processes to run. Typically this is 
+# set to the number of cores of the machine hosting the evaluator.
 export MAXPARALLELPROCESSES=32
-
-# Version of 'sed' (specify either GNU or BSD)
-export SEDSYNTAX="GNU"
 
 ################################################################################
 #
 # Settings you most likely do not need to change
 #
 ################################################################################
+
+# The default waiting times are suitable for production runs where DFT jobs 
+# take a couple of hours to finish, so we check for completion with a not-too 
+# high frequency to reduce traffic on the network. For tests with HPC worker 
+# emulator, however, it is best to reconfigure waiting times to check for 
+# completion wit high frequency. This is done by cli option --highFreq which 
+# sets the following to 1 (see below).
+export HIGHFREQUENCY=0
+
+# By default we try to run xTB logally is cpu loading is low. The default can 
+# be overwritted by cli option --sendXtbToRemote, which sets the follogwing to 
+# 1 (see below).
+export RUNXTBLOCALLY=0
 
 export SHELL="/bin/bash"
 export FFPARAMFILE="../data/params.MMFF94_CS-2.2"
@@ -41,7 +46,11 @@ export REMOTEWORKERBRIDGE="$myDir/tools/RemoteWorkersBridge/submit_tool/submit.p
 export REMOTEWORKERBRIDGEHOME="$myDir/tools/RemoteWorkersBridge"
 
 configurationFile="$myDir/tools/RemoteWorkersBridge/configuration"
-if [ ! -f "$configurationFile" ]; then echo "ERROR: missing $configurationFile"; exit -1 ; fi
+if [ ! -f "$configurationFile" ]; then 
+  echo "ERROR: missing $configurationFile"
+  exit -1
+fi
+
 # WARNING: assumption that the 'wdirOnRemote' is the same on all the workers
 # that need basis sets.
 basisSetDir="$(grep wdirOnRemote "$configurationFile" | head -n 1 | awk -F'=' '{print $2}')/basisset"
@@ -54,6 +63,17 @@ basisSetDir="$(grep wdirOnRemote "$configurationFile" | head -n 1 | awk -F'=' '{
 ################################################################################
 
 #
+# Portable 'sed -i': avoids dealing with the '-i' option that is not portable.
+#
+# @param: the expression to apply (e.g., "s/$old/$new/g")
+# @param: the pathname to the file to edit
+#
+function portablesed() {
+    sed -e "$1" "$2" > "$2.newFromSed"
+    mv "$2.newFromSed" "$2"
+}
+
+#
 # Prints the usage instrution of this script
 #
 function printUsage() {
@@ -62,7 +82,7 @@ function printUsage() {
  Usage:
  =====
 
- ./scriptname.sh -i <input> [-d <workspace>]
+ ./scriptname.sh -i <input> [-d <workspace>] [--highFreq] [--sendXtbToRemote] [-h]
 
  where 
 
@@ -73,6 +93,13 @@ function printUsage() {
  -d <workspace> is the pathname to a file system location that will be used
                 as work space, i.e., we'll start processes from that location.
                 Default value is '.'.
+
+ --highFreq requests to check for completion of tasks with high frequncy. This
+            is only meant to run tests.
+
+ --sendXtbToRemote forces submission of xTB jobs to remote workers.
+
+ -h shows this help.
 
 EOF
 }
@@ -136,10 +163,14 @@ for ((i=0; i<$#; i++))
 do
   arg="${args[$i]}"
   case "$arg" in
+    "-h") printUsage;
+          exit 0 ;;
     "-i") ensureGoodArg "$i" "$arg" "$#";
           inpPathName=${args[$i+1]};;
     "-d") ensureGoodArg "$i" "$arg" "$#";
           baseWrkDir=${args[$i+1]};;
+    "--highFreq") export HIGHFREQUENCY=1 ;;
+    "--sendXtbToRemote") export RUNXTBLOCALLY=1 ;;
     *);;
   esac
 done
@@ -166,14 +197,14 @@ if [ -d "$WORKDIR" ]; then
     echo " "
     echo "ERROR! $WORKDIR exists already!"
     echo " "
-    exit
+    exit -1
 fi
 mkdir "$WORKDIR"
 if [ "$?" -ne 0 ]; then
     echo " "
     echo "ERROR! Cannot make work directory '$WORKDIR'!"
     echo " "
-    exit
+    exit -1
 fi
 chmod o-rwx "$WORKDIR"
 chmod g-w "$WORKDIR"
@@ -189,7 +220,7 @@ then
     echo " "
     echo "ERROR! Could not copy modified force field file to \$HOME"
     echo " "
-    exit
+    exit -1
 fi
 
 cd "$WORKDIR"
@@ -198,13 +229,7 @@ filesToModify=$(find . -type f | xargs grep -l "UNSET_BASISSETDIR")
 for f in $filesToModify
 do
     echo "Updating file $f"
-    if [ "$SEDSYNTAX" == "GNU" ]
-    then
-        sed -i "s|UNSET_BASISSETDIR|$basisSetDir|g" $f
-    elif [ "$SEDSYNTAX" == "BSD" ]
-    then
-        sed -i '' "s|UNSET_BASISSETDIR|$basisSetDir|g" $f
-    fi
+    portablesed "s|UNSET_BASISSETDIR|$basisSetDir|g" $f
 done
 
 echo "Now calling the fitness provider..."
