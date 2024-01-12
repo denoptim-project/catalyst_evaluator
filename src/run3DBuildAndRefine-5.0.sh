@@ -76,8 +76,6 @@ libScaffZ1="$WORKDIR/scaff_Z1_v3.sdf"
 libScaffX2="$WORKDIR/scaff_X2_v3.sdf"
 libScaffY2="$WORKDIR/scaff_Y2_v3.sdf"
 libScaffZ2="$WORKDIR/scaff_Z2_v3.sdf"
-libScaffP1="$WORKDIR/scaff_P1_v3.sdf"
-libScaffP2="$WORKDIR/scaff_P2_v3.sdf"
 #Define the Cartesian move 
 crtMove="notSet"
 crtMoveX1="$WORKDIR/crtMove_X1.dat"
@@ -476,12 +474,6 @@ case "$jobTyp$stereo" in
         ;;
     "Z2")
         libScaff="$libScaffZ2"
-        ;;
-    "P1") 
-        libScaff="$libScaffP1" 
-        ;;
-    "P2") 
-        libScaff="$libScaffP2" 
         ;;
     *) 
         errMsg="#3DBuild: error interpreting jobId $jobTyp$stereo"

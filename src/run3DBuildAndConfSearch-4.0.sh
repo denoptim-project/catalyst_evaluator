@@ -66,8 +66,6 @@ libScaffE2="$WORKDIR/scaff_E2_v3.sdf"
 libScaffF2="$WORKDIR/scaff_F2_v3.sdf"
 libScaffH2="$WORKDIR/scaff_H2_v3.sdf"
 libScaffL0="$WORKDIR/scaff_L0_v3.sdf"
-libScaffP1="$WORKDIR/scaff_P1_v3.sdf"
-libScaffP2="$WORKDIR/scaff_P2_v3.sdf"
 
 # state (i.e., A,B,C...) specific molecular parameters (may need to add chargeA, chargeB,...)
 charge=0
@@ -466,12 +464,6 @@ case "$jobTyp$stereo" in
         ;;
     "L0")
         libScaff="$libScaffL0"
-        ;;
-    "P1")
-        libScaff="$libScaffP1"
-        ;;
-    "P2")
-        libScaff="$libScaffP2"
         ;;
     *) 
         errMsg="#3DBuild: error interpreting jobId $jobTyp$stereo"

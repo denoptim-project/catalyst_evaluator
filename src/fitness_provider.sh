@@ -66,7 +66,7 @@ labelForLigandExtraxtion="A"
 #
 # Defines the labels of alternative sub-jobs for the states to be modeled 
 # using the ligand's conformation defined from first batch.
-secondSubJobsLabelList=("C1" "C2" "E1" "E2" "P1" "P2" "X1" "X2" "Z1" "Z2")
+secondSubJobsLabelList=("C1" "C2" "E1" "E2" "X1" "X2" "Z1" "Z2")
 #
 # A1: Hoveyda-Grubbs precursor any X-ligand - 1st stereoisomer
 # A2: Hoveyda-Grubbs precursor any X-ligand - 2nd stereoisomer
@@ -96,17 +96,17 @@ transitionStateLabels=("X1" "X2" "Z1" "Z2")
 #
 # Sort the label roots (i.e., the first letter of the labels) in order of 
 # challenging calculation (the worst first, the easiest last):
-sortedLabelRoots=("A" "F" "E" "C" "X" "Z" "P" "L")
+sortedLabelRoots=("A" "F" "E" "C" "X" "Z" "L")
 #
 # Labels of states that are submitted to XTB Opt
-toXTBStateLabels=("A" "E" "C" "L" "F" "P")
+toXTBStateLabels=("A" "E" "C" "L" "F")
 #
 # Labels of states that are submitted to DFT (D is the DFT optimized version of C
 # and comes from the same conformational search as C)
-toDFTStateLabels=("A" "E" "C" "L" "F" "P" "X" "Z" "D")
+toDFTStateLabels=("A" "E" "C" "L" "F" "X" "Z" "D")
 # Labels of states that MUST be successful for the fitness to be completed
 #
-requiredStateLabels=("A" "E" "C" "X" "Z" "L" "F" "P")
+requiredStateLabels=("A" "E" "C" "X" "Z" "L" "F")
 
 #
 # WARNING! Check the part of the script that calculated the delta_G: loss of
@@ -1100,7 +1100,6 @@ freeEnergyA="$( grep -A1 "<freeEnergyA>" $fitFile | tail -n 1 )"
 freeEnergyF="$( grep -A1 "<freeEnergyF>" $fitFile | tail -n 1 )"
 freeEnergyE="$( grep -A1 "<freeEnergyE>" $fitFile | tail -n 1 )"
 freeEnergyC="$( grep -A1 "<freeEnergyC>" $fitFile | tail -n 1 )"
-freeEnergyP="$( grep -A1 "<freeEnergyP>" $fitFile | tail -n 1 )"
 freeEnergyL="$( grep -A1 "<freeEnergyL>" $fitFile | tail -n 1 )"
 freeEnergyX="$( grep -A1 "<freeEnergyX>" $fitFile | tail -n 1 )"
 freeEnergyZ="$( grep -A1 "<freeEnergyZ>" $fitFile | tail -n 1 )"
@@ -1163,13 +1162,10 @@ then
 else
     desc6="$predesc6"
 fi
-# Descriptor 7: Barrier of ethylene metathesis
-coef7="1"
-desc7=$( echo "$coef7 * ( $hartree_to_kcalmol * ( ( $freeEnergyP ) - ( $freeEnergyC ) ) )" | bc -l )
 # Calculating overall fitness
-fitness=$( echo " $desc1 + $desc2 + $desc3 + $desc4 + $desc5 + $desc6 + $desc7 " | bc -l )
+fitness=$( echo " $desc1 + $desc2 + $desc3 + $desc4 + $desc5 + $desc6 " | bc -l )
 #echo "done"
-export desc1 desc2 desc3 desc4 desc5 desc6 desc7
+export desc1 desc2 desc3 desc4 desc5 desc6
 echo "$fitness"
 }
 
@@ -1427,7 +1423,6 @@ else
             removePropertyFromSDF "DESCRIPTOR_4" "$wrkDir/${molNum}_out.sdf"
             removePropertyFromSDF "DESCRIPTOR_5" "$wrkDir/${molNum}_out.sdf"
             removePropertyFromSDF "DESCRIPTOR_6" "$wrkDir/${molNum}_out.sdf"
-            removePropertyFromSDF "DESCRIPTOR_7" "$wrkDir/${molNum}_out.sdf"
             removePropertyFromSDF "FITNESS" "$wrkDir/${molNum}_out.sdf"
             recalculateFitness "$knownMol" >/dev/null
             addPropertyToSingleMolSDF "DESCRIPTOR_1" "$desc1" "$wrkDir/${molNum}_out.sdf"
@@ -1436,7 +1431,6 @@ else
             addPropertyToSingleMolSDF "DESCRIPTOR_4" "$desc4" "$wrkDir/${molNum}_out.sdf"
             addPropertyToSingleMolSDF "DESCRIPTOR_5" "$desc5" "$wrkDir/${molNum}_out.sdf"
             addPropertyToSingleMolSDF "DESCRIPTOR_6" "$desc6" "$wrkDir/${molNum}_out.sdf"
-            addPropertyToSingleMolSDF "DESCRIPTOR_7" "$desc7" "$wrkDir/${molNum}_out.sdf"
             addPropertyToSingleMolSDF "FITNESS" "$newFitness" "$wrkDir/${molNum}_out.sdf"
             exit 0
             #else
@@ -1726,7 +1720,6 @@ freeEnergyX=$( grep -A1 "DFT-ENERGY" "$wrkDir/${molNum}_outSubDFT-X.sdf" | tail 
 freeEnergyZ=$( grep -A1 "DFT-ENERGY" "$wrkDir/${molNum}_outSubDFT-Z.sdf" | tail -n 1 )
 freeEnergyL=$( grep -A1 "DFT-ENERGY" "$wrkDir/${molNum}_outSubDFT-L.sdf" | tail -n 1 )
 freeEnergyF=$( grep -A1 "DFT-ENERGY" "$wrkDir/${molNum}_outSubDFT-F.sdf" | tail -n 1 )
-freeEnergyP=$( grep -A1 "DFT-ENERGY" "$wrkDir/${molNum}_outSubDFT-P.sdf" | tail -n 1 )
 freeEnergyD=$( grep -A1 "DFT-ENERGY" "$wrkDir/${molNum}_outSubDFT-D.sdf" | tail -n 1 )
 
 #Values in Hatree
@@ -1800,12 +1793,8 @@ if [ "$( echo "$predesc6 <= -100" | bc -l )" == "1" ]
     desc6="$predesc6"
 fi
 
-# Descriptor 7: Barrier of ethylene metathesis
-coef7="1"
-desc7=$( echo "$coef7 * ( $hartree_to_kcalmol * ( ( $freeEnergyP ) - ( $freeEnergyC ) ) )" | bc -l )
-
 #FITNESS (Sum of fitness from descriptors 1-8)
-fitness=$( echo " $desc1 + $desc2 + $desc3 + $desc4 + $desc5 + $desc6 + $desc7 " | bc -l )
+fitness=$( echo " $desc1 + $desc2 + $desc3 + $desc4 + $desc5 + $desc6 " | bc -l )
 
 #Preparing final sdf file
 addPropertyToSingleMolSDF "DESCRIPTOR_DEFINITION_1" "desc1=( echo '(  4 * ( hartree_to_kcalmol * ( ( freeEnergyZ - freeEnergyD ) - ( freeEnergyX + 2*G_Ethene - freeEnergyD - 2*G_Propene ) ) )' | bc -l )" "$preOutSDF"
@@ -1814,13 +1803,11 @@ addPropertyToSingleMolSDF "DESCRIPTOR_DEFINITION_3" "desc3=( echo '( -1 * ( e( (
 addPropertyToSingleMolSDF "DESCRIPTOR_DEFINITION_4" "desc4=( echo '( -3 * ( e( ( hartree_to_kcalmol * ( freeEnergyE + G_SIMes - G_HG_RuCl2_SIMes - freeEnergyL ) + -3 ) * l( 1.7 ) ) ) )' | bc -l )" "$preOutSDF"
 addPropertyToSingleMolSDF "DESCRIPTOR_DEFINITION_5" "desc5=( echo '( -0.5 * ( hartree_to_kcalmol * ( freeEnergyX + G_HoveydaProd - freeEnergyA - ( 2 * G_Propene ) - DG_referenceProductioniBarrier ) ) )' | bc -l )" "$preOutSDF"
 addPropertyToSingleMolSDF "DESCRIPTOR_DEFINITION_6" "desc6=( echo '( -1 * ( e( ( hartree_to_kcalmol * ( freeEnergyF - freeEnergyA ) + -3.5 ) * l( 0.5 ) ) ) )' | bc -l )" "$preOutSDF"
-addPropertyToSingleMolSDF "DESCRIPTOR_DEFINITION_7" "desc7=( echo '(  1 * ( hartree_to_kcalmol * ( ( freeEnergyP ) - ( freeEnergyC ) ) )' | bc -l )" "$preOutSDF"
-addPropertyToSingleMolSDF "CALCULATION_OF_OVERALL_FITNESS" "fitness=( echo ' desc1 + desc2 + desc3 + desc4 + desc5 + desc6 + desc7 ' | bc -l )" "$preOutSDF"
+addPropertyToSingleMolSDF "CALCULATION_OF_OVERALL_FITNESS" "fitness=( echo ' desc1 + desc2 + desc3 + desc4 + desc5 + desc6 ' | bc -l )" "$preOutSDF"
 addPropertyToSingleMolSDF "freeEnergyA" "${freeEnergyA}" "$preOutSDF"
 addPropertyToSingleMolSDF "freeEnergyF" "${freeEnergyF}" "$preOutSDF"
 addPropertyToSingleMolSDF "freeEnergyE" "${freeEnergyE}" "$preOutSDF"
 addPropertyToSingleMolSDF "freeEnergyC" "${freeEnergyC}" "$preOutSDF"
-addPropertyToSingleMolSDF "freeEnergyP" "${freeEnergyP}" "$preOutSDF"
 addPropertyToSingleMolSDF "freeEnergyL" "${freeEnergyL}" "$preOutSDF"
 addPropertyToSingleMolSDF "freeEnergyX" "${freeEnergyX}" "$preOutSDF"
 addPropertyToSingleMolSDF "freeEnergyZ" "${freeEnergyZ}" "$preOutSDF"
@@ -1842,12 +1829,6 @@ addPropertyToSingleMolSDF "DESCRIPTOR_3" "$desc3" "$preOutSDF"
 addPropertyToSingleMolSDF "DESCRIPTOR_4" "$desc4" "$preOutSDF"
 addPropertyToSingleMolSDF "DESCRIPTOR_5" "$desc5" "$preOutSDF"
 addPropertyToSingleMolSDF "DESCRIPTOR_6" "$desc6" "$preOutSDF"
-addPropertyToSingleMolSDF "DESCRIPTOR_7" "$desc7" "$preOutSDF"
-if [ $( echo "( $hartree_to_kcalmol * ( ( $freeEnergyP ) - ( $freeEnergyC ) ) ) > 50.0 " | bc -l ) -eq 1 ]
-then
-    errMsg="#EnergyCheck: Unacceptable (P-C) energy."
-    abandon "$inpSDF" "$E_OPTERROR"
-fi
 addPropertyToSingleMolSDF "FITNESS" "$fitness" "$preOutSDF"
 
 #

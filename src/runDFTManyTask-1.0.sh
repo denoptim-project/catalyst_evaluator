@@ -41,15 +41,15 @@ lockTimeUnit="m"  # time unit: s (seconds), m (minutes), h (hours)
 # Z1: TS-guess for internal beta-H elimination - 1st stereoisomer
 # Z2: TS-guess for internal beta-H elimination - 2st stereoisomer
 
-labels=("A" "F" "C" "E" "X" "Z" "L" "P" "D")
-charge=("0" "0" "0" "0" "0" "0" "0" "0" "0")
-spinmult=("1" "1" "1" "1" "1" "1" "1" "1" "1")
+labels=("A" "F" "C" "E" "X" "Z" "L" "D")
+charge=("0" "0" "0" "0" "0" "0" "0" "0")
+spinmult=("1" "1" "1" "1" "1" "1" "1" "1")
 jobDetailsFile="$WORKDIR/sp_DFT-DZ_all-6.jd"
 # WARNING: sp_DFT-DZ_all-6.jd include a pathname to the Gaussian job details sp_PBEPBE-GD3MBJ_DZ_singlet
 gaussianJobDetailsFile="$WORKDIR/sp_PBEPBE-GD3MBJ_DZ_singlet"
 
 # Labels of states that MUST be succesful for the fitness to be completed
-requiredStateLabels=("A" "F" "C" "E" "X" "Z" "L" "P" "D")
+requiredStateLabels=("A" "F" "C" "E" "X" "Z" "L" "D")
 
 #Parameters for HPC (see documentation of interface to HPC)
 hpcWorkersList="$REMOTEWORKERBRIDGEHOME/configuration"

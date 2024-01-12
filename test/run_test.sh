@@ -28,7 +28,7 @@ if [ ! -f Mol1/Mol1.tar.gz ]; then echo ERROR: missing archive ; exit -1 ; fi
 if [ ! -f Mol1/Mol1_out.sdf ]; then echo ERROR: missing output file ; exit -1 ; fi
 if ! grep -q '<FITNESS>' Mol1/Mol1_out.sdf ; then echo ERROR: fitness value not found in output; echo -1 ; fi
 actualFitness=$(grep -A 1 '<FITNESS>' Mol1/Mol1_out.sdf | tail -n 1 | cut -c 1-4)
-expectedFitness="34.4" # NB: we compare only these 4 digits
+expectedFitness="24.4" # NB: we compare only these 4 digits
 if [ "$expectedFitness" != "$actualFitness" ]; then echo "ERROR: result is '$actualFitness' instead of '$expectedFitness'" ; exit -1; fi
 
 echo "Test PASSED!"

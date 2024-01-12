@@ -43,14 +43,14 @@ lockTimeUnit="s"  # time unit: s (seconds), m (minutes), h (hours)
 # Z1: TS-guess for internal beta-H elimination - 1st stereoisomer
 # Z2: TS-guess for internal beta-H elimination - 2st stereoisomer
 
-labels=("A" "F" "C" "E" "X" "Z" "L" "P")
-stateTypes=("minimum" "minimum" "minimum" "minimum" "constrained-geometry" "constrained-geometry" "minimum" "minimum")
-charge=("0" "0" "0" "0" "0" "0" "0" "0")
-spinmult=("1" "1" "1" "1" "1" "1" "1" "1")
+labels=("A" "F" "C" "E" "X" "Z" "L")
+stateTypes=("minimum" "minimum" "minimum" "minimum" "constrained-geometry" "constrained-geometry" "minimum")
+charge=("0" "0" "0" "0" "0" "0" "0")
+spinmult=("1" "1" "1" "1" "1" "1" "1")
 jobDetailsFile="$WORKDIR/P1_xTB_all-6.jd"
 
 # Labels of states that MUST be succesful for the fitness to be completed
-requiredStateLabels=("A" "F" "C" "E" "X" "Z" "L" "P")
+requiredStateLabels=("A" "F" "C" "E" "X" "Z" "L")
 
 #Parameters for HPC (see documentation of interface to HPC)
 hpcWorkersList="$REMOTEWORKERBRIDGEHOME/configuration"
@@ -487,7 +487,7 @@ do
         errMsg="#EvaluationXTBOutput: Orca did not terminate normally."
         abandon "$sdfToXTB" "$E_OPTERROR"
     fi
-    if [[ "$label" == "A" ]] || [[ "$label" == "C" ]] || [[ "$label" == "E" ]] || [[ "$label" == "P" ]] || [[ "$label" == "F" ]] || [[ "$label" == "L" ]] ; then
+    if [[ "$label" == "A" ]] || [[ "$label" == "C" ]] || [[ "$label" == "E" ]] || [[ "$label" == "F" ]] || [[ "$label" == "L" ]] ; then
         if ! tail -n +"$lineInitLog" "$outputXTB" | head -n "$linesToKeep" | grep -q "Step 2:" ; then
             errMsg="#EvaluationXTBOutput: Results of Step 2 not found."
             abandon "$sdfToXTB" "$E_OPTERROR"

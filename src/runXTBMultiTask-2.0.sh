@@ -43,15 +43,15 @@ lockTimeUnit="s"  # time unit: s (seconds), m (minutes), h (hours)
 # Z1: TS-guess for internal beta-H elimination - 1st stereoisomer
 # Z2: TS-guess for internal beta-H elimination - 2st stereoisomer
 
-labels=("A" "F" "C" "E" "L" "P")
+labels=("A" "F" "C" "E" "L")
 #stateTypes=("minimum" "minimum" "minimum" "minimum" "constrained-geometry" "constrained-geometry" "minimum" "minimum")
-stateTypes=("minimum" "minimum" "minimum" "minimum" "minimum" "minimum")
-charge=("0" "0" "0" "0" "0" "0")
-spinmult=("1" "1" "1" "1" "1" "1")
+stateTypes=("minimum" "minimum" "minimum" "minimum" "minimum")
+charge=("0" "0" "0" "0" "0")
+spinmult=("1" "1" "1" "1" "1")
 jobDetailsFile="$WORKDIR/P4_nativeXTB_all-8.jd"
 
 # Labels of states that MUST be succesful for the fitness to be completed
-requiredStateLabels=("A" "F" "C" "E" "L" "P")
+requiredStateLabels=("A" "F" "C" "E" "L")
 
 #Parameters for HPC (see documentation of interface to HPC)
 hpcWorkersList="$REMOTEWORKERBRIDGEHOME/configuration"
@@ -487,7 +487,7 @@ do
     fi
     lineInitLogHess=$(grep -n "Log file '${molNum}_$label" "$outputXTB" | tail -n 1 | awk -F":" '{print $1}')
     linesToKeepHess=$(tail -n +"$lineInitLogHess" "$outputXTB" | grep -m 1 -n "Done with ACC job" | awk -F":" '{print $1}')
-    if [[ "$label" == "A" ]] || [[ "$label" == "C" ]] || [[ "$label" == "E" ]] || [[ "$label" == "P" ]] || [[ "$label" == "F" ]] || [[ "$label" == "L" ]] ; then
+    if [[ "$label" == "A" ]] || [[ "$label" == "C" ]] || [[ "$label" == "E" ]] || [[ "$label" == "F" ]] || [[ "$label" == "L" ]] ; then
         if ! [[ $( grep -n "Log file '${molNum}_$label" "$outputXTB" | wc -l ) == 2 ]] ; then 
             errMsg="#EvaluationXTBOutput: Numerical Hessian (hessPost) job not found."
             abandon "$sdfToXTB" "$E_OPTERROR"
