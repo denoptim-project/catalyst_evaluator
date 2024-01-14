@@ -240,6 +240,17 @@ function releaseLock {
     fi
 }
 
+# Checl for Cl C-ligands. If yes: return "1", if no: return "0".
+function checkForCl() {
+    RuBoundXLigAtom=$( autocompchem -t MeasureGeomDescriptors --verbosity 1 --infile "$wrkDir/${molNum}_inp.sdf" --smarts 'DIST [#44] [!$([#6;X3](~[#7;X3])~[#6,#7]);!$([#6;X3]1~[#6;X3]~[#6;X3]~[#7;X3]~[#6;X3]~[#6;X3]~1)]' --onlybonded true | grep -Eo "Ru[0-9]{1,2}:.*[0-9]{1,2}" | awk -F":" '{print $2}' | awk -F" " '{print $1}' | tr -cd '[:alpha:][:space:]' | head -n 1 )
+    if [ "$RuBoundXLigAtom" == "Cl" ]
+    then
+        echo "1"
+    else
+        echo "0"
+    fi
+}
+
 #
 # Perform all tasks to be done when exiting the script for whatever reason
 #

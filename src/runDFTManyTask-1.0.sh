@@ -239,6 +239,7 @@ function releaseLock {
     fi
 }
 
+
 #
 # Perform all tasks to be done when exiting the script for whatever reason
 #
@@ -294,6 +295,18 @@ outSDF="${outFiles[0]}"
 wrkDir="$3"
 jobId="$4"
 tcl="$wrkDir/$tcl${jobId}"
+
+# Check for Cl X-ligands. If present, we save cpu time by skipping single point calc. of "E" structures (Because they are equal to "A").
+if autocompchem -t MeasureGeomDescriptors --verbosity 1 --infile "${inpFiles[0]}" --smarts 'DIST [Ru] [Cl]' --onlybonded true | grep -q "DIST-0 Ru.*:Cl"
+then
+    # remove array values that pertains to "E" from labels, charges, spinmult etc.
+    labelsIndexE="$( for i in "${!labels[@]}"; do if [[ "${labels[$i]}" = "E" ]]; then echo "${i}"; fi; done )"
+    labels=("${labels[@]:0:labelsIndexE}" "${labels[@]:labelsIndexE + 1}")
+    charge=("${charge[@]:0:labelsIndexE}" "${charge[@]:labelsIndexE + 1}")
+    spinmult=("${spinmult[@]:0:labelsIndexE}" "${spinmult[@]:labelsIndexE + 1}")
+    jobDetailsFile="$WORKDIR/sp_DFT-DZ_skip_E.jd"
+    requiredStateLabels=(${requiredStateLabels[@]/E})
+fi
 
 # Removing old tcl from pseude TS pre opt
 if [ -f "$tcl" ]

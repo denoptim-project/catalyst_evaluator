@@ -1,0 +1,856 @@
+JOBSTART
+VERBOSITY: 1
+#
+#  A
+#
+#First, we get the numerical hessian
+JOBSTART
+TASK: PrepareInputXTB
+VERBOSITY: 1
+InputGeometriesFile: STRINGFROMCLI_A_XTB.sdf
+JOBDETAILS: $START$DIR_set $KV_runtyp=hess
+$DIR_hess $KV_sccacc=0.05
+$DIR_hess $KV_step=0.10000000000000001E-002
+$DIR_gfn $KV_method=2
+$DIR_gfn $KV_scc=true
+$DIR_gfn $KV_periodic=false
+$DIR_scc $KV_maxiterations=1000
+$END
+JOBEND
+JOBSTART
+VERBOSITY: 1
+APP: SHELL
+WORKDIR: STRINGFROMCLI_A_XTB_hessPre
+COPYTOWORKDIR: STRINGFROMCLI_A_XTB.sdf,STRINGFROMCLI_A_XTB.xcontrol
+CMD: run_xtb STRINGFROMCLI_A_XTB.sdf STRINGFROMCLI_A_XTB.out -a "--input STRINGFROMCLI_A_XTB.xcontrol --acc 0.05" -c 1
+JOBEND
+JOBSTART
+VERBOSITY: 1
+APP: SHELL
+CMD: rm STRINGFROMCLI_A_XTB.xcontrol
+JOBEND
+#Now, we run geometry optimization using the previously calculated hessian
+JOBSTART
+TASK: PrepareInputXTB
+VERBOSITY: 1
+InputGeometriesFile: STRINGFROMCLI_A_XTB.sdf
+JOBDETAILS: $START$DIR_set $KV_runtyp=opt
+$DIR_opt $KV_logfile=STRINGFROMCLI_A_xtbtrj.xyz
+$DIR_opt $KV_hessian=read
+$DIR_opt $KV_optlevel=tight
+$DIR_gfn $KV_method=2
+$DIR_gfn $KV_scc=true
+$DIR_gfn $KV_periodic=false
+$DIR_scc $KV_maxiterations=1000
+$END
+JOBEND
+JOBSTART
+VERBOSITY: 1
+APP: SHELL
+WORKDIR: STRINGFROMCLI_A_XTB_opt
+COPYTOWORKDIR: STRINGFROMCLI_A_XTB.sdf,STRINGFROMCLI_A_XTB.xcontrol,STRINGFROMCLI_A_XTB_hessPre/hessian,STRINGFROMCLI_A_XTB_hessPre/xtbrestart
+CMD: run_xtb STRINGFROMCLI_A_XTB.sdf STRINGFROMCLI_A_XTB.out -a "--input STRINGFROMCLI_A_XTB.xcontrol --acc 0.05" -c 10
+JOBEND
+JOBSTART
+VERBOSITY: 1
+TASK: AnalyseXTBOutput
+JobOutputFile: STRINGFROMCLI_A_XTB_opt/STRINGFROMCLI_A_XTB.out
+PRINTLASTGEOMETRY: SDF STRINGFROMCLI_A_last-xTB.sdf
+TEMPLATECONNECTIVITY: STRINGFROMCLI_A_XTB.sdf TOLERANCE=0.75
+CalculateEnergy: scf
+JOBEND
+JOBSTART
+VERBOSITY: 1
+APP: SHELL
+CMD: rm STRINGFROMCLI_A_XTB.xcontrol
+JOBEND
+#Finally, we get the numerical hessian of the final geometry
+JOBSTART
+TASK: PrepareInputXTB
+VERBOSITY: 1
+InputGeometriesFile: STRINGFROMCLI_A_XTB.sdf
+JOBDETAILS: $START$DIR_set $KV_runtyp=hess
+$DIR_hess $KV_sccacc=0.05
+$DIR_hess $KV_step=0.10000000000000001E-002
+$DIR_gfn $KV_method=2
+$DIR_gfn $KV_scc=true
+$DIR_gfn $KV_periodic=false
+$DIR_scc $KV_maxiterations=1000
+$END
+JOBEND
+JOBSTART
+VERBOSITY: 1
+APP: SHELL
+WORKDIR: STRINGFROMCLI_A_XTB_hessPost
+COPYTOWORKDIR: STRINGFROMCLI_A_XTB_opt/xtbopt.sdf,STRINGFROMCLI_A_XTB.xcontrol
+CMD: run_xtb xtbopt.sdf STRINGFROMCLI_A_XTB.out -a "--input STRINGFROMCLI_A_XTB.xcontrol --acc 0.05" -c 1
+JOBEND
+JOBSTART
+VERBOSITY: 1
+TASK: AnalyseXTBOutput
+JobOutputFile: STRINGFROMCLI_A_XTB_hessPost/STRINGFROMCLI_A_XTB.out
+CalculateEnergy: scf
+DetectKindOfCriticalPoint: LowestFREQ 3
+JOBEND
+JOBEND
+JOBSTART
+VERBOSITY: 1
+#
+#  F
+#
+#First, we get the numerical hessian
+JOBSTART
+TASK: PrepareInputXTB
+VERBOSITY: 1
+InputGeometriesFile: STRINGFROMCLI_F_XTB.sdf
+JOBDETAILS: $START$DIR_set $KV_runtyp=hess
+$DIR_hess $KV_sccacc=0.05
+$DIR_hess $KV_step=0.10000000000000001E-002
+$DIR_gfn $KV_method=2
+$DIR_gfn $KV_scc=true
+$DIR_gfn $KV_periodic=false
+$DIR_scc $KV_maxiterations=1000
+$END
+JOBEND
+JOBSTART
+VERBOSITY: 1
+APP: SHELL
+WORKDIR: STRINGFROMCLI_F_XTB_hessPre
+COPYTOWORKDIR: STRINGFROMCLI_F_XTB.sdf,STRINGFROMCLI_F_XTB.xcontrol
+CMD: run_xtb STRINGFROMCLI_F_XTB.sdf STRINGFROMCLI_F_XTB.out -a "--input STRINGFROMCLI_F_XTB.xcontrol --acc 0.05" -c 1
+JOBEND
+JOBSTART
+VERBOSITY: 1
+APP: SHELL
+CMD: rm STRINGFROMCLI_F_XTB.xcontrol
+JOBEND
+#Now, we run geometry optimization using the previously calculated hessian
+JOBSTART
+TASK: PrepareInputXTB
+VERBOSITY: 1
+InputGeometriesFile: STRINGFROMCLI_F_XTB.sdf
+JOBDETAILS: $START$DIR_set $KV_runtyp=opt
+$DIR_opt $KV_logfile=STRINGFROMCLI_F_xtbtrj.xyz
+$DIR_opt $KV_hessian=read
+$DIR_opt $KV_optlevel=tight
+$DIR_gfn $KV_method=2
+$DIR_gfn $KV_scc=true
+$DIR_gfn $KV_periodic=false
+$DIR_scc $KV_maxiterations=1000
+$END
+JOBEND
+JOBSTART
+VERBOSITY: 1
+APP: SHELL
+WORKDIR: STRINGFROMCLI_F_XTB_opt
+COPYTOWORKDIR: STRINGFROMCLI_F_XTB.sdf,STRINGFROMCLI_F_XTB.xcontrol,STRINGFROMCLI_F_XTB_hessPre/hessian,STRINGFROMCLI_F_XTB_hessPre/xtbrestart
+CMD: run_xtb STRINGFROMCLI_F_XTB.sdf STRINGFROMCLI_F_XTB.out -a "--input STRINGFROMCLI_F_XTB.xcontrol --acc 0.05" -c 10
+JOBEND
+JOBSTART
+VERBOSITY: 1
+TASK: AnalyseXTBOutput
+JobOutputFile: STRINGFROMCLI_F_XTB_opt/STRINGFROMCLI_F_XTB.out
+PRINTLASTGEOMETRY: SDF STRINGFROMCLI_F_last-xTB.sdf
+TEMPLATECONNECTIVITY: STRINGFROMCLI_F_XTB.sdf TOLERANCE=0.75
+CalculateEnergy: scf
+JOBEND
+JOBSTART
+VERBOSITY: 1
+APP: SHELL
+CMD: rm STRINGFROMCLI_F_XTB.xcontrol
+JOBEND
+#Finally, we get the numerical hessian of the final geometry
+JOBSTART
+TASK: PrepareInputXTB
+VERBOSITY: 1
+InputGeometriesFile: STRINGFROMCLI_F_XTB.sdf
+JOBDETAILS: $START$DIR_set $KV_runtyp=hess
+$DIR_hess $KV_sccacc=0.05
+$DIR_hess $KV_step=0.10000000000000001E-002
+$DIR_gfn $KV_method=2
+$DIR_gfn $KV_scc=true
+$DIR_gfn $KV_periodic=false
+$DIR_scc $KV_maxiterations=1000
+$END
+JOBEND
+JOBSTART
+VERBOSITY: 1
+APP: SHELL
+WORKDIR: STRINGFROMCLI_F_XTB_hessPost
+COPYTOWORKDIR: STRINGFROMCLI_F_XTB_opt/xtbopt.sdf,STRINGFROMCLI_F_XTB.xcontrol
+CMD: run_xtb xtbopt.sdf STRINGFROMCLI_F_XTB.out -a "--input STRINGFROMCLI_F_XTB.xcontrol --acc 0.05" -c 1
+JOBEND
+JOBSTART
+VERBOSITY: 1
+TASK: AnalyseXTBOutput
+JobOutputFile: STRINGFROMCLI_F_XTB_hessPost/STRINGFROMCLI_F_XTB.out
+CalculateEnergy: scf
+DetectKindOfCriticalPoint: LowestFREQ 3
+JOBEND
+JOBEND
+JOBSTART
+VERBOSITY: 1
+#
+#  C
+#
+#First, we get the numerical hessian
+JOBSTART
+TASK: PrepareInputXTB
+VERBOSITY: 1
+InputGeometriesFile: STRINGFROMCLI_C_XTB.sdf
+JOBDETAILS: $START$DIR_set $KV_runtyp=hess
+$DIR_hess $KV_sccacc=0.05
+$DIR_hess $KV_step=0.10000000000000001E-002
+$DIR_gfn $KV_method=2
+$DIR_gfn $KV_scc=true
+$DIR_gfn $KV_periodic=false
+$DIR_scc $KV_maxiterations=1000
+$END
+JOBEND
+JOBSTART
+VERBOSITY: 1
+APP: SHELL
+WORKDIR: STRINGFROMCLI_C_XTB_hessPre
+COPYTOWORKDIR: STRINGFROMCLI_C_XTB.sdf,STRINGFROMCLI_C_XTB.xcontrol
+CMD: run_xtb STRINGFROMCLI_C_XTB.sdf STRINGFROMCLI_C_XTB.out -a "--input STRINGFROMCLI_C_XTB.xcontrol --acc 0.05" -c 1
+JOBEND
+JOBSTART
+VERBOSITY: 1
+APP: SHELL
+CMD: rm STRINGFROMCLI_C_XTB.xcontrol
+JOBEND
+#Now, we run geometry optimization using the previously calculated hessian
+JOBSTART
+TASK: PrepareInputXTB
+VERBOSITY: 1
+InputGeometriesFile: STRINGFROMCLI_C_XTB.sdf
+JOBDETAILS: $START$DIR_set $KV_runtyp=opt
+$DIR_opt $KV_logfile=STRINGFROMCLI_C_xtbtrj.xyz
+$DIR_opt $KV_hessian=read
+$DIR_opt $KV_optlevel=tight
+$DIR_gfn $KV_method=2
+$DIR_gfn $KV_scc=true
+$DIR_gfn $KV_periodic=false
+$DIR_scc $KV_maxiterations=1000
+$END
+JOBEND
+JOBSTART
+VERBOSITY: 1
+APP: SHELL
+WORKDIR: STRINGFROMCLI_C_XTB_opt
+COPYTOWORKDIR: STRINGFROMCLI_C_XTB.sdf,STRINGFROMCLI_C_XTB.xcontrol,STRINGFROMCLI_C_XTB_hessPre/hessian,STRINGFROMCLI_C_XTB_hessPre/xtbrestart
+CMD: run_xtb STRINGFROMCLI_C_XTB.sdf STRINGFROMCLI_C_XTB.out -a "--input STRINGFROMCLI_C_XTB.xcontrol --acc 0.05" -c 10
+JOBEND
+JOBSTART
+VERBOSITY: 1
+TASK: AnalyseXTBOutput
+JobOutputFile: STRINGFROMCLI_C_XTB_opt/STRINGFROMCLI_C_XTB.out
+PRINTLASTGEOMETRY: SDF STRINGFROMCLI_C_last-xTB.sdf
+TEMPLATECONNECTIVITY: STRINGFROMCLI_C_XTB.sdf TOLERANCE=0.75
+CalculateEnergy: scf
+JOBEND
+JOBSTART
+VERBOSITY: 1
+APP: SHELL
+CMD: rm STRINGFROMCLI_C_XTB.xcontrol
+JOBEND
+#Finally, we get the numerical hessian of the final geometry
+JOBSTART
+TASK: PrepareInputXTB
+VERBOSITY: 1
+InputGeometriesFile: STRINGFROMCLI_C_XTB.sdf
+JOBDETAILS: $START$DIR_set $KV_runtyp=hess
+$DIR_hess $KV_sccacc=0.05
+$DIR_hess $KV_step=0.10000000000000001E-002
+$DIR_gfn $KV_method=2
+$DIR_gfn $KV_scc=true
+$DIR_gfn $KV_periodic=false
+$DIR_scc $KV_maxiterations=1000
+$END
+JOBEND
+JOBSTART
+VERBOSITY: 1
+APP: SHELL
+WORKDIR: STRINGFROMCLI_C_XTB_hessPost
+COPYTOWORKDIR: STRINGFROMCLI_C_XTB_opt/xtbopt.sdf,STRINGFROMCLI_C_XTB.xcontrol
+CMD: run_xtb xtbopt.sdf STRINGFROMCLI_C_XTB.out -a "--input STRINGFROMCLI_C_XTB.xcontrol --acc 0.05" -c 1
+JOBEND
+JOBSTART
+VERBOSITY: 1
+TASK: AnalyseXTBOutput
+JobOutputFile: STRINGFROMCLI_C_XTB_hessPost/STRINGFROMCLI_C_XTB.out
+CalculateEnergy: scf
+DetectKindOfCriticalPoint: LowestFREQ 3
+JOBEND
+JOBEND
+JOBSTART
+VERBOSITY: 1
+#
+#  P
+#
+#First, we get the numerical hessian
+JOBSTART
+TASK: PrepareInputXTB
+VERBOSITY: 1
+InputGeometriesFile: STRINGFROMCLI_P_XTB.sdf
+JOBDETAILS: $START$DIR_set $KV_runtyp=hess
+$DIR_hess $KV_sccacc=0.05
+$DIR_hess $KV_step=0.10000000000000001E-002
+$DIR_gfn $KV_method=2
+$DIR_gfn $KV_scc=true
+$DIR_gfn $KV_periodic=false
+$DIR_scc $KV_maxiterations=1000
+$END
+JOBEND
+JOBSTART
+VERBOSITY: 1
+APP: SHELL
+WORKDIR: STRINGFROMCLI_P_XTB_hessPre
+COPYTOWORKDIR: STRINGFROMCLI_P_XTB.sdf,STRINGFROMCLI_P_XTB.xcontrol
+CMD: run_xtb STRINGFROMCLI_P_XTB.sdf STRINGFROMCLI_P_XTB.out -a "--input STRINGFROMCLI_P_XTB.xcontrol --acc 0.05" -c 1
+JOBEND
+JOBSTART
+VERBOSITY: 1
+APP: SHELL
+CMD: rm STRINGFROMCLI_P_XTB.xcontrol
+JOBEND
+#Now, we run geometry optimization using the previously calculated hessian
+JOBSTART
+TASK: PrepareInputXTB
+VERBOSITY: 1
+InputGeometriesFile: STRINGFROMCLI_P_XTB.sdf
+JOBDETAILS: $START$DIR_set $KV_runtyp=opt
+$DIR_opt $KV_logfile=STRINGFROMCLI_P_xtbtrj.xyz
+$DIR_opt $KV_hessian=read
+$DIR_opt $KV_optlevel=tight
+$DIR_gfn $KV_method=2
+$DIR_gfn $KV_scc=true
+$DIR_gfn $KV_periodic=false
+$DIR_scc $KV_maxiterations=1000
+$END
+JOBEND
+JOBSTART
+VERBOSITY: 1
+APP: SHELL
+WORKDIR: STRINGFROMCLI_P_XTB_opt
+COPYTOWORKDIR: STRINGFROMCLI_P_XTB.sdf,STRINGFROMCLI_P_XTB.xcontrol,STRINGFROMCLI_P_XTB_hessPre/hessian,STRINGFROMCLI_P_XTB_hessPre/xtbrestart
+CMD: run_xtb STRINGFROMCLI_P_XTB.sdf STRINGFROMCLI_P_XTB.out -a "--input STRINGFROMCLI_P_XTB.xcontrol --acc 0.05" -c 10
+JOBEND
+JOBSTART
+VERBOSITY: 1
+TASK: AnalyseXTBOutput
+JobOutputFile: STRINGFROMCLI_P_XTB_opt/STRINGFROMCLI_P_XTB.out
+PRINTLASTGEOMETRY: SDF STRINGFROMCLI_P_last-xTB.sdf
+TEMPLATECONNECTIVITY: STRINGFROMCLI_P_XTB.sdf TOLERANCE=0.75
+CalculateEnergy: scf
+JOBEND
+JOBSTART
+VERBOSITY: 1
+APP: SHELL
+CMD: rm STRINGFROMCLI_P_XTB.xcontrol
+JOBEND
+#Finally, we get the numerical hessian of the final geometry
+JOBSTART
+TASK: PrepareInputXTB
+VERBOSITY: 1
+InputGeometriesFile: STRINGFROMCLI_P_XTB.sdf
+JOBDETAILS: $START$DIR_set $KV_runtyp=hess
+$DIR_hess $KV_sccacc=0.05
+$DIR_hess $KV_step=0.10000000000000001E-002
+$DIR_gfn $KV_method=2
+$DIR_gfn $KV_scc=true
+$DIR_gfn $KV_periodic=false
+$DIR_scc $KV_maxiterations=1000
+$END
+JOBEND
+JOBSTART
+VERBOSITY: 1
+APP: SHELL
+WORKDIR: STRINGFROMCLI_P_XTB_hessPost
+COPYTOWORKDIR: STRINGFROMCLI_P_XTB_opt/xtbopt.sdf,STRINGFROMCLI_P_XTB.xcontrol
+CMD: run_xtb xtbopt.sdf STRINGFROMCLI_P_XTB.out -a "--input STRINGFROMCLI_P_XTB.xcontrol --acc 0.05" -c 1
+JOBEND
+JOBSTART
+VERBOSITY: 1
+TASK: AnalyseXTBOutput
+JobOutputFile: STRINGFROMCLI_P_XTB_hessPost/STRINGFROMCLI_P_XTB.out
+CalculateEnergy: scf
+DetectKindOfCriticalPoint: LowestFREQ 3
+JOBEND
+JOBEND
+JOBSTART
+VERBOSITY: 1
+#
+#  L
+#
+#First, we get the numerical hessian
+JOBSTART
+TASK: PrepareInputXTB
+VERBOSITY: 1
+InputGeometriesFile: STRINGFROMCLI_L_XTB.sdf
+JOBDETAILS: $START$DIR_set $KV_runtyp=hess
+$DIR_hess $KV_sccacc=0.05
+$DIR_hess $KV_step=0.10000000000000001E-002
+$DIR_gfn $KV_method=2
+$DIR_gfn $KV_scc=true
+$DIR_gfn $KV_periodic=false
+$DIR_scc $KV_maxiterations=1000
+$END
+JOBEND
+JOBSTART
+VERBOSITY: 1
+APP: SHELL
+WORKDIR: STRINGFROMCLI_L_XTB_hessPre
+COPYTOWORKDIR: STRINGFROMCLI_L_XTB.sdf,STRINGFROMCLI_L_XTB.xcontrol
+CMD: run_xtb STRINGFROMCLI_L_XTB.sdf STRINGFROMCLI_L_XTB.out -a "--input STRINGFROMCLI_L_XTB.xcontrol --acc 0.05" -c 1
+JOBEND
+JOBSTART
+VERBOSITY: 1
+APP: SHELL
+CMD: rm STRINGFROMCLI_L_XTB.xcontrol
+JOBEND
+#Now, we run geometry optimization using the previously calculated hessian
+JOBSTART
+TASK: PrepareInputXTB
+VERBOSITY: 1
+InputGeometriesFile: STRINGFROMCLI_L_XTB.sdf
+JOBDETAILS: $START$DIR_set $KV_runtyp=opt
+$DIR_opt $KV_logfile=STRINGFROMCLI_L_xtbtrj.xyz
+$DIR_opt $KV_hessian=read
+$DIR_opt $KV_optlevel=tight
+$DIR_gfn $KV_method=2
+$DIR_gfn $KV_scc=true
+$DIR_gfn $KV_periodic=false
+$DIR_scc $KV_maxiterations=1000
+$END
+JOBEND
+JOBSTART
+VERBOSITY: 1
+APP: SHELL
+WORKDIR: STRINGFROMCLI_L_XTB_opt
+COPYTOWORKDIR: STRINGFROMCLI_L_XTB.sdf,STRINGFROMCLI_L_XTB.xcontrol,STRINGFROMCLI_L_XTB_hessPre/hessian,STRINGFROMCLI_L_XTB_hessPre/xtbrestart
+CMD: run_xtb STRINGFROMCLI_L_XTB.sdf STRINGFROMCLI_L_XTB.out -a "--input STRINGFROMCLI_L_XTB.xcontrol --acc 0.05" -c 10
+JOBEND
+JOBSTART
+VERBOSITY: 1
+TASK: AnalyseXTBOutput
+JobOutputFile: STRINGFROMCLI_L_XTB_opt/STRINGFROMCLI_L_XTB.out
+PRINTLASTGEOMETRY: SDF STRINGFROMCLI_L_last-xTB.sdf
+TEMPLATECONNECTIVITY: STRINGFROMCLI_L_XTB.sdf TOLERANCE=0.75
+CalculateEnergy: scf
+JOBEND
+JOBSTART
+VERBOSITY: 1
+APP: SHELL
+CMD: rm STRINGFROMCLI_L_XTB.xcontrol
+JOBEND
+#Finally, we get the numerical hessian of the final geometry
+JOBSTART
+TASK: PrepareInputXTB
+VERBOSITY: 1
+InputGeometriesFile: STRINGFROMCLI_L_XTB.sdf
+JOBDETAILS: $START$DIR_set $KV_runtyp=hess
+$DIR_hess $KV_sccacc=0.05
+$DIR_hess $KV_step=0.10000000000000001E-002
+$DIR_gfn $KV_method=2
+$DIR_gfn $KV_scc=true
+$DIR_gfn $KV_periodic=false
+$DIR_scc $KV_maxiterations=1000
+$END
+JOBEND
+JOBSTART
+VERBOSITY: 1
+APP: SHELL
+WORKDIR: STRINGFROMCLI_L_XTB_hessPost
+COPYTOWORKDIR: STRINGFROMCLI_L_XTB_opt/xtbopt.sdf,STRINGFROMCLI_L_XTB.xcontrol
+CMD: run_xtb xtbopt.sdf STRINGFROMCLI_L_XTB.out -a "--input STRINGFROMCLI_L_XTB.xcontrol --acc 0.05" -c 1
+JOBEND
+JOBSTART
+VERBOSITY: 1
+TASK: AnalyseXTBOutput
+JobOutputFile: STRINGFROMCLI_L_XTB_hessPost/STRINGFROMCLI_L_XTB.out
+CalculateEnergy: scf
+DetectKindOfCriticalPoint: LowestFREQ 3
+JOBEND
+JOBEND
+JOBSTART
+VERBOSITY: 1
+#
+#  X
+#
+#First, we get the numerical hessian
+#JOBSTART
+#TASK: PrepareInputXTB
+#VERBOSITY: 1
+#InputGeometriesFile: STRINGFROMCLI_X_XTB.sdf
+#JOBDETAILS: $START$DIR_set $KV_runtyp=hess
+#$DIR_hess $KV_sccacc=0.05
+#$DIR_hess $KV_step=0.10000000000000001E-002
+#$DIR_gfn $KV_method=2
+#$DIR_gfn $KV_scc=true
+#$DIR_gfn $KV_periodic=false
+#$DIR_scc $KV_maxiterations=1000
+#$END
+#JOBEND
+#JOBSTART
+#VERBOSITY: 1
+#APP: SHELL
+#WORKDIR: STRINGFROMCLI_X_XTB_hessPre
+#COPYTOWORKDIR: STRINGFROMCLI_X_XTB.sdf,STRINGFROMCLI_X_XTB.xcontrol
+#CMD: run_xtb STRINGFROMCLI_X_XTB.sdf STRINGFROMCLI_X_XTB.out -a "--input STRINGFROMCLI_X_XTB.xcontrol --acc 0.05" -c 1
+#JOBEND
+#JOBSTART
+#VERBOSITY: 1
+#APP: SHELL
+#CMD: rm STRINGFROMCLI_X_XTB.xcontrol
+#JOBEND
+##Now, we run geometry optimization using the previously calculated hessian
+#JOBSTART
+#TASK: PrepareInputXTB
+#VERBOSITY: 1
+#InputGeometriesFile: STRINGFROMCLI_X_XTB.sdf
+#JOBDETAILS: $START$DIR_set $KV_runtyp=opt
+#$DIR_opt $KV_logfile=STRINGFROMCLI_X_xtbtrj.xyz
+#$DIR_opt $KV_hessian=read
+#$DIR_opt $KV_optlevel=tight
+#$DIR_gfn $KV_method=2
+#$DIR_gfn $KV_scc=true
+#$DIR_gfn $KV_periodic=false
+#$DIR_scc $KV_maxiterations=1000
+#$DIR_constrain $DATA_constraints=$START$ACCTASK: GenerateConstraints
+#VERBOSITY: 2
+#SMARTS:[$([#6]([#1])([#1])([Ru])[#6;X4]([#1])([#6])[#6])] [$([#6][#6]([#1])([#1])[Ru])] 2.4064 onlybonded
+#$END
+#$DIR_constrain $KV_force constant=20.0
+#$END
+#JOBEND
+#JOBSTART
+#VERBOSITY: 1
+#APP: SHELL
+#WORKDIR: STRINGFROMCLI_X_XTB_opt
+#COPYTOWORKDIR: STRINGFROMCLI_X_XTB.sdf,STRINGFROMCLI_X_XTB.xcontrol,STRINGFROMCLI_X_XTB_hessPre/hessian,STRINGFROMCLI_X_XTB_hessPre/xtbrestart
+#CMD: run_xtb STRINGFROMCLI_X_XTB.sdf STRINGFROMCLI_X_XTB.out -a "--input STRINGFROMCLI_X_XTB.xcontrol --acc 0.05" -c 10
+#JOBEND
+#JOBSTART
+#VERBOSITY: 1
+#TASK: AnalyseXTBOutput
+#JobOutputFile: STRINGFROMCLI_X_XTB_opt/STRINGFROMCLI_X_XTB.out
+#PRINTLASTGEOMETRY: SDF STRINGFROMCLI_X_last-xTB.sdf
+#TEMPLATECONNECTIVITY: STRINGFROMCLI_X_XTB.sdf TOLERANCE=0.75
+#CalculateEnergy: scf
+#JOBEND
+#JOBSTART
+#VERBOSITY: 1
+#APP: SHELL
+#CMD: rm STRINGFROMCLI_X_XTB.xcontrol
+#JOBEND
+##Finally, we get the numerical hessian of the final geometry
+#JOBSTART
+#TASK: PrepareInputXTB
+#VERBOSITY: 1
+#InputGeometriesFile: STRINGFROMCLI_X_XTB.sdf
+#JOBDETAILS: $START$DIR_set $KV_runtyp=hess
+#$DIR_hess $KV_sccacc=0.05
+#$DIR_hess $KV_step=0.10000000000000001E-002
+#$DIR_gfn $KV_method=2
+#$DIR_gfn $KV_scc=true
+#$DIR_gfn $KV_periodic=false
+#$DIR_scc $KV_maxiterations=1000
+#$END
+#JOBEND
+#JOBSTART
+#VERBOSITY: 1
+#APP: SHELL
+#WORKDIR: STRINGFROMCLI_X_XTB_hessPost
+#COPYTOWORKDIR: STRINGFROMCLI_X_XTB_opt/xtbopt.sdf,STRINGFROMCLI_X_XTB.xcontrol
+#CMD: run_xtb xtbopt.sdf STRINGFROMCLI_X_XTB.out -a "--input STRINGFROMCLI_X_XTB.xcontrol --acc 0.05" -c 1
+#JOBEND
+#JOBSTART
+#VERBOSITY: 1
+#TASK: AnalyseXTBOutput
+#JobOutputFile: STRINGFROMCLI_X_XTB_hessPost/STRINGFROMCLI_X_XTB.out
+#CalculateEnergy: scf
+#DetectKindOfCriticalPoint: LowestFREQ 3
+#JOBEND
+#JOBEND
+#JOBSTART
+#VERBOSITY: 1
+##
+##  Z
+##
+##First, we get the numerical hessian
+#JOBSTART
+#TASK: PrepareInputXTB
+#VERBOSITY: 1
+#InputGeometriesFile: STRINGFROMCLI_Z_XTB.sdf
+#JOBDETAILS: $START$DIR_set $KV_runtyp=hess
+#$DIR_hess $KV_sccacc=0.05
+#$DIR_hess $KV_step=0.10000000000000001E-002
+#$DIR_gfn $KV_method=2
+#$DIR_gfn $KV_scc=true
+#$DIR_gfn $KV_periodic=false
+#$DIR_scc $KV_maxiterations=1000
+#$DIR_constrain $DATA_constraints=$START$ACCTASK: GenerateConstraints
+#VERBOSITY: 2
+#$STARTSMARTS:
+#[Ru] [$([#1][Ru])] 1.794 onlybonded
+#[$([#6;X4]~[#6]~[#8]),$([#6;X4]~[CH3]),$([#7]~[#6]~[#16,#8]),$([#8,#9,#16,#17,#35,#53]),$([#7]~[#8]),$([#7](~[#1])~[#6]1~[#6]~[#6]~[#6](~[#17])~[#6]~[#6]~1),$([#7](~[#1])~[#6](~[#8])~[#6;X4]),$([#6]1~[#6]~[#6]~[#6]~[#6]~[#6]~1),$([#6;X4]~[#6]1~[#6]~[#6]~[#6]~[#7]~[#6]~1)]~[#44] [#44] [$([#6;X4]~[#6]~[#8]),$([#6;X4]~[CH3]),$([#7]~[#6]~[#16,#8]),$([#8,#9,#16,#17,#35,#53]),$([#7]~[#8]),$([#7](~[#1])~[#6]1~[#6]~[#6]~[#6](~[#17])~[#6]~[#6]~1),$([#7](~[#1])~[#6](~[#8])~[#6;X4]),$([#6]1~[#6]~[#6]~[#6]~[#6]~[#6]~1),$([#6;X4]~[#6]1~[#6]~[#6]~[#6]~[#7]~[#6]~1)]~[#44] onlybonded
+#$END
+#$END
+#$DIR_constrain $KV_force constant=1.0
+#$END
+#JOBEND
+#JOBSTART
+#VERBOSITY: 1
+#APP: SHELL
+#WORKDIR: STRINGFROMCLI_Z_XTB_hessPre1
+#COPYTOWORKDIR: STRINGFROMCLI_Z_XTB.sdf,STRINGFROMCLI_Z_XTB.xcontrol
+#CMD: run_xtb STRINGFROMCLI_Z_XTB.sdf STRINGFROMCLI_Z_XTB.out -a "--input STRINGFROMCLI_Z_XTB.xcontrol --acc 0.05" -c 10
+#JOBEND
+#JOBSTART
+#VERBOSITY: 1
+#APP: SHELL
+#CMD: rm STRINGFROMCLI_Z_XTB.xcontrol
+#JOBEND
+##Now, we run geometry pre-optimization using the previously calculated hessian
+#JOBSTART
+#TASK: PrepareInputXTB
+#VERBOSITY: 1
+#InputGeometriesFile: STRINGFROMCLI_Z_XTB.sdf
+#JOBDETAILS: $START$DIR_set $KV_runtyp=opt
+#$DIR_opt $KV_logfile=STRINGFROMCLI_Z_xtbtrj.xyz
+#$DIR_opt $KV_hessian=read
+#$DIR_opt $KV_optlevel=tight
+#$DIR_gfn $KV_method=2
+#$DIR_gfn $KV_scc=true
+#$DIR_gfn $KV_periodic=false
+#$DIR_scc $KV_maxiterations=1000
+#$DIR_constrain $DATA_constraints=$START$ACCTASK: GenerateConstraints
+#VERBOSITY: 2
+#$STARTSMARTS:
+#[Ru] [$([#1][Ru])] 1.794 onlybonded
+#[$([#6;X4]~[#6]~[#8]),$([#6;X4]~[CH3]),$([#7]~[#6]~[#16,#8]),$([#8,#9,#16,#17,#35,#53]),$([#7]~[#8]),$([#7](~[#1])~[#6]1~[#6]~[#6]~[#6](~[#17])~[#6]~[#6]~1),$([#7](~[#1])~[#6](~[#8])~[#6;X4]),$([#6]1~[#6]~[#6]~[#6]~[#6]~[#6]~1),$([#6;X4]~[#6]1~[#6]~[#6]~[#6]~[#7]~[#6]~1)]~[#44] [#44] [$([#6;X4]~[#6]~[#8]),$([#6;X4]~[CH3]),$([#7]~[#6]~[#16,#8]),$([#8,#9,#16,#17,#35,#53]),$([#7]~[#8]),$([#7](~[#1])~[#6]1~[#6]~[#6]~[#6](~[#17])~[#6]~[#6]~1),$([#7](~[#1])~[#6](~[#8])~[#6;X4]),$([#6]1~[#6]~[#6]~[#6]~[#6]~[#6]~1),$([#6;X4]~[#6]1~[#6]~[#6]~[#6]~[#7]~[#6]~1)]~[#44] onlybonded
+#$END
+#$END
+#$DIR_constrain $KV_force constant=1.0
+#$END
+#JOBEND
+#JOBSTART
+#VERBOSITY: 1
+#APP: SHELL
+#WORKDIR: STRINGFROMCLI_Z_XTB_preopt
+#COPYTOWORKDIR: STRINGFROMCLI_Z_XTB.sdf,STRINGFROMCLI_Z_XTB.xcontrol,STRINGFROMCLI_Z_XTB_hessPre1/hessian,STRINGFROMCLI_Z_XTB_hessPre1/xtbrestart
+#CMD: run_xtb STRINGFROMCLI_Z_XTB.sdf STRINGFROMCLI_Z_XTB.out -a "--input STRINGFROMCLI_Z_XTB.xcontrol --acc 0.05" -c 10
+#JOBEND
+#JOBSTART
+#VERBOSITY: 1
+#APP: SHELL
+#CMD: rm STRINGFROMCLI_Z_XTB.xcontrol
+#JOBEND
+##Now, we get the second numerical hessian
+#JOBSTART
+#TASK: PrepareInputXTB
+#VERBOSITY: 1
+#InputGeometriesFile: STRINGFROMCLI_Z_XTB.sdf
+#JOBDETAILS: $START$DIR_set $KV_runtyp=hess
+#$DIR_hess $KV_sccacc=0.05
+#$DIR_hess $KV_step=0.10000000000000001E-002
+#$DIR_gfn $KV_method=2
+#$DIR_gfn $KV_scc=true
+#$DIR_gfn $KV_periodic=false
+#$DIR_scc $KV_maxiterations=1000
+#$DIR_constrain $DATA_constraints=$START$ACCTASK: GenerateConstraints
+#VERBOSITY: 2
+#$STARTSMARTS:
+#[Ru] [$([#1][Ru])] 1.794 onlybonded
+#$END
+#$END
+#$DIR_constrain $KV_force constant=1.0
+#$END
+#JOBEND
+#JOBSTART
+#VERBOSITY: 1
+#APP: SHELL
+#WORKDIR: STRINGFROMCLI_Z_XTB_hessPre2
+#COPYTOWORKDIR: STRINGFROMCLI_Z_XTB_preopt/xtbopt.sdf,STRINGFROMCLI_Z_XTB.xcontrol
+#CMD: run_xtb xtbopt.sdf STRINGFROMCLI_Z_XTB.out -a "--input STRINGFROMCLI_Z_XTB.xcontrol --acc 0.05" -c 10
+#JOBEND
+#JOBSTART
+#VERBOSITY: 1
+#APP: SHELL
+#CMD: rm STRINGFROMCLI_Z_XTB.xcontrol
+#JOBEND
+##Now, we run the second geometry pre-optimization using the previously calculated hessian
+#JOBSTART
+#TASK: PrepareInputXTB
+#VERBOSITY: 1
+#InputGeometriesFile: STRINGFROMCLI_Z_XTB.sdf
+#JOBDETAILS: $START$DIR_set $KV_runtyp=opt
+#$DIR_opt $KV_logfile=STRINGFROMCLI_Z_xtbtrj.xyz
+#$DIR_opt $KV_hessian=read
+#$DIR_opt $KV_optlevel=tight
+#$DIR_gfn $KV_method=2
+#$DIR_gfn $KV_scc=true
+#$DIR_gfn $KV_periodic=false
+#$DIR_scc $KV_maxiterations=1000
+#$DIR_constrain $DATA_constraints=$START$ACCTASK: GenerateConstraints
+#VERBOSITY: 2
+#SMARTS: [Ru] [$([#1][Ru])] 1.794 onlybonded
+#$END
+#$DIR_constrain $KV_force constant=1.0
+#$END
+#JOBEND
+#JOBSTART
+#VERBOSITY: 1
+#APP: SHELL
+#WORKDIR: STRINGFROMCLI_Z_XTB_preopt2
+#COPYTOWORKDIR: STRINGFROMCLI_Z_XTB_preopt/xtbopt.sdf,STRINGFROMCLI_Z_XTB.xcontrol,STRINGFROMCLI_Z_XTB_hessPre2/hessian,STRINGFROMCLI_Z_XTB_hessPre2/xtbrestart
+#CMD: run_xtb xtbopt.sdf STRINGFROMCLI_Z_XTB.out -a "--input STRINGFROMCLI_Z_XTB.xcontrol --acc 0.05" -c 10
+#JOBEND
+#JOBSTART
+#VERBOSITY: 1
+#APP: SHELL
+#CMD: rm STRINGFROMCLI_Z_XTB.xcontrol
+#JOBEND
+##Now, we get the third numerical hessian
+#JOBSTART
+#TASK: PrepareInputXTB
+#VERBOSITY: 1
+#InputGeometriesFile: STRINGFROMCLI_Z_XTB.sdf
+#JOBDETAILS: $START$DIR_set $KV_runtyp=hess
+#$DIR_hess $KV_sccacc=0.05
+#$DIR_hess $KV_step=0.10000000000000001E-002
+#$DIR_gfn $KV_method=2
+#$DIR_gfn $KV_scc=true
+#$DIR_gfn $KV_periodic=false
+#$DIR_scc $KV_maxiterations=1000
+#$DIR_constrain $DATA_constraints=$START$ACCTASK: GenerateConstraints
+#VERBOSITY: 2
+#$STARTSMARTS:
+#[Ru] [$([#1][Ru])] 1.794 onlybonded
+#$END
+#$END
+#$DIR_constrain $KV_force constant=1.0
+#$END
+#JOBEND
+#JOBSTART
+#VERBOSITY: 1
+#APP: SHELL
+#WORKDIR: STRINGFROMCLI_Z_XTB_hessPre3
+#COPYTOWORKDIR: STRINGFROMCLI_Z_XTB_preopt2/xtbopt.sdf,STRINGFROMCLI_Z_XTB.xcontrol
+#CMD: run_xtb xtbopt.sdf STRINGFROMCLI_Z_XTB.out -a "--input STRINGFROMCLI_Z_XTB.xcontrol --acc 0.05" -c 10
+#JOBEND
+#JOBSTART
+#VERBOSITY: 1
+#APP: SHELL
+#CMD: rm STRINGFROMCLI_Z_XTB.xcontrol
+#JOBEND
+##Now, we run the final geometry optimization using the previously pre-optimized geometry.
+#JOBSTART
+#TASK: PrepareInputXTB
+#VERBOSITY: 1
+#InputGeometriesFile: STRINGFROMCLI_Z_XTB.sdf
+#JOBDETAILS: $START$DIR_set $KV_runtyp=opt
+#$DIR_opt $KV_logfile=STRINGFROMCLI_Z_xtbtrj.xyz
+#$DIR_opt $KV_hessian=read
+#$DIR_opt $KV_optlevel=tight
+#$DIR_gfn $KV_method=2
+#$DIR_gfn $KV_scc=true
+#$DIR_gfn $KV_periodic=false
+#$DIR_scc $KV_maxiterations=1000
+#$DIR_constrain $DATA_constraints=$START$ACCTASK: GenerateConstraints
+#VERBOSITY: 2
+#SMARTS: [Ru] [$([#1][Ru])] 1.794 onlybonded
+#$END
+#$DIR_constrain $KV_force constant=30.0
+#$END
+#JOBEND
+#JOBSTART
+#VERBOSITY: 1
+#APP: SHELL
+#WORKDIR: STRINGFROMCLI_Z_XTB_opt
+#COPYTOWORKDIR: STRINGFROMCLI_Z_XTB_preopt2/xtbopt.sdf,STRINGFROMCLI_Z_XTB.xcontrol,STRINGFROMCLI_Z_XTB_hessPre3/hessian,STRINGFROMCLI_Z_XTB_hessPre3/xtbrestart
+#CMD: run_xtb xtbopt.sdf STRINGFROMCLI_Z_XTB.out -a "--input STRINGFROMCLI_Z_XTB.xcontrol --acc 0.05" -c 10
+#JOBEND
+#JOBSTART
+#VERBOSITY: 1
+#TASK: AnalyseXTBOutput
+#JobOutputFile: STRINGFROMCLI_Z_XTB_opt/STRINGFROMCLI_Z_XTB.out
+#PRINTLASTGEOMETRY: SDF STRINGFROMCLI_Z_last-xTB.sdf
+#TEMPLATECONNECTIVITY: STRINGFROMCLI_Z_XTB.sdf TOLERANCE=0.75
+#CalculateEnergy: scf
+#JOBEND
+#JOBSTART
+#VERBOSITY: 1
+#APP: SHELL
+#CMD: rm STRINGFROMCLI_Z_XTB.xcontrol
+#JOBEND
+##Finally, we get the numerical hessian of the final geometry
+#JOBSTART
+#TASK: PrepareInputXTB
+#VERBOSITY: 1
+#InputGeometriesFile: STRINGFROMCLI_Z_XTB.sdf
+#JOBDETAILS: $START$DIR_set $KV_runtyp=hess
+#$DIR_hess $KV_sccacc=0.05
+#$DIR_hess $KV_step=0.10000000000000001E-002
+#$DIR_gfn $KV_method=2
+#$DIR_gfn $KV_scc=true
+#$DIR_gfn $KV_periodic=false
+#$DIR_scc $KV_maxiterations=1000
+#$END
+#JOBEND
+#JOBSTART
+#VERBOSITY: 1
+#APP: SHELL
+#WORKDIR: STRINGFROMCLI_Z_XTB_hessPost
+#COPYTOWORKDIR: STRINGFROMCLI_Z_XTB_opt/xtbopt.sdf,STRINGFROMCLI_Z_XTB.xcontrol
+#CMD: run_xtb xtbopt.sdf STRINGFROMCLI_Z_XTB.out -a "--input STRINGFROMCLI_Z_XTB.xcontrol --acc 0.05" -c 10
+#JOBEND
+#JOBSTART
+#VERBOSITY: 1
+#TASK: AnalyseXTBOutput
+#JobOutputFile: STRINGFROMCLI_Z_XTB_hessPost/STRINGFROMCLI_Z_XTB.out
+#CalculateEnergy: scf
+#DetectKindOfCriticalPoint: LowestFREQ 3
+#JOBEND
+JOBSTART
+VERBOSITY: 1
+APP: SHELL
+CMD: rm -rf STRINGFROMCLI_A_XTB_hessPre
+JOBEND
+JOBSTART
+VERBOSITY: 1
+APP: SHELL
+CMD: rm -rf STRINGFROMCLI_C_XTB_hessPre
+JOBEND
+JOBSTART
+VERBOSITY: 1
+APP: SHELL
+CMD: rm -rf STRINGFROMCLI_E_XTB_hessPre
+JOBEND
+JOBSTART
+VERBOSITY: 1
+APP: SHELL
+CMD: rm -rf STRINGFROMCLI_F_XTB_hessPre
+JOBEND
+JOBSTART
+VERBOSITY: 1
+APP: SHELL
+CMD: rm -rf STRINGFROMCLI_L_XTB_hessPre
+JOBEND
+JOBSTART
+VERBOSITY: 1
+APP: SHELL
+CMD: rm -rf STRINGFROMCLI_P_XTB_hessPre
+JOBEND
+#JOBSTART
+#VERBOSITY: 1
+#APP: SHELL
+#CMD: rm -rf STRINGFROMCLI_X_XTB_hessPre
+#JOBEND
+#JOBSTART
+#VERBOSITY: 1
+#APP: SHELL
+#CMD: rm -rf STRINGFROMCLI_Z_XTB_hessPre
+#JOBEND
+JOBEND

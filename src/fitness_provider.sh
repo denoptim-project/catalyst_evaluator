@@ -1053,7 +1053,7 @@ structureId=$1
 inFile=$wrkDir/${molNum}_outSubXTB-$structureId.sdf
 tolerance="55.0"
 echo "Starting ACC..."
-smallestAngle=$( autocompchem -p -t MeasureGeomDescriptors --verbosity 1 --infile "$inFile" --smarts "ANG [\$([#7](~[#44])=[#6]=[#8,#16])] [#44] [\$([#6;X3](~[#7;X3])~[#6,#7]),\$([#6;X3]1~[#6;X3]~[#6;X3]~[#7;X3]~[#6;X3]~[#6;X3]~1)]" --onlybonded true | grep ANG | grep -Eo "= [0-9]{1,3}\.[0-9]{1,16}" | awk '{print $2}' | sort -n | head -n 1 )
+smallestAngle=$( autocompchem -t MeasureGeomDescriptors --verbosity 1 --infile "$inFile" --smarts "ANG [\$([#7](~[#44])=[#6]=[#8,#16])] [#44] [\$([#6;X3](~[#7;X3])~[#6,#7]),\$([#6;X3]1~[#6;X3]~[#6;X3]~[#7;X3]~[#6;X3]~[#6;X3]~1)]" --onlybonded true | grep ANG | grep -Eo "= [0-9]{1,3}\.[0-9]{1,16}" | awk '{print $2}' | sort -n | head -n 1 )
 echo "ACC completed: smallest angle was: $smallestAngle degrees"
 if (( $(echo "$smallestAngle < $tolerance" | bc -l) ))
     then 
@@ -1088,6 +1088,7 @@ importedClosestContact=$( autocompchem -p "$wrkDir/${molNum}_clash.param.tmp" | 
 echo "ACC completed: closest non bonded Ru,H contanct: $importedClosestContact Angstrom"
 rm $wrkDir/${molNum}_clash.param.tmp
 }
+
 
 #
 # Recaluclate fitness of an old FIT file. This function reads the energies from an old file,
@@ -1204,6 +1205,18 @@ molName=`basename "$inpSDF" .sdf`
 molNum=`basename "$molName" "$inputLabelExt"`
 preOutSDF="$wrkDir/preOut_${molNum}.sdf"
 MOLUID="$( grep -A1 UID "$wrkDir/$inpSDF" | tail -n 1)"
+
+# We use ACC to check for Cl X-ligands. If yes, we save cpu-time by skipping calculation of 'E'
+if autocompchem -t MeasureGeomDescriptors --verbosity 1 --infile "$wrkDir/$inpSDF" --smarts 'DIST [Ru] [Cl]' --onlybonded true | grep -q "DIST-0 Ru.*:Cl"
+then
+    skipE="1"
+    secondSubJobsLabelList=(${secondSubJobsLabelList[@]/E1})
+    secondSubJobsLabelList=(${secondSubJobsLabelList[@]/E2})
+    sortedLabelRoots=(${sortedLabelRoots[@]/E})
+    toXTBStateLabels=(${toXTBStateLabels[@]/E})
+    toDFTStateLabels=(${toDFTStateLabels[@]/E})
+    requiredStateLabels=(${requiredStateLabels[@]/E})
+fi
 
 # Initiates experiment shut down. shutDownRun="1" -> Do it; shutDownRun="0" -> Don't. 
 # Shut down will cause all new jobs to abandon, and UIDs of abandoned jobs will
@@ -1715,12 +1728,18 @@ closeContact "X"
 # Variables containing the final energies in Hartree
 freeEnergyA=$( grep -A1 "DFT-ENERGY" "$wrkDir/${molNum}_outSubDFT-A.sdf" | tail -n 1 )
 freeEnergyC=$( grep -A1 "DFT-ENERGY" "$wrkDir/${molNum}_outSubDFT-C.sdf" | tail -n 1 )
-freeEnergyE=$( grep -A1 "DFT-ENERGY" "$wrkDir/${molNum}_outSubDFT-E.sdf" | tail -n 1 )
 freeEnergyX=$( grep -A1 "DFT-ENERGY" "$wrkDir/${molNum}_outSubDFT-X.sdf" | tail -n 1 )
 freeEnergyZ=$( grep -A1 "DFT-ENERGY" "$wrkDir/${molNum}_outSubDFT-Z.sdf" | tail -n 1 )
 freeEnergyL=$( grep -A1 "DFT-ENERGY" "$wrkDir/${molNum}_outSubDFT-L.sdf" | tail -n 1 )
 freeEnergyF=$( grep -A1 "DFT-ENERGY" "$wrkDir/${molNum}_outSubDFT-F.sdf" | tail -n 1 )
 freeEnergyD=$( grep -A1 "DFT-ENERGY" "$wrkDir/${molNum}_outSubDFT-D.sdf" | tail -n 1 )
+if [ $skipE -eq "1" ]
+then
+    echo "Cl X-ligands detected, 'E' energy will be taken from 'A'"
+    freeEnergyE=$( grep -A1 "DFT-ENERGY" "$wrkDir/${molNum}_outSubDFT-A.sdf" | tail -n 1 )
+else
+    freeEnergyE=$( grep -A1 "DFT-ENERGY" "$wrkDir/${molNum}_outSubDFT-E.sdf" | tail -n 1 )
+fi
 
 #Values in Hatree
 G_Propene="-117.738020895"

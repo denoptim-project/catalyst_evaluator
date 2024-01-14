@@ -135,12 +135,23 @@ case "$jdFile" in
         cp  "$emulatorDir/data/data_SP-DFT/tc_1702636735466" "$tclFile"
         ;;
 
+    "sp_DFT-DZ_skip_E.jd")
+        echo "Emulating SP DFT job"
+        cp  "$emulatorDir/data/data_SP-DFT/Mol1_DFT.log" "$emulatorDir/data/data_SP-DFT/"*last-DFT.sdf .
+        cp  "$emulatorDir/data/data_SP-DFT/tc_1702636735466" "$tclFile"
+        ;;
+
     "P4_nativeXTB_all-8.jd")
         echo "Emulating xTB job"
         cp  "$emulatorDir/data/data_xTB/Mol1_XTB.log" "$emulatorDir/data/data_xTB/"*last-xTB.sdf .
         cp  "$emulatorDir/data/data_xTB/tc_1703261267180" "$tclFile"
         ;;
 
+    "P4_nativeXTB_skip_E.jd")
+        echo "Emulating xTB job"
+        cp  "$emulatorDir/data/data_xTB/Mol1_XTB.log" "$emulatorDir/data/data_xTB/"*last-xTB.sdf .
+        cp  "$emulatorDir/data/data_xTB/tc_1703261267180" "$tclFile"
+        ;;
     *)
         echo "ERROR! Unrecognized job. Expecting P4_DFTXZ.jd or sp_DFT-DZ_all-6.jd"
         exit -1
