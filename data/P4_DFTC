@@ -10,17 +10,7 @@ rutSection# $KVscf_$KVMaxCycle=180
 rutSection# $KVscf_$KVConver=4
 titSection# Step 1 - GeomOpt (MIN) PBEPBE-GD3MBJ modDZ
 optSection# $MTbasis=$ACCPAR_$STARTAtomSpecificBasisSet:
-SMARTS [#1] Link UNSET_BASISSETDIR/cc-pVDZ_cc-pvDZ-PP.gbs
-SMARTS [#6] Link UNSET_BASISSETDIR/cc-pVDZ_cc-pvDZ-PP.gbs
-SMARTS [#7] Link UNSET_BASISSETDIR/cc-pVDZ_cc-pvDZ-PP.gbs
-SMARTS [#9] Link UNSET_BASISSETDIR/cc-pVDZ_cc-pvDZ-PP.gbs
-SMARTS [#17] Link UNSET_BASISSETDIR/cc-pVDZ_cc-pvDZ-PP.gbs
-SMARTS [#16] Link UNSET_BASISSETDIR/cc-pVDZ_cc-pvDZ-PP.gbs
-SMARTS [#35] Link UNSET_BASISSETDIR/cc-pVDZ_cc-pvDZ-PP.gbs
-SMARTS [#53] Link UNSET_BASISSETDIR/cc-pVDZ_cc-pvDZ-PP.gbs
-SMARTS [Ru] Link UNSET_BASISSETDIR/cc-pVDZ_cc-pvDZ-PP.gbs
-SMARTS [#8] Link UNSET_BASISSETDIR/cc-pVDZ_cc-pvDZ-PP.gbs
-SMARTS [#15] Link UNSET_BASISSETDIR/cc-pVDZ_cc-pvDZ-PP.gbs
+SMARTS [#1,#6,#7,#8,#9,#15,#16,#17,#35,#53,Ru] Link UNSET_BASISSETDIR/cc-pVDZ_cc-pVDZ-PP.gbs
 $END
 --Link1--
 rutSection# $MTprint=P

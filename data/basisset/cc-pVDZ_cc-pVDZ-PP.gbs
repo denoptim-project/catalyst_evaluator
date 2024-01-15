@@ -1,11 +1,7 @@
 ! 
-! Basis set for Rucatalyst decomposition/isomerizzation/regeneration project
-!
-! This basis set is ganerated manually using a gaussian input file taken from
-! jobs run previously in this project
-!
 ! H, C, N, O, F, P, S, Cl and Br with cc-pVDZ (optimized general contraction)
 ! Ru and I with cc-pVDZ-PP (optimized general contraction)
+!
 
 ****
 C 0
