@@ -150,55 +150,6 @@ VERBOSITY: 1
 JOBSTART
 TASK: PrepareInputORCA
 VERBOSITY: 1
-InputGeometriesFile: STRINGFROMCLI_P_XTB.sdf
-JOBDETAILS: $START$DIR_! $MT_model=XTB2
-$DIR_! $MT_calculation=NumFreq
-$DIR_* $MT_charge=0
-$DIR_* $MT_spin_multiplicity=1
-$DIR_* $MT_coordtype=xyzfile
-$DIR_* $MT_filename=$START$ACCTASK: GET_FILENAME
-SUFFIX: .xyz
-$END
-----NEW-STEP----
-$DIR_! $MT_model=XTB2
-$DIR_! $MT_calculation=Opt
-$DIR_geom $DIR_InHess $MT_hessSource=Read
-$DIR_geom $DIR_InHessName $MT_filename=$START$ACCTASK: GET_FILENAME
-SUFFIX: .hess
-QUOTATION: "
-$END
-$DIR_* $MT_charge=0
-$DIR_* $MT_spin_multiplicity=1
-$DIR_* $MT_coordtype=xyzfile
-----NEW-STEP----
-$DIR_! $MT_model=XTB2
-$DIR_! $MT_calculation=NumFreq
-$DIR_* $MT_charge=0
-$DIR_* $MT_spin_multiplicity=1
-$DIR_* $MT_coordtype=xyzfile
-$END
-JOBEND
-JOBSTART
-VERBOSITY: 1
-APP: SHELL
-CMD: run_orca STRINGFROMCLI_P_XTB.inp STRINGFROMCLI_P_XTB.out
-JOBEND
-JOBSTART
-VERBOSITY: 1
-TASK: AnalyseORCAOutput
-JobOutputFile: STRINGFROMCLI_P_XTB.out
-ROOTPATHNAMEOUTPUT: STRINGFROMCLI_P_XTB
-PRINTLASTGEOMETRY: SDF STRINGFROMCLI_P_last-xTB.sdf
-TEMPLATECONNECTIVITY: STRINGFROMCLI_P_XTB.sdf TOLERANCE=0.75
-CalculateEnergy: qhThteshold 100
-DetectKindOfCriticalPoint: LowestFREQ 3
-JOBEND
-JOBEND
-JOBSTART
-VERBOSITY: 1
-JOBSTART
-TASK: PrepareInputORCA
-VERBOSITY: 1
 InputGeometriesFile: STRINGFROMCLI_E_XTB.sdf
 JOBDETAILS: $START$DIR_! $MT_model=XTB2
 $DIR_! $MT_calculation=NumFreq
