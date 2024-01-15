@@ -32,12 +32,12 @@ export MAXPARALLELPROCESSES=32
 # emulator, however, it is best to reconfigure waiting times to check for 
 # completion wit high frequency. This is done by cli option --highFreq which 
 # sets the following to 1 (see below).
-export HIGHFREQUENCY=1
+export HIGHFREQUENCY=0
 
 # By default we try to run xTB logally is cpu loading is low. The default can 
 # be overwritted by cli option --sendXtbToRemote, which sets the follogwing to 
 # 1 (see below).
-export RUNXTBLOCALLY=1
+export RUNXTBLOCALLY=0
 
 export SHELL="/bin/bash"
 export FFPARAMFILE="../data/params.MMFF94_CS-2.2"
