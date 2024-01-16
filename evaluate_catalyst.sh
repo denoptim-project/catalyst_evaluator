@@ -40,8 +40,8 @@ export HIGHFREQUENCY=0
 export RUNXTBLOCALLY=0
 
 export SHELL="/bin/bash"
-export FFPARAMFILE="../data/params.MMFF94_CS-2.2"
 myDir="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
+export FFPARAMFILE="$myDir/data/params.MMFF94_CS-2.2"
 export REMOTEWORKERBRIDGE="$myDir/tools/RemoteWorkersBridge/submit_tool/submit.py"
 export REMOTEWORKERBRIDGEHOME="$myDir/tools/RemoteWorkersBridge"
 
