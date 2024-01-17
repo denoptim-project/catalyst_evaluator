@@ -1,0 +1,5 @@
+CRSETNAME RuCatEvaluator_mol-to-graph
+CRSETVERSION 1.0
+CRSETDOC Cutting rules designed for converting molecular representation to denoptim's graph representation to be used as input in the catalyst evaluator.
+CTR RuL 2 [Ru] [#6;X3;!$([#6][#1])] ~!@
+CTR RuX 1 [Ru] [$([#6;X3](=[#6;X3])-[#6;X3]),c,$([#6;X4]),$([#7;X3]([*])([*])[Ru]),$([#7;X2](=[*])[Ru]),$([#8;X2]),$([#9;X1]),$([#16;X2]),$([#17;X1]),$([#35;X1]),$([#53;X1])] -!@

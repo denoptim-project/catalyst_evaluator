@@ -184,22 +184,35 @@ To define a catalyst with general formula (L)Ru(Y)(X)=CH<sub>2</sub>, where X an
     cd data
     denoptim
     ```
-    2. Choose `File` -> `New Graphs` and click on `Load BBSpace`.
+    2. Choose `File` -> `New` -> `New Graphs` and click on `Load BBSpace`.
     3. Select `Use parameters from existing file` and navigate to load file `data/FS-C5.0.par`.
     4. Now click on `Add Graphs`, select `Build` and start from a `scaffold`. In the dialog click on `Select current vertex` to initiate the graph.
     5. SHIFT-click on the yellow point by the "AP1" and "AP2" labels to select the attachment points meant for X-type ligands, click `Add vertex from BBSpace`, then choose `Compatible vertices`. Navigate to chose the X ligands and confirm your selection.
     6. Select the yellow point that represents "AP3", click `Add vertex from BBSpace`, and then choose `Compatible vertices`. Proceed repeating this step until the L-type ligand of your choice is complete.
     7. Finally, `Export graph` in `SDF` format as `my_catalyst.sdf`. This file can be fed to the catalyst evaluator script (see below).
 
-- chopping an existing molecular model of a catalyst with general formula (L)Ru(Y)(X)=CH<sub>2</sub>.
-    1.
+- chopping an existing molecular model of a catalyst with general formula (L)Ru(Y)(X)=CH<sub>2</sub> or the 2-isopropoxybenzylidene precursor (e.g., the classical Hoveyda-Grubbs second generation catalyst).
+    1. Lauch Denoptim's GUI:
+    ```
+    cd data
+    denoptim
+    ```
+    2. Choose `File` -> `New` -> `New Graphs` and click on `Add Graphs` and then `Convert` to select which molecular structure to load. __NB:__ such model is assumed to adhere to the tradition of reporting any Ru-L and Ru-X bond as single bonds and the Ru-alkylidene bond as a double one.
+    3. In the resulting dialog window, click on `Import Rules` and navigate to load the rules from the file given in `data/cutting_rules_for_mol-to-graph`.
+    4. Specify the policy for identifying the scaffold vertex to `ELEMENT` and specify elemental symbol `Ru`.
+    5. By clicking on `Start Fragmentation` to convert the molecule into a graph, i.e., a collection of building blocks.
+    6. Make sure that the resulting graph contains three ligands:
+        - a scaffold containing Ru,
+        - two fragments connected to the scaffold via a `RuX:0-RuX:1` AP-AP connection, and
+        - one fragment connected to the scaffold via a `RuL:0-RuL:1` AP-AP connection.
+    7. Finally, `Export graph` in `SDF` format as `my_catalyst.sdf`. This file can be fed to the catalyst evaluator script (see below).
 
 
-Once you have a Denoptim graph file (e.g., `my_catalyst.sdf`) you can start the evaluation with the following command:
+Once you have a Denoptim graph file, i.e., the `my_catalyst.sdf` mentioned above, you can start the evaluation with the following command:
 ```
 ./evaluate_catalyst.sh -i my_catalyst.sdf
 ```
-To see how the master job proceeds, check the log file `*_FProvider.log`.
+To see how the master job proceeds, check the log file `my_catalyst/my_catalyst_FProvider.log`. For a successfully terminated evaluation, the final results are summarised in file `my_catalyst/my_catalyst_out.sdf` while the details are collected in archive `my_catalyst/my_catalyst.tar.gz`.
 
 
 # Acknowledgements
