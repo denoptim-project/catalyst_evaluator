@@ -154,7 +154,7 @@ stepWaitForHPCXTB=2
 unitWaitForHPC="m"    # time unit: s (seconds), m (minutes), h (hours)
 maxWaitForHPC=4500    # maximum number of waiting cycles
 if [ "$HIGHFREQUENCY" == 1 ]; then
-  echo "(Checking for completion of external tasks with high frequncy)"
+  echo "(Checking for completion of external tasks with high frequency)"
   csMinTime=2       # delay of first checking iteration
   csMinTimeUnit="s" # time unit: s (seconds), m (minutes), h (hours)
   csStep=2          # delay of each checking iteration, but the first
