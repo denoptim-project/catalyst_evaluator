@@ -170,6 +170,8 @@ Here are the steps to follow:
     ```
     This with run for a few instants and then return `Test PASSED!` if the entire workflow could be successfully executed. However, this configuration without a true remote worker is only available for the test run: it cannot be used to evaluate any other catalyst.
 
+If you need to change between running tests with actual HPC workers or localhost, and you have configured both of them, you only need to replace the `tools/RemoteWorkersBridge/configuration` file.
+
 
 ## Evaluation of Catalysts
 __NB.__ The time required to evaluate a single catalyst depends on the loading on the remote workers, but is typically of few hours. To make sure you can keep the terminal session alive you may want to look into tools that allow to detach the terminal session, e.g., [tmux](https://github.com/tmux/tmux/wiki).
