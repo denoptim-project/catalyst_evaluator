@@ -168,7 +168,9 @@ do
     "-i") ensureGoodArg "$i" "$arg" "$#";
           inpPathName=${args[$i+1]};;
     "-d") ensureGoodArg "$i" "$arg" "$#";
-          baseWrkDir=${args[$i+1]};;
+          baseWrkDir=${args[$i+1]};
+          if [ ! -d "$baseWrkDir" ]; then mkdir -p "$baseWrkDir" ; fi
+          baseWrkDir="$( cd -- "$baseWrkDir" >/dev/null 2>&1 ; pwd -P )";;
     "--highFreq") export HIGHFREQUENCY=1 ;;
     "--sendXtbToRemote") export RUNXTBLOCALLY=1 ;;
     *);;
