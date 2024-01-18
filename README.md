@@ -189,7 +189,7 @@ To define a catalyst with general formula (L)Ru(Y)(X)=CH<sub>2</sub>, where X an
     4. Now click on `Add Graphs`, select `Build` and start from a `scaffold`. In the dialog click on `Select current vertex` to initiate the graph.
     5. SHIFT-click on the yellow point by the "AP1" and "AP2" labels to select the attachment points meant for X-type ligands, click `Add vertex from BBSpace`, then choose `Compatible vertices`. Navigate to chose the X ligands and confirm your selection.
     6. Select the yellow point that represents "AP3", click `Add vertex from BBSpace`, and then choose `Compatible vertices`. Proceed repeating this step until the L-type ligand of your choice is complete.
-    7. Finally, `Export graph` in `SDF` format as `my_catalyst.sdf`. This file can be fed to the catalyst evaluator script (see below).
+    7. Finally, `Export graph` in `SDF` format as `mycatalyst.sdf` (or any other filename, but avoid using character "_" as it is later used as separator). This file can be fed to the catalyst evaluator script (see below).
 
 - chopping an existing molecular model of a catalyst with general formula (L)Ru(Y)(X)=CH<sub>2</sub> or the 2-isopropoxybenzylidene precursor (e.g., the classical Hoveyda-Grubbs second generation catalyst).
     1. Lauch Denoptim's GUI:
@@ -205,14 +205,14 @@ To define a catalyst with general formula (L)Ru(Y)(X)=CH<sub>2</sub>, where X an
         - a scaffold containing Ru,
         - two fragments connected to the scaffold via a `RuX:0-RuX:1` AP-AP connection, and
         - one fragment connected to the scaffold via a `RuL:0-RuL:1` AP-AP connection.
-    7. Finally, `Export graph` in `SDF` format as `my_catalyst.sdf`. This file can be fed to the catalyst evaluator script (see below).
+    7. Finally, `Export graph` in `SDF` format as `mycatalyst.sdf` (or any other filename, but avoid using character "_" as it is later used as separator). This file can be fed to the catalyst evaluator script (see below).
 
 
-Once you have a Denoptim graph file, i.e., the `my_catalyst.sdf` mentioned above, you can start the evaluation with the following command:
+Once you have a Denoptim graph file, i.e., the `mycatalyst.sdf` mentioned above, you can start the evaluation with the following command:
 ```
-./evaluate_catalyst.sh -i my_catalyst.sdf
+./evaluate_catalyst.sh -i mycatalyst.sdf
 ```
-To see how the master job proceeds, check the log file `my_catalyst/my_catalyst_FProvider.log`. For a successfully terminated evaluation, the final results are summarised in file `my_catalyst/my_catalyst_out.sdf` while the details are collected in archive `my_catalyst/my_catalyst.tar.gz`.
+To see how the master job proceeds, check the log file `mycatalyst/mycatalyst_FProvider.log`. For a successfully terminated evaluation, the final results are summarised in file `mycatalyst/mycatalyst_out.sdf` while the details are collected in archive `mycatalyst/mycatalyst.tar.gz`.
 
 
 # Acknowledgements
