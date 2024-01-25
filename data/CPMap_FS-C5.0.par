@@ -12,7 +12,7 @@
 # "R_21" = hyd:1,sArMe:0,sArX:0,arAmTri:0,sAriPr:0,sArEP:0,sArNitro:0,sArCX:0,sArTB:0,aroicEst:0,sArAc:0,sArCy:0,aromarom:0
 #
 RCN RuX:0 RuX:1,RuCl:1
-RCN RuL:0 M6HPyrimidinylidene:1,MPyridinylidene:1,MPyrazolylidene:1,MPyrrolidinylidene:1,MPyrrolylidene:1,MPiperidinylidene:1,MAminoAlkylidene:1,MIsoindolylidene:1,MBisAminoMethylidene:1,MImidazolidinylidene:1,MImidazolylidene:1
+RCN RuL:0 M6HPyrimidinylidene:1,MPyridinylidene:1,MPyrazolylidene:1,MPyrrolidinylidene:1,MPyrrolylidene:1,MPiperidinylidene:1,MAminoAlkylidene:1,MIsoindolylidene:1,MBisAminoMethylidene:1,MImidazolidinylidene:1,MImidazolylidene:1,MPhosphine:1
 RCN L6HPyrimidinylideneSubN:0 NCarbeneSubNAlkS:1,NCarbeneSubNAlkL:1,NCarbeneSubAr:1
 RCN L6HPyrimidinylideneSubNAlk:0 NCarbeneSubNAlkS:1,NCarbeneSubNAlkL:1
 RCN L6HPyrimidinylideneSubNAr:0 NCarbeneSubAr:1
@@ -53,6 +53,7 @@ RCN sMetaPh:1 hyd:1,sArMe:0,sArX:0,arAmTri:0,sAriPr:0,sArEP:0,sArNitro:0,sArCX:0
 RCN sArPentaPh:1 hyd:1,sArMe:0,sArX:0,arAmTri:0
 RCN sNaphthOrtho:0 hyd:1,sArMe:0,sAriPr:0,sArEP:0,sArTB:0,sArCy:0,aromarom:0
 RCN sAr:0 NCarbeneSubAr:1
+RCN phosphineSubM:0 phosphineSubM:1
 #
 # CLASS-to-BondOrder conversion
 #
@@ -60,6 +61,8 @@ RBO RuCl 1
 RBO RuX 1
 RBO RuL 1
 RBO scaff 1
+RBO MPhosphine 1
+RBO phosphineSubM 1
 RBO M6HPyrimidinylidene 1
 RBO MPyrrolidinylidene 1
 RBO MPyrrolylidene 1
@@ -136,6 +139,7 @@ RBO otol 1
 #
 # Capping rules
 #
+CAP phosphineSubM:0 hyd:1
 CAP LBisAminoMethylideneSubNS:0 me:1
 CAP LBisAminoMethylideneSubNL:0 me:1
 CAP L6HPyrimidinylideneSubN:0 otol:1
