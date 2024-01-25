@@ -197,7 +197,7 @@ To define a catalyst with general formula (L)Ru(Y)(X)=CH<sub>2</sub>, where X an
     cd data
     denoptim
     ```
-    2. Choose `File` -> `New` -> `New Graphs` and click on `Add Graphs` and then `Convert` to select which molecular structure to load. __NB:__ such model is assumed to adhere to the tradition of reporting any Ru-L and Ru-X bond as single bonds and the Ru-alkylidene bond as a double one.
+    2. Choose `File` -> `New` -> `New Graphs` and click on `Add Graphs` and then `Convert` to select which molecular structure to load. __NB:__ such model is assumed to adhere to the tradition of reporting any Ru-L and Ru-X bond as single bonds and the Ru-alkylidene bond as a double one. Aditionally, aromatic rings is assumed to adhear to the traditional reporting of alternating single and double bonds.
     3. In the resulting dialog window, click on `Import Rules` and navigate to load the rules from the file given in `data/cutting_rules_for_mol-to-graph`.
     4. Specify the policy for identifying the scaffold vertex to `ELEMENT` and specify elemental symbol `Ru`.
     5. By clicking on `Start Fragmentation` to convert the molecule into a graph, i.e., a collection of building blocks.
