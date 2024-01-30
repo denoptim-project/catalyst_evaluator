@@ -81,6 +81,8 @@ tinkerSubmitFile="$WORKDIR/submit_ConfSearch"
 #sprtSPFF="$WORKDIR/params.MMFF94_CS-2.2" we use a global params file ~/PARAMS.MMFF.DENOPTIM
 
 sprtSPAtmSpecKey="
+[\$([#6;X3](~[Ru])(~[#7;X3])~[#7;X3]),\$([#6;X3](~[Ru])(~[#7;X3])~[#6;X4]),\$([#6;X3](~[Ru])(~[#7;X3])~[#6;X3])] FFHINT= ~~154
+[\$([#6;X2](~[#7;X3])~[#7;X3]),\$([#6;X2](~[#7;X3])~[#6;X4]),\$([#6;X2](~[#7;X3])~[#6;X3])] FFHINT= ~~154
 [Ru] FFHINT= ~~210
 [\$([#6;X3]([#1])(~[Ru])~[#6;X3](@~[#6;X3])@~[#6;X3])] FFHINT= ~~206
 [\$([#6;X4]([#1])([#1])~[Ru])] FFHINT= ~~207
