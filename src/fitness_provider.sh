@@ -1741,88 +1741,102 @@ else
     freeEnergyE=$( grep -A1 "DFT-ENERGY" "$wrkDir/${molNum}_outSubDFT-E.sdf" | tail -n 1 )
 fi
 
-#Values in Hatree
+#Values in Hartree
 G_Propene="-117.738020895"
 G_Ethene="-78.4716324751" 
 G_HoveydaProd="-502.204109499"
 
-#Reference for synthesizability (Ligand exchange) in Hartree
+#Reference values in Hartree
 G_SIMes="-924.27249048"
 G_HG_RuCl2_SIMes="-2402.13728523"
-
-#Reference for production barrier ( "D -> X" barrier relative to Ru SIMes) in Hartree
 DG_referenceProductionBarrier=".0222529298"
+DDG_reference_HGII="0.0222312922"
+DG_referenceProductionBarrier="0.0222714248"
+DG_referencePrecursorStabilityHII="-0.0052201621"
+DG_referencePrecursorStabilityHI="0.0117775312"
+DDG_referencePrecursorStability="$( echo "$DG_referencePrecursorStabilityHI - $DG_referencePrecursorStabilityHII" | bc -l )"
+DG_referenceSynt="0.0226072217"
 
-hartree_to_kcalmol="627.49467516"
+# General use constants 
+hartree_to_kcalmol="627.49467516" # (kcal/mol*hartree)
+boltzmann_constant="0.0000000000000000000000138066" # (J/K)
+avogadro_number="602214000000000000000000" # (1/mol)
+jmol_to_kcalmol="0.00023901" # (kcal/J)
+temp="313.15" # (K) ( 40 degrees C to match laboratory experiments)
+kT=$( echo "$boltzmann_constant * $avogadro_number * $jmol_to_kcalmol * $temp" | bc -l ) # kcal/mol
 
-# Descriptor 1: (A-Z) - (A-X). 
-coef1="4"
-desc1=$( echo "$coef1 * ( $hartree_to_kcalmol * ( ( $freeEnergyZ - $freeEnergyD ) - ( $freeEnergyX + 2*$G_Ethene - $freeEnergyD - 2*$G_Propene ) ) )" | bc -l )
+# magnitude<n> represents n=1,2,3 orders of magnitude increase of rate constant at 40 C according to the Eyring equation ( kcal/mol )
+magnitude3="4.29872427" 
+magnitude2="2.86581618"
+magnitude1="1.43290809"
+magnitude4="5.73163236"
 
-# Descriptor 2: A relative to C (Exponential, Low values)
-# Identity: e( a * l(b)) = b^a
-gain2="0.7"
-coef2="-1"
-cutoff2="9"
-predesc2=$( echo "( $coef2 * ( e( ( $hartree_to_kcalmol * ( $freeEnergyC + $G_HoveydaProd - $freeEnergyA - 2*${G_Ethene} ) + $cutoff2 ) * l( $gain2 ) ) ) )" | bc -l )
-if [ "$( echo "$predesc2 <= -100" | bc -l )" == "1" ]
-    then
-    desc2="-100"
-    else
-    desc2="$predesc2"
+# Descriptor 1 -Boltzmann factor: (C-Z) - (C-X) - DDG_ref(HG2).
+coef1="1"
+desc1=$( echo "$coef1 * ( e( $hartree_to_kcalmol * ( ( $freeEnergyZ - $freeEnergyD ) - ( $freeEnergyX + 2*$G_Ethene - $freeEnergyD - 2*$G_Propene ) - $DDG_reference_HGII ) / $kT ) ) " | bc -l )
+DESCRIPTOR_DEFINITION_1='desc1=( echo "1 * ( e( $hartree_to_kcalmol * ( ( $freeEnergyZ - $freeEnergyD ) - ( $freeEnergyX + 2*$G_Ethene - $freeEnergyD - 2*$G_Propene ) - $DDG_reference_HGII ) / $kT ) ) " | bc -l )'
+
+
+# Descriptor 2 - Linear: (C-Z) - (C-X).
+coef2="1"
+desc2=$( echo "$coef2 * ( $hartree_to_kcalmol * ( ( $freeEnergyZ - $freeEnergyD ) - ( $freeEnergyX + 2*$G_Ethene - $freeEnergyD - 2*$G_Propene ) ) )" | bc -l )
+DESCRIPTOR_DEFINITION_2='desc2=$( echo "1 * ( $hartree_to_kcalmol * ( ( $freeEnergyZ - $freeEnergyD ) - ( $freeEnergyX + 2*$G_Ethene - $freeEnergyD - 2*$G_Propene ) ) )" | bc -l )'
+
+# Descriptor 3 - linear: Production Barrier relative to HG Ru SIMes.
+coef3="1"
+threshold3=$( echo "( $hartree_to_kcalmol * $DG_referenceProductionBarrier )" | bc -l )
+DG_cat=$( echo "$hartree_to_kcalmol * ( $freeEnergyX + 2*$G_Ethene - $freeEnergyD - 2*$G_Propene )" | bc -l )
+
+if [ "$( echo "$DG_cat >= $threshold3" | bc -l )" == "1" ]
+then
+    desc3="0.0000000001"
+else
+    desc3=$( echo "$coef3 * ( $threshold3 - $DG_cat )" | bc -l )
 fi
+DESCRIPTOR_DEFINITION_3='desc3=$( echo "1 * $hartree_to_kcalmol * ( $DG_referenceProductionBarrier - ( $freeEnergyX + 2*$G_Ethene - $freeEnergyD - 2*$G_Propene ) )" | bc -l )'
 
-# Descriptor 3: A relative to C (Exponential, High values)
-gain3="1.5"
-coef3="-1"
-cutoff3="-9"
-predesc3=$( echo "( $coef3 * ( e( ( $hartree_to_kcalmol * ( $freeEnergyC + $G_HoveydaProd - $freeEnergyA - 2*${G_Ethene} ) + $cutoff3 ) * l( $gain3 ) ) ) )" | bc -l )
-if [ "$( echo "$predesc3 <= -100" | bc -l )" == "1" ]
-    then
-    desc3="-100"
-    else
-    desc3="$predesc3"
+# Dynamic weight 1 (sigmoid): Catalyst activity.
+threshold4="$( echo "( $DG_referenceProductionBarrier * $hartree_to_kcalmol ) + $magnitude4" | bc -l )"
+w1=$( echo "1 / ( 1 + e( ( ( $hartree_to_kcalmol * ( $freeEnergyX + 2*$G_Ethene - $freeEnergyD - 2*$G_Propene ) ) - $threshold4 ) / $kT ) )" | bc -l )
+WEIGHT_DEFINITION_1='w1=$( echo "1 / ( 1 + e( $hartree_to_kcalmol * ( ( ( $freeEnergyX + 2*$G_Ethene - $freeEnergyD - 2*$G_Propene ) ) - ( $DG_referenceProductionBarrier + $magnitude4 ) ) / $kT ) )" | bc -l )'
+
+# Dynamic weight 2 (sigmoid): Stability of precursor wrt. MCB.
+threshold5=$( echo "( $hartree_to_kcalmol*$DDG_referencePrecursorStability ) + $magnitude1" | bc -l )
+DDG_stability=$( echo "$hartree_to_kcalmol * ( $freeEnergyC + $G_HoveydaProd - $freeEnergyA - 2*${G_Ethene} - $DG_referencePrecursorStabilityHII )" | bc -l )
+if [ "$( echo "$DDG_stability >= 0" | bc -l )" == "1" ]
+then
+    abs_DDG_Stability="$DDG_stability"
+else
+    abs_DDG_Stability="$( echo "-1 * $DDG_stability" | bc -l )"
 fi
+w2=$( echo "1 / ( 1 + e( ( $abs_DDG_Stability - $threshold5 ) / $kT ) )" | bc -l )
+WEIGHT_DEFINITION_2='w2=$( echo "1 / ( 1 + e( $hartree_to_kcalmol * ( ABS( $freeEnergyC + $G_HoveydaProd - $freeEnergyA - 2*${G_Ethene} - $DG_referencePrecursorStabilityHII ) - ( $DDG_referencePrecursorStability + $magnitude1 ) ) / $kT ) )" | bc -l )'
 
-# Descriptor 4: Exchange of L ligand with SIMes  
-gain4="2.0"
-coef4="-3"
-cutoff4="-14.0"
-predesc4=$( echo "( $coef4 * ( e( ( $hartree_to_kcalmol * ( $freeEnergyE + $G_SIMes - $G_HG_RuCl2_SIMes - $freeEnergyL ) + $cutoff4 ) * l( $gain4 ) ) ) )" | bc -l )
-if [ "$( echo "$predesc4 <= -100" | bc -l )" == "1" ]
-    then
-    desc4="-100"
-    else
-    desc4="$predesc4"
-fi
+# Dynamic weight 3 (sigmoid): Ligand exchange ( H2IMes  --exchange--> L ).
+coef6="1"
+threshold6=$( echo "( $hartree_to_kcalmol * $DG_referenceSynt ) + $magnitude1" | bc -l )
+DG_synt=$( echo "$hartree_to_kcalmol * ( $freeEnergyE + $G_SIMes - $G_HG_RuCl2_SIMes - $freeEnergyL )" | bc -l )
+w3=$( echo "1 / ( 1 + e( ( $DG_synt - $threshold6 ) / $kT ) )" | bc -l )
+WEIGHT_DEFINITION_3='w3=$( echo "1 / ( 1 + e( $hartree_to_kcalmol * ( ( $freeEnergyE + $G_SIMes - $G_HG_RuCl2_SIMes - $freeEnergyL ) - ( $DG_referenceSynt  + $magnitude1 ) ) / $kT ) )" | bc -l )'
 
-# Descriptor 5: Production Barrier relative to HG Ru SIMes
-coef5="-0.5"
-desc5=$( echo "( $coef5 * ( $hartree_to_kcalmol * ( $freeEnergyX + 2*$G_Ethene - $freeEnergyD - 2*$G_Propene - $DG_referenceProductionBarrier ) ) )" | bc -l )
+# Dynamic weight 4 (sigmoid): disfavouring non trans precursors.
+threshold7="$magnitude2"
+DG_stereo=$( echo "$hartree_to_kcalmol * ( $freeEnergyF - $freeEnergyA )" | bc -l )
+w4=$( echo "1 / ( 1 + e( ( - $DG_stereo + $threshold7 ) / $kT ) )" | bc -l )
+WEIGHT_DEFINITION_4='w4=$( echo "1 / ( 1 + e( $hartree_to_kcalmol * ( - ( $freeEnergyF - $freeEnergyA ) + $magnitude2 ) / $kT ) )" | bc -l )'
 
-# Descritor 6: disfavouring non trans precursors
-gain6="0.5"
-coef6="-1"
-cutoff6="-3.5"
-predesc6=$( echo "( $coef6 * ( e( ( $hartree_to_kcalmol * ( $freeEnergyF - $freeEnergyA ) + $cutoff6 ) * l( $gain6 ) ) ) )" | bc -l )
-if [ "$( echo "$predesc6 <= -100" | bc -l )" == "1" ]
-    then
-    desc6="-100"
-    else
-    desc6="$predesc6"
-fi
-
-#FITNESS (Sum of fitness from descriptors 1-8)
-fitness=$( echo " $desc1 + $desc2 + $desc3 + $desc4 + $desc5 + $desc6 " | bc -l )
+#FITNESS (Sum of fitness from descriptos 1-3 weighted by dynamic weights 1-4).
+fitness=$( echo "( $desc1 + $desc2 + $desc3 ) * ( $w1 * $w2 * $w3 * $w4 )" | bc -l )
 
 #Preparing final sdf file
-addPropertyToSingleMolSDF "DESCRIPTOR_DEFINITION_1" "desc1=( echo '(  4 * ( hartree_to_kcalmol * ( ( freeEnergyZ - freeEnergyD ) - ( freeEnergyX + 2*G_Ethene - freeEnergyD - 2*G_Propene ) ) )' | bc -l )" "$preOutSDF"
-addPropertyToSingleMolSDF "DESCRIPTOR_DEFINITION_2" "desc2=( echo '( -1 * ( e( ( hartree_to_kcalmol * ( freeEnergyC + G_HoveydaProd - freeEnergyA - ( 2 * G_Ethene ) ) + 9 ) * l( 0.7 ) ) ) )' | bc -l )" "$preOutSDF"
-addPropertyToSingleMolSDF "DESCRIPTOR_DEFINITION_3" "desc3=( echo '( -1 * ( e( ( hartree_to_kcalmol * ( freeEnergyC + G_HoveydaProd - freeEnergyA - ( 2 * G_Ethene ) ) + -9 ) * l( 1.5 ) ) ) )' | bc -l )" "$preOutSDF"
-addPropertyToSingleMolSDF "DESCRIPTOR_DEFINITION_4" "desc4=( echo '( -3 * ( e( ( hartree_to_kcalmol * ( freeEnergyE + G_SIMes - G_HG_RuCl2_SIMes - freeEnergyL ) + -3 ) * l( 1.7 ) ) ) )' | bc -l )" "$preOutSDF"
-addPropertyToSingleMolSDF "DESCRIPTOR_DEFINITION_5" "desc5=( echo '( -0.5 * ( hartree_to_kcalmol * ( freeEnergyX + G_HoveydaProd - freeEnergyA - ( 2 * G_Propene ) - DG_referenceProductioniBarrier ) ) )' | bc -l )" "$preOutSDF"
-addPropertyToSingleMolSDF "DESCRIPTOR_DEFINITION_6" "desc6=( echo '( -1 * ( e( ( hartree_to_kcalmol * ( freeEnergyF - freeEnergyA ) + -3.5 ) * l( 0.5 ) ) ) )' | bc -l )" "$preOutSDF"
-addPropertyToSingleMolSDF "CALCULATION_OF_OVERALL_FITNESS" "fitness=( echo ' desc1 + desc2 + desc3 + desc4 + desc5 + desc6 ' | bc -l )" "$preOutSDF"
+addPropertyToSingleMolSDF "DESCRIPTOR_DEFINITION_1" "$DESCRIPTOR_DEFINITION_1" "$preOutSDF"
+addPropertyToSingleMolSDF "DESCRIPTOR_DEFINITION_2" "$DESCRIPTOR_DEFINITION_1" "$preOutSDF"
+addPropertyToSingleMolSDF "DESCRIPTOR_DEFINITION_3" "$DESCRIPTOR_DEFINITION_1" "$preOutSDF"
+addPropertyToSingleMolSDF "WEIGHT_DEFINITION_1" "$WEIGHT_DEFINITION_1" "$preOutSDF"
+addPropertyToSingleMolSDF "WEIGHT_DEFINITION_2" "$WEIGHT_DEFINITION_1" "$preOutSDF"
+addPropertyToSingleMolSDF "WEIGHT_DEFINITION_3" "$WEIGHT_DEFINITION_1" "$preOutSDF"
+addPropertyToSingleMolSDF "WEIGHT_DEFINITION_4" "$WEIGHT_DEFINITION_1" "$preOutSDF"
+addPropertyToSingleMolSDF "CALCULATION_OF_OVERALL_FITNESS" "fitness=$( echo "( desc1 + desc2 + desc3 ) * ( w1 * w2 * w3 * w4 )" | bc -l )" "$preOutSDF"
 addPropertyToSingleMolSDF "freeEnergyA" "${freeEnergyA}" "$preOutSDF"
 addPropertyToSingleMolSDF "freeEnergyF" "${freeEnergyF}" "$preOutSDF"
 addPropertyToSingleMolSDF "freeEnergyE" "${freeEnergyE}" "$preOutSDF"
@@ -1837,7 +1851,20 @@ addPropertyToSingleMolSDF "G_HoveydaProd" "-502.204109499" "$preOutSDF"
 addPropertyToSingleMolSDF "G_SIMes" "-924.27249048" "$preOutSDF"
 addPropertyToSingleMolSDF "G_HG_RuCl2_SIMes" "-2402.13728523" "$preOutSDF"
 addPropertyToSingleMolSDF "DG_referenceProductionBarrier" "0.01468968" "$preOutSDF"
+addPropertyToSingleMolSDF "DG_referencePrecursorStabilityHII" "-0.0052201621" "$preOutSDF"
+addPropertyToSingleMolSDF "DG_referencePrecursorStabilityHI" "0.0117775312" "$preOutSDF"
+addPropertyToSingleMolSDF "DDG_referencePrecursorStability" "$( echo "$DG_referencePrecursorStabilityHI - $DG_referencePrecursorStabilityHII" | bc -l )" "$preOutSDF"
+addPropertyToSingleMolSDF "DG_referenceSynt" "0.0226072217" "$preOutSDF"
 addPropertyToSingleMolSDF "hartree_to_kcalmol" "627.49467516" "$preOutSDF"
+addPropertyToSingleMolSDF "boltzmann_constant" "0.0000000000000000000000138066" "$preOutSDF"
+addPropertyToSingleMolSDF "avogadro_number" "602214000000000000000000" "$preOutSDF"
+addPropertyToSingleMolSDF "jmol_to_kcalmol" "0.00023901" "$preOutSDF"
+addPropertyToSingleMolSDF "temp" "313.15" "$preOutSDF"
+addPropertyToSingleMolSDF "kT" "$( echo "$boltzmann_constant * $avogadro_number * $jmol_to_kcalmol * $temp" | bc -l )" "$preOutSDF"
+addPropertyToSingleMolSDF "magnitude1" "1.43290809" "$preOutSDF"
+addPropertyToSingleMolSDF "magnitude2" "2.86581618" "$preOutSDF"
+addPropertyToSingleMolSDF "magnitude3" "4.29872427" "$preOutSDF"
+addPropertyToSingleMolSDF "magnitude4" "5.73163236" "$preOutSDF"
 addPropertyToSingleMolSDF "DFT_IDENTIFIER" "$( grep "Current timestamp (ms):" "$wrkDir/${molNum}_run_DFT.log" | awk '{print $4}' )" "$preOutSDF"
 addPropertyToSingleMolSDF "DFT_MACHINE" "$( grep machine "$wrkDir/${molNum}_run_DFT.log" | awk '{print $2}' )" "$preOutSDF" 
 addPropertyToSingleMolSDF "XTB_IDENTIFIER" "$( grep "Current timestamp (ms):" "$wrkDir/${molNum}_run_XTB.log" | awk '{print $4}' )" "$preOutSDF"
