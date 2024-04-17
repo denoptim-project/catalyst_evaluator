@@ -1836,7 +1836,7 @@ addPropertyToSingleMolSDF "WEIGHT_DEFINITION_1" "$WEIGHT_DEFINITION_1" "$preOutS
 addPropertyToSingleMolSDF "WEIGHT_DEFINITION_2" "$WEIGHT_DEFINITION_1" "$preOutSDF"
 addPropertyToSingleMolSDF "WEIGHT_DEFINITION_3" "$WEIGHT_DEFINITION_1" "$preOutSDF"
 addPropertyToSingleMolSDF "WEIGHT_DEFINITION_4" "$WEIGHT_DEFINITION_1" "$preOutSDF"
-addPropertyToSingleMolSDF "CALCULATION_OF_OVERALL_FITNESS" "fitness=$( echo "( desc1 + desc2 + desc3 ) * ( w1 * w2 * w3 * w4 )" | bc -l )" "$preOutSDF"
+addPropertyToSingleMolSDF "CALCULATION_OF_OVERALL_FITNESS" 'fitness=$( echo "( $desc1 + $desc2 + $desc3 ) * ( $w1 * $w2 * $w3 * $w4 )" | bc -l )' "$preOutSDF"
 addPropertyToSingleMolSDF "freeEnergyA" "${freeEnergyA}" "$preOutSDF"
 addPropertyToSingleMolSDF "freeEnergyF" "${freeEnergyF}" "$preOutSDF"
 addPropertyToSingleMolSDF "freeEnergyE" "${freeEnergyE}" "$preOutSDF"
@@ -1872,9 +1872,10 @@ addPropertyToSingleMolSDF "XTB_MACHINE" "$( grep machine "$wrkDir/${molNum}_run_
 addPropertyToSingleMolSDF "DESCRIPTOR_1" "$desc1" "$preOutSDF"
 addPropertyToSingleMolSDF "DESCRIPTOR_2" "$desc2" "$preOutSDF"
 addPropertyToSingleMolSDF "DESCRIPTOR_3" "$desc3" "$preOutSDF"
-addPropertyToSingleMolSDF "DESCRIPTOR_4" "$desc4" "$preOutSDF"
-addPropertyToSingleMolSDF "DESCRIPTOR_5" "$desc5" "$preOutSDF"
-addPropertyToSingleMolSDF "DESCRIPTOR_6" "$desc6" "$preOutSDF"
+addPropertyToSingleMolSDF "WEIGHT_1" "$w1" "$preOutSDF"
+addPropertyToSingleMolSDF "WEIGHT_2" "$w2" "$preOutSDF"
+addPropertyToSingleMolSDF "WEIGHT_3" "$w3" "$preOutSDF"
+addPropertyToSingleMolSDF "WEIGHT_4" "$w4" "$preOutSDF"
 addPropertyToSingleMolSDF "FITNESS" "$fitness" "$preOutSDF"
 
 #
