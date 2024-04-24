@@ -1748,14 +1748,15 @@ G_HoveydaProd="-502.204109499"
 
 #Reference values in Hartree
 G_SIMes="-924.27249048"
+G_PCy3="-1046.11440274"
 G_HG_RuCl2_SIMes="-2402.13728523"
+G_HI_precursor="-2523.95659027"
 DG_referenceProductionBarrier=".0222529298"
 DDG_reference_HGII="0.0222312922"
 DG_referenceProductionBarrier="0.0222714248"
 DG_referencePrecursorStabilityHII="-0.0052201621"
 DG_referencePrecursorStabilityHI="0.0117775312"
 DDG_referencePrecursorStability="$( echo "$DG_referencePrecursorStabilityHI - $DG_referencePrecursorStabilityHII" | bc -l )"
-DG_referenceSynt="0.0226072217"
 
 # General use constants 
 hartree_to_kcalmol="627.49467516" # (kcal/mol*hartree)
@@ -1814,10 +1815,9 @@ WEIGHT_DEFINITION_2='w2=$( echo "1 / ( 1 + e( $hartree_to_kcalmol * ( ABS( $free
 
 # Dynamic weight 3 (sigmoid): Ligand exchange ( H2IMes  --exchange--> L ).
 coef6="1"
-threshold6=$( echo "( $hartree_to_kcalmol * $DG_referenceSynt ) + $magnitude1" | bc -l )
-DG_synt=$( echo "$hartree_to_kcalmol * ( $freeEnergyE + $G_SIMes - $G_HG_RuCl2_SIMes - $freeEnergyL )" | bc -l )
-w3=$( echo "1 / ( 1 + e( ( $DG_synt - $threshold6 ) / $kT ) )" | bc -l )
-WEIGHT_DEFINITION_3='w3=$( echo "1 / ( 1 + e( $hartree_to_kcalmol * ( ( $freeEnergyE + $G_SIMes - $G_HG_RuCl2_SIMes - $freeEnergyL ) - ( $DG_referenceSynt  + $magnitude1 ) ) / $kT ) )" | bc -l )'
+DG_synt=$( echo "$hartree_to_kcalmol * ( $freeEnergyE + $G_PCy3 - $G_HI_precursor - $freeEnergyL )" | bc -l )
+w3=$( echo "1 / ( 1 + e( ( $DG_synt - $magnitude1 ) / $kT ) )" | bc -l )
+WEIGHT_DEFINITION_3='w3=$( echo "1 / ( 1 + e( $hartree_to_kcalmol * ( ( $freeEnergyE + $G_PCy3 - $G_HI_precursor - $freeEnergyL ) - $magnitude1 ) / $kT ) )" | bc -l )'
 
 # Dynamic weight 4 (sigmoid): disfavouring non trans precursors.
 threshold7="$magnitude2"
