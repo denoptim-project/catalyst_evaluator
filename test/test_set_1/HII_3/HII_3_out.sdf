@@ -245,7 +245,7 @@ w1=$( echo "1 / ( 1 + e( $hartree_to_kcalmol * ( ( ( $freeEnergyX + 2*$G_Ethene 
 w2=$( echo "1 / ( 1 + e( $hartree_to_kcalmol * ( ABS( $freeEnergyC + $G_HoveydaProd - $freeEnergyA - 2*${G_Ethene} - $DG_referencePrecursorStabilityHII ) - ( $DDG_referencePrecursorStability + $magnitude1 ) ) / $kT ) )" | bc -l )
 
 > <WEIGHT_DEFINITION_3>
-w3=$( echo "1 / ( 1 + e( $hartree_to_kcalmol * ( ( $freeEnergyE + $G_SIMes - $G_HG_RuCl2_SIMes - $freeEnergyL ) - ( $DG_referenceSynt  + $magnitude1 ) ) / $kT ) )" | bc -l )
+w3=$( echo "1 / ( 1 + e( $hartree_to_kcalmol * ( ( $freeEnergyE + $G_PCy3 - $G_HI_precursor - $freeEnergyL ) - $magnitude1 ) / $kT ) )" | bc -l )
 
 > <WEIGHT_DEFINITION_4>
 w4=$( echo "1 / ( 1 + e( $hartree_to_kcalmol * ( - ( $freeEnergyF - $freeEnergyA ) + $magnitude2 ) / $kT ) )" | bc -l )
@@ -269,12 +269,12 @@ fitness=$( echo "( $desc1 + $desc2 + $desc3 ) * $w1 * $w2 * $w3 * $w4" | bc -l )
 .99999999638889792846
 
 > <WEIGHT_3>
-.99999999999898265357
+.99999999999898265183
 
 > <WEIGHT_4>
 .99998348743798793131
 
 > <FITNESS>
-14.95545098272856067191
+14.95545098272856064589
 
 $$$$

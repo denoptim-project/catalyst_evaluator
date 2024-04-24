@@ -169,30 +169,6 @@ M  END
 > <UID>
 
 
-> <DESCRIPTOR_DEFINITION_1>
-desc1=( echo "1 * ( e( $hartree_to_kcalmol * ( ( $freeEnergyZ - $freeEnergyD ) - ( $freeEnergyX + 2*$G_Ethene - $freeEnergyD - 2*$G_Propene ) - $DDG_reference_HGII ) / $kT ) ) " | bc -l )
-
-> <DESCRIPTOR_DEFINITION_2>
-desc1=( echo "1 * ( e( $hartree_to_kcalmol * ( ( $freeEnergyZ - $freeEnergyD ) - ( $freeEnergyX + 2*$G_Ethene - $freeEnergyD - 2*$G_Propene ) - $DDG_reference_HGII ) / $kT ) ) " | bc -l )
-
-> <DESCRIPTOR_DEFINITION_3>
-desc1=( echo "1 * ( e( $hartree_to_kcalmol * ( ( $freeEnergyZ - $freeEnergyD ) - ( $freeEnergyX + 2*$G_Ethene - $freeEnergyD - 2*$G_Propene ) - $DDG_reference_HGII ) / $kT ) ) " | bc -l )
-
-> <WEIGHT_DEFINITION_1>
-w1=$( echo "1 / ( 1 + e( $hartree_to_kcalmol * ( ( ( $freeEnergyX + 2*$G_Ethene - $freeEnergyD - 2*$G_Propene ) ) - ( $DG_referenceProductionBarrier + $magnitude4 ) ) / $kT ) )" | bc -l )
-
-> <WEIGHT_DEFINITION_2>
-w1=$( echo "1 / ( 1 + e( $hartree_to_kcalmol * ( ( ( $freeEnergyX + 2*$G_Ethene - $freeEnergyD - 2*$G_Propene ) ) - ( $DG_referenceProductionBarrier + $magnitude4 ) ) / $kT ) )" | bc -l )
-
-> <WEIGHT_DEFINITION_3>
-w1=$( echo "1 / ( 1 + e( $hartree_to_kcalmol * ( ( ( $freeEnergyX + 2*$G_Ethene - $freeEnergyD - 2*$G_Propene ) ) - ( $DG_referenceProductionBarrier + $magnitude4 ) ) / $kT ) )" | bc -l )
-
-> <WEIGHT_DEFINITION_4>
-w1=$( echo "1 / ( 1 + e( $hartree_to_kcalmol * ( ( ( $freeEnergyX + 2*$G_Ethene - $freeEnergyD - 2*$G_Propene ) ) - ( $DG_referenceProductionBarrier + $magnitude4 ) ) / $kT ) )" | bc -l )
-
-> <CALCULATION_OF_OVERALL_FITNESS>
-fitness=$( echo "( $desc1 + $desc2 + $desc3 ) * ( $w1 * $w2 * $w3 * $w4 )" | bc -l )
-
 > <freeEnergyA>
 -2402.13798299
 
@@ -289,6 +265,30 @@ fitness=$( echo "( $desc1 + $desc2 + $desc3 ) * ( $w1 * $w2 * $w3 * $w4 )" | bc 
 > <XTB_MACHINE>
 158.36.42.38
 
+> <DESCRIPTOR_DEFINITION_1>
+desc1=( echo "1 * ( e( $hartree_to_kcalmol * ( ( $freeEnergyZ - $freeEnergyD ) - ( $freeEnergyX + 2*$G_Ethene - $freeEnergyD - 2*$G_Propene ) - $DDG_reference_HGII ) / $kT ) ) " | bc -l )
+
+> <DESCRIPTOR_DEFINITION_2>
+desc2=$( echo "1 * ( $hartree_to_kcalmol * ( ( $freeEnergyZ - $freeEnergyD ) - ( $freeEnergyX + 2*$G_Ethene - $freeEnergyD - 2*$G_Propene ) ) )" | bc -l )
+
+> <DESCRIPTOR_DEFINITION_3>
+desc3=$( echo "1 * $hartree_to_kcalmol * ( $DG_referenceProductionBarrier - ( $freeEnergyX + 2*$G_Ethene - $freeEnergyD - 2*$G_Propene ) )" | bc -l )
+
+> <WEIGHT_DEFINITION_1>
+w1=$( echo "1 / ( 1 + e( $hartree_to_kcalmol * ( ( ( $freeEnergyX + 2*$G_Ethene - $freeEnergyD - 2*$G_Propene ) ) - ( $DG_referenceProductionBarrier + $magnitude4 ) ) / $kT ) )" | bc -l )
+
+> <WEIGHT_DEFINITION_2>
+w2=$( echo "1 / ( 1 + e( $hartree_to_kcalmol * ( ABS( $freeEnergyC + $G_HoveydaProd - $freeEnergyA - 2*${G_Ethene} - $DG_referencePrecursorStabilityHII ) - ( $DDG_referencePrecursorStability + $magnitude1 ) ) / $kT ) )" | bc -l )
+
+> <WEIGHT_DEFINITION_3>
+w3=$( echo "1 / ( 1 + e( $hartree_to_kcalmol * ( ( $freeEnergyE + $G_PCy3 - $G_HI_precursor - $freeEnergyL ) - $magnitude1 ) / $kT ) )" | bc -l )
+
+> <WEIGHT_DEFINITION_4>
+w4=$( echo "1 / ( 1 + e( $hartree_to_kcalmol * ( - ( $freeEnergyF - $freeEnergyA ) + $magnitude2 ) / $kT ) )" | bc -l )
+
+> <FITNESS_DEFINITION>
+fitness=$( echo "( $desc1 + $desc2 + $desc3 ) * $w1 * $w2 * $w3 * $w4" | bc -l )
+
 > <DESCRIPTOR_1>
 .98473855994809095022
 
@@ -305,12 +305,12 @@ fitness=$( echo "( $desc1 + $desc2 + $desc3 ) * ( $w1 * $w2 * $w3 * $w4 )" | bc 
 .99999999617291632440
 
 > <WEIGHT_3>
-.99999999999396984758
+.99999999999396983724
 
 > <WEIGHT_4>
 .99998390594922725657
 
 > <FITNESS>
-14.92341964287878190452
+14.92341964287878175053
 
 $$$$
