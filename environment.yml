@@ -10,3 +10,4 @@ dependencies:
   - openbabel
   - xtb
   - autocompchem=2.0.1
+  - pandas
