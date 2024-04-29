@@ -73,9 +73,12 @@ if __name__ == '__main__':
     for pathname in pathnames:
         rows.append(extract_properties_from_sdf(pathname))
 
+
     df = pd.DataFrame(rows)
     if len(df.columns.tolist()) > 0:
         print('Retrieved properties:', df.columns.tolist())
+
+    pd.set_option("display.precision", 8)
 
     if options.property_to_analyze:
         column_name = options.property_to_analyze.strip('\'')
