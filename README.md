@@ -215,5 +215,8 @@ Once you have a Denoptim graph file, i.e., the `mycatalyst.sdf` mentioned above,
 To see how the master job proceeds, check the log file `mycatalyst/mycatalyst_FProvider.log`. For a successfully terminated evaluation, the final results are summarised in file `mycatalyst/mycatalyst_out.sdf` while the details are collected in archive `mycatalyst/mycatalyst.tar.gz`.
 
 
+# License
+The content of this repository is licenced under the [GNU AGPL v3.0 license terms](LICENSE). 
+
 # Acknowledgements
 The Research Council of Norway and University of Bergen are thanked for various kinds of funding.
