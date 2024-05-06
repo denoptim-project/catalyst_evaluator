@@ -1,7 +1,9 @@
 # Automated Evaluation of Ru-Based Catalyst for Olefin metathesis
 This is a tool for automatic evaluation of candidate olefin metathesis catalyst with general formula (L)Ru(Y)(X)=CH<sub>2</sub>, where X and Y are covalent ligands and L is a dative ligand.
 
-TODO: add figure with workflow overview
+The workflow leading to the calculation of the fitness is summarised here:
+
+![Figure 1: overview of fitness evaluation workflow.](./figures/workflow_overview.png)
 
 ## How To Get Started
 1. Clone/copy this repository on your local client.
@@ -216,7 +218,7 @@ To see how the master job proceeds, check the log file `mycatalyst/mycatalyst_FP
 
 
 # License
-The content of this repository is licenced under the [GNU AGPL v3.0 license terms](LICENSE). 
+The content of this repository is licenced under the [GNU AGPL v3.0 license terms](LICENSE).
 
 # Acknowledgements
 The Research Council of Norway and University of Bergen are thanked for various kinds of funding.
