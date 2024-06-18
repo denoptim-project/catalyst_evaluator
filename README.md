@@ -1,5 +1,5 @@
 # Automated Evaluation of Ru-Based Catalyst for Olefin metathesis
-This is a tool for automatic evaluation of candidate olefin metathesis catalyst with general formula (L)Ru(Y)(X)=CH<sub>2</sub>, where X and Y are covalent ligands and L is a dative ligand.
+This is a tool for automatic evaluation of candidate olefin metathesis catalyst with general formula (L)Ru(X)(X)=CH<sub>2</sub>, where X is a covalent ligands and L is a dative ligand.
 
 The workflow leading to the calculation of the fitness is summarised here:
 
@@ -178,7 +178,7 @@ If you need to change between running tests with actual HPC workers or localhost
 ## Evaluation of Catalysts
 __NB.__ The time required to evaluate a single catalyst depends on the loading on the remote workers, but is typically of few hours. To make sure you can keep the terminal session alive you may want to look into tools that allow to detach the terminal session, e.g., [tmux](https://github.com/tmux/tmux/wiki).
 
-To define a catalyst with general formula (L)Ru(Y)(X)=CH<sub>2</sub>, where X and Y are covalent ligands and L is a dative ligand, we use [Denoptim's graph representation](https://denoptim-project.github.io/DENOPTIM/) (there is an introductory [tutorial here](https://denoptim-project.github.io/tutorials/tutorial_1.1.html)). Such representation can be prepared in two different ways:
+To define a catalyst with general formula (L)Ru(X)(X)=CH<sub>2</sub>, where X is a covalent ligands and L is a dative ligand, we use [Denoptim's graph representation](https://denoptim-project.github.io/DENOPTIM/) (there is an introductory [tutorial here](https://denoptim-project.github.io/tutorials/tutorial_1.1.html)). Such representation can be prepared in two different ways:
 
 - manually assembling fragments.
     1. Lauch Denoptim's GUI:
@@ -193,7 +193,7 @@ To define a catalyst with general formula (L)Ru(Y)(X)=CH<sub>2</sub>, where X an
     6. Select the yellow point that represents "AP3", click `Add vertex from BBSpace`, and then choose `Compatible vertices`. Proceed repeating this step until the L-type ligand of your choice is complete.
     7. Finally, `Export graph` in `SDF` format as `mycatalyst.sdf` (or any other filename, but avoid using character "_" as it is later used as separator). This file can be fed to the catalyst evaluator script (see below).
 
-- chopping an existing molecular model of a catalyst with general formula (L)Ru(Y)(X)=CH<sub>2</sub> or the 2-isopropoxybenzylidene precursor (e.g., the classical Hoveyda-Grubbs second generation catalyst).
+- chopping an existing molecular model of a catalyst with general formula (L)Ru(X)(X)=CH<sub>2</sub> or the 2-isopropoxybenzylidene precursor (e.g., the classical Hoveyda-Grubbs second generation catalyst).
     1. Lauch Denoptim's GUI:
     ```
     cd data
