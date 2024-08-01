@@ -1,7 +1,9 @@
 # Automated Evaluation of Ru-Based Catalyst for Olefin metathesis
-This is a tool for automatic evaluation of candidate olefin metathesis catalyst with general formula (L)Ru(Y)(X)=CH<sub>2</sub>, where X and Y are covalent ligands and L is a dative ligand.
+This is a tool for automatic evaluation of candidate olefin metathesis catalyst with general formula (L)Ru(X)(X)=CH<sub>2</sub>, where X is a covalent ligands and L is a dative ligand.
 
-TODO: add figure with workflow overview
+The workflow leading to the calculation of the fitness is summarised here:
+
+![Figure 1: overview of fitness evaluation workflow.](./figures/workflow_overview.png)
 
 ## How To Get Started
 1. Clone/copy this repository on your local client.
@@ -32,7 +34,7 @@ TODO: add figure with workflow overview
     export SPARTANEXE="_your_path_to_Spartan_executable/spartan20"
     ```
 
-4. We now configure a remote computer (later referred to as a "remote worker") to run Gaussian DFT and, possibly, xTB calculations, which are typically executed in HPC service provider. The interface with one or more remote computers is managed by the tool [RemoteWorkersBridge](https://github.com/denoptim-project/RemoteWorkersBridge) (or git submodule RemoteWorkersBridge under the [tools](tools) folder). In general, we assume you have a way to send jobs to a queuing system on such HPC workers or start such jobs in whichever way according to what is suitable for your specific remote worker. In our case this task is performed by the command `submit_job_acc`, which we assume you'll make available in your HPC workers (TODO: make source available at [tools/submit_job_acc/submit_job_acc.sh](tools/submit_job_acc/submit_job_acc.sh)). The following steps allow to configure the bridge to a remote worker (in alternative, have a look at the [Test Run Without Remote Workers](#test-run-without-remote-workers) ).
+4. We now configure a remote computer (later referred to as a "remote worker") to run Gaussian DFT and, possibly, xTB calculations, which are typically executed in HPC service provider. The interface with one or more remote computers is managed by the tool [RemoteWorkersBridge](https://github.com/denoptim-project/RemoteWorkersBridge) (or git submodule RemoteWorkersBridge under the [tools](tools) folder). In general, we assume you have a way to send jobs to a queuing system on such HPC workers or start such jobs in whichever way according to what is suitable for your specific remote worker. In our case this task is performed by the command `submit_job_acc` (see source in [tools/submit_job_acc/submit_job_acc.sh](tools/submit_job_acc/submit_job_acc.sh)), which we assume you'll make available in your HPC workers PATH. The following steps allow to configure the bridge to a remote worker (in alternative, have a look at the [Test Run Without Remote Workers](#test-run-without-remote-workers) ).
 
 5. Create two pairs of ssh keys (with non-empty pass-phrase):
     ```
@@ -176,7 +178,7 @@ If you need to change between running tests with actual HPC workers or localhost
 ## Evaluation of Catalysts
 __NB.__ The time required to evaluate a single catalyst depends on the loading on the remote workers, but is typically of few hours. To make sure you can keep the terminal session alive you may want to look into tools that allow to detach the terminal session, e.g., [tmux](https://github.com/tmux/tmux/wiki).
 
-To define a catalyst with general formula (L)Ru(Y)(X)=CH<sub>2</sub>, where X and Y are covalent ligands and L is a dative ligand, we use [Denoptim's graph representation](https://denoptim-project.github.io/DENOPTIM/) (there is an introductory [tutorial here](https://denoptim-project.github.io/tutorials/tutorial_1.1.html)). Such representation can be prepared in two different ways:
+To define a catalyst with general formula (L)Ru(X)(X)=CH<sub>2</sub>, where X is a covalent ligands and L is a dative ligand, we use [Denoptim's graph representation](https://denoptim-project.github.io/DENOPTIM/) (there is an introductory [tutorial here](https://denoptim-project.github.io/tutorials/tutorial_1.1.html)). Such representation can be prepared in two different ways:
 
 - manually assembling fragments.
     1. Lauch Denoptim's GUI:
@@ -191,7 +193,7 @@ To define a catalyst with general formula (L)Ru(Y)(X)=CH<sub>2</sub>, where X an
     6. Select the yellow point that represents "AP3", click `Add vertex from BBSpace`, and then choose `Compatible vertices`. Proceed repeating this step until the L-type ligand of your choice is complete.
     7. Finally, `Export graph` in `SDF` format as `mycatalyst.sdf` (or any other filename, but avoid using character "_" as it is later used as separator). This file can be fed to the catalyst evaluator script (see below).
 
-- chopping an existing molecular model of a catalyst with general formula (L)Ru(Y)(X)=CH<sub>2</sub> or the 2-isopropoxybenzylidene precursor (e.g., the classical Hoveyda-Grubbs second generation catalyst).
+- chopping an existing molecular model of a catalyst with general formula (L)Ru(X)(X)=CH<sub>2</sub> or the 2-isopropoxybenzylidene precursor (e.g., the classical Hoveyda-Grubbs second generation catalyst).
     1. Lauch Denoptim's GUI:
     ```
     cd data
@@ -214,6 +216,11 @@ Once you have a Denoptim graph file, i.e., the `mycatalyst.sdf` mentioned above,
 ```
 To see how the master job proceeds, check the log file `mycatalyst/mycatalyst_FProvider.log`. For a successfully terminated evaluation, the final results are summarised in file `mycatalyst/mycatalyst_out.sdf` while the details are collected in archive `mycatalyst/mycatalyst.tar.gz`.
 
+# Reproduction of Published Results
+The results presented in the scietific publication presenting this method are available under [test/test_set_1](test/test_set_1). The analysis of such data can be reproduced by running the Jupyter-notebook [test/test_set_1/Analysis_MS_figures.ipynb](test/test_set_1/Analysis_MS_figures.ipynb).
+
+# License
+The content of this repository is licenced under the [GNU AGPL v3.0 license terms](LICENSE).
 
 # Acknowledgements
 The Research Council of Norway and University of Bergen are thanked for various kinds of funding.

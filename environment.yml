@@ -11,3 +11,5 @@ dependencies:
   - xtb
   - autocompchem=2.0.1
   - pandas
+  - jupyter
+  - matplotlib
