@@ -336,4 +336,7 @@ fitness=$( echo "( $desc1 + $desc2 + $desc3 ) * ( $w1 * $w2 * $w3 * $w4 )" | bc 
 > <FITNESS>
 13.60056745979489240650
 
+> <NAME>
+H16
+
 $$$$
