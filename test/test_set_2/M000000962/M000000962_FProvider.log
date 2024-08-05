@@ -1,0 +1,256 @@
+Starting fitness calculation (ID:1) at 1722597736
+Searching for UID: 
+Submitting batch 1st: F1 F2 A1 A2 L0
+Start waiting for completion of submitted jobs (batch 1st)...
+Fri Aug  2 11:23:22 UTC 2024 Still waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1.F1
+Fri Aug  2 11:23:22 UTC 2024 Still waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1.F2
+Fri Aug  2 11:23:22 UTC 2024 Still waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1.A1
+Fri Aug  2 11:23:22 UTC 2024 Still waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1.A2
+Fri Aug  2 11:23:22 UTC 2024 Still waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1.L0
+Fri Aug  2 11:25:22 UTC 2024 Still waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1.F1
+Fri Aug  2 11:25:22 UTC 2024 Still waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1.F2
+Fri Aug  2 11:25:22 UTC 2024 Still waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1.A1
+Fri Aug  2 11:25:22 UTC 2024 Still waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1.A2
+Fri Aug  2 11:27:22 UTC 2024 Still waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1.F1
+Fri Aug  2 11:27:22 UTC 2024 Still waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1.F2
+Fri Aug  2 11:27:22 UTC 2024 Still waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1.A1
+Fri Aug  2 11:27:22 UTC 2024 Still waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1.A2
+Fri Aug  2 11:29:22 UTC 2024 Still waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1.F1
+Fri Aug  2 11:29:22 UTC 2024 Still waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1.F2
+Fri Aug  2 11:29:22 UTC 2024 Still waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1.A1
+Fri Aug  2 11:29:22 UTC 2024 Still waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1.A2
+Fri Aug  2 11:31:22 UTC 2024 Still waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1.F1
+Fri Aug  2 11:31:22 UTC 2024 Still waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1.F2
+Fri Aug  2 11:31:22 UTC 2024 Still waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1.A1
+Fri Aug  2 11:31:22 UTC 2024 Still waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1.A2
+Fri Aug  2 11:33:22 UTC 2024 Still waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1.F1
+Fri Aug  2 11:33:22 UTC 2024 Still waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1.F2
+Fri Aug  2 11:33:22 UTC 2024 Still waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1.A1
+Fri Aug  2 11:33:22 UTC 2024 Still waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1.A2
+Fri Aug  2 11:35:22 UTC 2024 Still waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1.F1
+Fri Aug  2 11:35:22 UTC 2024 Still waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1.F2
+Fri Aug  2 11:35:22 UTC 2024 Still waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1.A1
+Fri Aug  2 11:35:22 UTC 2024 Still waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1.A2
+Fri Aug  2 11:37:22 UTC 2024 Still waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1.F1
+Fri Aug  2 11:37:22 UTC 2024 Still waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1.F2
+Fri Aug  2 11:37:22 UTC 2024 Still waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1.A1
+Fri Aug  2 11:37:22 UTC 2024 Still waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1.A2
+Fri Aug  2 11:39:22 UTC 2024 Still waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1.F1
+Fri Aug  2 11:39:22 UTC 2024 Still waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1.F2
+Fri Aug  2 11:39:22 UTC 2024 Still waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1.A1
+Fri Aug  2 11:39:22 UTC 2024 Still waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1.A2
+Fri Aug  2 11:41:22 UTC 2024 Still waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1.F1
+Fri Aug  2 11:41:22 UTC 2024 Still waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1.F2
+Fri Aug  2 11:41:22 UTC 2024 Still waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1.A1
+Fri Aug  2 11:41:22 UTC 2024 Still waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1.A2
+Fri Aug  2 11:43:22 UTC 2024 Still waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1.F1
+Fri Aug  2 11:43:22 UTC 2024 Still waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1.F2
+Fri Aug  2 11:43:22 UTC 2024 Still waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1.A1
+Fri Aug  2 11:43:22 UTC 2024 Still waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1.A2
+Fri Aug  2 11:45:22 UTC 2024 Still waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1.F1
+Fri Aug  2 11:45:22 UTC 2024 Still waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1.F2
+Fri Aug  2 11:45:22 UTC 2024 Still waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1.A1
+Fri Aug  2 11:45:22 UTC 2024 Still waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1.A2
+Fri Aug  2 11:47:22 UTC 2024 Still waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1.F1
+Fri Aug  2 11:47:22 UTC 2024 Still waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1.F2
+Fri Aug  2 11:47:22 UTC 2024 Still waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1.A1
+Fri Aug  2 11:47:22 UTC 2024 Still waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1.A2
+Fri Aug  2 11:49:22 UTC 2024 Still waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1.F1
+Fri Aug  2 11:49:22 UTC 2024 Still waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1.F2
+Fri Aug  2 11:49:22 UTC 2024 Still waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1.A1
+Fri Aug  2 11:49:22 UTC 2024 Still waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1.A2
+Fri Aug  2 11:51:22 UTC 2024 Still waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1.F1
+Fri Aug  2 11:51:22 UTC 2024 Still waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1.F2
+Fri Aug  2 11:51:22 UTC 2024 Still waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1.A1
+Fri Aug  2 11:51:22 UTC 2024 Still waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1.A2
+Fri Aug  2 11:53:22 UTC 2024 Still waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1.F1
+Fri Aug  2 11:53:22 UTC 2024 Still waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1.F2
+Fri Aug  2 11:53:22 UTC 2024 Still waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1.A1
+Fri Aug  2 11:53:22 UTC 2024 Still waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1.A2
+Fri Aug  2 11:55:22 UTC 2024 Still waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1.F1
+Fri Aug  2 11:55:22 UTC 2024 Still waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1.F2
+Fri Aug  2 11:55:22 UTC 2024 Still waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1.A1
+Fri Aug  2 11:55:22 UTC 2024 Still waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1.A2
+Fri Aug  2 11:57:22 UTC 2024 Still waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1.F1
+Fri Aug  2 11:57:22 UTC 2024 Still waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1.F2
+Fri Aug  2 11:59:22 UTC 2024 Still waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1.F2
+Fri Aug  2 12:01:22 UTC 2024 All done: stop waiting.
+Checking outcome of sub-jobs (batch 1st)...
+Identification of lowest energy points (batch 1st)...
+For species F:
+ F1 (-183.712)
+ F2 (-182.061)
+ Lowest energy among F's is F1 (-183.712)
+For species A:
+ A1 (-314.408)
+ A2 (-313.129)
+ Lowest energy among A's is A1 (-314.408)
+For species L:
+ L0 (-125.806)
+ Lowest energy among L's is L0 (-125.806)
+=====================================================================
+Lowest energy (batch 1st) from A1 (-314.408)
+=====================================================================
+Extracting L-ligand conformation...
+Ligand fragment correctly extracted
+Collecting fragments for building other states (1)
+1240 /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/M000000962_libFragsAndLigand.sdf
+Extracting X-ligand conformation...
+Collecting fragments for building other states (2)
+1308 /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/M000000962_libFragsAndLigand.sdf
+Submitting batch 2nd: C1 C2 X1 X2 Z1 Z2
+Start waiting for completion of submitted jobs (batch 2nd)...
+Fri Aug  2 12:02:30 UTC 2024 Still waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1.X1
+Fri Aug  2 12:02:30 UTC 2024 Still waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1.X2
+Fri Aug  2 12:02:30 UTC 2024 Still waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1.Z1
+Fri Aug  2 12:02:30 UTC 2024 Still waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1.Z2
+Fri Aug  2 12:04:30 UTC 2024 Still waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1.X1
+Fri Aug  2 12:04:30 UTC 2024 Still waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1.X2
+Fri Aug  2 12:04:30 UTC 2024 Still waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1.Z1
+Fri Aug  2 12:04:30 UTC 2024 Still waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1.Z2
+Fri Aug  2 12:06:30 UTC 2024 Still waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1.Z1
+Fri Aug  2 12:06:30 UTC 2024 Still waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1.Z2
+Fri Aug  2 12:08:30 UTC 2024 Still waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1.Z1
+Fri Aug  2 12:10:30 UTC 2024 All done: stop waiting.
+Checking outcome of sub-jobs (batch 2nd)...
+Identification of lowest energy points (batch 2nd)...
+For species C:
+ C1 (-243.846)
+ C2 (-243.809)
+ Lowest energy among C's is C1 (-243.846)
+For species X:
+ X1 (-203.687)
+ X2 (-197.024)
+ Lowest energy among X's is X1 (-203.687)
+For species Z:
+ Z1 (65.421)
+ Z2 (68.163)
+ Lowest energy among Z's is Z1 (65.421)
+=====================================================================
+Lowest energy (batch 2nd) from  (10000000000.0)
+=====================================================================
+Preparing pre DFT calculation for species X (from X1)
+Geometry to pre DFT: /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/M000000962_outSub-X1.sdf
+Preparing pre DFT calculation for species Z (from Z1)
+Geometry to pre DFT: /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/M000000962_outSub-Z1.sdf
+Preparing pre DFT calculation for species C (from C1)
+Geometry to pre DFT: /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/M000000962_outSub-C1.sdf
+Submitting batch of DFT jobs: X Z C
+Start waiting for completion of DFT master job...
+Fri Aug  2 12:40:31 UTC 2024 Waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1_runDFT
+Fri Aug  2 13:10:31 UTC 2024 Waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1_runDFT
+Fri Aug  2 13:40:31 UTC 2024 Waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1_runDFT
+Fri Aug  2 14:10:31 UTC 2024 Waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1_runDFT
+Fri Aug  2 14:40:31 UTC 2024 Waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1_runDFT
+Fri Aug  2 15:10:31 UTC 2024 Waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1_runDFT
+Fri Aug  2 15:40:31 UTC 2024 Waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1_runDFT
+Fri Aug  2 16:10:31 UTC 2024 Waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1_runDFT
+Fri Aug  2 16:40:31 UTC 2024 Waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1_runDFT
+Fri Aug  2 17:10:31 UTC 2024 Waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1_runDFT
+Fri Aug  2 17:40:31 UTC 2024 Waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1_runDFT
+Fri Aug  2 18:10:31 UTC 2024 Waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1_runDFT
+Fri Aug  2 18:40:31 UTC 2024 Waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1_runDFT
+Fri Aug  2 19:10:31 UTC 2024 Waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1_runDFT
+Fri Aug  2 19:40:31 UTC 2024 Waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1_runDFT
+Fri Aug  2 20:10:31 UTC 2024 Waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1_runDFT
+Fri Aug  2 20:40:31 UTC 2024 Waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1_runDFT
+Fri Aug  2 21:10:31 UTC 2024 Waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1_runDFT
+Fri Aug  2 21:40:31 UTC 2024 Waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1_runDFT
+Fri Aug  2 22:10:31 UTC 2024 Waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1_runDFT
+Fri Aug  2 22:40:31 UTC 2024 Waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1_runDFT
+Fri Aug  2 23:10:31 UTC 2024 Waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1_runDFT
+Fri Aug  2 23:40:31 UTC 2024 Waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1_runDFT
+Sat Aug  3 00:10:31 UTC 2024 Waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1_runDFT
+Sat Aug  3 00:40:31 UTC 2024 Waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1_runDFT
+Sat Aug  3 01:10:31 UTC 2024 Waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1_runDFT
+Sat Aug  3 01:40:31 UTC 2024 Waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1_runDFT
+Sat Aug  3 02:10:31 UTC 2024 Waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1_runDFT
+Sat Aug  3 02:40:31 UTC 2024 Waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1_runDFT
+Sat Aug  3 03:10:31 UTC 2024 Waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1_runDFT
+Sat Aug  3 03:40:31 UTC 2024 Waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1_runDFT
+Sat Aug  3 04:10:31 UTC 2024 Waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1_runDFT
+Sat Aug  3 04:40:31 UTC 2024 Waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1_runDFT
+Sat Aug  3 05:10:31 UTC 2024 Waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1_runDFT
+Sat Aug  3 05:40:31 UTC 2024 Waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1_runDFT
+Sat Aug  3 06:10:31 UTC 2024 Waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1_runDFT
+Sat Aug  3 06:40:31 UTC 2024 Waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1_runDFT
+Sat Aug  3 07:10:31 UTC 2024 Waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1_runDFT
+Sat Aug  3 07:40:31 UTC 2024 Waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1_runDFT
+Sat Aug  3 08:10:31 UTC 2024 Waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1_runDFT
+Sat Aug  3 08:40:31 UTC 2024 Waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1_runDFT
+Sat Aug  3 09:10:31 UTC 2024 Waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1_runDFT
+Sat Aug  3 09:40:31 UTC 2024 Waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1_runDFT
+Sat Aug  3 10:10:31 UTC 2024 Waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1_runDFT
+Sat Aug  3 10:40:31 UTC 2024 Waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1_runDFT
+Sat Aug  3 11:10:31 UTC 2024 Waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1_runDFT
+Sat Aug  3 11:40:31 UTC 2024 Waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1_runDFT
+Sat Aug  3 12:10:31 UTC 2024 Waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1_runDFT
+Sat Aug  3 12:40:31 UTC 2024 Waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1_runDFT
+Sat Aug  3 13:10:31 UTC 2024 Waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1_runDFT
+Sat Aug  3 13:40:31 UTC 2024 Waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1_runDFT
+Sat Aug  3 14:10:31 UTC 2024 Waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1_runDFT
+Sat Aug  3 14:40:31 UTC 2024 Waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1_runDFT
+Sat Aug  3 15:10:31 UTC 2024 Waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1_runDFT
+Sat Aug  3 15:40:31 UTC 2024 Waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1_runDFT
+Sat Aug  3 16:10:31 UTC 2024 Waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1_runDFT
+Sat Aug  3 16:40:31 UTC 2024 Waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1_runDFT
+Sat Aug  3 17:10:31 UTC 2024 Waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1_runDFT
+Sat Aug  3 17:40:31 UTC 2024 Waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1_runDFT
+Sat Aug  3 18:10:31 UTC 2024 Waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1_runDFT
+Sat Aug  3 18:40:31 UTC 2024 Waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1_runDFT
+Sat Aug  3 19:10:31 UTC 2024 Waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1_runDFT
+Sat Aug  3 19:40:31 UTC 2024 All done: stop waiting.
+Checking output files of DFT jobs...
+Preparing XTB calculation for species A (from A1)
+Geometry to XTB: /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/M000000962_outSub-A1.sdf
+Preparing XTB calculation for species C (from C1)
+Geometry to XTB: /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/M000000962_outSub-C1.sdf
+Preparing XTB calculation for species L (from L0)
+Geometry to XTB: /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/M000000962_outSub-L0.sdf
+Preparing XTB calculation for species F (from F1)
+Geometry to XTB: /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/M000000962_outSub-F1.sdf
+Submitting batch of XTB jobs: A C L F
+Start waiting for completion of XTB master job...
+Sat Aug  3 19:42:32 UTC 2024 Waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1_runXTB
+Sat Aug  3 19:44:32 UTC 2024 Waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1_runXTB
+Sat Aug  3 19:46:32 UTC 2024 Waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1_runXTB
+Sat Aug  3 19:48:32 UTC 2024 Waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1_runXTB
+Sat Aug  3 19:50:32 UTC 2024 Waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1_runXTB
+Sat Aug  3 19:52:32 UTC 2024 Waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1_runXTB
+Sat Aug  3 19:54:32 UTC 2024 Waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1_runXTB
+Sat Aug  3 19:56:32 UTC 2024 Waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1_runXTB
+Sat Aug  3 19:58:32 UTC 2024 Waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1_runXTB
+Sat Aug  3 20:00:32 UTC 2024 Waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1_runXTB
+Sat Aug  3 20:02:32 UTC 2024 All done: stop waiting.
+Checking output files of XTB jobs...
+grep: /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/M000000962_out.sdf: No such file or directory
+grep: /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/M000000962_out.sdf: No such file or directory
+No NCX found. Outlier detection will not be run.
+Geometry to DFT: /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/M000000962_outSubXTB-A.sdf
+Geometry to DFT: /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/M000000962_outSubXTB-C.sdf
+Geometry to DFT: /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/M000000962_outSubXTB-L.sdf
+Geometry to DFT: /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/M000000962_outSubXTB-F.sdf
+Geometry to DFT: /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/M000000962_outSubPreDFT-X.sdf
+Geometry to DFT: /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/M000000962_outSubPreDFT-Z.sdf
+Geometry to DFT: /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/M000000962_outSubPreDFT-D.sdf
+Submitting batch of DFT jobs: A C L F X Z D
+Start waiting for completion of DFT master job...
+Sat Aug  3 20:32:33 UTC 2024 Waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1_runDFT
+Sat Aug  3 21:02:33 UTC 2024 Waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1_runDFT
+Sat Aug  3 21:32:33 UTC 2024 Waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1_runDFT
+Sat Aug  3 22:02:33 UTC 2024 Waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1_runDFT
+Sat Aug  3 22:32:33 UTC 2024 Waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1_runDFT
+Sat Aug  3 23:02:33 UTC 2024 Waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1_runDFT
+Sat Aug  3 23:32:33 UTC 2024 Waiting for /volume/jek003/catalyst_evaluator/test/test_set_2_raw_data/M000000962/tcl-1_runDFT
+Sun Aug  4 00:02:33 UTC 2024 All done: stop waiting.
+Checking output files of DFT jobs...
+Checking Z for Ru,H close contacts:
+Starting ACC...
+ACC completed: closest non bonded Ru,H contanct for Z: 2.9164577144 Angstrom
+Checking X for Ru,H close contacts:
+Starting ACC...
+ACC completed: closest non bonded Ru,H contanct for X: 2.8955578478 Angstrom
+Cl X-ligands detected, 'E' energy will be taken from 'A'
+Fitness evaluation completed for molecule M000000962!
+Sun Aug  4 00:02:35 UTC 2024
+Finished in 132019 seconds
