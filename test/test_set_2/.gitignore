@@ -1,0 +1,14 @@
+# We ignore all...
+*
+
+#...except these
+!.gitignore
+!README.md
+!*-*.sdf
+!*/*_outSubXTB-A.sdf
+!*/*_outSubXTB-C.sdf
+!*/*_outSubXTB-F.sdf
+!*/*_outSubXTB-L.sdf
+!*/*_outSubPreDFT-X.sdf
+!*/*_outSubPreDFT-Z.sdf
+!*/*_out.sdf
