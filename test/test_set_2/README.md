@@ -14,4 +14,10 @@ ls *sdf | while read f ; do n=$(basename $f .sdf); echo "../../evaluate_catalyst
 ls *.sh | while read f ; do at now -f $f ; done
 ```
 
-3. Perform the analysis: __TODO_
+3. Perform the analysis: __TODO__
+
+## TODO
+1. Process results of ongoing calculations to keep all the 8 molecular modes produced by each catalyst evaluation.
+
+2. Produce statistics (i.e., update jupyter notebook)
+ 
