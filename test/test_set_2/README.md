@@ -2,7 +2,7 @@
 This set of catalysts includes all those catalysts that were not tested experimentally, but are considered according to evaluations performed by others and published in scientific articles.
 
 ## Run the evaluations
-Any evaluation starts from a graph-based definitions of the ligands. Here, we arrume a list of such candidate ligands set is available, and each such combination is saved as `*.sdf` file. These files are generated coording to [the instructions on how to make graph representations of ligand sets](../../README.md#Evaluation-of-Catalysts).
+Any evaluation starts from a graph-based definitions of the ligands. Here, we assume a list of such candidate ligand sets is available, and each such combination is saved as `*.sdf` file. These files are generated according to [the instructions on how to make graph representations of ligand sets](../../README.md#Evaluation-of-Catalysts).
 
 1. We first prepare the job definitions:
 ```
