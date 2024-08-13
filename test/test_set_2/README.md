@@ -9,7 +9,7 @@ Any evaluation starts from a graph-based definitions of the ligands. Here, we ar
 ls *sdf | while read f ; do n=$(basename $f .sdf); echo "../../evaluate_catalyst.sh -i $f" > $n.sh ; chmod +x $n.sh ; done
 ```
 
-2. Then, we submit such job via a scheduler (here we use [at](https://en.wikipedia.org/wiki/At_(command):
+2. Then, we submit such job via a scheduler (here we use [at](https://en.wikipedia.org/wiki/At_(command)):
 ```
 ls *.sh | while read f ; do at now -f $f ; done
 ```
