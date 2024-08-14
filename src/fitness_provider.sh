@@ -40,9 +40,9 @@ runManyDFTScript="$WORKDIR/runDFTManyTask-1.0.sh"
 runPseudoTSDFTPreOpt="$WORKDIR/runDFTOptPseudoTS-1.0.sh"
 
 #Searh for (MOLUID), and import candidates that have already been evaluated.
-importOld="0" # "0" = do it, "1" = don't
+importOld="1" # "0" = do it, "1" = don't
 #Paths to old RUN#### folders to search for previously completed candidates.
-pathToOld="/volume/jek003/catalyst_evaluator/test/misc/IQODAU"
+pathToOld=""
 
 #Label and extension of input file
 inputLabelExt="_inp"
@@ -1180,7 +1180,6 @@ WEIGHT_DEFINITION_4='w4=$( echo "1 / ( 1 + e( $hartree_to_kcalmol * ( - ( $freeE
 #FITNESS (Sum of fitness from descriptos 1-3 weighted by dynamic weights 1-4).
 fitness=$( echo "( $desc1 + $desc2 + $desc3 ) * ( $w1 * $w2 * $w3 * $w4 )" | bc -l )
 
-export fitness desc1 desc2 desc3 w1 w2 w3 w4 DESCRIPTOR_DEFINITION_1 DESCRIPTOR_DEFINITION_2 DESCRIPTOR_DEFINITION_3 WEIGHT_DEFINITION_1 WEIGHT_DEFINITION_2 WEIGHT_DEFINITION_3 WEIGHT_DEFINITION_4 
 }
 ###############################################################################
 # Main
