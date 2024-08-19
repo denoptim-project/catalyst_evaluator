@@ -20,7 +20,8 @@ ls *.sh | while read f ; do at now -f $f ; done
 origin=$(pwd); ls */*_out.sdf | while read f ; do d=$(dirname $f); if ! grep -q FITNESS $f ; then echo "ERROR: missing fitness for $d" ; continue ; fi; dd=${d}_tmp ; mkdir $dd ; cp $d/${d}_out.sdf $d/${d}.tar.gz $d/${d}.sdf  $dd ; mkdir -p trash/${d}_trash ; cd $d ; cp -r * ../trash/${d}_trash ; rm -r * ; mv ../$dd/* . ; tar -xzvf $d.tar.gz $d/${d}_outSubPreDFT-D.sdf $d/${d}_outSubPreDFT-X.sdf $d/${d}_outSubPreDFT-Z.sdf $d/${d}_outSubXTB-A.sdf $d/${d}_outSubXTB-C.sdf $d/${d}_outSubXTB-F.sdf $d/${d}_outSubXTB-L.sdf ; mv $d/* . ; rm -r "$d" ${d}.tar.gz ; rm -r ../$dd ; cd $origin ; done
 ```
 
-4. Perform the analysis: __TODO__
+4. Perform the analysis. Run the jupyter notebook [Analysis_test_set_2.ipynb](Analysis_test_set_2.ipynb).
+
 
 ## File Naming
 The files are named according to the following internal convention, which is encoded in the scripts provided under [../../src/](../../src/).
@@ -35,6 +36,3 @@ The files are named according to the following internal convention, which is enc
 * `name_outSubXTB-E.sdf` (Optional: produced only when X ligands differ from Cl) contains the geometry of the catalyst precursor with trans-X configuration and X=Cl (xTB-based optimization).
 * `name_outSubXTB-F.sdf` contains the geometry of the catalyst precursor with cis-X configuration (xTB-based optimization).
 * `name_outSubXTB-L.sdf` contains the geometry of the free dative ligand (xTB-based optimization).
-
-
-
