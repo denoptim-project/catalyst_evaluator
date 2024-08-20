@@ -37,7 +37,11 @@ function valueIsDistantFromReference()
     file="$3"
     refLineNo="$4"
     v=$(grep -A 1 "<$propertyName>" "$file" | tail -n 1)
-    if (( $(echo "abs( $v - $reference ) > 0.001" |bc -l) )); then
+    diff=$(echo "$v - $reference" | bc -l)
+    if (( $(echo "$diff < 0 " | bc -l) )) ; then
+        diff=$(echo "-1.0 * $diff " | bc -l)
+    fi
+    if (( $(echo "$diff > 0.001" | bc -l) )); then
         echo "ERROR! Test failed at '$refLineNo' of '$0'"
         exit -1
     fi
