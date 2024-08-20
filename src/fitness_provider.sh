@@ -5,15 +5,15 @@
 # It computed the fitness by elaborating free energy values for
 # the precursor, free L-ligand, TS-guesses for catalysis and decomposition.
 #
-# @param $1 pathname of input SDF file: it must contain the graph 
-#        representation of the candidate system of which we are calculating 
+# @param $1 pathname of input SDF file: it must contain the graph
+#        representation of the candidate system of which we are calculating
 #        the fitness.
-# @param $2 pathname of the output SDF file where to report the fitness 
+# @param $2 pathname of the output SDF file where to report the fitness
 #        (possibly with some additional information attached) or the error/s
 #        justifying rejecting of this candidate.
 # @param $3 pathname of the working space, i.e., a directory.
 # @param $4 numerical ID of the task this script is asked to perform.
-# @param $5 pathname to the file collecting the candidates unique identifiers 
+# @param $5 pathname to the file collecting the candidates unique identifiers
 #        collected up to the moment when this script is asked to evaluate a new
 #        candidate
 #
@@ -31,6 +31,7 @@ useFakeFitness=1 # 0:doit, 1:don't
 testRun=1 #0:this is a test, 1:this is NOT a test
 
 #Path to state-specific scripts
+fitnessFunction="$WORKDIR/fitness_function.sh"
 build3DConfScript="$WORKDIR/run3DBuildAndConfSearch-4.0.sh"
 build3DAndRefine="$WORKDIR/run3DBuildAndRefine-5.0.sh"
 runXTBScript="$WORKDIR/runXTBTask-1.0.sh"
@@ -51,7 +52,7 @@ inputLabelExt="_inp"
 # that are used to select the ligand conformation. Only the results of the
 # best of these sub-jobs will be kept and used to define the conformation of
 # the ligand used for other intermediates/transition states.
-# LABEL SYNTAX: 
+# LABEL SYNTAX:
 # -> the first character is the label root, and identifies the species
 # -> the rest is used for alternative models of the same species
 # For example, labels A1, A2, and A3 they all pertain to the same
@@ -64,7 +65,7 @@ labelForLigandExtraxtion="A"
 #Define which label in the list above is screened to find the lowest energy from
 # result from which the ligand conformatio is extracted
 #
-# Defines the labels of alternative sub-jobs for the states to be modeled 
+# Defines the labels of alternative sub-jobs for the states to be modeled
 # using the ligand's conformation defined from first batch.
 secondSubJobsLabelList=("C1" "C2" "E1" "E2" "X1" "X2" "Z1" "Z2")
 #
@@ -94,7 +95,7 @@ preDFTtoSPLabels=("X" "Z" "D")
 # Labels corresponding to transition states
 transitionStateLabels=("X1" "X2" "Z1" "Z2")
 #
-# Sort the label roots (i.e., the first letter of the labels) in order of 
+# Sort the label roots (i.e., the first letter of the labels) in order of
 # challenging calculation (the worst first, the easiest last):
 sortedLabelRoots=("A" "F" "E" "C" "X" "Z" "L")
 #
@@ -122,12 +123,12 @@ csTimeUnit="m"    # time unit: s (seconds), m (minutes), h (hours)
 csMaxWait=5000     # maximum number of checking iterations
 
 # Fragment space
-compMatrix="$WORKDIR/CPMap_FS-C5.0.par" 
+compMatrix="$WORKDIR/CPMap_FS-C5.0.par"
 libFrags="$WORKDIR/lib_frags_FS_C5.0_v3.sdf"
 libCaps="$WORKDIR/lib_caps_FS_C5.0_v3.sdf"
 libScaff="$WORKDIR/scaff_du_v3.sdf"
 
-# Graph editing tasks 
+# Graph editing tasks
 graphEditingTasks="$WORKDIR/collapsLigand"
 
 #Fragmentation
@@ -137,7 +138,7 @@ coreXLigandCutRules="$WORKDIR/core-Xlig_CutRule.rul"
 #Graph for building of reaction steps
 coreLigGraphTmpl="$WORKDIR/core-lig_Graph.sdf"
 
-#Back door to hold new executions of scripts: create this file to make any 
+#Back door to hold new executions of scripts: create this file to make any
 #new submission of this script hang in "hold status" until the file is removed
 flagHoldFitnessProvider="/tmp/hold_fitness_provider"
 listHeldPIDs="/tmp/activeConfSearchOrRefine"
@@ -195,12 +196,12 @@ then
     csMinTimeUnit="s" # time unit: s (seconds), m (minutes), h (hours)
     csStep=10          # delay of each checking iteration, but the first
     csTimeUnit="s"    # time unit: s (seconds), m (minutes), h (hours)
-    csMaxWait=5000     # maximum number of checking iterations 
+    csMaxWait=5000     # maximum number of checking iterations
     stepFirstWaitForHPC=15       # delay of first checking iteration
     unitFirstWaitForHPC="s" # time unit: s (seconds), m (minutes), h (hours)
     stepWaitForHPC=30          # delay of each checking iteration, but the first
     unitWaitForHPC="s"    # time unit: s (seconds), m (minutes), h (hours)
-    stepWaitForHPCXTB="120" 
+    stepWaitForHPCXTB="120"
     maxWaitForHPC=1000    # manimum number of waiting cycles
     cleanup=1             # if 0 then remove tmp files
 fi
@@ -211,7 +212,7 @@ then
     csStep=1            # delay of each checking iteration, but the first
     csTimeUnit="m"      # time unit: s (seconds), m (minutes), h (hours)
     csMaxWait=100       # maximum number of checking iterations
-    cleanup=1           # 1 means we don't remove tmp files 
+    cleanup=1           # 1 means we don't remove tmp files
 fi
 
 ###############################################################################
@@ -240,9 +241,9 @@ function readPrevDataSettings(){
     then
         echo " ERROR! File '$1' not found! "
         exit 1
-    fi 
+    fi
     while read -r line
-    do 
+    do
         if [[ $line == "#"* ]] || [[ $line == "" ]]
         then
             continue
@@ -291,7 +292,7 @@ function readPrevDataSettings(){
 
 
 #
-# Function to submit a batch of parallel MM+SemiEmp sub-jobs and wait for 
+# Function to submit a batch of parallel MM+SemiEmp sub-jobs and wait for
 # completion.
 # @param $1 batch ID
 # @param $2 vector of labels, one per each sub-jobs. Must be given as vector[@]
@@ -304,7 +305,7 @@ function submitParallelBatchMMSE() {
     locInpSDF="$2"
     locSubJobLabelList=("${!3}")
     subJobScript="$4"
-        
+
     # Submit all parallel sub-jobs
     echo "Submitting batch ${batchID}: ${locSubJobLabelList[@]}"
     locSubJobIDList=()
@@ -321,7 +322,7 @@ function submitParallelBatchMMSE() {
         allSubJobsIDList+=("$sjId")
         allSubJobsOutList+=("$sjOut")
     done
-    
+
     # Wait for completion of parallel conformational searches
     echo "Start waiting for completion of submitted jobs (batch ${batchID})..."
     allDone=0
@@ -359,9 +360,9 @@ function submitParallelBatchMMSE() {
         then
             echo "$dateTime All done: stop waiting."
             break;
-        fi 
+        fi
     done
-    
+
     # Check outcome, and collect energies from submitted tasks
     echo "Checking outcome of sub-jobs (batch ${batchID})..."
     energiesSubjobs=()
@@ -381,10 +382,10 @@ function submitParallelBatchMMSE() {
                 abandonDueToChild "$out"
             fi
         fi
-       
+
         energy=$(grep -A1 FrozenCore-PM6_ENERGY "$out" | tail -n 1)
         energiesSubjobs+=("$energy")
-     
+
         mv "$wrkDir/${locSubJobIDList[$j]}.log" "$wrkDir/${molNum}_MMSE${batchID}_${locSubJobIDList[$j]}.log"
         if [ "$cleanup" == 0 ]
         then
@@ -393,7 +394,7 @@ function submitParallelBatchMMSE() {
             #rm -f "$wrkDir/${locSubJobIDList[$j]}.log"
         fi
     done
-    
+
     # Selection among alternatives
     echo "Identification of lowest energy points (batch ${batchID})..."
     absMinValue=10000000000.0
@@ -406,7 +407,7 @@ function submitParallelBatchMMSE() {
         skip=1
         for doneLab in "${doneLabels[@]}"
         do
-            if [ "$doneLab" == "$labI" ] 
+            if [ "$doneLab" == "$labI" ]
             then
                 skip=0
                 break;
@@ -444,7 +445,7 @@ function submitParallelBatchMMSE() {
                 groupValues+=("${energiesSubjobs[$j]}")
             fi
         done
-    
+
         echo "For species $rootI:"
         minValue=10000000000000.0
         minIdx=-1
@@ -489,7 +490,6 @@ function submitParallelBatchMMSE() {
 #
 
 function submitParallelBatchXTB(){
-
     # Submit all parallel sub-jobs
     echo "Submitting batch of XTB jobs: ${toDFTStateLabels[@]}"
     locSubJobXTBIDList=()
@@ -842,7 +842,7 @@ function submitDFTAllInOnce(){
 }
 
 
-# Function to submit a batch of pre opt DFT jobs for pseudo transition states 
+# Function to submit a batch of pre opt DFT jobs for pseudo transition states
 # to be executed sequentially by a single child job, and wait for completion.
 # No argument required: this function uses global variables as input. Namely:
 # 'allSdfToDFT' and 'toDFTStateLabels'
@@ -981,8 +981,8 @@ function abandon {
     echo "$errMsg"
     echo " "
     #NB: the exit code is detected by DENOPTIM
-    exit "$es" 
-    #NB: we trap the EXIT signal 
+    exit "$es"
+    #NB: we trap the EXIT signal
 }
 
 #
@@ -1000,8 +1000,8 @@ function abandonDueToChild {
     echo "'""$errMsg""'"
     echo " "
     #NB: the exit code is detected by DENOPTIM
-    exit "$es" 
-    #NB: we trap the EXIT signal 
+    exit "$es"
+    #NB: we trap the EXIT signal
 }
 
 #
@@ -1039,7 +1039,7 @@ function finish {
     finishTime=$(date +%s)
     runTime=$(($finishTime - $beginTime))
     date
-    echo "Finished in $runTime seconds" 
+    echo "Finished in $runTime seconds"
     #Add here any mandatory task to be run on termination
 }
 trap finish EXIT
@@ -1049,138 +1049,54 @@ trap finish EXIT
 # Check N-Ru-Carbene angle to detect outliers
 #
 function detectNRuCOutlier() {
-structureId=$1
-inFile=$wrkDir/${molNum}_outSubXTB-$structureId.sdf
-tolerance="55.0"
-echo "Starting ACC..."
-smallestAngle=$( autocompchem -t MeasureGeomDescriptors --verbosity 1 --infile "$inFile" --smarts "ANG [\$([#7](~[#44])=[#6]=[#8,#16])] [#44] [\$([#6;X3](~[#7;X3])~[#6,#7]),\$([#6;X3]1~[#6;X3]~[#6;X3]~[#7;X3]~[#6;X3]~[#6;X3]~1)]" --onlybonded true | grep ANG | grep -Eo "= [0-9]{1,3}\.[0-9]{1,16}" | awk '{print $2}' | sort -n | head -n 1 )
-echo "ACC completed: smallest angle was: $smallestAngle degrees"
-if (( $(echo "$smallestAngle < $tolerance" | bc -l) ))
-    then 
-    errMsg="#outlierDetection: N-Ru-Carbene angle is too small."
-    abandon "$inpSDF" "$E_OPTERROR"
-fi
+    structureId=$1
+    inFile=$wrkDir/${molNum}_outSubXTB-$structureId.sdf
+    tolerance="55.0"
+    echo "Starting ACC..."
+    smallestAngle=$( autocompchem -t MeasureGeomDescriptors --verbosity 1 --infile "$inFile" --smarts "ANG [\$([#7](~[#44])=[#6]=[#8,#16])] [#44] [\$([#6;X3](~[#7;X3])~[#6,#7]),\$([#6;X3]1~[#6;X3]~[#6;X3]~[#7;X3]~[#6;X3]~[#6;X3]~1)]" --onlybonded true | grep ANG | grep -Eo "= [0-9]{1,3}\.[0-9]{1,16}" | awk '{print $2}' | sort -n | head -n 1 )
+    echo "ACC completed: smallest angle was: $smallestAngle degrees"
+    if (( $(echo "$smallestAngle < $tolerance" | bc -l) ))
+        then
+        errMsg="#outlierDetection: N-Ru-Carbene angle is too small."
+        abandon "$inpSDF" "$E_OPTERROR"
+    fi
 }
 
 #
 # Check shortest non-bonded (and non 1,3 bonded) Ru,H distance to detect outliers.
 #
 function closeContact() {
-structureId=$1
-inFile=$wrkDir/${molNum}_outSubPreDFT-$structureId.sdf
-echo -e "VERBOSITY: 1\nTASK: AnalyzeVDWClashes\nINFILE: "$inFile"\n\$TARGETSMARTS: [#1] [#44]\nCUTOFF: 0.1\nALLOWANCE: -0.2\nALLOWANCE13: 5.0" > $wrkDir/${molNum}_${structureId}_clash.param.tmp
-echo "Checking $structureId for Ru,H close contacts:"
-echo "Starting ACC..."
-closestContact=$( autocompchem -p "$wrkDir/${molNum}_${structureId}_clash.param.tmp" | grep AtomClash | grep -E "H[0-9]{1,3}:Ru[0-9]{1,3}|Ru[0-9]{1,3}:H[0-9]{1,3}" | grep -oE "d: [0-9]\.[0-9]{1,16}" | awk '{print $2}' | sort -n | head -n 1 | while read n; do echo "scale=10; $n / 1" | bc -l; done )
-echo "ACC completed: closest non bonded Ru,H contanct for $structureId: $closestContact Angstrom"
-rm $wrkDir/${molNum}_${structureId}_clash.param.tmp
+    structureId=$1
+    inFile=$wrkDir/${molNum}_outSubPreDFT-$structureId.sdf
+    echo -e "VERBOSITY: 1\nTASK: AnalyzeVDWClashes\nINFILE: "$inFile"\n\$TARGETSMARTS: [#1] [#44]\nCUTOFF: 0.1\nALLOWANCE: -0.2\nALLOWANCE13: 5.0" > $wrkDir/${molNum}_${structureId}_clash.param.tmp
+    echo "Checking $structureId for Ru,H close contacts:"
+    echo "Starting ACC..."
+    closestContact=$( autocompchem -p "$wrkDir/${molNum}_${structureId}_clash.param.tmp" | grep AtomClash | grep -E "H[0-9]{1,3}:Ru[0-9]{1,3}|Ru[0-9]{1,3}:H[0-9]{1,3}" | grep -oE "d: [0-9]\.[0-9]{1,16}" | awk '{print $2}' | sort -n | head -n 1 | while read n; do echo "scale=10; $n / 1" | bc -l; done )
+    echo "ACC completed: closest non bonded Ru,H contanct for $structureId: $closestContact Angstrom"
+    rm $wrkDir/${molNum}_${structureId}_clash.param.tmp
 }
 
 #
 # Check shortest non-bonded (and non 1,3 bonded) Ru,H distance of imported candidate.
 #
 function importedCloseContact() {
-inFile=$1
-echo -e "VERBOSITY: 1\nTASK: AnalyzeVDWClashes\nINFILE: "$inFile"\n\$TARGETSMARTS: [#1] [#44]\nCUTOFF: 0.1\nALLOWANCE: -0.2\nALLOWANCE13: 5.0" > $wrkDir/${molNum}_clash.param.tmp
-echo "Checking for Ru,H close contacts:"
-echo "Starting ACC..."
-importedClosestContact=$( autocompchem -p "$wrkDir/${molNum}_clash.param.tmp" | grep AtomClash | grep -E "H[0-9]{1,3}:Ru[0-9]{1,3}|Ru[0-9]{1,3}:H[0-9]{1,3}" | grep -oE "d: [0-9]\.[0-9]{1,16}" | awk '{print $2}' | sort -n | head -n 1 | while read n; do echo "scale=10; $n / 1" | bc -l; done )
-echo "ACC completed: closest non bonded Ru,H contanct: $importedClosestContact Angstrom"
-rm $wrkDir/${molNum}_clash.param.tmp
+    inFile=$1
+    echo -e "VERBOSITY: 1\nTASK: AnalyzeVDWClashes\nINFILE: "$inFile"\n\$TARGETSMARTS: [#1] [#44]\nCUTOFF: 0.1\nALLOWANCE: -0.2\nALLOWANCE13: 5.0" > $wrkDir/${molNum}_clash.param.tmp
+    echo "Checking for Ru,H close contacts:"
+    echo "Starting ACC..."
+    importedClosestContact=$( autocompchem -p "$wrkDir/${molNum}_clash.param.tmp" | grep AtomClash | grep -E "H[0-9]{1,3}:Ru[0-9]{1,3}|Ru[0-9]{1,3}:H[0-9]{1,3}" | grep -oE "d: [0-9]\.[0-9]{1,16}" | awk '{print $2}' | sort -n | head -n 1 | while read n; do echo "scale=10; $n / 1" | bc -l; done )
+    echo "ACC completed: closest non bonded Ru,H contanct: $importedClosestContact Angstrom"
+    rm $wrkDir/${molNum}_clash.param.tmp
 }
 
+
 #
-# Calculate fitness from DFT energies derived from A, F, E, C, D, L, X and Z (Must be defined before calling the function).
-#
-function calculateFitness() {
-#Values in Hartree
-G_Propene="-117.738020895"
-G_Ethene="-78.4716324751" 
-G_HoveydaProd="-502.204109499"
-
-#Reference values in Hartree
-G_SIMes="-924.27249048"
-G_PCy3="-1046.11440274"
-G_HG_RuCl2_SIMes="-2402.13728523"
-G_HI_precursor="-2523.95659027"
-DG_referenceProductionBarrier=".0222529298"
-DDG_reference_HGII="0.0222312922"
-DG_referenceProductionBarrier="0.0222714248"
-DG_referencePrecursorStabilityHII="-0.0052201621"
-DG_referencePrecursorStabilityHI="0.0117775312"
-DDG_referencePrecursorStability="$( echo "$DG_referencePrecursorStabilityHI - $DG_referencePrecursorStabilityHII" | bc -l )"
-
-# General use constants 
-hartree_to_kcalmol="627.49467516" # (kcal/mol*hartree)
-boltzmann_constant="0.0000000000000000000000138066" # (J/K)
-avogadro_number="602214000000000000000000" # (1/mol)
-jmol_to_kcalmol="0.00023901" # (kcal/J)
-temp="313.15" # (K) ( 40 degrees C to match laboratory experiments)
-kT=$( echo "$boltzmann_constant * $avogadro_number * $jmol_to_kcalmol * $temp" | bc -l ) # kcal/mol
-
-# magnitude<n> represents n=1,2,3 orders of magnitude increase of rate constant at 40 C according to the Eyring equation ( kcal/mol )
-magnitude3="4.29872427" 
-magnitude2="2.86581618"
-magnitude1="1.43290809"
-magnitude4="5.73163236"
-
-# Descriptor 1 -Boltzmann factor: (C-Z) - (C-X) - DDG_ref(HG2).
-coef1="1"
-desc1=$( echo "$coef1 * ( e( $hartree_to_kcalmol * ( ( $freeEnergyZ - $freeEnergyD ) - ( $freeEnergyX + 2*$G_Ethene - $freeEnergyD - 2*$G_Propene ) - $DDG_reference_HGII ) / $kT ) ) " | bc -l )
-DESCRIPTOR_DEFINITION_1='desc1=( echo "1 * ( e( $hartree_to_kcalmol * ( ( $freeEnergyZ - $freeEnergyD ) - ( $freeEnergyX + 2*$G_Ethene - $freeEnergyD - 2*$G_Propene ) - $DDG_reference_HGII ) / $kT ) ) " | bc -l )'
+# For actual math of the fitness score calculations is implemented in a
+# standalone function that we load here:
+source "$fitnessFunction"
 
 
-# Descriptor 2 - Linear: (C-Z) - (C-X).
-coef2="1"
-desc2=$( echo "$coef2 * ( $hartree_to_kcalmol * ( ( $freeEnergyZ - $freeEnergyD ) - ( $freeEnergyX + 2*$G_Ethene - $freeEnergyD - 2*$G_Propene ) ) )" | bc -l )
-DESCRIPTOR_DEFINITION_2='desc2=$( echo "1 * ( $hartree_to_kcalmol * ( ( $freeEnergyZ - $freeEnergyD ) - ( $freeEnergyX + 2*$G_Ethene - $freeEnergyD - 2*$G_Propene ) ) )" | bc -l )'
 
-# Descriptor 3 - linear: Production Barrier relative to HG Ru SIMes.
-coef3="1"
-threshold3=$( echo "( $hartree_to_kcalmol * $DG_referenceProductionBarrier )" | bc -l )
-DG_cat=$( echo "$hartree_to_kcalmol * ( $freeEnergyX + 2*$G_Ethene - $freeEnergyD - 2*$G_Propene )" | bc -l )
-
-if [ "$( echo "$DG_cat >= $threshold3" | bc -l )" == "1" ]
-then
-    desc3="0.0000000001"
-else
-    desc3=$( echo "$coef3 * ( $threshold3 - $DG_cat )" | bc -l )
-fi
-DESCRIPTOR_DEFINITION_3='desc3=$( echo "1 * $hartree_to_kcalmol * ( $DG_referenceProductionBarrier - ( $freeEnergyX + 2*$G_Ethene - $freeEnergyD - 2*$G_Propene ) )" | bc -l )'
-
-# Dynamic weight 1 (sigmoid): Catalyst activity.
-threshold4="$( echo "( $DG_referenceProductionBarrier * $hartree_to_kcalmol ) + $magnitude4" | bc -l )"
-w1=$( echo "1 / ( 1 + e( ( ( $hartree_to_kcalmol * ( $freeEnergyX + 2*$G_Ethene - $freeEnergyD - 2*$G_Propene ) ) - $threshold4 ) / $kT ) )" | bc -l )
-WEIGHT_DEFINITION_1='w1=$( echo "1 / ( 1 + e( $hartree_to_kcalmol * ( ( ( $freeEnergyX + 2*$G_Ethene - $freeEnergyD - 2*$G_Propene ) ) - ( $DG_referenceProductionBarrier + $magnitude4 ) ) / $kT ) )" | bc -l )'
-
-# Dynamic weight 2 (sigmoid): Stability of precursor wrt. MCB.
-threshold5=$( echo "( $hartree_to_kcalmol*$DDG_referencePrecursorStability ) + $magnitude1" | bc -l )
-DDG_stability=$( echo "$hartree_to_kcalmol * ( $freeEnergyC + $G_HoveydaProd - $freeEnergyA - 2*${G_Ethene} - $DG_referencePrecursorStabilityHII )" | bc -l )
-if [ "$( echo "$DDG_stability >= 0" | bc -l )" == "1" ]
-then
-    abs_DDG_Stability="$DDG_stability"
-else
-    abs_DDG_Stability="$( echo "-1 * $DDG_stability" | bc -l )"
-fi
-w2=$( echo "1 / ( 1 + e( ( $abs_DDG_Stability - $threshold5 ) / $kT ) )" | bc -l )
-WEIGHT_DEFINITION_2='w2=$( echo "1 / ( 1 + e( $hartree_to_kcalmol * ( ABS( $freeEnergyC + $G_HoveydaProd - $freeEnergyA - 2*${G_Ethene} - $DG_referencePrecursorStabilityHII ) - ( $DDG_referencePrecursorStability + $magnitude1 ) ) / $kT ) )" | bc -l )'
-
-# Dynamic weight 3 (sigmoid): Ligand exchange ( H2IMes  --exchange--> L ).
-coef6="1"
-DG_synt=$( echo "$hartree_to_kcalmol * ( $freeEnergyE + $G_PCy3 - $G_HI_precursor - $freeEnergyL )" | bc -l )
-w3=$( echo "1 / ( 1 + e( ( $DG_synt - $magnitude1 ) / $kT ) )" | bc -l )
-WEIGHT_DEFINITION_3='w3=$( echo "1 / ( 1 + e( $hartree_to_kcalmol * ( ( $freeEnergyE + $G_PCy3 - $G_HI_precursor - $freeEnergyL ) - $magnitude1 ) / $kT ) )" | bc -l )'
-
-# Dynamic weight 4 (sigmoid): disfavouring non trans precursors.
-threshold7="$magnitude2"
-DG_stereo=$( echo "$hartree_to_kcalmol * ( $freeEnergyF - $freeEnergyA )" | bc -l )
-w4=$( echo "1 / ( 1 + e( ( - $DG_stereo + $threshold7 ) / $kT ) )" | bc -l )
-WEIGHT_DEFINITION_4='w4=$( echo "1 / ( 1 + e( $hartree_to_kcalmol * ( - ( $freeEnergyF - $freeEnergyA ) + $magnitude2 ) / $kT ) )" | bc -l )'
-
-#FITNESS (Sum of fitness from descriptos 1-3 weighted by dynamic weights 1-4).
-fitness=$( echo "( $desc1 + $desc2 + $desc3 ) * ( $w1 * $w2 * $w3 * $w4 )" | bc -l )
-
-}
 ###############################################################################
 # Main
 ###############################################################################
@@ -1191,7 +1107,7 @@ fitness=$( echo "( $desc1 + $desc2 + $desc3 ) * ( $w1 * $w2 * $w3 * $w4 )" | bc 
 if [ "$#" -lt 5 ]
 then
     echo " "
-    echo "Usage: `basename $0` required number of arguments not supplied"       
+    echo "Usage: `basename $0` required number of arguments not supplied"
     echo "5 parameters must be supplied (in this order):"
     echo " <input.sdf>  <output.sdf> <workingDirectory> <taskID> <UIDFile>"
     echo " "
@@ -1204,7 +1120,7 @@ taskId="$4"
 UIDFILE="$5"
 locDir="$(pwd)"
 if [ "$#" -eq 6 ]
-then 
+then
     echo " "
     echo " Usage of previous data not implemented! "
     exit 1;
@@ -1229,7 +1145,7 @@ then
     requiredStateLabels=(${requiredStateLabels[@]/E})
 fi
 
-# Initiates experiment shut down. shutDownRun="1" -> Do it; shutDownRun="0" -> Don't. 
+# Initiates experiment shut down. shutDownRun="1" -> Do it; shutDownRun="0" -> Don't.
 # Shut down will cause all new jobs to abandon, and UIDs of abandoned jobs will
 # be stored in a text file.
 shutDownRun="0"
@@ -1247,7 +1163,7 @@ log="$wrkDir/${molNum}_FProvider.log"
 # From here redirect stdout and stderr to log file
 exec > $log
 exec 2>&1
-echo "Starting fitness calculation (ID:$taskId) at $beginTime" 
+echo "Starting fitness calculation (ID:$taskId) at $beginTime"
 
 
 #
@@ -1315,7 +1231,7 @@ then
     fi
     for rootLab in "${sortedLabelRoots[@]}"
     do
-        # 
+        #
         # Identify the refined model with lowest energy for this root label
         #
         echo "Recovering lowest GOSE for state $rootLab..."
@@ -1368,7 +1284,7 @@ then
             abandon "$DnCG3Dout" "$E_OPTERROR"
         fi
         portablesed "1 s/^.*$/$molName/g" "$sprtGOSEOut"
-        
+
         #
         # Update variables that will be used later
         #
@@ -1391,7 +1307,7 @@ else
         mv "$preOutSDF" "$outSDF"
         exit 0
     fi
-     
+
     #Checking for the existance of matching #_out.sdf files (completed molecules).
     if [ $importOld == "0" ]
     then
@@ -1421,48 +1337,21 @@ else
             importMessage="Imported from: $knownMol"
             cp "$knownMol" "$wrkDir/${molNum}_out.sdf"
             oldFirstLine=$( head -n 1 "$wrkDir/${molNum}_out.sdf" )
-            calculateFitness >/dev/null
+
             removePropertyFromSDF "GCODE" "$wrkDir/${molNum}_out.sdf"
             removePropertyFromSDF "GraphMsg" "$wrkDir/${molNum}_out.sdf"
             portablesed "s/$oldFirstLine/$newFirstLine/g" "$wrkDir/${molNum}_out.sdf"
             addPropertyToSingleMolSDF "IMPORTED" "$importMessage" "$wrkDir/${molNum}_out.sdf"
             addPropertyToSingleMolSDF "GCODE" "$newGCode" "$wrkDir/${molNum}_out.sdf"
             addPropertyToSingleMolSDF "GraphMsg" "$newGraphMsg" "$wrkDir/${molNum}_out.sdf"
-            removePropertyFromSDF "DESCRIPTOR_1" "$wrkDir/${molNum}_out.sdf"
-            removePropertyFromSDF "DESCRIPTOR_DEFINITION_1" "$wrkDir/${molNum}_out.sdf"
-            removePropertyFromSDF "DESCRIPTOR_2" "$wrkDir/${molNum}_out.sdf"
-            removePropertyFromSDF "DESCRIPTOR_DEFINITION_2" "$wrkDir/${molNum}_out.sdf"
-            removePropertyFromSDF "DESCRIPTOR_3" "$wrkDir/${molNum}_out.sdf"
-            removePropertyFromSDF "DESCRIPTOR_DEFINITION_3" "$wrkDir/${molNum}_out.sdf"
-            removePropertyFromSDF "WEIGHT_1" "$wrkDir/${molNum}_out.sdf"
-            removePropertyFromSDF "WEIGHT_DEFINITION_1" "$wrkDir/${molNum}_out.sdf"
-            removePropertyFromSDF "WEIGHT_2" "$wrkDir/${molNum}_out.sdf"
-            removePropertyFromSDF "WEIGHT_DEFINITION_2" "$wrkDir/${molNum}_out.sdf"
-            removePropertyFromSDF "WEIGHT_3" "$wrkDir/${molNum}_out.sdf"
-            removePropertyFromSDF "WEIGHT_DEFINITION_3" "$wrkDir/${molNum}_out.sdf"
-            removePropertyFromSDF "WEIGHT_4" "$wrkDir/${molNum}_out.sdf"
-            removePropertyFromSDF "WEIGHT_DEFINITION_4" "$wrkDir/${molNum}_out.sdf"
-            removePropertyFromSDF "FITNESS" "$wrkDir/${molNum}_out.sdf"
-            addPropertyToSingleMolSDF "DESCRIPTOR_1" "$desc1" "$wrkDir/${molNum}_out.sdf"
-            addPropertyToSingleMolSDF "DESCRIPTOR_DEFINITION_1" "$DESCRIPTOR_DEFINITION_1" "$wrkDir/${molNum}_out.sdf"
-            addPropertyToSingleMolSDF "DESCRIPTOR_2" "$desc2" "$wrkDir/${molNum}_out.sdf"
-            addPropertyToSingleMolSDF "DESCRIPTOR_DEFINITION_2" "$DESCRIPTOR_DEFINITION_2" "$wrkDir/${molNum}_out.sdf"
-            addPropertyToSingleMolSDF "DESCRIPTOR_3" "$desc3" "$wrkDir/${molNum}_out.sdf"
-            addPropertyToSingleMolSDF "DESCRIPTOR_DEFINITION_3" "$DESCRIPTOR_DEFINITION_3" "$wrkDir/${molNum}_out.sdf"
-            addPropertyToSingleMolSDF "WEIGHT_1" "$w1" "$wrkDir/${molNum}_out.sdf"
-            addPropertyToSingleMolSDF "WEIGHT_DEFINITION_1" "$WEIGHT_DEFINITION_1" "$wrkDir/${molNum}_out.sdf"
-            addPropertyToSingleMolSDF "WEIGHT_2" "$w2" "$wrkDir/${molNum}_out.sdf"
-            addPropertyToSingleMolSDF "WEIGHT_DEFINITION_2" "$WEIGHT_DEFINITION_2" "$wrkDir/${molNum}_out.sdf"
-            addPropertyToSingleMolSDF "WEIGHT_3" "$w3" "$wrkDir/${molNum}_out.sdf"
-            addPropertyToSingleMolSDF "WEIGHT_DEFINITION_3" "$WEIGHT_DEFINITION_3" "$wrkDir/${molNum}_out.sdf"
-            addPropertyToSingleMolSDF "WEIGHT_4" "$w4" "$wrkDir/${molNum}_out.sdf"
-            addPropertyToSingleMolSDF "WEIGHT_DEFINITION_4" "$WEIGHT_DEFINITION_4" "$wrkDir/${molNum}_out.sdf"
-            addPropertyToSingleMolSDF "FITNESS" "$fitness" "$wrkDir/${molNum}_out.sdf"
+
+            calculateFitness "$wrkDir/${molNum}_out.sdf" "$freeEnergyX" "$freeEnergyZ" "$freeEnergyD" "$freeEnergyA" "$freeEnergyC" "$freeEnergyE" "$freeEnergyF" "$freeEnergyL"
+
             exit 0
         fi
     fi
     #
-    # Run real task starting with the First parallel batch: 
+    # Run real task starting with the First parallel batch:
     # build selected states and choose ligand conformation
     #
     submitParallelBatchMMSE "1st" "$inpSDF" firstSubJobsLabelList[@] "$build3DConfScript"
@@ -1483,7 +1372,7 @@ else
     echo "FRG-REJECTELEMENT=Ru" >> "$gm3dfPar"
     # Submit GM3DFragmenter
     cd "$wrkDir"
-    denoptim -r FRG "$gm3dfPar" > "$gm3dfLog" 2>&1 
+    denoptim -r FRG "$gm3dfPar" > "$gm3dfLog" 2>&1
     cd "$locDir"
     rm -f "$wrkDir/MolFrag-ratio_${molNum}_"*
     rm -f "$wrkDir/CPMap_${molNum}_"*
@@ -1548,7 +1437,7 @@ else
     fi
 
     # Keep only the first fragment
-    xligFrags="$fragmenterDir/Fragments.sdf" 
+    xligFrags="$fragmenterDir/Fragments.sdf"
     nEndFirst=$(grep -n -m 1 "\$\$\$\$" "$xligFrags" | awk -F":" '{print $1}')
     head -n "$nEndFirst" "$xligFrags"  >> "$libFragsAndLigand"
     echo "Collecting fragments for building other states (2)"
@@ -1562,7 +1451,7 @@ else
     # build intermediates/transition states with the chosen ligand conformation
     #
     submitParallelBatchMMSE "2nd" "$coreLigGraph" secondSubJobsLabelList[@] "$build3DAndRefine"
-fi    
+fi
 
 
 #
@@ -1674,7 +1563,7 @@ done
 #allXTBSubJobsLabelList=()
 #allXTBSubJobsIDList=()
 #allXTBSubJobsOutList=()
-# WARNING! uses allSdfToXTB[@], toDFTStateLabels[@] and sortedLabelRoots[@] 
+# WARNING! uses allSdfToXTB[@], toDFTStateLabels[@] and sortedLabelRoots[@]
 # and I really meand those whith the 'DFT' string in the name!
 #submitParallelBatchXTB
 
@@ -1731,8 +1620,8 @@ allDFTSubJobsOutList=()
 submitDFTAllInOnce
 
 # Measuring closest non bonded Ru,H distance (stored in var: 'closestContact')
-closeContact "Z" 
-closeContact "X" 
+closeContact "Z"
+closeContact "X"
 
 # Variables containing the final energies in Hartree
 freeEnergyA=$( grep -A1 "DFT-ENERGY" "$wrkDir/${molNum}_outSubDFT-A.sdf" | tail -n 1 )
@@ -1750,57 +1639,12 @@ else
     freeEnergyE=$( grep -A1 "DFT-ENERGY" "$wrkDir/${molNum}_outSubDFT-E.sdf" | tail -n 1 )
 fi
 # Calculate fitness
-calculateFitness
-
-#Preparing final sdf file
-addPropertyToSingleMolSDF "DESCRIPTOR_DEFINITION_1" "$DESCRIPTOR_DEFINITION_1" "$preOutSDF"
-addPropertyToSingleMolSDF "DESCRIPTOR_DEFINITION_2" "$DESCRIPTOR_DEFINITION_2" "$preOutSDF"
-addPropertyToSingleMolSDF "DESCRIPTOR_DEFINITION_3" "$DESCRIPTOR_DEFINITION_3" "$preOutSDF"
-addPropertyToSingleMolSDF "WEIGHT_DEFINITION_1" "$WEIGHT_DEFINITION_1" "$preOutSDF"
-addPropertyToSingleMolSDF "WEIGHT_DEFINITION_2" "$WEIGHT_DEFINITION_2" "$preOutSDF"
-addPropertyToSingleMolSDF "WEIGHT_DEFINITION_3" "$WEIGHT_DEFINITION_3" "$preOutSDF"
-addPropertyToSingleMolSDF "WEIGHT_DEFINITION_4" "$WEIGHT_DEFINITION_4" "$preOutSDF"
-addPropertyToSingleMolSDF "CALCULATION_OF_OVERALL_FITNESS" 'fitness=$( echo "( $desc1 + $desc2 + $desc3 ) * ( $w1 * $w2 * $w3 * $w4 )" | bc -l )' "$preOutSDF"
-addPropertyToSingleMolSDF "freeEnergyA" "${freeEnergyA}" "$preOutSDF"
-addPropertyToSingleMolSDF "freeEnergyF" "${freeEnergyF}" "$preOutSDF"
-addPropertyToSingleMolSDF "freeEnergyE" "${freeEnergyE}" "$preOutSDF"
-addPropertyToSingleMolSDF "freeEnergyC" "${freeEnergyC}" "$preOutSDF"
-addPropertyToSingleMolSDF "freeEnergyL" "${freeEnergyL}" "$preOutSDF"
-addPropertyToSingleMolSDF "freeEnergyX" "${freeEnergyX}" "$preOutSDF"
-addPropertyToSingleMolSDF "freeEnergyZ" "${freeEnergyZ}" "$preOutSDF"
-addPropertyToSingleMolSDF "freeEnergyD" "${freeEnergyD}" "$preOutSDF"
-addPropertyToSingleMolSDF "G_Propene" "-117.738020895" "$preOutSDF"
-addPropertyToSingleMolSDF "G_Ethene" "-78.4716324751" "$preOutSDF"
-addPropertyToSingleMolSDF "G_HoveydaProd" "-502.204109499" "$preOutSDF"
-addPropertyToSingleMolSDF "G_SIMes" "-924.27249048" "$preOutSDF"
-addPropertyToSingleMolSDF "G_HG_RuCl2_SIMes" "-2402.13728523" "$preOutSDF"
-addPropertyToSingleMolSDF "DG_referenceProductionBarrier" "0.01468968" "$preOutSDF"
-addPropertyToSingleMolSDF "DG_referencePrecursorStabilityHII" "-0.0052201621" "$preOutSDF"
-addPropertyToSingleMolSDF "DG_referencePrecursorStabilityHI" "0.0117775312" "$preOutSDF"
-addPropertyToSingleMolSDF "DDG_referencePrecursorStability" "$( echo "$DG_referencePrecursorStabilityHI - $DG_referencePrecursorStabilityHII" | bc -l )" "$preOutSDF"
-addPropertyToSingleMolSDF "DG_referenceSynt" "0.0226072217" "$preOutSDF"
-addPropertyToSingleMolSDF "hartree_to_kcalmol" "627.49467516" "$preOutSDF"
-addPropertyToSingleMolSDF "boltzmann_constant" "0.0000000000000000000000138066" "$preOutSDF"
-addPropertyToSingleMolSDF "avogadro_number" "602214000000000000000000" "$preOutSDF"
-addPropertyToSingleMolSDF "jmol_to_kcalmol" "0.00023901" "$preOutSDF"
-addPropertyToSingleMolSDF "temp" "313.15" "$preOutSDF"
-addPropertyToSingleMolSDF "kT" "$( echo "$boltzmann_constant * $avogadro_number * $jmol_to_kcalmol * $temp" | bc -l )" "$preOutSDF"
-addPropertyToSingleMolSDF "magnitude1" "1.43290809" "$preOutSDF"
-addPropertyToSingleMolSDF "magnitude2" "2.86581618" "$preOutSDF"
-addPropertyToSingleMolSDF "magnitude3" "4.29872427" "$preOutSDF"
-addPropertyToSingleMolSDF "magnitude4" "5.73163236" "$preOutSDF"
+calculateFitness "$preOutSDF" "$freeEnergyX" "$freeEnergyZ" "$freeEnergyD" "$freeEnergyA" "$freeEnergyC" "$freeEnergyE" "$freeEnergyF" "$freeEnergyL"
 addPropertyToSingleMolSDF "DFT_IDENTIFIER" "$( grep "Current timestamp (ms):" "$wrkDir/${molNum}_run_DFT.log" | awk '{print $4}' )" "$preOutSDF"
-addPropertyToSingleMolSDF "DFT_MACHINE" "$( grep machine "$wrkDir/${molNum}_run_DFT.log" | awk '{print $2}' )" "$preOutSDF" 
+addPropertyToSingleMolSDF "DFT_MACHINE" "$( grep machine "$wrkDir/${molNum}_run_DFT.log" | awk '{print $2}' )" "$preOutSDF"
 addPropertyToSingleMolSDF "XTB_IDENTIFIER" "$( grep "Current timestamp (ms):" "$wrkDir/${molNum}_run_XTB.log" | awk '{print $4}' )" "$preOutSDF"
 addPropertyToSingleMolSDF "XTB_MACHINE" "$( grep machine "$wrkDir/${molNum}_run_XTB.log" | awk '{print $2}' )" "$preOutSDF"
-addPropertyToSingleMolSDF "DESCRIPTOR_1" "$desc1" "$preOutSDF"
-addPropertyToSingleMolSDF "DESCRIPTOR_2" "$desc2" "$preOutSDF"
-addPropertyToSingleMolSDF "DESCRIPTOR_3" "$desc3" "$preOutSDF"
-addPropertyToSingleMolSDF "WEIGHT_1" "$w1" "$preOutSDF"
-addPropertyToSingleMolSDF "WEIGHT_2" "$w2" "$preOutSDF"
-addPropertyToSingleMolSDF "WEIGHT_3" "$w3" "$preOutSDF"
-addPropertyToSingleMolSDF "WEIGHT_4" "$w4" "$preOutSDF"
-addPropertyToSingleMolSDF "FITNESS" "$fitness" "$preOutSDF"
+
 
 #
 # Cleanup
@@ -1834,7 +1678,7 @@ then
     rm -fr "$wrkDir/${molNum}_"*".spartan"
     rm -fr "$wrkDir/${molNum}_"*"CSSPR"*
     rm -fr "$wrkDir/xtb_${molNum}"
-    
+
     #for subJobOutSDF in "${allSubJobsOutList[@]}"
     #do
     #    rm -f "$subJobOutSDF"
@@ -1842,7 +1686,7 @@ then
     mkdir "$wrkDir/${molNum}"
     mv "$wrkDir/${molNum}_"* "$wrkDir/${molNum}"
     #cp "$wrkDir/${molNum}/"*"outSub"* "$wrkDir/"
-    echo "Making archive with log files and co." 
+    echo "Making archive with log files and co."
     tar -cpzf "$wrkDir/${molNum}.tar.gz" -C "$wrkDir" "${molNum}"
     rm -r "$wrkDir/${molNum}"
 fi
@@ -1851,6 +1695,6 @@ mv "$preOutSDF" "$outSDF"
 
 #
 # Exit
-# 
+#
 echo "Fitness evaluation completed for molecule $molNum!"
 exit 0
