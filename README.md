@@ -1,9 +1,9 @@
 # Automated Evaluation of Ru-Based Catalyst for Olefin metathesis
 This is a tool for automatic evaluation of candidate olefin metathesis catalyst with general formula (L)Ru(X)(X)=CH<sub>2</sub>, where X is a covalent ligands and L is a dative ligand.
 
-The workflow leading to the calculation of the fitness is summarised here:
+The work flow leading to the calculation of the fitness is summarized here:
 
-![Figure 1: overview of fitness evaluation workflow.](./figures/workflow_overview.png)
+![Figure 1: overview of fitness evaluation work flow.](./figures/workflow_overview.png)
 
 ## How To Get Started
 1. Clone/copy this repository on your local client.
@@ -121,7 +121,7 @@ A pre-configured test run is available. The time required to run it depends the 
 ```
 ./test/run_test.sh
 ```    
-This eventually return `Test PASSED!` if the entire workflow could be successfully executed and the resulting fitness is sufficiently close to the expected value.
+This eventually return `Test PASSED!` if the entire work flow could be successfully executed and the resulting fitness is sufficiently close to the expected value.
 
 
 ## Test Run Without Remote Workers
@@ -161,7 +161,7 @@ Here are the steps to follow:
     ```
     This will print a comforting message if the test has been passed.
 
-5. To make the localhost emulate an HPC worker we need to define the `submit_job_acc` command that we expect to find in any remote worker. Therefore, we add the corresponding executables to the PATH to make them reachable. This is here done by altering the `~/.bashrc` file (assuming BASH terminal).  __NB: this step makes this workflow incompatible with situation where you want to have alternative versions of such commands. So, you may want to recover the original `~/.bashrc` file once you are done with this test.__ Because of the usual practice of terminating `~/.bashrc` prematurely for non-interactive shells (see [here](https://unix.stackexchange.com/questions/257571/why-does-bashrc-check-whether-the-current-shell-is-interactive) ), you __must__ make sure you add the following in `~/.bashrc` before the line where it checks whether the shell is interactive or not. Also, note you __must__ replace `<replace_with_path>` with the appropriate pathname, i.e., the absolute pathname of the root folder of this repository, i.e., right where this README file is located.
+5. To make the localhost emulate an HPC worker we need to define the `submit_job_acc` command that we expect to find in any remote worker. Therefore, we add the corresponding executables to the PATH to make them reachable. This is here done by altering the `~/.bashrc` file (assuming BASH terminal).  __NB: this step makes this work flow incompatible with situation where you want to have alternative versions of such commands. So, you may want to recover the original `~/.bashrc` file once you are done with this test.__ Because of the usual practice of terminating `~/.bashrc` prematurely for non-interactive shells (see [here](https://unix.stackexchange.com/questions/257571/why-does-bashrc-check-whether-the-current-shell-is-interactive) ), you __must__ make sure you add the following in `~/.bashrc` before the line where it checks whether the shell is interactive or not. Also, note you __must__ replace `<replace_with_path>` with the appropriate pathname, i.e., the absolute pathname of the root folder of this repository, i.e., right where this README file is located.
     ```
     export PATH="<replace_with_path>/tools/hpc_emulator:<replace_with_path>/tools/xtb_runner:$PATH"
     ```
@@ -170,7 +170,7 @@ Here are the steps to follow:
     ```
     ./test/run_test.sh --sendXtbToRemote --highFreq
     ```
-    This with run for a few instants and then return `Test PASSED!` if the entire workflow could be successfully executed. However, this configuration without a true remote worker is only available for the test run: it cannot be used to evaluate any other catalyst.
+    This with run for a few instants and then return `Test PASSED!` if the entire work flow could be successfully executed. However, this configuration without a true remote worker is only available for the test run: it cannot be used to evaluate any other catalyst.
 
 If you need to change between running tests with actual HPC workers or localhost, and you have configured both of them, you only need to replace the `tools/RemoteWorkersBridge/configuration` file.
 
@@ -199,7 +199,7 @@ To define a catalyst with general formula (L)Ru(X)(X)=CH<sub>2</sub>, where X is
     cd data
     denoptim
     ```
-    2. Choose `File` -> `New` -> `New Graphs` and click on `Add Graphs` and then `Convert` to select which molecular structure to load. __NB:__ such model is assumed to adhere to the tradition of reporting any Ru-L and Ru-X bond as single bonds and the Ru-alkylidene bond as a double one. Aditionally, aromatic rings is assumed to adhear to the traditional reporting of alternating single and double bonds.
+    2. Choose `File` -> `New` -> `New Graphs` and click on `Add Graphs` and then `Convert` to select which molecular structure to load. __NB:__ such model is assumed to adhere to the tradition of reporting any Ru-L and Ru-X bond as single bonds and the Ru-alkylidene bond as a double one. Additionally, aromatic rings is assumed to adhere to the traditional reporting of alternating single and double bonds.
     3. In the resulting dialog window, click on `Import Rules` and navigate to load the rules from the file given in `data/cutting_rules_for_mol-to-graph`.
     4. Specify the policy for identifying the scaffold vertex to `ELEMENT` and specify elemental symbol `Ru`.
     5. By clicking on `Start Fragmentation` to convert the molecule into a graph, i.e., a collection of building blocks.
@@ -217,10 +217,11 @@ Once you have a Denoptim graph file, i.e., the `mycatalyst.sdf` mentioned above,
 To see how the master job proceeds, check the log file `mycatalyst/mycatalyst_FProvider.log`. For a successfully terminated evaluation, the final results are summarised in file `mycatalyst/mycatalyst_out.sdf` while the details are collected in archive `mycatalyst/mycatalyst.tar.gz`.
 
 # Reproduction of Published Results
-The results presented in the scietific publication presenting this method are available under [test/test_set_1](test/test_set_1). The analysis of such data can be reproduced by running the Jupyter-notebook [test/test_set_1/Analysis_MS_figures.ipynb](test/test_set_1/Analysis_MS_figures.ipynb).
+The results presented in the scientific publication presenting this method are available under [test/test_set_1](test/test_set_1) and [test/test_set_2](test/test_set_2). The corresponding analysis can be reproduced by running the Jupyter-notebooks [test/test_set_1/Analysis_MS_figures.ipynb](test/test_set_1/Analysis_MS_figures.ipynb) and [test/test_set_2/Analysis_test_set_2.ipynb](test/test_set_2/Analysis_test_set_2.ipynb).
+
 
 # License
-The content of this repository is licenced under the [GNU AGPL v3.0 license terms](LICENSE).
+The content of this repository is licensed under the [GNU AGPL v3.0 license terms](LICENSE).
 
-# Acknowledgements
+# Acknowledgments
 The Research Council of Norway and University of Bergen are thanked for various kinds of funding.
