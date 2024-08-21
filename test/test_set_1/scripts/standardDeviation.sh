@@ -1,7 +1,7 @@
 #!/bin/bash
 
-candidates=("H0 HI HII_prime HII HC1Ph")
-tags=("_1 _2 _3 _4 _5")
+candidates=("H0 HI HIIprime HII HC1Ph")
+tags=("-1 -2 -3 -4 -5")
 numCandidates="$( echo $candidates | wc -w )"
 allStdDev=""
 myDir="$( dirname "$0" )"
