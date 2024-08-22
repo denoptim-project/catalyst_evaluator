@@ -59,7 +59,7 @@ source ../../src/fitness_function.sh
 
 if [[ $(type -t computeFitness ) != function ]]
 then
-  echo "Not passed: functio 'computeFitness' not defined!"
+  echo "Not passed: function 'computeFitness' not defined!"
 fi
 
 computeFitness non-existing-file 2 3 4 5 6 7 8 9 > "$log"
