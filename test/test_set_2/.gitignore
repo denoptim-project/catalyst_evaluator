@@ -9,6 +9,7 @@
 #... and the results 
 !CAACCyDIPP-0
 !CAACCyDIPP-0.sdf
+!CAACCyDIPP-0/CAACCyDIPP-0_out.sdf
 !CAACCyDIPP-0/CAACCyDIPP-0_outSubXTB-A.sdf
 !CAACCyDIPP-0/CAACCyDIPP-0_outSubXTB-C.sdf
 !CAACCyDIPP-0/CAACCyDIPP-0_outSubXTB-E.sdf
@@ -19,6 +20,7 @@
 !CAACCyDIPP-0/CAACCyDIPP-0_outSubPreDFT-D.sdf
 !CAACCyDIPP-1
 !CAACCyDIPP-1.sdf
+!CAACCyDIPP-1/CAACCyDIPP-1_out.sdf
 !CAACCyDIPP-1/CAACCyDIPP-1_outSubXTB-A.sdf
 !CAACCyDIPP-1/CAACCyDIPP-1_outSubXTB-C.sdf
 !CAACCyDIPP-1/CAACCyDIPP-1_outSubXTB-E.sdf
@@ -29,6 +31,7 @@
 !CAACCyDIPP-1/CAACCyDIPP-1_outSubPreDFT-D.sdf
 !CAACCyDIPP-2
 !CAACCyDIPP-2.sdf
+!CAACCyDIPP-2/CAACCyDIPP-2_out.sdf
 !CAACCyDIPP-2/CAACCyDIPP-2_outSubXTB-A.sdf
 !CAACCyDIPP-2/CAACCyDIPP-2_outSubXTB-C.sdf
 !CAACCyDIPP-2/CAACCyDIPP-2_outSubXTB-E.sdf
@@ -39,6 +42,7 @@
 !CAACCyDIPP-2/CAACCyDIPP-2_outSubPreDFT-D.sdf
 !CAACCyDIPP-3
 !CAACCyDIPP-3.sdf
+!CAACCyDIPP-3/CAACCyDIPP-3_out.sdf
 !CAACCyDIPP-3/CAACCyDIPP-3_outSubXTB-A.sdf
 !CAACCyDIPP-3/CAACCyDIPP-3_outSubXTB-C.sdf
 !CAACCyDIPP-3/CAACCyDIPP-3_outSubXTB-E.sdf
@@ -49,6 +53,7 @@
 !CAACCyDIPP-3/CAACCyDIPP-3_outSubPreDFT-D.sdf
 !CAACCyDIPP-4
 !CAACCyDIPP-4.sdf
+!CAACCyDIPP-4/CAACCyDIPP-4_out.sdf
 !CAACCyDIPP-4/CAACCyDIPP-4_outSubXTB-A.sdf
 !CAACCyDIPP-4/CAACCyDIPP-4_outSubXTB-C.sdf
 !CAACCyDIPP-4/CAACCyDIPP-4_outSubXTB-E.sdf
@@ -59,6 +64,7 @@
 !CAACCyDIPP-4/CAACCyDIPP-4_outSubPreDFT-D.sdf
 !CAACCyDIPP-5
 !CAACCyDIPP-5.sdf
+!CAACCyDIPP-5/CAACCyDIPP-5_out.sdf
 !CAACCyDIPP-5/CAACCyDIPP-5_outSubXTB-A.sdf
 !CAACCyDIPP-5/CAACCyDIPP-5_outSubXTB-C.sdf
 !CAACCyDIPP-5/CAACCyDIPP-5_outSubXTB-E.sdf
@@ -69,6 +75,7 @@
 !CAACCyDIPP-5/CAACCyDIPP-5_outSubPreDFT-D.sdf
 !CAACEtDIPP-0
 !CAACEtDIPP-0.sdf
+!CAACEtDIPP-0/CAACEtDIPP-0_out.sdf
 !CAACEtDIPP-0/CAACEtDIPP-0_outSubXTB-A.sdf
 !CAACEtDIPP-0/CAACEtDIPP-0_outSubXTB-C.sdf
 !CAACEtDIPP-0/CAACEtDIPP-0_outSubXTB-E.sdf
@@ -79,6 +86,7 @@
 !CAACEtDIPP-0/CAACEtDIPP-0_outSubPreDFT-D.sdf
 !CAACEtDIPP-1
 !CAACEtDIPP-1.sdf
+!CAACEtDIPP-1/CAACEtDIPP-1_out.sdf
 !CAACEtDIPP-1/CAACEtDIPP-1_outSubXTB-A.sdf
 !CAACEtDIPP-1/CAACEtDIPP-1_outSubXTB-C.sdf
 !CAACEtDIPP-1/CAACEtDIPP-1_outSubXTB-E.sdf
@@ -89,6 +97,7 @@
 !CAACEtDIPP-1/CAACEtDIPP-1_outSubPreDFT-D.sdf
 !CAACEtDIPP-2
 !CAACEtDIPP-2.sdf
+!CAACEtDIPP-2/CAACEtDIPP-2_out.sdf
 !CAACEtDIPP-2/CAACEtDIPP-2_outSubXTB-A.sdf
 !CAACEtDIPP-2/CAACEtDIPP-2_outSubXTB-C.sdf
 !CAACEtDIPP-2/CAACEtDIPP-2_outSubXTB-E.sdf
@@ -99,6 +108,7 @@
 !CAACEtDIPP-2/CAACEtDIPP-2_outSubPreDFT-D.sdf
 !CAACEtDIPP-3
 !CAACEtDIPP-3.sdf
+!CAACEtDIPP-3/CAACEtDIPP-3_out.sdf
 !CAACEtDIPP-3/CAACEtDIPP-3_outSubXTB-A.sdf
 !CAACEtDIPP-3/CAACEtDIPP-3_outSubXTB-C.sdf
 !CAACEtDIPP-3/CAACEtDIPP-3_outSubXTB-E.sdf
@@ -109,6 +119,7 @@
 !CAACEtDIPP-3/CAACEtDIPP-3_outSubPreDFT-D.sdf
 !CAACEtDIPP-4
 !CAACEtDIPP-4.sdf
+!CAACEtDIPP-4/CAACEtDIPP-4_out.sdf
 !CAACEtDIPP-4/CAACEtDIPP-4_outSubXTB-A.sdf
 !CAACEtDIPP-4/CAACEtDIPP-4_outSubXTB-C.sdf
 !CAACEtDIPP-4/CAACEtDIPP-4_outSubXTB-E.sdf
@@ -119,6 +130,7 @@
 !CAACEtDIPP-4/CAACEtDIPP-4_outSubPreDFT-D.sdf
 !CAACEtDIPP-5
 !CAACEtDIPP-5.sdf
+!CAACEtDIPP-5/CAACEtDIPP-5_out.sdf
 !CAACEtDIPP-5/CAACEtDIPP-5_outSubXTB-A.sdf
 !CAACEtDIPP-5/CAACEtDIPP-5_outSubXTB-C.sdf
 !CAACEtDIPP-5/CAACEtDIPP-5_outSubXTB-E.sdf
@@ -129,6 +141,7 @@
 !CAACEtDIPP-5/CAACEtDIPP-5_outSubPreDFT-D.sdf
 !CpMes-0
 !CpMes-0.sdf
+!CpMes-0/CpMes-0_out.sdf
 !CpMes-0/CpMes-0_outSubXTB-A.sdf
 !CpMes-0/CpMes-0_outSubXTB-C.sdf
 !CpMes-0/CpMes-0_outSubXTB-E.sdf
@@ -139,6 +152,7 @@
 !CpMes-0/CpMes-0_outSubPreDFT-D.sdf
 !CpMes-1
 !CpMes-1.sdf
+!CpMes-1/CpMes-1_out.sdf
 !CpMes-1/CpMes-1_outSubXTB-A.sdf
 !CpMes-1/CpMes-1_outSubXTB-C.sdf
 !CpMes-1/CpMes-1_outSubXTB-E.sdf
@@ -149,6 +163,7 @@
 !CpMes-1/CpMes-1_outSubPreDFT-D.sdf
 !CpMes-2
 !CpMes-2.sdf
+!CpMes-2/CpMes-2_out.sdf
 !CpMes-2/CpMes-2_outSubXTB-A.sdf
 !CpMes-2/CpMes-2_outSubXTB-C.sdf
 !CpMes-2/CpMes-2_outSubXTB-E.sdf
@@ -159,6 +174,7 @@
 !CpMes-2/CpMes-2_outSubPreDFT-D.sdf
 !CpMes-3
 !CpMes-3.sdf
+!CpMes-3/CpMes-3_out.sdf
 !CpMes-3/CpMes-3_outSubXTB-A.sdf
 !CpMes-3/CpMes-3_outSubXTB-C.sdf
 !CpMes-3/CpMes-3_outSubXTB-E.sdf
@@ -169,6 +185,7 @@
 !CpMes-3/CpMes-3_outSubPreDFT-D.sdf
 !CpMes-4
 !CpMes-4.sdf
+!CpMes-4/CpMes-4_out.sdf
 !CpMes-4/CpMes-4_outSubXTB-A.sdf
 !CpMes-4/CpMes-4_outSubXTB-C.sdf
 !CpMes-4/CpMes-4_outSubXTB-E.sdf
@@ -179,6 +196,7 @@
 !CpMes-4/CpMes-4_outSubPreDFT-D.sdf
 !CpMes-5
 !CpMes-5.sdf
+!CpMes-5/CpMes-5_out.sdf
 !CpMes-5/CpMes-5_outSubXTB-A.sdf
 !CpMes-5/CpMes-5_outSubXTB-C.sdf
 !CpMes-5/CpMes-5_outSubXTB-E.sdf
@@ -189,6 +207,7 @@
 !CpMes-5/CpMes-5_outSubPreDFT-D.sdf
 !CyDIPP-0
 !CyDIPP-0.sdf
+!CyDIPP-0/CyDIPP-0_out.sdf
 !CyDIPP-0/CyDIPP-0_outSubXTB-A.sdf
 !CyDIPP-0/CyDIPP-0_outSubXTB-C.sdf
 !CyDIPP-0/CyDIPP-0_outSubXTB-E.sdf
@@ -199,6 +218,7 @@
 !CyDIPP-0/CyDIPP-0_outSubPreDFT-D.sdf
 !CyDIPP-1
 !CyDIPP-1.sdf
+!CyDIPP-1/CyDIPP-1_out.sdf
 !CyDIPP-1/CyDIPP-1_outSubXTB-A.sdf
 !CyDIPP-1/CyDIPP-1_outSubXTB-C.sdf
 !CyDIPP-1/CyDIPP-1_outSubXTB-E.sdf
@@ -209,6 +229,7 @@
 !CyDIPP-1/CyDIPP-1_outSubPreDFT-D.sdf
 !CyDIPP-2
 !CyDIPP-2.sdf
+!CyDIPP-2/CyDIPP-2_out.sdf
 !CyDIPP-2/CyDIPP-2_outSubXTB-A.sdf
 !CyDIPP-2/CyDIPP-2_outSubXTB-C.sdf
 !CyDIPP-2/CyDIPP-2_outSubXTB-E.sdf
@@ -219,6 +240,7 @@
 !CyDIPP-2/CyDIPP-2_outSubPreDFT-D.sdf
 !CyDIPP-3
 !CyDIPP-3.sdf
+!CyDIPP-3/CyDIPP-3_out.sdf
 !CyDIPP-3/CyDIPP-3_outSubXTB-A.sdf
 !CyDIPP-3/CyDIPP-3_outSubXTB-C.sdf
 !CyDIPP-3/CyDIPP-3_outSubXTB-E.sdf
@@ -229,6 +251,7 @@
 !CyDIPP-3/CyDIPP-3_outSubPreDFT-D.sdf
 !CyDIPP-4
 !CyDIPP-4.sdf
+!CyDIPP-4/CyDIPP-4_out.sdf
 !CyDIPP-4/CyDIPP-4_outSubXTB-A.sdf
 !CyDIPP-4/CyDIPP-4_outSubXTB-C.sdf
 !CyDIPP-4/CyDIPP-4_outSubXTB-E.sdf
@@ -239,6 +262,7 @@
 !CyDIPP-4/CyDIPP-4_outSubPreDFT-D.sdf
 !CyDIPP-5
 !CyDIPP-5.sdf
+!CyDIPP-5/CyDIPP-5_out.sdf
 !CyDIPP-5/CyDIPP-5_outSubXTB-A.sdf
 !CyDIPP-5/CyDIPP-5_outSubXTB-C.sdf
 !CyDIPP-5/CyDIPP-5_outSubXTB-E.sdf
@@ -249,6 +273,7 @@
 !CyDIPP-5/CyDIPP-5_outSubPreDFT-D.sdf
 !DFP-0
 !DFP-0.sdf
+!DFP-0/DFP-0_out.sdf
 !DFP-0/DFP-0_outSubXTB-A.sdf
 !DFP-0/DFP-0_outSubXTB-C.sdf
 !DFP-0/DFP-0_outSubXTB-E.sdf
@@ -259,6 +284,7 @@
 !DFP-0/DFP-0_outSubPreDFT-D.sdf
 !DFP-1
 !DFP-1.sdf
+!DFP-1/DFP-1_out.sdf
 !DFP-1/DFP-1_outSubXTB-A.sdf
 !DFP-1/DFP-1_outSubXTB-C.sdf
 !DFP-1/DFP-1_outSubXTB-E.sdf
@@ -269,6 +295,7 @@
 !DFP-1/DFP-1_outSubPreDFT-D.sdf
 !DFP-2
 !DFP-2.sdf
+!DFP-2/DFP-2_out.sdf
 !DFP-2/DFP-2_outSubXTB-A.sdf
 !DFP-2/DFP-2_outSubXTB-C.sdf
 !DFP-2/DFP-2_outSubXTB-E.sdf
@@ -279,6 +306,7 @@
 !DFP-2/DFP-2_outSubPreDFT-D.sdf
 !DFP-3
 !DFP-3.sdf
+!DFP-3/DFP-3_out.sdf
 !DFP-3/DFP-3_outSubXTB-A.sdf
 !DFP-3/DFP-3_outSubXTB-C.sdf
 !DFP-3/DFP-3_outSubXTB-E.sdf
@@ -289,6 +317,7 @@
 !DFP-3/DFP-3_outSubPreDFT-D.sdf
 !DFP-4
 !DFP-4.sdf
+!DFP-4/DFP-4_out.sdf
 !DFP-4/DFP-4_outSubXTB-A.sdf
 !DFP-4/DFP-4_outSubXTB-C.sdf
 !DFP-4/DFP-4_outSubXTB-E.sdf
@@ -299,6 +328,7 @@
 !DFP-4/DFP-4_outSubPreDFT-D.sdf
 !DFP-5
 !DFP-5.sdf
+!DFP-5/DFP-5_out.sdf
 !DFP-5/DFP-5_outSubXTB-A.sdf
 !DFP-5/DFP-5_outSubXTB-C.sdf
 !DFP-5/DFP-5_outSubXTB-E.sdf
@@ -309,6 +339,7 @@
 !DFP-5/DFP-5_outSubPreDFT-D.sdf
 !DIPP-0
 !DIPP-0.sdf
+!DIPP-0/DIPP-0_out.sdf
 !DIPP-0/DIPP-0_outSubXTB-A.sdf
 !DIPP-0/DIPP-0_outSubXTB-C.sdf
 !DIPP-0/DIPP-0_outSubXTB-E.sdf
@@ -319,6 +350,7 @@
 !DIPP-0/DIPP-0_outSubPreDFT-D.sdf
 !DIPP-1
 !DIPP-1.sdf
+!DIPP-1/DIPP-1_out.sdf
 !DIPP-1/DIPP-1_outSubXTB-A.sdf
 !DIPP-1/DIPP-1_outSubXTB-C.sdf
 !DIPP-1/DIPP-1_outSubXTB-E.sdf
@@ -329,6 +361,7 @@
 !DIPP-1/DIPP-1_outSubPreDFT-D.sdf
 !DIPP-2
 !DIPP-2.sdf
+!DIPP-2/DIPP-2_out.sdf
 !DIPP-2/DIPP-2_outSubXTB-A.sdf
 !DIPP-2/DIPP-2_outSubXTB-C.sdf
 !DIPP-2/DIPP-2_outSubXTB-E.sdf
@@ -339,6 +372,7 @@
 !DIPP-2/DIPP-2_outSubPreDFT-D.sdf
 !DIPP-3
 !DIPP-3.sdf
+!DIPP-3/DIPP-3_out.sdf
 !DIPP-3/DIPP-3_outSubXTB-A.sdf
 !DIPP-3/DIPP-3_outSubXTB-C.sdf
 !DIPP-3/DIPP-3_outSubXTB-E.sdf
@@ -349,6 +383,7 @@
 !DIPP-3/DIPP-3_outSubPreDFT-D.sdf
 !DIPP-4
 !DIPP-4.sdf
+!DIPP-4/DIPP-4_out.sdf
 !DIPP-4/DIPP-4_outSubXTB-A.sdf
 !DIPP-4/DIPP-4_outSubXTB-C.sdf
 !DIPP-4/DIPP-4_outSubXTB-E.sdf
@@ -359,6 +394,7 @@
 !DIPP-4/DIPP-4_outSubPreDFT-D.sdf
 !DIPP-5
 !DIPP-5.sdf
+!DIPP-5/DIPP-5_out.sdf
 !DIPP-5/DIPP-5_outSubXTB-A.sdf
 !DIPP-5/DIPP-5_outSubXTB-C.sdf
 !DIPP-5/DIPP-5_outSubXTB-E.sdf
@@ -369,6 +405,7 @@
 !DIPP-5/DIPP-5_outSubPreDFT-D.sdf
 !DIPP5CAAC-0
 !DIPP5CAAC-0.sdf
+!DIPP5CAAC-0/DIPP5CAAC-0_out.sdf
 !DIPP5CAAC-0/DIPP5CAAC-0_outSubXTB-A.sdf
 !DIPP5CAAC-0/DIPP5CAAC-0_outSubXTB-C.sdf
 !DIPP5CAAC-0/DIPP5CAAC-0_outSubXTB-E.sdf
@@ -379,6 +416,7 @@
 !DIPP5CAAC-0/DIPP5CAAC-0_outSubPreDFT-D.sdf
 !DIPP5CAAC-1
 !DIPP5CAAC-1.sdf
+!DIPP5CAAC-1/DIPP5CAAC-1_out.sdf
 !DIPP5CAAC-1/DIPP5CAAC-1_outSubXTB-A.sdf
 !DIPP5CAAC-1/DIPP5CAAC-1_outSubXTB-C.sdf
 !DIPP5CAAC-1/DIPP5CAAC-1_outSubXTB-E.sdf
@@ -389,6 +427,7 @@
 !DIPP5CAAC-1/DIPP5CAAC-1_outSubPreDFT-D.sdf
 !DIPP5CAAC-2
 !DIPP5CAAC-2.sdf
+!DIPP5CAAC-2/DIPP5CAAC-2_out.sdf
 !DIPP5CAAC-2/DIPP5CAAC-2_outSubXTB-A.sdf
 !DIPP5CAAC-2/DIPP5CAAC-2_outSubXTB-C.sdf
 !DIPP5CAAC-2/DIPP5CAAC-2_outSubXTB-E.sdf
@@ -399,6 +438,7 @@
 !DIPP5CAAC-2/DIPP5CAAC-2_outSubPreDFT-D.sdf
 !DIPP5CAAC-3
 !DIPP5CAAC-3.sdf
+!DIPP5CAAC-3/DIPP5CAAC-3_out.sdf
 !DIPP5CAAC-3/DIPP5CAAC-3_outSubXTB-A.sdf
 !DIPP5CAAC-3/DIPP5CAAC-3_outSubXTB-C.sdf
 !DIPP5CAAC-3/DIPP5CAAC-3_outSubXTB-E.sdf
@@ -409,6 +449,7 @@
 !DIPP5CAAC-3/DIPP5CAAC-3_outSubPreDFT-D.sdf
 !DIPP5CAAC-4
 !DIPP5CAAC-4.sdf
+!DIPP5CAAC-4/DIPP5CAAC-4_out.sdf
 !DIPP5CAAC-4/DIPP5CAAC-4_outSubXTB-A.sdf
 !DIPP5CAAC-4/DIPP5CAAC-4_outSubXTB-C.sdf
 !DIPP5CAAC-4/DIPP5CAAC-4_outSubXTB-E.sdf
@@ -419,6 +460,7 @@
 !DIPP5CAAC-4/DIPP5CAAC-4_outSubPreDFT-D.sdf
 !DIPP5CAAC-5
 !DIPP5CAAC-5.sdf
+!DIPP5CAAC-5/DIPP5CAAC-5_out.sdf
 !DIPP5CAAC-5/DIPP5CAAC-5_outSubXTB-A.sdf
 !DIPP5CAAC-5/DIPP5CAAC-5_outSubXTB-C.sdf
 !DIPP5CAAC-5/DIPP5CAAC-5_outSubXTB-E.sdf
@@ -429,6 +471,7 @@
 !DIPP5CAAC-5/DIPP5CAAC-5_outSubPreDFT-D.sdf
 !DMIMes-0
 !DMIMes-0.sdf
+!DMIMes-0/DMIMes-0_out.sdf
 !DMIMes-0/DMIMes-0_outSubXTB-A.sdf
 !DMIMes-0/DMIMes-0_outSubXTB-C.sdf
 !DMIMes-0/DMIMes-0_outSubXTB-E.sdf
@@ -439,6 +482,7 @@
 !DMIMes-0/DMIMes-0_outSubPreDFT-D.sdf
 !DMIMes-1
 !DMIMes-1.sdf
+!DMIMes-1/DMIMes-1_out.sdf
 !DMIMes-1/DMIMes-1_outSubXTB-A.sdf
 !DMIMes-1/DMIMes-1_outSubXTB-C.sdf
 !DMIMes-1/DMIMes-1_outSubXTB-E.sdf
@@ -449,6 +493,7 @@
 !DMIMes-1/DMIMes-1_outSubPreDFT-D.sdf
 !DMIMes-2
 !DMIMes-2.sdf
+!DMIMes-2/DMIMes-2_out.sdf
 !DMIMes-2/DMIMes-2_outSubXTB-A.sdf
 !DMIMes-2/DMIMes-2_outSubXTB-C.sdf
 !DMIMes-2/DMIMes-2_outSubXTB-E.sdf
@@ -459,6 +504,7 @@
 !DMIMes-2/DMIMes-2_outSubPreDFT-D.sdf
 !DMIMes-3
 !DMIMes-3.sdf
+!DMIMes-3/DMIMes-3_out.sdf
 !DMIMes-3/DMIMes-3_outSubXTB-A.sdf
 !DMIMes-3/DMIMes-3_outSubXTB-C.sdf
 !DMIMes-3/DMIMes-3_outSubXTB-E.sdf
@@ -469,6 +515,7 @@
 !DMIMes-3/DMIMes-3_outSubPreDFT-D.sdf
 !DMIMes-4
 !DMIMes-4.sdf
+!DMIMes-4/DMIMes-4_out.sdf
 !DMIMes-4/DMIMes-4_outSubXTB-A.sdf
 !DMIMes-4/DMIMes-4_outSubXTB-C.sdf
 !DMIMes-4/DMIMes-4_outSubXTB-E.sdf
@@ -479,6 +526,7 @@
 !DMIMes-4/DMIMes-4_outSubPreDFT-D.sdf
 !DMIMes-5
 !DMIMes-5.sdf
+!DMIMes-5/DMIMes-5_out.sdf
 !DMIMes-5/DMIMes-5_outSubXTB-A.sdf
 !DMIMes-5/DMIMes-5_outSubXTB-C.sdf
 !DMIMes-5/DMIMes-5_outSubXTB-E.sdf
@@ -489,6 +537,7 @@
 !DMIMes-5/DMIMes-5_outSubPreDFT-D.sdf
 !IPrP-0
 !IPrP-0.sdf
+!IPrP-0/IPrP-0_out.sdf
 !IPrP-0/IPrP-0_outSubXTB-A.sdf
 !IPrP-0/IPrP-0_outSubXTB-C.sdf
 !IPrP-0/IPrP-0_outSubXTB-E.sdf
@@ -499,6 +548,7 @@
 !IPrP-0/IPrP-0_outSubPreDFT-D.sdf
 !IPrP-1
 !IPrP-1.sdf
+!IPrP-1/IPrP-1_out.sdf
 !IPrP-1/IPrP-1_outSubXTB-A.sdf
 !IPrP-1/IPrP-1_outSubXTB-C.sdf
 !IPrP-1/IPrP-1_outSubXTB-E.sdf
@@ -509,6 +559,7 @@
 !IPrP-1/IPrP-1_outSubPreDFT-D.sdf
 !IPrP-2
 !IPrP-2.sdf
+!IPrP-2/IPrP-2_out.sdf
 !IPrP-2/IPrP-2_outSubXTB-A.sdf
 !IPrP-2/IPrP-2_outSubXTB-C.sdf
 !IPrP-2/IPrP-2_outSubXTB-E.sdf
@@ -519,6 +570,7 @@
 !IPrP-2/IPrP-2_outSubPreDFT-D.sdf
 !IPrP-3
 !IPrP-3.sdf
+!IPrP-3/IPrP-3_out.sdf
 !IPrP-3/IPrP-3_outSubXTB-A.sdf
 !IPrP-3/IPrP-3_outSubXTB-C.sdf
 !IPrP-3/IPrP-3_outSubXTB-E.sdf
@@ -529,6 +581,7 @@
 !IPrP-3/IPrP-3_outSubPreDFT-D.sdf
 !IPrP-4
 !IPrP-4.sdf
+!IPrP-4/IPrP-4_out.sdf
 !IPrP-4/IPrP-4_outSubXTB-A.sdf
 !IPrP-4/IPrP-4_outSubXTB-C.sdf
 !IPrP-4/IPrP-4_outSubXTB-E.sdf
@@ -539,6 +592,7 @@
 !IPrP-4/IPrP-4_outSubPreDFT-D.sdf
 !IPrP-5
 !IPrP-5.sdf
+!IPrP-5/IPrP-5_out.sdf
 !IPrP-5/IPrP-5_outSubXTB-A.sdf
 !IPrP-5/IPrP-5_outSubXTB-C.sdf
 !IPrP-5/IPrP-5_outSubXTB-E.sdf
@@ -549,6 +603,7 @@
 !IPrP-5/IPrP-5_outSubPreDFT-D.sdf
 !SIMesBenzyl-0
 !SIMesBenzyl-0.sdf
+!SIMesBenzyl-0/SIMesBenzyl-0_out.sdf
 !SIMesBenzyl-0/SIMesBenzyl-0_outSubXTB-A.sdf
 !SIMesBenzyl-0/SIMesBenzyl-0_outSubXTB-C.sdf
 !SIMesBenzyl-0/SIMesBenzyl-0_outSubXTB-E.sdf
@@ -559,6 +614,7 @@
 !SIMesBenzyl-0/SIMesBenzyl-0_outSubPreDFT-D.sdf
 !SIMesBenzyl-1
 !SIMesBenzyl-1.sdf
+!SIMesBenzyl-1/SIMesBenzyl-1_out.sdf
 !SIMesBenzyl-1/SIMesBenzyl-1_outSubXTB-A.sdf
 !SIMesBenzyl-1/SIMesBenzyl-1_outSubXTB-C.sdf
 !SIMesBenzyl-1/SIMesBenzyl-1_outSubXTB-E.sdf
@@ -569,6 +625,7 @@
 !SIMesBenzyl-1/SIMesBenzyl-1_outSubPreDFT-D.sdf
 !SIMesBenzyl-2
 !SIMesBenzyl-2.sdf
+!SIMesBenzyl-2/SIMesBenzyl-2_out.sdf
 !SIMesBenzyl-2/SIMesBenzyl-2_outSubXTB-A.sdf
 !SIMesBenzyl-2/SIMesBenzyl-2_outSubXTB-C.sdf
 !SIMesBenzyl-2/SIMesBenzyl-2_outSubXTB-E.sdf
@@ -579,6 +636,7 @@
 !SIMesBenzyl-2/SIMesBenzyl-2_outSubPreDFT-D.sdf
 !SIMesBenzyl-3
 !SIMesBenzyl-3.sdf
+!SIMesBenzyl-3/SIMesBenzyl-3_out.sdf
 !SIMesBenzyl-3/SIMesBenzyl-3_outSubXTB-A.sdf
 !SIMesBenzyl-3/SIMesBenzyl-3_outSubXTB-C.sdf
 !SIMesBenzyl-3/SIMesBenzyl-3_outSubXTB-E.sdf
@@ -589,6 +647,7 @@
 !SIMesBenzyl-3/SIMesBenzyl-3_outSubPreDFT-D.sdf
 !SIMesBenzyl-4
 !SIMesBenzyl-4.sdf
+!SIMesBenzyl-4/SIMesBenzyl-4_out.sdf
 !SIMesBenzyl-4/SIMesBenzyl-4_outSubXTB-A.sdf
 !SIMesBenzyl-4/SIMesBenzyl-4_outSubXTB-C.sdf
 !SIMesBenzyl-4/SIMesBenzyl-4_outSubXTB-E.sdf
@@ -599,6 +658,7 @@
 !SIMesBenzyl-4/SIMesBenzyl-4_outSubPreDFT-D.sdf
 !SIMesBenzyl-5
 !SIMesBenzyl-5.sdf
+!SIMesBenzyl-5/SIMesBenzyl-5_out.sdf
 !SIMesBenzyl-5/SIMesBenzyl-5_outSubXTB-A.sdf
 !SIMesBenzyl-5/SIMesBenzyl-5_outSubXTB-C.sdf
 !SIMesBenzyl-5/SIMesBenzyl-5_outSubXTB-E.sdf
@@ -609,6 +669,7 @@
 !SIMesBenzyl-5/SIMesBenzyl-5_outSubPreDFT-D.sdf
 !SIMesBr-0
 !SIMesBr-0.sdf
+!SIMesBr-0/SIMesBr-0_out.sdf
 !SIMesBr-0/SIMesBr-0_outSubXTB-A.sdf
 !SIMesBr-0/SIMesBr-0_outSubXTB-C.sdf
 !SIMesBr-0/SIMesBr-0_outSubXTB-E.sdf
@@ -619,6 +680,7 @@
 !SIMesBr-0/SIMesBr-0_outSubPreDFT-D.sdf
 !SIMesBr-1
 !SIMesBr-1.sdf
+!SIMesBr-1/SIMesBr-1_out.sdf
 !SIMesBr-1/SIMesBr-1_outSubXTB-A.sdf
 !SIMesBr-1/SIMesBr-1_outSubXTB-C.sdf
 !SIMesBr-1/SIMesBr-1_outSubXTB-E.sdf
@@ -629,6 +691,7 @@
 !SIMesBr-1/SIMesBr-1_outSubPreDFT-D.sdf
 !SIMesBr-2
 !SIMesBr-2.sdf
+!SIMesBr-2/SIMesBr-2_out.sdf
 !SIMesBr-2/SIMesBr-2_outSubXTB-A.sdf
 !SIMesBr-2/SIMesBr-2_outSubXTB-C.sdf
 !SIMesBr-2/SIMesBr-2_outSubXTB-E.sdf
@@ -639,6 +702,7 @@
 !SIMesBr-2/SIMesBr-2_outSubPreDFT-D.sdf
 !SIMesBr-3
 !SIMesBr-3.sdf
+!SIMesBr-3/SIMesBr-3_out.sdf
 !SIMesBr-3/SIMesBr-3_outSubXTB-A.sdf
 !SIMesBr-3/SIMesBr-3_outSubXTB-C.sdf
 !SIMesBr-3/SIMesBr-3_outSubXTB-E.sdf
@@ -649,6 +713,7 @@
 !SIMesBr-3/SIMesBr-3_outSubPreDFT-D.sdf
 !SIMesBr-4
 !SIMesBr-4.sdf
+!SIMesBr-4/SIMesBr-4_out.sdf
 !SIMesBr-4/SIMesBr-4_outSubXTB-A.sdf
 !SIMesBr-4/SIMesBr-4_outSubXTB-C.sdf
 !SIMesBr-4/SIMesBr-4_outSubXTB-E.sdf
@@ -659,6 +724,7 @@
 !SIMesBr-4/SIMesBr-4_outSubPreDFT-D.sdf
 !SIMesBr-5
 !SIMesBr-5.sdf
+!SIMesBr-5/SIMesBr-5_out.sdf
 !SIMesBr-5/SIMesBr-5_outSubXTB-A.sdf
 !SIMesBr-5/SIMesBr-5_outSubXTB-C.sdf
 !SIMesBr-5/SIMesBr-5_outSubXTB-E.sdf
@@ -669,6 +735,7 @@
 !SIMesBr-5/SIMesBr-5_outSubPreDFT-D.sdf
 !SIMesI-0
 !SIMesI-0.sdf
+!SIMesI-0/SIMesI-0_out.sdf
 !SIMesI-0/SIMesI-0_outSubXTB-A.sdf
 !SIMesI-0/SIMesI-0_outSubXTB-C.sdf
 !SIMesI-0/SIMesI-0_outSubXTB-E.sdf
@@ -679,6 +746,7 @@
 !SIMesI-0/SIMesI-0_outSubPreDFT-D.sdf
 !SIMesI-1
 !SIMesI-1.sdf
+!SIMesI-1/SIMesI-1_out.sdf
 !SIMesI-1/SIMesI-1_outSubXTB-A.sdf
 !SIMesI-1/SIMesI-1_outSubXTB-C.sdf
 !SIMesI-1/SIMesI-1_outSubXTB-E.sdf
@@ -689,6 +757,7 @@
 !SIMesI-1/SIMesI-1_outSubPreDFT-D.sdf
 !SIMesI-2
 !SIMesI-2.sdf
+!SIMesI-2/SIMesI-2_out.sdf
 !SIMesI-2/SIMesI-2_outSubXTB-A.sdf
 !SIMesI-2/SIMesI-2_outSubXTB-C.sdf
 !SIMesI-2/SIMesI-2_outSubXTB-E.sdf
@@ -699,6 +768,7 @@
 !SIMesI-2/SIMesI-2_outSubPreDFT-D.sdf
 !SIMesI-3
 !SIMesI-3.sdf
+!SIMesI-3/SIMesI-3_out.sdf
 !SIMesI-3/SIMesI-3_outSubXTB-A.sdf
 !SIMesI-3/SIMesI-3_outSubXTB-C.sdf
 !SIMesI-3/SIMesI-3_outSubXTB-E.sdf
@@ -709,6 +779,7 @@
 !SIMesI-3/SIMesI-3_outSubPreDFT-D.sdf
 !SIMesI-4
 !SIMesI-4.sdf
+!SIMesI-4/SIMesI-4_out.sdf
 !SIMesI-4/SIMesI-4_outSubXTB-A.sdf
 !SIMesI-4/SIMesI-4_outSubXTB-C.sdf
 !SIMesI-4/SIMesI-4_outSubXTB-E.sdf
@@ -719,6 +790,7 @@
 !SIMesI-4/SIMesI-4_outSubPreDFT-D.sdf
 !SIMesI-5
 !SIMesI-5.sdf
+!SIMesI-5/SIMesI-5_out.sdf
 !SIMesI-5/SIMesI-5_outSubXTB-A.sdf
 !SIMesI-5/SIMesI-5_outSubXTB-C.sdf
 !SIMesI-5/SIMesI-5_outSubXTB-E.sdf
@@ -729,6 +801,7 @@
 !SIMesI-5/SIMesI-5_outSubPreDFT-D.sdf
 !SpiroCAAC-0
 !SpiroCAAC-0.sdf
+!SpiroCAAC-0/SpiroCAAC-0_out.sdf
 !SpiroCAAC-0/SpiroCAAC-0_outSubXTB-A.sdf
 !SpiroCAAC-0/SpiroCAAC-0_outSubXTB-C.sdf
 !SpiroCAAC-0/SpiroCAAC-0_outSubXTB-E.sdf
@@ -739,6 +812,7 @@
 !SpiroCAAC-0/SpiroCAAC-0_outSubPreDFT-D.sdf
 !SpiroCAAC-1
 !SpiroCAAC-1.sdf
+!SpiroCAAC-1/SpiroCAAC-1_out.sdf
 !SpiroCAAC-1/SpiroCAAC-1_outSubXTB-A.sdf
 !SpiroCAAC-1/SpiroCAAC-1_outSubXTB-C.sdf
 !SpiroCAAC-1/SpiroCAAC-1_outSubXTB-E.sdf
@@ -749,6 +823,7 @@
 !SpiroCAAC-1/SpiroCAAC-1_outSubPreDFT-D.sdf
 !SpiroCAAC-2
 !SpiroCAAC-2.sdf
+!SpiroCAAC-2/SpiroCAAC-2_out.sdf
 !SpiroCAAC-2/SpiroCAAC-2_outSubXTB-A.sdf
 !SpiroCAAC-2/SpiroCAAC-2_outSubXTB-C.sdf
 !SpiroCAAC-2/SpiroCAAC-2_outSubXTB-E.sdf
@@ -759,6 +834,7 @@
 !SpiroCAAC-2/SpiroCAAC-2_outSubPreDFT-D.sdf
 !SpiroCAAC-3
 !SpiroCAAC-3.sdf
+!SpiroCAAC-3/SpiroCAAC-3_out.sdf
 !SpiroCAAC-3/SpiroCAAC-3_outSubXTB-A.sdf
 !SpiroCAAC-3/SpiroCAAC-3_outSubXTB-C.sdf
 !SpiroCAAC-3/SpiroCAAC-3_outSubXTB-E.sdf
@@ -769,6 +845,7 @@
 !SpiroCAAC-3/SpiroCAAC-3_outSubPreDFT-D.sdf
 !SpiroCAAC-4
 !SpiroCAAC-4.sdf
+!SpiroCAAC-4/SpiroCAAC-4_out.sdf
 !SpiroCAAC-4/SpiroCAAC-4_outSubXTB-A.sdf
 !SpiroCAAC-4/SpiroCAAC-4_outSubXTB-C.sdf
 !SpiroCAAC-4/SpiroCAAC-4_outSubXTB-E.sdf
@@ -779,6 +856,7 @@
 !SpiroCAAC-4/SpiroCAAC-4_outSubPreDFT-D.sdf
 !SpiroCAAC-5
 !SpiroCAAC-5.sdf
+!SpiroCAAC-5/SpiroCAAC-5_out.sdf
 !SpiroCAAC-5/SpiroCAAC-5_outSubXTB-A.sdf
 !SpiroCAAC-5/SpiroCAAC-5_outSubXTB-C.sdf
 !SpiroCAAC-5/SpiroCAAC-5_outSubXTB-E.sdf
@@ -789,6 +867,7 @@
 !SpiroCAAC-5/SpiroCAAC-5_outSubPreDFT-D.sdf
 !SpiroCAACDMeO-0
 !SpiroCAACDMeO-0.sdf
+!SpiroCAACDMeO-0/SpiroCAACDMeO-0_out.sdf
 !SpiroCAACDMeO-0/SpiroCAACDMeO-0_outSubXTB-A.sdf
 !SpiroCAACDMeO-0/SpiroCAACDMeO-0_outSubXTB-C.sdf
 !SpiroCAACDMeO-0/SpiroCAACDMeO-0_outSubXTB-E.sdf
@@ -799,6 +878,7 @@
 !SpiroCAACDMeO-0/SpiroCAACDMeO-0_outSubPreDFT-D.sdf
 !SpiroCAACDMeO-1
 !SpiroCAACDMeO-1.sdf
+!SpiroCAACDMeO-1/SpiroCAACDMeO-1_out.sdf
 !SpiroCAACDMeO-1/SpiroCAACDMeO-1_outSubXTB-A.sdf
 !SpiroCAACDMeO-1/SpiroCAACDMeO-1_outSubXTB-C.sdf
 !SpiroCAACDMeO-1/SpiroCAACDMeO-1_outSubXTB-E.sdf
@@ -809,6 +889,7 @@
 !SpiroCAACDMeO-1/SpiroCAACDMeO-1_outSubPreDFT-D.sdf
 !SpiroCAACDMeO-2
 !SpiroCAACDMeO-2.sdf
+!SpiroCAACDMeO-2/SpiroCAACDMeO-2_out.sdf
 !SpiroCAACDMeO-2/SpiroCAACDMeO-2_outSubXTB-A.sdf
 !SpiroCAACDMeO-2/SpiroCAACDMeO-2_outSubXTB-C.sdf
 !SpiroCAACDMeO-2/SpiroCAACDMeO-2_outSubXTB-E.sdf
@@ -819,6 +900,7 @@
 !SpiroCAACDMeO-2/SpiroCAACDMeO-2_outSubPreDFT-D.sdf
 !SpiroCAACDMeO-3
 !SpiroCAACDMeO-3.sdf
+!SpiroCAACDMeO-3/SpiroCAACDMeO-3_out.sdf
 !SpiroCAACDMeO-3/SpiroCAACDMeO-3_outSubXTB-A.sdf
 !SpiroCAACDMeO-3/SpiroCAACDMeO-3_outSubXTB-C.sdf
 !SpiroCAACDMeO-3/SpiroCAACDMeO-3_outSubXTB-E.sdf
@@ -829,6 +911,7 @@
 !SpiroCAACDMeO-3/SpiroCAACDMeO-3_outSubPreDFT-D.sdf
 !SpiroCAACDMeO-4
 !SpiroCAACDMeO-4.sdf
+!SpiroCAACDMeO-4/SpiroCAACDMeO-4_out.sdf
 !SpiroCAACDMeO-4/SpiroCAACDMeO-4_outSubXTB-A.sdf
 !SpiroCAACDMeO-4/SpiroCAACDMeO-4_outSubXTB-C.sdf
 !SpiroCAACDMeO-4/SpiroCAACDMeO-4_outSubXTB-E.sdf
@@ -839,6 +922,7 @@
 !SpiroCAACDMeO-4/SpiroCAACDMeO-4_outSubPreDFT-D.sdf
 !SpiroCAACDMeO-5
 !SpiroCAACDMeO-5.sdf
+!SpiroCAACDMeO-5/SpiroCAACDMeO-5_out.sdf
 !SpiroCAACDMeO-5/SpiroCAACDMeO-5_outSubXTB-A.sdf
 !SpiroCAACDMeO-5/SpiroCAACDMeO-5_outSubXTB-C.sdf
 !SpiroCAACDMeO-5/SpiroCAACDMeO-5_outSubXTB-E.sdf
@@ -849,6 +933,7 @@
 !SpiroCAACDMeO-5/SpiroCAACDMeO-5_outSubPreDFT-D.sdf
 !dPhSIMesCyclohexyl-0
 !dPhSIMesCyclohexyl-0.sdf
+!dPhSIMesCyclohexyl-0/dPhSIMesCyclohexyl-0_out.sdf
 !dPhSIMesCyclohexyl-0/dPhSIMesCyclohexyl-0_outSubXTB-A.sdf
 !dPhSIMesCyclohexyl-0/dPhSIMesCyclohexyl-0_outSubXTB-C.sdf
 !dPhSIMesCyclohexyl-0/dPhSIMesCyclohexyl-0_outSubXTB-E.sdf
@@ -859,6 +944,7 @@
 !dPhSIMesCyclohexyl-0/dPhSIMesCyclohexyl-0_outSubPreDFT-D.sdf
 !dPhSIMesCyclohexyl-1
 !dPhSIMesCyclohexyl-1.sdf
+!dPhSIMesCyclohexyl-1/dPhSIMesCyclohexyl-1_out.sdf
 !dPhSIMesCyclohexyl-1/dPhSIMesCyclohexyl-1_outSubXTB-A.sdf
 !dPhSIMesCyclohexyl-1/dPhSIMesCyclohexyl-1_outSubXTB-C.sdf
 !dPhSIMesCyclohexyl-1/dPhSIMesCyclohexyl-1_outSubXTB-E.sdf
@@ -869,6 +955,7 @@
 !dPhSIMesCyclohexyl-1/dPhSIMesCyclohexyl-1_outSubPreDFT-D.sdf
 !dPhSIMesCyclohexyl-2
 !dPhSIMesCyclohexyl-2.sdf
+!dPhSIMesCyclohexyl-2/dPhSIMesCyclohexyl-2_out.sdf
 !dPhSIMesCyclohexyl-2/dPhSIMesCyclohexyl-2_outSubXTB-A.sdf
 !dPhSIMesCyclohexyl-2/dPhSIMesCyclohexyl-2_outSubXTB-C.sdf
 !dPhSIMesCyclohexyl-2/dPhSIMesCyclohexyl-2_outSubXTB-E.sdf
@@ -879,6 +966,7 @@
 !dPhSIMesCyclohexyl-2/dPhSIMesCyclohexyl-2_outSubPreDFT-D.sdf
 !dPhSIMesCyclohexyl-3
 !dPhSIMesCyclohexyl-3.sdf
+!dPhSIMesCyclohexyl-3/dPhSIMesCyclohexyl-3_out.sdf
 !dPhSIMesCyclohexyl-3/dPhSIMesCyclohexyl-3_outSubXTB-A.sdf
 !dPhSIMesCyclohexyl-3/dPhSIMesCyclohexyl-3_outSubXTB-C.sdf
 !dPhSIMesCyclohexyl-3/dPhSIMesCyclohexyl-3_outSubXTB-E.sdf
@@ -889,6 +977,7 @@
 !dPhSIMesCyclohexyl-3/dPhSIMesCyclohexyl-3_outSubPreDFT-D.sdf
 !dPhSIMesCyclohexyl-4
 !dPhSIMesCyclohexyl-4.sdf
+!dPhSIMesCyclohexyl-4/dPhSIMesCyclohexyl-4_out.sdf
 !dPhSIMesCyclohexyl-4/dPhSIMesCyclohexyl-4_outSubXTB-A.sdf
 !dPhSIMesCyclohexyl-4/dPhSIMesCyclohexyl-4_outSubXTB-C.sdf
 !dPhSIMesCyclohexyl-4/dPhSIMesCyclohexyl-4_outSubXTB-E.sdf
@@ -899,6 +988,7 @@
 !dPhSIMesCyclohexyl-4/dPhSIMesCyclohexyl-4_outSubPreDFT-D.sdf
 !dPhSIMesCyclohexyl-5
 !dPhSIMesCyclohexyl-5.sdf
+!dPhSIMesCyclohexyl-5/dPhSIMesCyclohexyl-5_out.sdf
 !dPhSIMesCyclohexyl-5/dPhSIMesCyclohexyl-5_outSubXTB-A.sdf
 !dPhSIMesCyclohexyl-5/dPhSIMesCyclohexyl-5_outSubXTB-C.sdf
 !dPhSIMesCyclohexyl-5/dPhSIMesCyclohexyl-5_outSubXTB-E.sdf
@@ -909,6 +999,7 @@
 !dPhSIMesCyclohexyl-5/dPhSIMesCyclohexyl-5_outSubPreDFT-D.sdf
 !orthoTolyl-0
 !orthoTolyl-0.sdf
+!orthoTolyl-0/orthoTolyl-0_out.sdf
 !orthoTolyl-0/orthoTolyl-0_outSubXTB-A.sdf
 !orthoTolyl-0/orthoTolyl-0_outSubXTB-C.sdf
 !orthoTolyl-0/orthoTolyl-0_outSubXTB-E.sdf
@@ -919,6 +1010,7 @@
 !orthoTolyl-0/orthoTolyl-0_outSubPreDFT-D.sdf
 !orthoTolyl-1
 !orthoTolyl-1.sdf
+!orthoTolyl-1/orthoTolyl-1_out.sdf
 !orthoTolyl-1/orthoTolyl-1_outSubXTB-A.sdf
 !orthoTolyl-1/orthoTolyl-1_outSubXTB-C.sdf
 !orthoTolyl-1/orthoTolyl-1_outSubXTB-E.sdf
@@ -929,6 +1021,7 @@
 !orthoTolyl-1/orthoTolyl-1_outSubPreDFT-D.sdf
 !orthoTolyl-2
 !orthoTolyl-2.sdf
+!orthoTolyl-2/orthoTolyl-2_out.sdf
 !orthoTolyl-2/orthoTolyl-2_outSubXTB-A.sdf
 !orthoTolyl-2/orthoTolyl-2_outSubXTB-C.sdf
 !orthoTolyl-2/orthoTolyl-2_outSubXTB-E.sdf
@@ -939,6 +1032,7 @@
 !orthoTolyl-2/orthoTolyl-2_outSubPreDFT-D.sdf
 !orthoTolyl-3
 !orthoTolyl-3.sdf
+!orthoTolyl-3/orthoTolyl-3_out.sdf
 !orthoTolyl-3/orthoTolyl-3_outSubXTB-A.sdf
 !orthoTolyl-3/orthoTolyl-3_outSubXTB-C.sdf
 !orthoTolyl-3/orthoTolyl-3_outSubXTB-E.sdf
@@ -949,6 +1043,7 @@
 !orthoTolyl-3/orthoTolyl-3_outSubPreDFT-D.sdf
 !orthoTolyl-4
 !orthoTolyl-4.sdf
+!orthoTolyl-4/orthoTolyl-4_out.sdf
 !orthoTolyl-4/orthoTolyl-4_outSubXTB-A.sdf
 !orthoTolyl-4/orthoTolyl-4_outSubXTB-C.sdf
 !orthoTolyl-4/orthoTolyl-4_outSubXTB-E.sdf
@@ -959,6 +1054,7 @@
 !orthoTolyl-4/orthoTolyl-4_outSubPreDFT-D.sdf
 !orthoTolyl-5
 !orthoTolyl-5.sdf
+!orthoTolyl-5/orthoTolyl-5_out.sdf
 !orthoTolyl-5/orthoTolyl-5_outSubXTB-A.sdf
 !orthoTolyl-5/orthoTolyl-5_outSubXTB-C.sdf
 !orthoTolyl-5/orthoTolyl-5_outSubXTB-E.sdf
@@ -969,6 +1065,7 @@
 !orthoTolyl-5/orthoTolyl-5_outSubPreDFT-D.sdf
 !tBuSIMes-0
 !tBuSIMes-0.sdf
+!tBuSIMes-0/tBuSIMes-0_out.sdf
 !tBuSIMes-0/tBuSIMes-0_outSubXTB-A.sdf
 !tBuSIMes-0/tBuSIMes-0_outSubXTB-C.sdf
 !tBuSIMes-0/tBuSIMes-0_outSubXTB-E.sdf
@@ -979,6 +1076,7 @@
 !tBuSIMes-0/tBuSIMes-0_outSubPreDFT-D.sdf
 !tBuSIMes-1
 !tBuSIMes-1.sdf
+!tBuSIMes-1/tBuSIMes-1_out.sdf
 !tBuSIMes-1/tBuSIMes-1_outSubXTB-A.sdf
 !tBuSIMes-1/tBuSIMes-1_outSubXTB-C.sdf
 !tBuSIMes-1/tBuSIMes-1_outSubXTB-E.sdf
@@ -989,6 +1087,7 @@
 !tBuSIMes-1/tBuSIMes-1_outSubPreDFT-D.sdf
 !tBuSIMes-2
 !tBuSIMes-2.sdf
+!tBuSIMes-2/tBuSIMes-2_out.sdf
 !tBuSIMes-2/tBuSIMes-2_outSubXTB-A.sdf
 !tBuSIMes-2/tBuSIMes-2_outSubXTB-C.sdf
 !tBuSIMes-2/tBuSIMes-2_outSubXTB-E.sdf
@@ -999,6 +1098,7 @@
 !tBuSIMes-2/tBuSIMes-2_outSubPreDFT-D.sdf
 !tBuSIMes-3
 !tBuSIMes-3.sdf
+!tBuSIMes-3/tBuSIMes-3_out.sdf
 !tBuSIMes-3/tBuSIMes-3_outSubXTB-A.sdf
 !tBuSIMes-3/tBuSIMes-3_outSubXTB-C.sdf
 !tBuSIMes-3/tBuSIMes-3_outSubXTB-E.sdf
@@ -1009,6 +1109,7 @@
 !tBuSIMes-3/tBuSIMes-3_outSubPreDFT-D.sdf
 !tBuSIMes-4
 !tBuSIMes-4.sdf
+!tBuSIMes-4/tBuSIMes-4_out.sdf
 !tBuSIMes-4/tBuSIMes-4_outSubXTB-A.sdf
 !tBuSIMes-4/tBuSIMes-4_outSubXTB-C.sdf
 !tBuSIMes-4/tBuSIMes-4_outSubXTB-E.sdf
@@ -1019,6 +1120,7 @@
 !tBuSIMes-4/tBuSIMes-4_outSubPreDFT-D.sdf
 !tBuSIMes-5
 !tBuSIMes-5.sdf
+!tBuSIMes-5/tBuSIMes-5_out.sdf
 !tBuSIMes-5/tBuSIMes-5_outSubXTB-A.sdf
 !tBuSIMes-5/tBuSIMes-5_outSubXTB-C.sdf
 !tBuSIMes-5/tBuSIMes-5_outSubXTB-E.sdf
@@ -1029,6 +1131,7 @@
 !tBuSIMes-5/tBuSIMes-5_outSubPreDFT-D.sdf
 !tetraMeSIPh-0
 !tetraMeSIPh-0.sdf
+!tetraMeSIPh-0/tetraMeSIPh-0_out.sdf
 !tetraMeSIPh-0/tetraMeSIPh-0_outSubXTB-A.sdf
 !tetraMeSIPh-0/tetraMeSIPh-0_outSubXTB-C.sdf
 !tetraMeSIPh-0/tetraMeSIPh-0_outSubXTB-E.sdf
@@ -1039,6 +1142,7 @@
 !tetraMeSIPh-0/tetraMeSIPh-0_outSubPreDFT-D.sdf
 !tetraMeSIPh-1
 !tetraMeSIPh-1.sdf
+!tetraMeSIPh-1/tetraMeSIPh-1_out.sdf
 !tetraMeSIPh-1/tetraMeSIPh-1_outSubXTB-A.sdf
 !tetraMeSIPh-1/tetraMeSIPh-1_outSubXTB-C.sdf
 !tetraMeSIPh-1/tetraMeSIPh-1_outSubXTB-E.sdf
@@ -1049,6 +1153,7 @@
 !tetraMeSIPh-1/tetraMeSIPh-1_outSubPreDFT-D.sdf
 !tetraMeSIPh-2
 !tetraMeSIPh-2.sdf
+!tetraMeSIPh-2/tetraMeSIPh-2_out.sdf
 !tetraMeSIPh-2/tetraMeSIPh-2_outSubXTB-A.sdf
 !tetraMeSIPh-2/tetraMeSIPh-2_outSubXTB-C.sdf
 !tetraMeSIPh-2/tetraMeSIPh-2_outSubXTB-E.sdf
@@ -1059,6 +1164,7 @@
 !tetraMeSIPh-2/tetraMeSIPh-2_outSubPreDFT-D.sdf
 !tetraMeSIPh-3
 !tetraMeSIPh-3.sdf
+!tetraMeSIPh-3/tetraMeSIPh-3_out.sdf
 !tetraMeSIPh-3/tetraMeSIPh-3_outSubXTB-A.sdf
 !tetraMeSIPh-3/tetraMeSIPh-3_outSubXTB-C.sdf
 !tetraMeSIPh-3/tetraMeSIPh-3_outSubXTB-E.sdf
@@ -1069,6 +1175,7 @@
 !tetraMeSIPh-3/tetraMeSIPh-3_outSubPreDFT-D.sdf
 !tetraMeSIPh-4
 !tetraMeSIPh-4.sdf
+!tetraMeSIPh-4/tetraMeSIPh-4_out.sdf
 !tetraMeSIPh-4/tetraMeSIPh-4_outSubXTB-A.sdf
 !tetraMeSIPh-4/tetraMeSIPh-4_outSubXTB-C.sdf
 !tetraMeSIPh-4/tetraMeSIPh-4_outSubXTB-E.sdf
@@ -1079,6 +1186,7 @@
 !tetraMeSIPh-4/tetraMeSIPh-4_outSubPreDFT-D.sdf
 !tetraMeSIPh-5
 !tetraMeSIPh-5.sdf
+!tetraMeSIPh-5/tetraMeSIPh-5_out.sdf
 !tetraMeSIPh-5/tetraMeSIPh-5_outSubXTB-A.sdf
 !tetraMeSIPh-5/tetraMeSIPh-5_outSubXTB-C.sdf
 !tetraMeSIPh-5/tetraMeSIPh-5_outSubXTB-E.sdf
@@ -1089,6 +1197,7 @@
 !tetraMeSIPh-5/tetraMeSIPh-5_outSubPreDFT-D.sdf
 !triphenylTriazole-0
 !triphenylTriazole-0.sdf
+!triphenylTriazole-0/triphenylTriazole-0_out.sdf
 !triphenylTriazole-0/triphenylTriazole-0_outSubXTB-A.sdf
 !triphenylTriazole-0/triphenylTriazole-0_outSubXTB-C.sdf
 !triphenylTriazole-0/triphenylTriazole-0_outSubXTB-E.sdf
@@ -1099,6 +1208,7 @@
 !triphenylTriazole-0/triphenylTriazole-0_outSubPreDFT-D.sdf
 !triphenylTriazole-1
 !triphenylTriazole-1.sdf
+!triphenylTriazole-1/triphenylTriazole-1_out.sdf
 !triphenylTriazole-1/triphenylTriazole-1_outSubXTB-A.sdf
 !triphenylTriazole-1/triphenylTriazole-1_outSubXTB-C.sdf
 !triphenylTriazole-1/triphenylTriazole-1_outSubXTB-E.sdf
@@ -1109,6 +1219,7 @@
 !triphenylTriazole-1/triphenylTriazole-1_outSubPreDFT-D.sdf
 !triphenylTriazole-2
 !triphenylTriazole-2.sdf
+!triphenylTriazole-2/triphenylTriazole-2_out.sdf
 !triphenylTriazole-2/triphenylTriazole-2_outSubXTB-A.sdf
 !triphenylTriazole-2/triphenylTriazole-2_outSubXTB-C.sdf
 !triphenylTriazole-2/triphenylTriazole-2_outSubXTB-E.sdf
@@ -1119,6 +1230,7 @@
 !triphenylTriazole-2/triphenylTriazole-2_outSubPreDFT-D.sdf
 !triphenylTriazole-3
 !triphenylTriazole-3.sdf
+!triphenylTriazole-3/triphenylTriazole-3_out.sdf
 !triphenylTriazole-3/triphenylTriazole-3_outSubXTB-A.sdf
 !triphenylTriazole-3/triphenylTriazole-3_outSubXTB-C.sdf
 !triphenylTriazole-3/triphenylTriazole-3_outSubXTB-E.sdf
@@ -1129,6 +1241,7 @@
 !triphenylTriazole-3/triphenylTriazole-3_outSubPreDFT-D.sdf
 !triphenylTriazole-4
 !triphenylTriazole-4.sdf
+!triphenylTriazole-4/triphenylTriazole-4_out.sdf
 !triphenylTriazole-4/triphenylTriazole-4_outSubXTB-A.sdf
 !triphenylTriazole-4/triphenylTriazole-4_outSubXTB-C.sdf
 !triphenylTriazole-4/triphenylTriazole-4_outSubXTB-E.sdf
@@ -1139,6 +1252,7 @@
 !triphenylTriazole-4/triphenylTriazole-4_outSubPreDFT-D.sdf
 !triphenylTriazole-5
 !triphenylTriazole-5.sdf
+!triphenylTriazole-5/triphenylTriazole-5_out.sdf
 !triphenylTriazole-5/triphenylTriazole-5_outSubXTB-A.sdf
 !triphenylTriazole-5/triphenylTriazole-5_outSubXTB-C.sdf
 !triphenylTriazole-5/triphenylTriazole-5_outSubXTB-E.sdf
