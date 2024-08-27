@@ -178,7 +178,7 @@ labelsTakeLowLevStates=()
 labelsHighFreqStates=()
 
 #Cleanup 0:doit, 1:don't
-cleanup=1
+cleanup=0
 
 #Exit code for incomplete evaluation of fitness
 E_OPTERROR=0 # '0' leads to rejection of this single molecule
@@ -1090,12 +1090,6 @@ function importedCloseContact() {
 }
 
 
-#
-# For actual math of the fitness score calculations is implemented in a
-# standalone function that we load here:
-source "$fitnessFunction"
-
-
 
 ###############################################################################
 # Main
@@ -1165,6 +1159,17 @@ exec > $log
 exec 2>&1
 echo "Starting fitness calculation (ID:$taskId) at $beginTime"
 
+
+#
+# The actual math of the fitness score calculations is implemented in a
+# standalone function that we load here:
+echo "Loading fitness function from '$fitnessFunction'"
+source "$fitnessFunction"
+if [[ $(type -t computeFitness ) != function ]]
+then
+    echo "ERROR: function 'computeFitness' not defined!"
+    exit -1
+fi
 
 #
 # Hold trap: humans can hold all machine-controlled fitness provider runs
@@ -1345,7 +1350,7 @@ else
             addPropertyToSingleMolSDF "GCODE" "$newGCode" "$wrkDir/${molNum}_out.sdf"
             addPropertyToSingleMolSDF "GraphMsg" "$newGraphMsg" "$wrkDir/${molNum}_out.sdf"
 
-            calculateFitness "$wrkDir/${molNum}_out.sdf" "$freeEnergyX" "$freeEnergyZ" "$freeEnergyD" "$freeEnergyA" "$freeEnergyC" "$freeEnergyE" "$freeEnergyF" "$freeEnergyL"
+            computeFitness "$wrkDir/${molNum}_out.sdf" "$freeEnergyX" "$freeEnergyZ" "$freeEnergyD" "$freeEnergyA" "$freeEnergyC" "$freeEnergyE" "$freeEnergyF" "$freeEnergyL"
 
             exit 0
         fi
@@ -1639,7 +1644,7 @@ else
     freeEnergyE=$( grep -A1 "DFT-ENERGY" "$wrkDir/${molNum}_outSubDFT-E.sdf" | tail -n 1 )
 fi
 # Calculate fitness
-calculateFitness "$preOutSDF" "$freeEnergyX" "$freeEnergyZ" "$freeEnergyD" "$freeEnergyA" "$freeEnergyC" "$freeEnergyE" "$freeEnergyF" "$freeEnergyL"
+computeFitness "$preOutSDF" "$freeEnergyX" "$freeEnergyZ" "$freeEnergyD" "$freeEnergyA" "$freeEnergyC" "$freeEnergyE" "$freeEnergyF" "$freeEnergyL"
 addPropertyToSingleMolSDF "DFT_IDENTIFIER" "$( grep "Current timestamp (ms):" "$wrkDir/${molNum}_run_DFT.log" | awk '{print $4}' )" "$preOutSDF"
 addPropertyToSingleMolSDF "DFT_MACHINE" "$( grep machine "$wrkDir/${molNum}_run_DFT.log" | awk '{print $2}' )" "$preOutSDF"
 addPropertyToSingleMolSDF "XTB_IDENTIFIER" "$( grep "Current timestamp (ms):" "$wrkDir/${molNum}_run_XTB.log" | awk '{print $4}' )" "$preOutSDF"

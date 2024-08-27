@@ -150,7 +150,7 @@ Here are the steps to follow:
     mkdir -p test/localhost_workspace
     cp -r data/basisset test/localhost_workspace
     ```
-    and force the interpretation of commands from sent via the remote workers RemoteWorkersBridge
+    and force the interpretation of commands sent via the remote workers RemoteWorkersBridge
     ```
     echo "command=\"$(pwd)/tools/RemoteWorkersBridge/commandFilter.sh\" $(cat ~/.ssh/to_localhost.pub)" >> ~/.ssh/authorized_keys
     ```
