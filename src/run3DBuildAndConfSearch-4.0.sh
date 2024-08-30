@@ -77,6 +77,9 @@ rotSpaceDef="$WORKDIR/rotatableBonds-1.2"
 tinkerKeyFile="$WORKDIR/build_uff_ConfSearch.key"
 tinkerSubmitFile="$WORKDIR/submit_ConfSearch"
 
+# Option for checking for atom clashes
+checkAtomClashes=1 # 0:check, 1:don't check
+
 # Spartan single point energy calculations 
 #sprtSPFF="$WORKDIR/params.MMFF94_CS-2.2" we use a global params file ~/PARAMS.MMFF.DENOPTIM
 
@@ -610,7 +613,8 @@ changeTitleToSingleMolSDF "$molName" "$DnCG3Dout"
 #
 # Check for exceeding atom crowding
 #
-if [ ! "$jobTyp" == "F" ] ; then
+if [ "$checkAtomClashes" -eq 0 ]
+then
     echo "Starting Atom Clash detector..."
     # Setting new params
     atmClshParFile="$wrkDir/${molName}_AtmClsh.par"
@@ -631,18 +635,11 @@ if [ ! "$jobTyp" == "F" ] ; then
     fi
     #atomClashF="0"
     if ! grep -q "Termination status: 0" "$atmClshLog" ; then
-        #if [ "$jobTyp" == "F" ]; then
-        #atomClashF="1"
-        #echo "Warning: Atom clash detected in F."
-        #else
         errMsg="#AtomClash: non-zero exit status from AutoCompChem"
         abandon "$DnCG3Dout" "$E_OPTERROR"
-        #fi
     fi
     if grep -q 'Found 0 mols with one or more atom clashes' "$atmClshLog" ; then
         echo "No atom clashes"
-    #elif [ "$atomClashF" == "1" ] ; then
-    #    echo "Atom clash found in F."
     else
         errMsg="#AtomClash: Found Atom Clashes"
         abandon "$DnCG3Dout" "$E_OPTERROR"
