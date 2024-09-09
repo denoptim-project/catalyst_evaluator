@@ -491,7 +491,7 @@ DnCGParFile="$wrkDir/${molName}_DnCG.par"
 DnGEParFile="$wrkDir/replaceScaff_$molName.params"
 # Changing scaffold with denoptim GE
 # Setting GE params
-echo "GRAPHEDIT-INPUTGRAPHS=$wrkDir/$inpSDF" >> "$DnGEParFile"
+echo "GRAPHEDIT-INPUTGRAPHS=$inpSDF" >> "$DnGEParFile"
 echo "GRAPHEDIT-GRAPHSEDITSFILE=$WORKDIR/replaceScaffoldEditingTask" >> "$DnGEParFile"
 echo "GRAPHEDIT-OUTPUTGRAPHS=$DnCG3Dinp" >> "$DnGEParFile"
 echo "FS-scaffoldLibFile=$libScaff" >> "$DnGEParFile"
