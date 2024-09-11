@@ -39,6 +39,10 @@ function valueIsDistantFromReference()
     file="$3"
     refLineNo="$4"
     v=$(grep -A 1 "<$propertyName>" "$file" | tail -n 1)
+    # We ignore '\' used by bc to indicate that the number is longer than
+    # 70 characters and the rest in in the next line. We ignore such long
+    # numbers.
+    v="${v//\\}"
     diff=$(echo "$v - $reference" | bc -l)
     if (( $(echo "$diff < 0 " | bc -l) )) ; then
         diff=$(echo "-1.0 * $diff " | bc -l)
@@ -101,6 +105,9 @@ valueIsDistantFromReference 'WEIGHT_4' '1.0' "$tmpFile" $LINENO
 valueIsDistantFromReference 'FITNESS' '13.65855' "$tmpFile" $LINENO
 mustNotHaveString 'WRONG' "$tmpFile" $LINENO
 mustHaveString 'not_touched_value' "$tmpFile" $LINENO
+
+computeFitness "$tmpFile" "$x" '-2055.69267324922' "$d" "$a" "$c" "$e" "$f" "$l" > "$log"
+valueIsDistantFromZero 'DESCRIPTOR_2' "$tmpFile" $LINENO
 
 computeFitness "$tmpFile" "$x" "$z" '-2055.80' "$a" "$c" "$e" "$f" "$l" > "$log"
 valueIsDistantFromZero 'FITNESS' "$tmpFile" $LINENO

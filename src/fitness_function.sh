@@ -116,22 +116,28 @@ function computeFitness() {
     freeEnergyF="$8" # Precursor with cis-anionic configuration
     freeEnergyL="$9" # Free ligand L
 
-    # Descriptor 1 -Boltzmann factor: (C-Z) - (C-X) - DDG_ref(HG2).
+
+    # Descriptor 1 -Boltzmann factor: (Z) - (X) - DDG_ref(HG2).
     coef1="1"
-    desc1=$( echo "$coef1 * ( e( $hartree_to_kcalmol * ( ( $freeEnergyZ - $freeEnergyD ) - ( $freeEnergyX + 2*$G_Ethene - $freeEnergyD - 2*$G_Propene ) - $DDG_reference_HGII ) / $kT ) ) " | bc -l )
-    DESCRIPTOR_DEFINITION_1='desc1=( echo "1 * ( e( $hartree_to_kcalmol * ( ( $freeEnergyZ - $freeEnergyD ) - ( $freeEnergyX + 2*$G_Ethene - $freeEnergyD - 2*$G_Propene ) - $DDG_reference_HGII ) / $kT ) ) " | bc -l )'
+    DDG=$( echo "( ( $freeEnergyZ ) - ( $freeEnergyX + 2*$G_Ethene - 2*$G_Propene ) )" | bc -l )
+    desc1=$( echo "$coef1 * ( e( $hartree_to_kcalmol * ( $DDG - $DDG_reference_HGII ) / $kT ) ) " | bc -l )
+    DESCRIPTOR_DEFINITION_1='desc1=( echo "1 * ( e( $hartree_to_kcalmol * ( ( $freeEnergyZ ) - ( $freeEnergyX + 2*$G_Ethene - 2*$G_Propene ) - $DDG_reference_HGII ) / $kT ) ) " | bc -l )'
 
 
-    # Descriptor 2 - Linear: (C-Z) - (C-X).
+    # Descriptor 2 - Linear: (Z) - (X) (or 0 if lower than 0)
     coef2="1"
-    desc2=$( echo "$coef2 * ( $hartree_to_kcalmol * ( ( $freeEnergyZ - $freeEnergyD ) - ( $freeEnergyX + 2*$G_Ethene - $freeEnergyD - 2*$G_Propene ) ) )" | bc -l )
-    DESCRIPTOR_DEFINITION_2='desc2=$( echo "1 * ( $hartree_to_kcalmol * ( ( $freeEnergyZ - $freeEnergyD ) - ( $freeEnergyX + 2*$G_Ethene - $freeEnergyD - 2*$G_Propene ) ) )" | bc -l )'
+    desc2=$( echo "$coef2 * ( $hartree_to_kcalmol * ( $DDG ))" | bc -l )
+    if [ "$( echo "$DDG < 0.0" | bc -l )" == "1" ]
+    then
+        desc2="0.0000000001"
+    fi
+    DESCRIPTOR_DEFINITION_2='desc2=$( echo "1 * ( $hartree_to_kcalmol * ( ( $freeEnergyZ ) - ( $freeEnergyX + 2*$G_Ethene - 2*$G_Propene ) ) )" | bc -l )'
+
 
     # Descriptor 3 - linear: Production Barrier relative to HG Ru SIMes.
     coef3="1"
     threshold3=$( echo "( $hartree_to_kcalmol * $DG_referenceProductionBarrier )" | bc -l )
     DG_cat=$( echo "$hartree_to_kcalmol * ( $freeEnergyX + 2*$G_Ethene - $freeEnergyD - 2*$G_Propene )" | bc -l )
-
     if [ "$( echo "$DG_cat >= $threshold3" | bc -l )" == "1" ]
     then
         desc3="0.0000000001"
@@ -140,10 +146,12 @@ function computeFitness() {
     fi
     DESCRIPTOR_DEFINITION_3='desc3=$( echo "1 * $hartree_to_kcalmol * ( $DG_referenceProductionBarrier - ( $freeEnergyX + 2*$G_Ethene - $freeEnergyD - 2*$G_Propene ) )" | bc -l )'
 
+
     # Dynamic weight 1 (sigmoid): Catalyst activity.
     threshold4="$( echo "( $DG_referenceProductionBarrier * $hartree_to_kcalmol ) + $magnitude4" | bc -l )"
     w1=$( echo "1 / ( 1 + e( ( ( $hartree_to_kcalmol * ( $freeEnergyX + 2*$G_Ethene - $freeEnergyD - 2*$G_Propene ) ) - $threshold4 ) / $kT ) )" | bc -l )
     WEIGHT_DEFINITION_1='w1=$( echo "1 / ( 1 + e( $hartree_to_kcalmol * ( ( ( $freeEnergyX + 2*$G_Ethene - $freeEnergyD - 2*$G_Propene ) ) - ( $DG_referenceProductionBarrier + $magnitude4 ) ) / $kT ) )" | bc -l )'
+
 
     # Dynamic weight 2 (sigmoid): Stability of precursor wrt. MCB.
     threshold5=$( echo "( $hartree_to_kcalmol*$DDG_referencePrecursorStability ) + $magnitude1" | bc -l )
@@ -157,11 +165,13 @@ function computeFitness() {
     w2=$( echo "1 / ( 1 + e( ( $abs_DDG_Stability - $threshold5 ) / $kT ) )" | bc -l )
     WEIGHT_DEFINITION_2='w2=$( echo "1 / ( 1 + e( $hartree_to_kcalmol * ( ABS( $freeEnergyC + $G_HoveydaProd - $freeEnergyA - 2*${G_Ethene} - $DG_referencePrecursorStabilityHII ) - ( $DDG_referencePrecursorStability + $magnitude1 ) ) / $kT ) )" | bc -l )'
 
+
     # Dynamic weight 3 (sigmoid): Ligand exchange ( H2IMes  --exchange--> L ).
     coef6="1"
     DG_synt=$( echo "$hartree_to_kcalmol * ( $freeEnergyE + $G_PCy3 - $G_HI_precursor - $freeEnergyL )" | bc -l )
     w3=$( echo "1 / ( 1 + e( ( $DG_synt - $magnitude1 ) / $kT ) )" | bc -l )
     WEIGHT_DEFINITION_3='w3=$( echo "1 / ( 1 + e( $hartree_to_kcalmol * ( ( $freeEnergyE + $G_PCy3 - $G_HI_precursor - $freeEnergyL ) - $magnitude1 ) / $kT ) )" | bc -l )'
+
 
     # Dynamic weight 4 (sigmoid): disfavouring non trans precursors.
     threshold7="$magnitude2"
@@ -172,7 +182,6 @@ function computeFitness() {
     #FITNESS (Sum of fitness from descriptos 1-3 weighted by dynamic weights 1-4).
     fitness=$( echo "( $desc1 + $desc2 + $desc3 ) * $w1 * $w2 * $w3 * $w4 " | bc -l )
 
-#TODO: add constants and Parameters
     removePropertyFromSDF "DESCRIPTOR_1" "$sdfFile"
     removePropertyFromSDF "DESCRIPTOR_DEFINITION_1" "$sdfFile"
     removePropertyFromSDF "DESCRIPTOR_2" "$sdfFile"
