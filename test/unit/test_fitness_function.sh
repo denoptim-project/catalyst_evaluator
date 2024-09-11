@@ -1,8 +1,6 @@
 #!/bin/bash
-#
-# Here we test the job submissin script for AutoCompChem jobs
-#
 
+# Triggers an error if the given string is not present in the file
 function mustHaveString()
 {
     str="$1"
@@ -14,6 +12,7 @@ function mustHaveString()
     fi
 }
 
+# Triggers an error if the given string is present in the file
 function mustNotHaveString()
 {
     str="$1"
@@ -25,11 +24,14 @@ function mustNotHaveString()
     fi
 }
 
+# Triggers an error if the given value is distant from zero
 function valueIsDistantFromZero()
 {
     valueIsDistantFromReference "$1" '0.000' "$2" "$3"
 }
 
+# Triggers an error if the given value is distant from the given reference
+# value
 function valueIsDistantFromReference()
 {
     propertyName="$1"
